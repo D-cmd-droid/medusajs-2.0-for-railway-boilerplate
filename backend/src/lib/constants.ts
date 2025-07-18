@@ -100,3 +100,13 @@ export const WORKER_MODE =
  * Disable Admin
  */
 export const SHOULD_DISABLE_ADMIN = process.env.MEDUSA_DISABLE_ADMIN === 'true'
+
+/**
+ * Storefront URL for cache revalidation
+ */
+export const STOREFRONT_URL = process.env.STOREFRONT_URL;
+
+/**
+ * Secret for secure cache revalidation
+ */
+export const REVALIDATE_SECRET = process.env.REVALIDATE_SECRET;
