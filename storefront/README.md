@@ -140,6 +140,29 @@ vercel ls
 vercel inspect medusajs-2-0-for-railway-boilerplat.vercel.app
 ```
 
+## Railway Switch Deployment
+
+**Cost-Effective Backup Strategy:**
+Railway storefront deployment can be activated on-demand for backup or testing purposes:
+
+**Switch File**: `../zrailwaystorefrontbuild` (Railway watches this file)  
+**Trigger**: Modify the switch file to initiate Railway deployment  
+**Purpose**: Backup deployment without ongoing Railway hosting costs  
+
+**To Activate Railway Deployment:**
+```bash
+# From project root
+echo "Deploy $(date)" >> zrailwaystorefrontbuild
+git add zrailwaystorefrontbuild
+git commit -m "Trigger Railway storefront deployment"
+git push
+```
+
+**Benefits:**
+- Cost-effective: Railway service stays idle until needed
+- Backup option: Alternative deployment if Vercel has issues
+- Testing: Deploy experimental builds without affecting main Vercel deployment
+
 No additional configuration is needed - if MinIO is not configured, the storefront will use local file storage for development.
 
 # Payment integrations

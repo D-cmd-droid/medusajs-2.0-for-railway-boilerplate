@@ -29,8 +29,29 @@ This implementation consists of a Medusa 2.0 e-commerce backend and Next.js 14 s
 
 **Deployment Architecture:**
 - **Backend**: Railway "handsome-clarity" project (PostgreSQL, Redis, MinIO, MeiliSearch)
-- **Storefront**: Vercel with pnpm package manager (Next.js 14 with static optimization)
+- **Storefront**: Dual deployment strategy
+  - **Primary**: Vercel with pnpm package manager (Next.js 14 with static optimization)
+  - **Secondary**: Railway (idle/on-demand via `zrailwaystorefrontbuild` switch file)
 - **CDN**: Vercel Edge Network for global performance
+
+## Railway Switch Deployment
+
+**Cost-Effective Backup Strategy:**
+The Railway storefront deployment remains idle by default but can be activated when needed:
+
+1. **Switch File**: `zrailwaystorefrontbuild` (Railway watches this path)
+2. **Trigger**: Modify the switch file → Railway builds and deploys storefront
+3. **Purpose**: Backup deployment option without ongoing costs
+4. **Primary**: Vercel remains the main production storefront
+
+**To Deploy on Railway:**
+```bash
+# Trigger Railway storefront deployment
+echo "Deploy $(date)" >> zrailwaystorefrontbuild
+git add zrailwaystorefrontbuild
+git commit -m "Trigger Railway storefront deployment"
+git push
+```
 
 ## Integrated Services
 
