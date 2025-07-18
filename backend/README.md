@@ -1,22 +1,168 @@
-### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
+# SeaSun Backend - Medusa E-commerce API
 
-- `cd /backend`
-- `pnpm install` or `npm i`
-- Rename `.env.template` ->  `.env`
-- To connect to your online database from your local machine, copy the `DATABASE_URL` value auto-generated on Railway and add it to your `.env` file.
-  - If connecting to a new database, for example a local one, run `pnpm ib` or `npm run ib` to seed the database.
-- `pnpm dev` or `npm run dev`
+> **Premium Tanning Oil E-commerce Backend**  
+> Built with Medusa 2.0 and deployed on Railway
 
-### requirements
-- **postgres database** (Automatic setup when using the Railway template)
-- **redis** (Automatic setup when using the Railway template) - fallback to simulated redis.
-- **MinIO storage** (Automatic setup when using the Railway template) - fallback to local storage.
-- **Meilisearch** (Automatic setup when using the Railway template)
+## Production Deployment
 
-### commands
+- **API Endpoint**: https://backend-production-4a9b.up.railway.app
+- **Admin Dashboard**: https://backend-production-4a9b.up.railway.app/app
+- **Railway Project**: handsome-clarity
+- **Environment**: production
 
-`cd backend/`
-`npm run ib` or `pnpm ib` will initialize the backend by running migrations and seed the database with required system data.
-`npm run dev` or `pnpm dev` will start the backend (and admin dashboard frontend on `localhost:9000/app`) in development mode.
-`pnpm build && pnpm start` will compile the project and run from compiled source. This can be useful for reproducing issues on your cloud instance.
+## SeaSun-Specific Features
+
+**Custom Modules:**
+- **Email Notifications**: Resend integration with React Email templates for tanning oil brand
+- **File Storage**: MinIO cloud storage for product images and media
+- **Search**: MeiliSearch for fast product discovery
+
+**Product Catalog:**
+- Natural tanning oil products
+- Beach lifestyle imagery
+- Premium product positioning
+- Seasonal collections
+
+## Production Services (Railway)
+
+**Deployed Services:**
+- **Backend**: https://backend-production-4a9b.up.railway.app
+- **Database**: PostgreSQL (managed)
+- **Redis**: Redis (managed)
+- **MinIO**: https://bucket-production-8544.up.railway.app
+- **MeiliSearch**: https://meilisearch-production-4cc0.up.railway.app
+- **Console**: https://console-production-1bb8.up.railway.app
+
+## Local Development Setup
+
+### Prerequisites
+- Node.js 22.x
+- pnpm (configured via packageManager field)
+- PostgreSQL database
+
+### Setup Instructions
+
+1. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
+
+2. **Environment configuration:**
+   ```bash
+   cp .env.template .env
+   ```
+   
+   **For local development**, edit `.env` with:
+   ```env
+   DATABASE_URL=postgresql://username:password@localhost:5432/seasun_local
+   MEDUSA_ADMIN_EMAIL=admin@seasun.com
+   MEDUSA_ADMIN_PASSWORD=your_password
+   ```
+   
+   **For Railway connection**, use the production database URL from Railway dashboard.
+
+3. **Initialize database:**
+   ```bash
+   pnpm ib  # Initialize backend - migrations and seed data
+   ```
+
+4. **Start development server:**
+   ```bash
+   pnpm dev
+   ```
+
+**Access Points:**
+- Admin Dashboard: http://localhost:9000/app
+- API Endpoint: http://localhost:9000
+
+## Available Commands
+
+```bash
+# Initialize backend (migrations + seed)
+pnpm ib
+
+# Development server
+pnpm dev
+
+# Production build
+pnpm build
+
+# Production server
+pnpm start
+
+# Database seeding
+pnpm seed
+
+# Email template development
+pnpm email:dev
+```
+
+## Custom Modules
+
+### Email Notifications
+- **Location**: `src/modules/email-notifications/`
+- **Provider**: Resend
+- **Templates**: React Email with SeaSun branding
+- **Documentation**: [README](src/modules/email-notifications/README.md)
+
+### MinIO File Storage
+- **Location**: `src/modules/minio-file/`
+- **Provider**: MinIO Cloud Storage
+- **Features**: Automatic bucket creation, public access, ULID naming
+- **Documentation**: [README](src/modules/minio-file/README.md)
+
+## Environment Variables
+
+**Required:**
+```env
+DATABASE_URL=postgresql://...
+MEDUSA_ADMIN_EMAIL=admin@seasun.com
+MEDUSA_ADMIN_PASSWORD=secure_password
+JWT_SECRET=your_jwt_secret
+COOKIE_SECRET=your_cookie_secret
+```
+
+**Optional Services:**
+```env
+# Resend Email
+RESEND_API_KEY=your_resend_key
+RESEND_FROM_EMAIL=orders@seasun.com
+
+# MinIO Storage
+MINIO_ENDPOINT=your-minio-endpoint
+MINIO_ACCESS_KEY=your_access_key
+MINIO_SECRET_KEY=your_secret_key
+
+# MeiliSearch
+MEILISEARCH_HOST=http://localhost:7700
+MEILISEARCH_MASTER_KEY=your_master_key
+
+# Stripe Payments
+STRIPE_API_KEY=your_stripe_key
+STRIPE_WEBHOOK_SECRET=your_webhook_secret
+```
+
+## Troubleshooting
+
+**Configuration Changes:**
+If you modify environment variables or module configuration:
+1. Stop the Medusa server
+2. Delete the `.medusa/server` directory
+3. Restart the server
+
+**Common Issues:**
+- **Database connection**: Verify DATABASE_URL format
+- **Module errors**: Check `.medusa/server` directory for cached config
+- **File uploads**: Ensure MinIO configuration is correct
+- **Search not working**: Verify MeiliSearch connection
+
+## Documentation
+
+- **[Project Context](../../context/)** - Business requirements and strategy
+- **[Development Guides](../../context/guides/)** - Technical guides and best practices
+- **[Module Documentation](src/modules/)** - Custom module implementation details
+- **[API Reference](../../context/guides/reference/api-endpoints-reference.md)** - API endpoint documentation
+
+---
+
+**SeaSun Backend** - Powering premium tanning oil e-commerce

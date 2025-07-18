@@ -1,103 +1,191 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-      <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg" width=100>
-    </picture>
-  </a>
-  <a href="https://railway.app/template/gkU-27?referralCode=-Yg50p">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://railway.app/brand/logo-light.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://railway.app/brand/logo-dark.svg">
-      <img alt="Railway logo" src="https://railway.app/brand/logo-light.svg" width=100>
-    </picture>
-  </a>
-</p>
+# SeaSun E-commerce Implementation
 
-<h2 align="center">
-  Prebaked medusajs 2.0 monorepo
-</h2>
-<h4 align="center">
-  Backend + Storefront + postgres + redis + MinIO + MeiliSearch
-</h4>
+> **Premium Natural Tanning Oil E-commerce Platform**  
+> Built with Medusa 2.0 backend and Next.js 14 storefront
 
-<h2 align="center">
-  <a href="https://railway.app/template/gkU-27?referralCode=-Yg50p">one-click deploy on railway!</a>
-</h2>
+## Live Deployment
 
-<h1 align="center">
-  Need help?<br>
-  <a href="https://funkyton.com/medusajs-2-0-is-finally-here/">Step by step deploy guide, and video instructions</a>
-</h1>
+- **🌐 Storefront**: https://medusajs-2-0-for-railway-boilerplat.vercel.app
+- **⚙️ Backend API**: https://backend-production-4a9b.up.railway.app
+- **👩‍💼 Admin Dashboard**: https://backend-production-4a9b.up.railway.app/app
 
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 14 features for a performant storefront.</p>
+## About SeaSun
 
-## About this boilerplate
-This boilerplate is a monorepo consisting of the officially released MedusaJS 2.0 backend and storefront application. It is a pre-configured, ready-to-deploy solution, modified for seamless deployment on [railway.app](https://railway.app?referralCode=-Yg50p).
+SeaSun creates premium natural tanning oils that enhance your sun-kissed glow while nourishing your skin. This e-commerce platform showcases our product line with a focus on the beach lifestyle and natural beauty.
 
-Updated: to `version 2.8.4` 🥳
+**Key Features:**
+- Premium tanning oil product catalog
+- Beach lifestyle branding and imagery
+- Natural/organic product positioning
+- Seamless checkout experience
+- Mobile-optimized shopping experience
 
-## Preconfigured 3rd party integrations
+## Architecture Overview
 
-- MinIO file storage: Replaces local file storage with MinIO cloud storage, automatically creating a 'medusa-media' bucket for your media files. [README](backend/src/modules/minio-file/README.md)
-- Resend email integration [Watch setup video](https://youtu.be/pbdZm26YDpE?si=LQTHWeZMLD4w3Ahw) - special thanks to [aleciavogel](https://github.com/aleciavogel) for Resend notification service, and react-email implementation! [README](backend/src/modules/email-notifications/README.md)
-- Stripe payment service: [Watch setup video](https://youtu.be/dcSOpIzc1Og)
-- Meilisearch integration by [Rokmohar](https://github.com/rokmohar/medusa-plugin-meilisearch): Adds powerful product search capabilities to your store. When deployed on Railway using the template, MeiliSearch is automatically configured. (For non-railway'ers: [Watch setup video](https://youtu.be/hrXcc5MjApI))
+This implementation consists of a Medusa 2.0 e-commerce backend and Next.js 14 storefront, deployed on Railway and Vercel respectively.
 
-# /backend
+**Current Version**: Medusa 2.0 (latest) with Next.js 14
 
-### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
+**Deployment Architecture:**
+- **Backend**: Railway (PostgreSQL, Redis, MinIO, MeiliSearch)
+- **Storefront**: Vercel (Next.js with static optimization)
+- **CDN**: Vercel Edge Network for global performance
 
-- `cd /backend`
-- `pnpm install` or `npm i`
-- Rename `.env.template` ->  `.env`
-- To connect to your online database from your local machine, copy the `DATABASE_URL` value auto-generated on Railway and add it to your `.env` file.
-  - If connecting to a new database, for example a local one, run `pnpm ib` or `npm run ib` to seed the database.
-- `pnpm dev` or `npm run dev`
+## Integrated Services
 
-### requirements
-- **postgres database** (Automatic setup when using the Railway template)
-- **redis** (Automatic setup when using the Railway template) - fallback to simulated redis.
-- **MinIO storage** (Automatic setup when using the Railway template) - fallback to local storage.
-- **Meilisearch** (Automatic setup when using the Railway template)
+**Production Services:**
+- **🗄️ MinIO File Storage**: Cloud storage for product images and media ([Module Documentation](backend/src/modules/minio-file/README.md))
+- **📧 Resend Email**: Transactional emails with React Email templates ([Module Documentation](backend/src/modules/email-notifications/README.md))
+- **💳 Stripe Payments**: Secure payment processing for tanning oil purchases
+- **🔍 MeiliSearch**: Fast product search and filtering capabilities
+- **📦 PostgreSQL**: Primary database for product catalog and orders
+- **⚡ Redis**: Caching and session management
 
-### commands
+**SeaSun-Specific Customizations:**
+- Custom email templates for tanning oil brand
+- Product catalog optimized for natural beauty products
+- Beach lifestyle imagery and branding
+- Mobile-first responsive design
 
-`cd backend/`
-`npm run ib` or `pnpm ib` will initialize the backend by running migrations and seed the database with required system data.
-`npm run dev` or `pnpm dev` will start the backend (and admin dashboard frontend on `localhost:9000/app`) in development mode.
-`pnpm build && pnpm start` will compile the project and run from compiled source. This can be useful for reproducing issues on your cloud instance.
+# Backend Setup
 
-# /storefront
+## Local Development
 
-### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
+1. **Navigate to backend directory:**
+   ```bash
+   cd backend
+   ```
 
-Install dependencies `npm i` of `pnpm i`
-Rename `.env.local.template` ->  `.env.local`
+2. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
 
-### requirements
-- A running backend on port 9000 is required to fetch product data and other information needed to build Next.js pages.
+3. **Environment setup:**
+   ```bash
+   cp .env.template .env
+   ```
+   Edit `.env` with your configuration or use Railway database URL for remote development.
 
-### commands
-`cd storefront/`
-`npm run dev` or `pnpm dev` will run the storefront on uncompiled code, with hot-reloading as files are saved with changes.
+4. **Initialize database:**
+   ```bash
+   pnpm ib  # Initialize backend - runs migrations and seeds
+   ```
 
-## Useful resources
-- How to setup credit card payment with Stripe payment module: https://youtu.be/dcSOpIzc1Og
-- https://funkyton.com/medusajs-2-0-is-finally-here/#succuessfully-deployed-whats-next
-  
-<p align="center">
-  <a href="https://funkyton.com/">
-    <div style="text-align: center;">
-      A template by,
-      <br>
-      <picture>
-        <img alt="FUNKYTON logo" src="https://res-5.cloudinary.com/hczpmiapo/image/upload/q_auto/v1/ghost-blog-images/funkyton-logo.png" width=200>
-      </picture>
-    </div>
-  </a>
-</p>
+5. **Start development server:**
+   ```bash
+   pnpm dev
+   ```
+
+**Admin Dashboard**: http://localhost:9000/app
+
+## Backend Requirements
+
+**Production (Railway):**
+- PostgreSQL database ✅ (automatically configured)
+- Redis ✅ (automatically configured)
+- MinIO file storage ✅ (automatically configured)
+- MeiliSearch ✅ (automatically configured)
+
+**Local Development:**
+- PostgreSQL database (required)
+- Redis (optional - fallback to simulated)
+- MinIO (optional - fallback to local storage)
+- MeiliSearch (optional - for search functionality)
+
+## Backend Commands
+
+```bash
+cd backend/
+
+# Initialize backend (migrations + seed data)
+pnpm ib
+
+# Development server (with admin dashboard)
+pnpm dev
+
+# Production build and start
+pnpm build && pnpm start
+
+# Email template development
+pnpm email:dev
+```
+
+# Storefront Setup
+
+## Local Development
+
+1. **Navigate to storefront directory:**
+   ```bash
+   cd storefront
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
+
+3. **Environment setup:**
+   ```bash
+   cp .env.local.template .env.local
+   ```
+   Configure environment variables to point to your backend.
+
+4. **Start development server:**
+   ```bash
+   pnpm dev
+   ```
+
+**Storefront**: http://localhost:8000
+
+## Storefront Commands
+
+```bash
+cd storefront/
+
+# Development server with hot reloading
+pnpm dev
+
+# Production build
+pnpm build
+
+# Production server
+pnpm start
+
+# Run E2E tests
+pnpm test-e2e
+
+# Lint code
+pnpm lint
+```
+
+## Requirements
+
+- Backend running on port 9000 (local) or configured backend URL
+- All SeaSun product data and configurations
+
+## Documentation & Resources
+
+### Project Documentation
+- **[Project Context](../context/)** - Business requirements and strategy
+- **[Development Guides](../context/guides/)** - Technical guides and best practices
+- **[Content Strategy](../context/content/)** - Brand messaging and positioning
+- **[Brand Assets](../context/references/)** - Design materials and brand guidelines
+
+### Technical Guides
+- **[Quick Start Guide](../context/guides/medusa-nextjs-vercel-quick-start.md)** - 5-minute setup
+- **[Development Best Practices](../context/guides/medusa-development-best-practices.md)** - Code quality standards
+- **[Production Deployment](../context/guides/medusa-production-deployment-checklist.md)** - Deployment checklist
+- **[Performance Optimization](../context/guides/medusa-performance-optimization.md)** - Scaling strategies
+
+### Module Documentation
+- **[Email Notifications](backend/src/modules/email-notifications/README.md)** - Resend integration
+- **[MinIO File Storage](backend/src/modules/minio-file/README.md)** - Cloud storage setup
+
+### External Resources
+- **[Medusa Documentation](https://docs.medusajs.com)** - Official Medusa docs
+- **[Next.js Documentation](https://nextjs.org/docs)** - Official Next.js docs
+
+---
+
+**Built for SeaSun** - Premium natural tanning oil e-commerce platform

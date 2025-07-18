@@ -1,19 +1,17 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
+# SeaSun Storefront - Next.js E-commerce
 
-<h1 align="center">
-  Medusa Next.js Starter Template
-</h1>
+> **Premium Natural Tanning Oil E-commerce Storefront**  
+> Built with Medusa's modules and Next.js 14 features for a performant storefront
 
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 14 features for a performant storefront.</p>
+## Live Deployment
+
+- **🌐 Production**: https://medusajs-2-0-for-railway-boilerplat.vercel.app
+- **⚡ CDN**: Vercel Edge Network
+- **🔗 Backend**: https://backend-production-4a9b.up.railway.app
+
+## About SeaSun
+
+SeaSun creates premium natural tanning oils that enhance your sun-kissed glow while nourishing your skin. This storefront showcases our beach lifestyle products with a focus on natural beauty and optimal user experience.
 
 <p align="center">
   <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
@@ -29,14 +27,15 @@ Combine Medusa's modules for your commerce backend with the newest Next.js 14 fe
 
 ### Prerequisites
 
-To use the [Next.js Starter Template](https://medusajs.com/nextjs-commerce/), you should have a Medusa server running locally on port 9000.
+To use the SeaSun storefront, you should have the SeaSun Medusa backend running locally on port 9000.
 For a quick setup, run:
 
 ```shell
-npx create-medusa-app@latest
+cd ../backend
+pnpm install && pnpm ib && pnpm dev
 ```
 
-Check out [create-medusa-app docs](https://docs.medusajs.com/create-medusa-app) for more details and troubleshooting.
+Check out [Backend Setup Guide](../backend/README.md) for more details and troubleshooting.
 
 # Overview
 
@@ -77,16 +76,16 @@ Features include:
 Navigate into your projects directory and get your environment variables ready:
 
 ```shell
-cd nextjs-starter-medusa/
-mv .env.template .env.local
+cd storefront/
+cp .env.local.template .env.local
 ```
 
 ### Install dependencies
 
-Use Yarn to install all dependencies.
+Use pnpm to install all dependencies.
 
 ```shell
-yarn
+pnpm install
 ```
 
 ### Start developing
@@ -94,17 +93,22 @@ yarn
 You are now ready to start up your project.
 
 ```shell
-yarn dev
+pnpm dev
 ```
 
 ### Open the code and start customizing
 
-Your site is now running at http://localhost:8000!
+Your SeaSun storefront is now running at http://localhost:8000!
 
 # File Storage Integration
 
-By default, this starter supports MinIO for file storage with a fallback to local storage. To enable MinIO:
+SeaSun uses MinIO for cloud storage of product images with a fallback to local storage. 
 
+**Production Configuration:**
+- MinIO endpoint: `bucket-production-8544.up.railway.app`
+- Automatically configured for product images and media
+
+**Local Development:**
 1. Add your MinIO endpoint to `.env.local`:
 ```shell
 NEXT_PUBLIC_MINIO_ENDPOINT=your-minio-endpoint
@@ -112,16 +116,18 @@ NEXT_PUBLIC_MINIO_ENDPOINT=your-minio-endpoint
 
 2. The storefront will automatically use MinIO for serving images when the endpoint is configured.
 
-No additional configuration is needed - if MinIO is not configured, the storefront will use local file storage.
+No additional configuration is needed - if MinIO is not configured, the storefront will use local file storage for development.
 
 # Payment integrations
 
-By default this starter supports the following payment integrations
+SeaSun supports the following payment integrations for purchasing tanning oil products:
 
-- [Stripe](https://stripe.com/)
-- [Paypal](https://www.paypal.com/)
+- [Stripe](https://stripe.com/) - Primary payment processor
+- [Paypal](https://www.paypal.com/) - Alternative payment option
 
-To enable the integrations you need to add the following to your `.env.local` file:
+**Production:** Payment integrations are automatically configured via Railway environment variables.
+
+**Local Development:** Add the following to your `.env.local` file:
 
 ```shell
 NEXT_PUBLIC_STRIPE_KEY=<your-stripe-public-key>
@@ -132,25 +138,28 @@ You will also need to setup the integrations in your Medusa server. See the [Med
 
 # Search integration
 
-This starter is configured to support using the `medusa-search-meilisearch` plugin out of the box. To enable search you will need to enable the feature flag in `./store.config.json`, which you do by changing the config to this:
+SeaSun uses MeiliSearch for fast product search and discovery.
 
-```javascript
-{
-  "features": {
-    // other features...
-    "search": true
-  }
-}
+**Production Configuration:**
+- MeiliSearch endpoint: `https://meilisearch-production-4cc0.up.railway.app`
+- Automatically configured for product search
+- Index name: `products`
+
+**Local Development:** Enable search by adding to your `.env.local`:
+```shell
+NEXT_PUBLIC_SEARCH_ENDPOINT=http://localhost:7700
+NEXT_PUBLIC_SEARCH_API_KEY=your_search_key
+NEXT_PUBLIC_INDEX_NAME=products
 ```
 
-Before you can search you will need to install the plugin in your Medusa server, for a written guide on how to do this – [see our documentation](https://docs.medusajs.com/add-plugins/meilisearch).
+The search is pre-configured in the backend with the `medusa-search-meilisearch` plugin. For more information, see the [Medusa documentation](https://docs.medusajs.com/add-plugins/meilisearch).
 
 The search components in this starter are developed with Algolia's `react-instant-search-hooks-web` library which should make it possible for you to seemlesly change your search provider to Algolia instead of MeiliSearch.
 
 To do this you will need to add `algoliasearch` to the project, by running
 
 ```shell
-yarn add algoliasearch
+pnpm add algoliasearch
 ```
 
 After this you will need to switch the current MeiliSearch `SearchClient` out with a Alogolia client. To do this update `@lib/search-client`.
@@ -236,14 +245,14 @@ The app folder contains all Next.js App Router pages and layouts, and takes care
         └── store
 ```
 
-The app router folder structure represents the routes of the Starter. In this case, the structure is as follows:
+The app router folder structure represents the routes of the SeaSun storefront. In this case, the structure is as follows:
 
 - The root directory is represented by the `[countryCode]` folder. This indicates a dynamic route based on the country code. The this will be populated by the countries you set up in your Medusa server. The param is then used to fetch region specific prices, languages, etc.
 - Within the root directory, there two Route Groups: `(checkout)` and `(main)`. This is done because the checkout flow uses a different layout.  All other parts of the app share the same layout and are in subdirectories of the `(main)` group. Route Groups do not affect the url.
 - Each of these subdirectories may have further subdirectories. For instance, the `account` directory has `addresses` and `orders` subdirectories. The `orders` directory further has a `details` subdirectory, which itself has a dynamic `[id]` subdirectory.
 - This nested structure allows for specific routing to various pages within the application. For example, a URL like `/account/orders/details/123` would correspond to the `account > orders > details > [id]` path in the router structure, with `123` being the dynamic `[id]`.
 
-This structure enables efficient routing and organization of different parts of the Starter.
+This structure enables efficient routing and organization of different parts of the SeaSun storefront.
 
 ### `/lib` **directory**
 
@@ -306,14 +315,35 @@ The middleware also sets a cookie based on the onboarding status of a user. This
 
 # Resources
 
-## Learn more about Medusa
+## SeaSun Project Documentation
+
+- **[Project Context](../../context/)** - Business requirements and strategy
+- **[Development Guides](../../context/guides/)** - Technical guides and best practices
+- **[Content Strategy](../../context/content/)** - Brand messaging and positioning
+- **[Brand Assets](../../context/references/)** - Design materials and brand guidelines
+- **[Backend Setup](../backend/README.md)** - SeaSun backend configuration
+
+## Technical Guides
+
+- **[Quick Start Guide](../../context/guides/medusa-nextjs-vercel-quick-start.md)** - 5-minute setup
+- **[Development Best Practices](../../context/guides/medusa-development-best-practices.md)** - Code quality standards
+- **[Performance Optimization](../../context/guides/medusa-performance-optimization.md)** - Scaling strategies
+- **[Production Deployment](../../context/guides/medusa-production-deployment-checklist.md)** - Deployment checklist
+
+## Framework Documentation
+
+### Learn more about Medusa
 
 - [Website](https://www.medusajs.com/)
 - [GitHub](https://github.com/medusajs)
 - [Documentation](https://docs.medusajs.com/)
 
-## Learn more about Next.js
+### Learn more about Next.js
 
 - [Website](https://nextjs.org/)
 - [GitHub](https://github.com/vercel/next.js)
 - [Documentation](https://nextjs.org/docs)
+
+---
+
+**SeaSun Storefront** - Premium natural tanning oil e-commerce experience
