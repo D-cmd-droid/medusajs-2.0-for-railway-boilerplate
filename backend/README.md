@@ -9,6 +9,7 @@
 - **Admin Dashboard**: https://backend-production-4a9b.up.railway.app/app
 - **Railway Project**: handsome-clarity
 - **Environment**: production
+- **Package Manager**: pnpm (configured via packageManager field)
 
 ## SeaSun-Specific Features
 
@@ -33,11 +34,23 @@
 - **MeiliSearch**: https://meilisearch-production-4cc0.up.railway.app
 - **Console**: https://console-production-1bb8.up.railway.app
 
+**Railway CLI Commands:**
+```bash
+# Check deployment status
+railway status
+
+# View logs
+railway logs
+
+# Connect to production database
+railway connect
+```
+
 ## Local Development Setup
 
 ### Prerequisites
 - Node.js 22.x
-- pnpm (configured via packageManager field)
+- pnpm 9.10.0+ (configured via packageManager field)
 - PostgreSQL database
 
 ### Setup Instructions
@@ -158,10 +171,11 @@ If you modify environment variables or module configuration:
 
 ## Documentation
 
-- **[Project Context](../../context/)** - Business requirements and strategy
-- **[Development Guides](../../context/guides/)** - Technical guides and best practices
+- **[Project Context](../../context/)** - Business requirements and strategy ([Browse Context](../../context/INDEX.md))
+- **[Development Guides](../../context/guides/)** - Technical guides and best practices ([Browse Guides](../../context/guides/INDEX.md))
 - **[Module Documentation](src/modules/)** - Custom module implementation details
 - **[API Reference](../../context/guides/reference/api-endpoints-reference.md)** - API endpoint documentation
+- **[Environment Variables Reference](../../context/guides/reference/environment-variables-reference.md)** - Configuration guide
 
 ---
 

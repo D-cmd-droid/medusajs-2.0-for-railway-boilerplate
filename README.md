@@ -8,6 +8,7 @@
 - **🌐 Storefront**: https://medusajs-2-0-for-railway-boilerplat.vercel.app
 - **⚙️ Backend API**: https://backend-production-4a9b.up.railway.app
 - **👩‍💼 Admin Dashboard**: https://backend-production-4a9b.up.railway.app/app
+- **Railway Project**: handsome-clarity (production environment)
 
 ## About SeaSun
 
@@ -27,8 +28,8 @@ This implementation consists of a Medusa 2.0 e-commerce backend and Next.js 14 s
 **Current Version**: Medusa 2.0 (latest) with Next.js 14
 
 **Deployment Architecture:**
-- **Backend**: Railway (PostgreSQL, Redis, MinIO, MeiliSearch)
-- **Storefront**: Vercel (Next.js with static optimization)
+- **Backend**: Railway "handsome-clarity" project (PostgreSQL, Redis, MinIO, MeiliSearch)
+- **Storefront**: Vercel with pnpm package manager (Next.js 14 with static optimization)
 - **CDN**: Vercel Edge Network for global performance
 
 ## Integrated Services
@@ -42,10 +43,12 @@ This implementation consists of a Medusa 2.0 e-commerce backend and Next.js 14 s
 - **⚡ Redis**: Caching and session management
 
 **SeaSun-Specific Customizations:**
-- Custom email templates for tanning oil brand
+- Custom email templates with React Email for tanning oil brand
 - Product catalog optimized for natural beauty products
 - Beach lifestyle imagery and branding
 - Mobile-first responsive design
+- MinIO file storage for product images and media
+- MeiliSearch integration for fast product discovery
 
 # Backend Setup
 
@@ -167,16 +170,18 @@ pnpm lint
 ## Documentation & Resources
 
 ### Project Documentation
-- **[Project Context](../context/)** - Business requirements and strategy
-- **[Development Guides](../context/guides/)** - Technical guides and best practices
-- **[Content Strategy](../context/content/)** - Brand messaging and positioning
-- **[Brand Assets](../context/references/)** - Design materials and brand guidelines
+- **[Project Context](../context/)** - Business requirements and strategy ([Browse Context](../context/INDEX.md))
+- **[Development Guides](../context/guides/)** - Technical guides and best practices ([Browse Guides](../context/guides/INDEX.md))
+- **[Content Strategy](../context/content/)** - Brand messaging and positioning ([Browse Content](../context/content/INDEX.md))
+- **[Brand Assets](../context/references/)** - Design materials and brand guidelines ([Browse References](../context/references/INDEX.md))
 
 ### Technical Guides
 - **[Quick Start Guide](../context/guides/medusa-nextjs-vercel-quick-start.md)** - 5-minute setup
 - **[Development Best Practices](../context/guides/medusa-development-best-practices.md)** - Code quality standards
 - **[Production Deployment](../context/guides/medusa-production-deployment-checklist.md)** - Deployment checklist
 - **[Performance Optimization](../context/guides/medusa-performance-optimization.md)** - Scaling strategies
+- **[Troubleshooting Playbook](../context/guides/medusa-troubleshooting-playbook.md)** - Common issues and solutions
+- **[CI/CD Pipeline Guide](../context/guides/medusa-cicd-pipeline-guide.md)** - Complete deployment workflows
 
 ### Module Documentation
 - **[Email Notifications](backend/src/modules/email-notifications/README.md)** - Resend integration

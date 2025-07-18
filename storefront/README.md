@@ -8,6 +8,8 @@
 - **🌐 Production**: https://medusajs-2-0-for-railway-boilerplat.vercel.app
 - **⚡ CDN**: Vercel Edge Network
 - **🔗 Backend**: https://backend-production-4a9b.up.railway.app
+- **📦 Package Manager**: pnpm (configured via packageManager field)
+- **🔧 Environment Variables**: 7 configured (see Vercel dashboard)
 
 ## About SeaSun
 
@@ -34,6 +36,15 @@ For a quick setup, run:
 cd ../backend
 pnpm install && pnpm ib && pnpm dev
 ```
+
+**Current Environment Variables (7 configured):**
+- `NEXT_PUBLIC_MEDUSA_BACKEND_URL` - Backend API endpoint
+- `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` - Medusa store API key
+- `NEXT_PUBLIC_MINIO_ENDPOINT` - MinIO file storage endpoint
+- `NEXT_PUBLIC_INDEX_NAME` - MeiliSearch index name
+- `MEILISEARCH_API_KEY` - Search API key
+- `NEXT_PUBLIC_BASE_URL` - Storefront base URL
+- `REVALIDATE_SECRET` - Next.js revalidation secret
 
 Check out [Backend Setup Guide](../backend/README.md) for more details and troubleshooting.
 
@@ -107,6 +118,7 @@ SeaSun uses MinIO for cloud storage of product images with a fallback to local s
 **Production Configuration:**
 - MinIO endpoint: `bucket-production-8544.up.railway.app`
 - Automatically configured for product images and media
+- Current environment: `NEXT_PUBLIC_MINIO_ENDPOINT=bucket-production-8544.up.railway.app`
 
 **Local Development:**
 1. Add your MinIO endpoint to `.env.local`:
@@ -115,6 +127,18 @@ NEXT_PUBLIC_MINIO_ENDPOINT=your-minio-endpoint
 ```
 
 2. The storefront will automatically use MinIO for serving images when the endpoint is configured.
+
+**Vercel CLI Commands:**
+```bash
+# View environment variables
+vercel env ls
+
+# Check deployment status
+vercel ls
+
+# Inspect current deployment
+vercel inspect medusajs-2-0-for-railway-boilerplat.vercel.app
+```
 
 No additional configuration is needed - if MinIO is not configured, the storefront will use local file storage for development.
 
@@ -317,10 +341,10 @@ The middleware also sets a cookie based on the onboarding status of a user. This
 
 ## SeaSun Project Documentation
 
-- **[Project Context](../../context/)** - Business requirements and strategy
-- **[Development Guides](../../context/guides/)** - Technical guides and best practices
-- **[Content Strategy](../../context/content/)** - Brand messaging and positioning
-- **[Brand Assets](../../context/references/)** - Design materials and brand guidelines
+- **[Project Context](../../context/)** - Business requirements and strategy ([Browse Context](../../context/INDEX.md))
+- **[Development Guides](../../context/guides/)** - Technical guides and best practices ([Browse Guides](../../context/guides/INDEX.md))
+- **[Content Strategy](../../context/content/)** - Brand messaging and positioning ([Browse Content](../../context/content/INDEX.md))
+- **[Brand Assets](../../context/references/)** - Design materials and brand guidelines ([Browse References](../../context/references/INDEX.md))
 - **[Backend Setup](../backend/README.md)** - SeaSun backend configuration
 
 ## Technical Guides

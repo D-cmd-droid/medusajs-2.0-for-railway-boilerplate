@@ -108,7 +108,6 @@
 ### Reference Materials
 - [Environment Variables](../context/guides/reference/environment-variables-reference.md) - Configuration reference
 - [API Documentation](../context/guides/reference/api-endpoints-reference.md) - API endpoint reference
-- [CLI Commands](../context/guides/reference/cli-commands-reference.md) - Development commands
 
 ## Quick Access
 
