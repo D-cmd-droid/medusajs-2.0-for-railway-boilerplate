@@ -1,1 +1,80 @@
+# Environment & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel environment (auto-generated)
+.vercel
+
+# Railway environment (if any local configs)
+.railway
+
+# Dependencies
+node_modules/
+*/node_modules/
+.pnpm-store/
+
+# Next.js build outputs
+.next/
+out/
+build/
+
+# Medusa build outputs
+.medusa/
+dist/
+uploads/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# IDE
+.vscode/
 .idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Medusa admin build (if customized)
+.medusa/admin/
+
+# Database dumps (if using local development)
+*.sql
+*.sqlite
+*.db
+
+# Media uploads (handled by MinIO in production)
+static/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Playwright test results
+test-results/
+playwright-report/
