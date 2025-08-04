@@ -18,7 +18,11 @@ export async function seedUser(email?: string, password?: string) {
     password: password || "password",
   }
   try {
-    await axios.post("/store/customers", user)
+    await axios.post("/auth/customer/emailpass/register", user, {
+      headers: {
+        "x-publishable-api-key": "pk_e0f00381c312867371879802279bf112cd3af02c4425a27b3da5a39b73a6a024"
+      }
+    })
     return user
   } catch (e: unknown) {
     if (e instanceof AxiosError) {
@@ -26,6 +30,10 @@ export async function seedUser(email?: string, password?: string) {
         const status = e.response.status
         // https://docs.medusajs.com/api/store#customers_postcustomers
         if (status === 422) {
+          return user
+        }
+        // Medusa v2 returns 401 when user already exists
+        if (status === 401 && e.response.data?.message?.includes("already exists")) {
           return user
         }
       }
@@ -87,8 +95,8 @@ export async function seedDiscount(axios?: AxiosInstance) {
 }
 
 async function loginAdmin() {
-  const resp = await axios.post("/admin/auth/token", {
-    email: process.env.MEDUSA_ADMIN_EMAIL || "admin@medusa-test.com",
+  const resp = await axios.post("/auth/user/emailpass", {
+    email: process.env.MEDUSA_ADMIN_EMAIL || "admin@yourmail.com",
     password: process.env.MEDUSA_ADMIN_PASSWORD || "supersecret",
   })
   if (resp.status !== 200) {
@@ -96,7 +104,7 @@ async function loginAdmin() {
   }
   return axios.create({
     headers: {
-      Authorization: `Bearer ${resp.data.access_token}`,
+      Authorization: `Bearer ${resp.data.token || resp.data.access_token}`,
     },
   })
 }

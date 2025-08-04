@@ -1,6 +1,9 @@
 import { defineConfig, devices } from "@playwright/test"
 import path from "path"
-import "dotenv/config.js"
+import { config } from "dotenv"
+
+// Load e2e-specific environment variables
+config({ path: path.join(__dirname, "e2e/.env") })
 
 export const STORAGE_STATE = path.join(__dirname, "playwright/.auth/user.json")
 
@@ -69,9 +72,16 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-     command: 'yarn start',
-     url: process.env.NEXT_PUBLIC_BASE_URL,
-  //   reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: 'cd ../backend && pnpm dev',
+      url: 'http://localhost:9000',
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: 'pnpm start',
+      url: process.env.NEXT_PUBLIC_BASE_URL,
+      reuseExistingServer: !process.env.CI,
+    }
+  ],
 })
