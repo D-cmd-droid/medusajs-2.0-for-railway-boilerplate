@@ -105,44 +105,65 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(to bottom right, var(--seasun-lighter-sand), var(--seasun-sand))' }}>
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 seasun-body text-white px-4 py-2 rounded-full text-sm" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}>
-          ☀️ Summer Sale - 20% OFF
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--seasun-lighter-sand) 0%, var(--seasun-sand) 100%)' }}>
         
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="seasun-h1 mb-12">
-              <span className="italic">How does it feel to be</span>{" "}
-              <span className="font-semibold not-italic" style={{ color: 'var(--seasun-golden-tan)' }}>SUNKISSED</span>
+          <div className="text-center max-w-5xl mx-auto">
+            
+            {/* Premium Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-6 py-3 mb-12">
+              <span className="seasun-body text-sm font-medium" style={{ color: 'var(--seasun-deep-black)' }}>✨ Premium Caribbean Beauty</span>
+            </div>
+            
+            <h1 className="seasun-h1 mb-8 leading-tight">
+              <span className="italic block mb-2">How does it feel to be</span>
+              <span 
+                className="inline-block px-4 py-2 rounded-xl not-italic font-semibold" 
+                style={{ 
+                  background: 'linear-gradient(45deg, var(--seasun-golden-tan), var(--seasun-darker-tan))', 
+                  color: 'white',
+                  transform: 'rotate(-1deg)',
+                  boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3)'
+                }}
+              >
+                SUNKISSED
+              </span>
               <span className="italic">?</span>
             </h1>
             
-            <div className="mt-20 relative">
-              <div className="w-full max-w-sm mx-auto">
-                {/* Placeholder for product image */}
-                <div className="rounded-2xl aspect-square flex items-center justify-center shadow-xl" style={{ background: 'linear-gradient(to bottom, var(--seasun-lighter-sand), var(--seasun-sand))' }}>
-                  <div className="text-center">
-                    <div className="text-6xl mb-6">🧴</div>
-                    <p className="seasun-h4" style={{ color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
-                    <p className="seasun-body text-sm mt-3" style={{ color: 'var(--seasun-deep-black)' }}>Caribbean Beauty Secret</p>
+            {/* Refined Product Showcase */}
+            <div className="mt-16 relative">
+              <div className="w-full max-w-md mx-auto">
+                <div className="relative">
+                  {/* Main Product Container */}
+                  <div className="rounded-3xl aspect-square flex items-center justify-center shadow-2xl border border-white/20" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)' }}>
+                    <div className="text-center">
+                      <div className="text-7xl mb-6 filter drop-shadow-lg">🧴</div>
+                      <p className="seasun-h3 mb-2" style={{ color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
+                      <p className="seasun-body text-sm opacity-80" style={{ color: 'var(--seasun-deep-black)' }}>Caribbean Beauty Secret</p>
+                    </div>
+                  </div>
+                  
+                  {/* Floating Elements - More Integrated */}
+                  <div className="absolute -bottom-4 -left-4 hidden lg:block">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-white/30">
+                      <p className="seasun-body text-xs font-semibold" style={{ color: 'var(--seasun-golden-tan)' }}>SPF 30+</p>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute -top-4 -right-4 hidden lg:block">
+                    <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg border border-white/30">
+                      <p className="seasun-body text-xs" style={{ color: 'var(--seasun-deep-black)' }}>🌿 Natural</p>
+                    </div>
                   </div>
                 </div>
               </div>
               
-              <div className="absolute bottom-12 left-6 max-w-xs hidden lg:block">
-                <p className="seasun-body text-sm uppercase tracking-wider leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
-                  The Caribbean's<br />
-                  Best Kept Secret to<br />
-                  Effortless, Even-Toned<br />
-                  Beauty
+              {/* Tagline - Better Positioned */}
+              <div className="mt-12 max-w-sm mx-auto">
+                <p className="seasun-body text-lg leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
+                  The Caribbean's best kept secret to effortless, radiant skin
                 </p>
-              </div>
-              
-              <div className="absolute top-1/3 -right-6 transform rotate-12 hidden lg:block">
-                <div className="bg-white px-4 py-3 rounded-xl shadow-lg">
-                  <p className="seasun-body text-xs font-semibold">SPF 30</p>
-                </div>
               </div>
             </div>
           </div>
@@ -150,28 +171,45 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Trust/Problem Section */}
-      <section className="py-24" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="seasun-h2 mb-12">
-              I understand your frustration...
-            </h2>
-            <div className="space-y-8 mb-12">
-              <p className="seasun-body text-xl leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
-                Look, I get it. You've probably tried it all - expensive serums, weekly facials, that 12-step routine 
-                your friend swears by. And yet, you're still dealing with uneven skin tone, unexpected breakouts, 
-                and that constant feeling that your skin just isn't living up to its potential.
-              </p>
-              <p className="seasun-body text-xl leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
-                You're not alone. Millions struggle with these same issues every day. The beauty industry makes it 
-                seem so complicated, but what if the answer has been hiding in the Caribbean all along?
-              </p>
+      <section className="py-28 relative">
+        {/* Subtle Section Separator */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        
+        <div className="container mx-auto px-6" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="mb-16">
+              <h2 className="seasun-h2 mb-8" style={{ color: 'var(--seasun-deep-black)' }}>
+                I understand your frustration...
+              </h2>
+              <div className="w-24 h-1 mx-auto rounded-full" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}></div>
             </div>
+            
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="space-y-6 text-left">
+                <p className="seasun-body text-lg leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
+                  Look, I get it. You've probably tried it all - expensive serums, weekly facials, that 12-step routine 
+                  your friend swears by.
+                </p>
+                <p className="seasun-body text-lg leading-relaxed font-medium" style={{ color: 'var(--seasun-deep-black)' }}>
+                  And yet, you're still dealing with uneven skin tone, unexpected breakouts, 
+                  and that constant feeling that your skin just isn't living up to its potential.
+                </p>
+              </div>
+              
+              <div className="text-left lg:text-right">
+                <p className="seasun-body text-lg leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
+                  You're not alone. Millions struggle with these same issues every day. 
+                  <span className="font-medium">The beauty industry makes it seem so complicated</span>, 
+                  but what if the answer has been hiding in the Caribbean all along?
+                </p>
+              </div>
+            </div>
+            
             <Button 
-              className="text-white px-10 py-4 text-lg rounded-xl transition-all duration-200 hover:opacity-90 hover:scale-105" 
+              className="text-white px-8 py-3 rounded-2xl transition-all duration-300 hover:opacity-90 hover:scale-105 shadow-lg" 
               style={{ backgroundColor: 'var(--seasun-golden-tan)' }}
             >
-              <span className="seasun-body">Discover the Secret</span>
+              <span className="seasun-body font-medium">Discover the Secret</span>
             </Button>
           </div>
         </div>
@@ -269,26 +307,40 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
               </ul>
             </div>
             
-            <div className="p-8 rounded-2xl" style={{ backgroundColor: 'var(--seasun-ocean-blue)' }}>
-              <h3 className="seasun-h3 mb-6 text-white">The SEASUN Way ☀️</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="text-white text-lg">✓</span>
-                  <span className="seasun-body text-white">One product, multiple benefits</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span className="seasun-body">Natural ingredients that nourish</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span className="seasun-body">Affordable luxury that works</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-green-500">✓</span>
-                  <span className="seasun-body">Confident, protected, glowing skin</span>
-                </li>
-              </ul>
+            <div className="relative">
+              <div className="p-10 rounded-3xl shadow-2xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--seasun-deeper-blue) 0%, var(--seasun-ocean-blue) 100%)' }}>
+                <div className="absolute top-4 right-4 text-4xl opacity-20">☀️</div>
+                <div className="absolute inset-0 bg-white/5"></div>
+                <div className="relative z-10">
+                  <h3 className="seasun-h3 mb-8 text-white">The SEASUN Way</h3>
+                  <ul className="space-y-6">
+                    <li className="flex items-start gap-4">
+                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm">✓</span>
+                      </div>
+                      <span className="seasun-body text-lg leading-relaxed text-white">One product, multiple benefits</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm">✓</span>
+                      </div>
+                      <span className="seasun-body text-lg leading-relaxed text-white">Natural ingredients that nourish</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm">✓</span>
+                      </div>
+                      <span className="seasun-body text-lg leading-relaxed text-white">Affordable luxury that works</span>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm">✓</span>
+                      </div>
+                      <span className="seasun-body text-lg leading-relaxed text-white">Confident, protected, glowing skin</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -330,66 +382,91 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Instagram Gallery Section */}
-      <section className="py-24" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
+      <section className="py-28 relative" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        
         <div className="container mx-auto px-6">
-          <h2 className="seasun-h2 text-center mb-16">
-            Follow us for more beach vibes
-          </h2>
+          <div className="text-center max-w-4xl mx-auto mb-20">
+            <h2 className="seasun-h2 mb-6" style={{ color: 'var(--seasun-deep-black)' }}>
+              Follow us for more beach vibes
+            </h2>
+            <p className="seasun-body text-lg" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
+              Join our community and discover daily inspiration
+            </p>
+            <div className="w-24 h-1 mx-auto rounded-full mt-8" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}></div>
+          </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
             {instagramImages.map((_, index) => (
               <div 
                 key={index}
-                className="aspect-square rounded-3xl overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer shadow-lg" style={{ background: 'linear-gradient(to bottom right, var(--seasun-ocean-blue), var(--seasun-deeper-blue))' }}
+                className="group relative aspect-square rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" 
+                style={{ background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))' }}
               >
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-5xl">🏖️</span>
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                <div className="w-full h-full flex items-center justify-center relative z-10">
+                  <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🏖️</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="seasun-body text-sm font-medium">Beach lifestyle • {index + 1}h</p>
                 </div>
               </div>
             ))}
           </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center">
             <Button 
               variant="secondary" 
-              className="px-8 py-4 text-lg rounded-xl transition-all duration-200 hover:opacity-80 hover:scale-105" 
-              style={{ borderColor: 'var(--seasun-golden-tan)', color: 'var(--seasun-golden-tan)', borderWidth: '2px' }}
+              className="px-10 py-4 text-lg rounded-2xl transition-all duration-300 hover:opacity-80 hover:scale-105 shadow-lg border-2" 
+              style={{ 
+                borderColor: 'var(--seasun-golden-tan)', 
+                color: 'var(--seasun-golden-tan)',
+                background: 'linear-gradient(135deg, transparent 0%, rgba(247, 138, 21, 0.05) 100%)'
+              }}
             >
-              <span className="seasun-body">@seasunbeauty</span>
+              <span className="seasun-body font-medium flex items-center gap-2">
+                <span>🌊</span>
+                @seasunbeauty
+              </span>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-20" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="seasun-h2 text-white mb-6">
-              Get 10% off your first order
-            </h2>
-            <p className="seasun-body text-xl text-white/90 mb-12">
-              Join the SEASUN family and be the first to know about new products and exclusive offers.
-            </p>
-            
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="seasun-body flex-1 bg-white px-6 py-4 rounded-xl text-lg border-0"
-              />
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="seasun-body text-white px-8 py-4 text-lg rounded-xl transition-all duration-200 hover:opacity-90 hover:scale-105"
-                style={{ backgroundColor: 'var(--seasun-deep-black)' }}
-              >
-                <span className="seasun-body">{isSubmitting ? "..." : "Subscribe"}</span>
-              </Button>
-            </form>
+      {/* Newsletter Section - Refined */}
+      <section className="py-24 relative" style={{ background: 'linear-gradient(135deg, var(--seasun-sand) 0%, var(--seasun-golden-tan) 100%)' }}>
+        <div className="absolute inset-0 bg-black/5"></div>
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-12">
+              <h2 className="seasun-h2 text-white mb-6">
+                Get 10% off your first order
+              </h2>
+              <p className="seasun-body text-lg text-white/90 mb-10 max-w-2xl mx-auto">
+                Join the SEASUN family and be the first to know about new products and exclusive offers.
+              </p>
+              
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="seasun-body flex-1 bg-white/20 backdrop-blur-sm border border-white/30 px-6 py-4 rounded-2xl text-white placeholder:text-white/70"
+                />
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="seasun-body text-white px-8 py-4 rounded-2xl transition-all duration-200 hover:opacity-90 hover:scale-105 shadow-xl"
+                  style={{ backgroundColor: 'var(--seasun-deep-black)' }}
+                >
+                  <span className="seasun-body font-medium">{isSubmitting ? "..." : "Subscribe"}</span>
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
