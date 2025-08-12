@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 /* SEASUN Fonts - From Legacy Webflow Site */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Josefin+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 
 /* SEASUN Brand Colors - From Legacy Webflow Site */
 :root {
@@ -27,7 +27,7 @@
 .seasun-h1 {
   font-family: var(--seasun-font-heading);
   font-size: 4rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.1;
   margin: 0;
 }
@@ -35,7 +35,7 @@
 .seasun-h2 {
   font-family: var(--seasun-font-heading);
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.2;
   margin: 0;
 }
@@ -43,7 +43,7 @@
 .seasun-h3 {
   font-family: var(--seasun-font-heading);
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.2;
   margin: 0;
 }
@@ -51,7 +51,7 @@
 .seasun-h4 {
   font-family: var(--seasun-font-heading);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.4;
   margin: 0;
 }
@@ -59,7 +59,7 @@
 .seasun-h5 {
   font-family: var(--seasun-font-heading);
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.5;
   margin: 0;
 }
