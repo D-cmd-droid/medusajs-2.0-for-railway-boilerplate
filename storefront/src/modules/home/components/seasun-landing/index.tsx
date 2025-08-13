@@ -553,33 +553,12 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
         </div>
       </section>
 
-      {/* Embedded Product Display Section */}
+      {/* Enhanced Product Display Section */}
       <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
         <div className="container mx-auto px-4 sm:px-6">
-          {product ? (
-            <EmbeddedProductDisplay product={product} region={region} />
-          ) : (
-            // Fallback display if product is not available
-            <div className="text-center py-16">
-              <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-12 shadow-xl max-w-md mx-auto">
-                <div className="text-6xl mb-6">🧴</div>
-                <h3 className="text-2xl font-light mb-4" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-                  SEASUN Coming Soon
-                </h3>
-                <p className="text-base opacity-70" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-                  Our premium tanning oil will be available shortly.
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-20 sm:py-24 lg:py-32 seasun-section-overlay" aria-labelledby="final-cta-heading">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 id="final-cta-heading" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)' }}>
+          {/* CTA Header */}
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20 max-w-4xl mx-auto">
+            <h2 id="product-showcase-heading" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)' }}>
               Ready to feel{" "}
               <span 
                 className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold text-sm sm:text-base lg:text-lg xl:text-xl" 
@@ -596,7 +575,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
               ?
             </h2>
             
-            <div className="mb-8 sm:mb-10 lg:mb-12 max-w-3xl mx-auto" role="text" aria-describedby="final-cta-heading">
+            <div className="max-w-3xl mx-auto" role="text" aria-describedby="product-showcase-heading">
               <p className="seasun-body text-base sm:text-lg leading-relaxed mb-2 font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
                 Join thousands of women who have discovered the Caribbean secret to
               </p>
@@ -604,33 +583,30 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                 radiant, even-toned skin.
               </p>
             </div>
-            
-            <div className="mb-12 sm:mb-14 lg:mb-16">
-              <Button 
-                className="group relative text-white px-8 py-4 sm:px-12 sm:py-5 lg:px-16 lg:py-6 text-lg sm:text-xl rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent active:scale-95 active:translate-y-0 w-full sm:w-auto min-h-[60px] sm:min-h-[68px] lg:min-h-[76px]" 
-                style={{ 
-                  backgroundColor: 'var(--seasun-deep-black)',
-                  boxShadow: '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
-                  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                  minWidth: '280px'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.5), 0 6px 16px rgba(0, 0, 0, 0.3)';
-                  e.currentTarget.style.backgroundColor = '#2a2a2a';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
-                  e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
-                }}
-                aria-label="Purchase SEASUN Caribbean Beauty product for $45"
-                role="button"
-                tabIndex={0}
-              >
-                <span className="relative z-10 seasun-body tracking-wide">Shop SEASUN Now - $45</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-              </Button>
-            </div>
-            
+          </div>
+
+          {/* Product Display */}
+          <div className="mb-12 sm:mb-16 lg:mb-20">
+            {product ? (
+              <EmbeddedProductDisplay product={product} region={region} />
+            ) : (
+              // Fallback display if product is not available
+              <div className="text-center py-16">
+                <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-12 shadow-xl max-w-md mx-auto">
+                  <div className="text-6xl mb-6">🧴</div>
+                  <h3 className="text-2xl font-light mb-4" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+                    SEASUN Coming Soon
+                  </h3>
+                  <p className="text-base opacity-70" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                    Our premium tanning oil will be available shortly.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Guarantee Badges */}
+          <div className="text-center">
             <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8 max-w-lg sm:max-w-2xl mx-auto list-none" role="list" aria-label="Product guarantees and shipping information">
               <li className="flex items-center justify-center sm:justify-center gap-3 opacity-80 p-2 rounded-lg" role="listitem">
                 <span className="text-base sm:text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
@@ -644,6 +620,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
           </div>
         </div>
       </section>
+
       </div>
     </div>
   )
