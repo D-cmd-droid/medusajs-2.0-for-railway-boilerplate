@@ -141,7 +141,20 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
       <div className="order-1 lg:order-2 text-center lg:text-left">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light mb-8 leading-tight" 
             style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-          Meet SEASUN Organic Tanning Oil
+          Meet{" "}
+          <span 
+            className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold text-sm sm:text-base lg:text-lg xl:text-xl" 
+            style={{ 
+              color: 'white', 
+              backgroundColor: 'var(--seasun-golden-tan)',
+              transform: 'rotate(-1deg)',
+              boxShadow: '0 4px 16px rgba(247, 138, 21, 0.3)'
+            }}
+            aria-label="SEASUN brand name"
+          >
+            SEASUN
+          </span>{" "}
+          Organic Tanning Oil
         </h2>
         
         <div className="mb-12 max-w-3xl mx-auto lg:mx-0">

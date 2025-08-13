@@ -556,35 +556,6 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
       {/* Enhanced Product Display Section */}
       <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
         <div className="container mx-auto px-4 sm:px-6">
-          {/* CTA Header */}
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20 max-w-4xl mx-auto">
-            <h2 id="product-showcase-heading" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)' }}>
-              Ready to feel{" "}
-              <span 
-                className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold text-sm sm:text-base lg:text-lg xl:text-xl" 
-                style={{ 
-                  color: 'white', 
-                  backgroundColor: 'var(--seasun-golden-tan)',
-                  transform: 'rotate(-1deg)',
-                  boxShadow: '0 4px 16px rgba(247, 138, 21, 0.3)'
-                }}
-                aria-label="sunkissed"
-              >
-                SUNKISSED
-              </span>
-              ?
-            </h2>
-            
-            <div className="max-w-3xl mx-auto" role="text" aria-describedby="product-showcase-heading">
-              <p className="seasun-body text-base sm:text-lg leading-relaxed mb-2 font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
-                Join thousands of women who have discovered the Caribbean secret to
-              </p>
-              <p className="seasun-body text-base sm:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
-                radiant, even-toned skin.
-              </p>
-            </div>
-          </div>
-
           {/* Product Display */}
           <div className="mb-12 sm:mb-16 lg:mb-20">
             {product ? (
