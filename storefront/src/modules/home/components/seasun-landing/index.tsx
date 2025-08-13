@@ -105,26 +105,40 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden seasun-hero-solid">
+      <section 
+        className="relative min-h-[100vh] sm:min-h-screen flex items-center justify-center overflow-hidden seasun-hero-solid py-16 sm:py-20"
+        role="banner"
+        aria-labelledby="hero-heading"
+        aria-describedby="hero-description"
+      >
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
             
             {/* Premium Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 mb-12">
-              <span className="seasun-body text-sm font-medium" style={{ color: 'var(--seasun-deep-black)' }}>✨ Premium Caribbean Beauty</span>
+            <div 
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-8 sm:mb-12"
+              role="banner"
+              aria-label="Premium product badge"
+            >
+              <span className="seasun-body text-xs sm:text-sm font-medium" style={{ color: 'var(--seasun-deep-black)' }}>✨ Premium Caribbean Beauty</span>
             </div>
             
-            <h1 className="seasun-h1 mb-8 leading-tight">
-              <span className="italic block mb-2">How does it feel to be</span>
+            <h1 
+              id="hero-heading"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light mb-6 sm:mb-8 leading-tight" 
+              style={{ fontFamily: 'var(--seasun-font-heading)' }}
+            >
+              <span className="italic block mb-2 sm:mb-3">How does it feel to be</span>
               <span 
-                className="inline-block px-4 py-2 rounded-xl not-italic font-semibold" 
+                className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-xl not-italic font-semibold text-lg sm:text-xl lg:text-2xl xl:text-3xl" 
                 style={{ 
                   background: 'linear-gradient(45deg, var(--seasun-golden-tan), var(--seasun-darker-tan))', 
                   color: 'white',
                   transform: 'rotate(-1deg)',
-                  boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3)'
+                  boxShadow: '0 6px 24px rgba(247, 138, 21, 0.3)'
                 }}
+                aria-label="sunkissed - the feeling we want to evoke"
               >
                 SUNKISSED
               </span>
@@ -132,36 +146,55 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
             </h1>
             
             {/* Refined Product Showcase */}
-            <div className="mt-16 relative">
-              <div className="w-full max-w-md mx-auto">
+            <div className="mt-12 sm:mt-16 lg:mt-20 relative" role="presentation" aria-labelledby="hero-heading">
+              <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                 <div className="relative">
                   {/* Main Product Container */}
-                  <div className="rounded-3xl aspect-square flex items-center justify-center shadow-2xl border border-white/20" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)' }}>
-                    <div className="text-center">
-                      <div className="text-7xl mb-6 filter drop-shadow-lg">🧴</div>
-                      <p className="seasun-h3 mb-2" style={{ color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
-                      <p className="seasun-body text-sm opacity-80" style={{ color: 'var(--seasun-deep-black)' }}>Caribbean Beauty Secret</p>
+                  <div 
+                    className="group rounded-2xl sm:rounded-3xl aspect-square flex items-center justify-center shadow-xl sm:shadow-2xl border border-white/20 transition-all duration-500 ease-out hover:scale-105 hover:shadow-3xl cursor-pointer" 
+                    style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)' }}
+                    role="img"
+                    aria-label="SEASUN Caribbean Beauty product showcase"
+                  >
+                    <div className="text-center transition-all duration-300 group-hover:scale-105">
+                      <div className="text-5xl sm:text-6xl lg:text-7xl mb-4 sm:mb-6 filter drop-shadow-lg transition-transform duration-300 group-hover:rotate-3" aria-hidden="true">🧴</div>
+                      <p className="text-xl sm:text-2xl lg:text-3xl font-light mb-1 sm:mb-2 transition-colors duration-300" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
+                      <p className="seasun-body text-xs sm:text-sm opacity-80 font-light transition-opacity duration-300 group-hover:opacity-100" style={{ color: 'var(--seasun-deep-black)' }}>Caribbean Beauty Secret</p>
                     </div>
                   </div>
                   
                   {/* Floating Elements - More Integrated */}
-                  <div className="absolute -bottom-4 -left-4 hidden lg:block">
-                    <div className="bg-white/60 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-white/30">
+                  <div 
+                    className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 hidden md:block animate-pulse"
+                    role="note"
+                    aria-label="SPF 30 plus protection feature"
+                    style={{ animationDelay: '1s', animationDuration: '3s' }}
+                  >
+                    <div className="bg-white/60 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl shadow-lg border border-white/30 transition-all duration-500 hover:scale-110 hover:shadow-xl hover:bg-white/80">
                       <p className="seasun-body text-xs font-semibold" style={{ color: 'var(--seasun-golden-tan)' }}>SPF 30+</p>
                     </div>
                   </div>
                   
-                  <div className="absolute -top-4 -right-4 hidden lg:block">
-                    <div className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg border border-white/30">
-                      <p className="seasun-body text-xs" style={{ color: 'var(--seasun-deep-black)' }}>🌿 Natural</p>
+                  <div 
+                    className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 hidden md:block animate-pulse"
+                    role="note"
+                    aria-label="Natural ingredients feature"
+                    style={{ animationDelay: '2s', animationDuration: '3s' }}
+                  >
+                    <div className="bg-white/60 backdrop-blur-sm px-2.5 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg border border-white/30 transition-all duration-500 hover:scale-110 hover:shadow-xl hover:bg-white/80">
+                      <p className="seasun-body text-xs font-light" style={{ color: 'var(--seasun-deep-black)' }}><span aria-hidden="true">🌿</span> Natural</p>
                     </div>
                   </div>
                 </div>
               </div>
               
               {/* Tagline - Better Positioned */}
-              <div className="mt-12 max-w-sm mx-auto">
-                <p className="seasun-body text-lg leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
+              <div className="mt-8 sm:mt-12 max-w-sm sm:max-w-md mx-auto" role="text">
+                <p 
+                  id="hero-description"
+                  className="seasun-body text-base sm:text-lg leading-relaxed font-light" 
+                  style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}
+                >
                   The Caribbean's best kept secret to effortless, radiant skin
                 </p>
               </div>
