@@ -347,33 +347,66 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 seasun-section-overlay">
-        <div className="container mx-auto px-6">
+      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="faq-heading">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="seasun-h2 text-center mb-16">
+            <h2 id="faq-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-12 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
               Your Questions, Answered
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6" role="region" aria-labelledby="faq-heading">
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
-                  className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30"
+                  className="group/card bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30 hover:shadow-xl hover:bg-white/90 transition-all duration-500 ease-out"
+                  style={{
+                    transform: expandedFAQ === index ? 'scale(1.02)' : 'scale(1)',
+                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
                 >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-white/10 transition-all duration-200"
+                  <h3>
+                    <button
+                      onClick={() => toggleFAQ(index)}
+                      className="group w-full px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-6 text-left flex justify-between items-center hover:bg-white/20 transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-2 focus:ring-offset-transparent min-h-[60px] sm:min-h-[68px]"
+                      aria-expanded={expandedFAQ === index}
+                      aria-controls={`faq-answer-${index}`}
+                      id={`faq-question-${index}`}
+                      type="button"
+                    >
+                      <span className="seasun-body text-sm sm:text-base lg:text-lg font-medium leading-relaxed group-hover:opacity-90 transition-opacity duration-300 pr-3" style={{ color: 'var(--seasun-deep-black)' }}>{faq.question}</span>
+                      <span 
+                        className="text-xl sm:text-2xl transition-all duration-500 ease-out group-hover:scale-110 flex-shrink-0 ml-2 sm:ml-4 min-w-[24px] min-h-[24px] flex items-center justify-center" 
+                        style={{ 
+                          color: 'var(--seasun-deep-black)', 
+                          transform: expandedFAQ === index ? 'rotate(45deg)' : 'rotate(0deg)',
+                          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                        }}
+                        aria-hidden="true"
+                      >
+                        +
+                      </span>
+                    </button>
+                  </h3>
+                  <div 
+                    className="overflow-hidden transition-all duration-500 ease-out"
+                    style={{
+                      maxHeight: expandedFAQ === index ? '300px' : '0px',
+                      opacity: expandedFAQ === index ? 1 : 0
+                    }}
                   >
-                    <span className="seasun-body text-lg font-semibold">{faq.question}</span>
-                    <span className="text-2xl transition-transform duration-200" style={{ color: 'var(--seasun-golden-tan)', transform: expandedFAQ === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
-                      +
-                    </span>
-                  </button>
-                  {expandedFAQ === index && (
-                    <div className="px-8 pb-6 border-t border-gray-100">
-                      <p className="seasun-body text-lg leading-relaxed pt-4" style={{ color: 'var(--seasun-deep-black)' }}>{faq.answer}</p>
+                    <div 
+                      id={`faq-answer-${index}`}
+                      className="px-4 pb-5 sm:px-6 sm:pb-6 lg:px-8 lg:pb-6 border-t border-gray-100"
+                      role="region"
+                      aria-labelledby={`faq-question-${index}`}
+                      style={{
+                        transform: expandedFAQ === index ? 'translateY(0)' : 'translateY(-10px)',
+                        transition: 'transform 0.3s ease-out 0.2s'
+                      }}
+                    >
+                      <p className="seasun-body text-xs sm:text-sm lg:text-base leading-relaxed pt-3 sm:pt-4 font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>{faq.answer}</p>
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
             </div>
