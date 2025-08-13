@@ -267,27 +267,6 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
         </div>
       </section>
 
-      {/* Embedded Product Display Section */}
-      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
-        <div className="container mx-auto px-4 sm:px-6">
-          {product ? (
-            <EmbeddedProductDisplay product={product} region={region} />
-          ) : (
-            // Fallback display if product is not available
-            <div className="text-center py-16">
-              <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-12 shadow-xl max-w-md mx-auto">
-                <div className="text-6xl mb-6">🧴</div>
-                <h3 className="text-2xl font-light mb-4" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-                  SEASUN Coming Soon
-                </h3>
-                <p className="text-base opacity-70" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-                  Our premium tanning oil will be available shortly.
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Ritual Section */}
       <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="ritual-heading">
@@ -571,6 +550,28 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Embedded Product Display Section */}
+      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
+        <div className="container mx-auto px-4 sm:px-6">
+          {product ? (
+            <EmbeddedProductDisplay product={product} region={region} />
+          ) : (
+            // Fallback display if product is not available
+            <div className="text-center py-16">
+              <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-12 shadow-xl max-w-md mx-auto">
+                <div className="text-6xl mb-6">🧴</div>
+                <h3 className="text-2xl font-light mb-4" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+                  SEASUN Coming Soon
+                </h3>
+                <p className="text-base opacity-70" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                  Our premium tanning oil will be available shortly.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
