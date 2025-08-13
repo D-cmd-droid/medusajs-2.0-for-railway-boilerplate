@@ -105,13 +105,13 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--seasun-lighter-sand) 0%, var(--seasun-sand) 100%)' }}>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden seasun-hero-solid">
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
             
             {/* Premium Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-6 py-3 mb-12">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 mb-12">
               <span className="seasun-body text-sm font-medium" style={{ color: 'var(--seasun-deep-black)' }}>✨ Premium Caribbean Beauty</span>
             </div>
             
@@ -146,13 +146,13 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
                   
                   {/* Floating Elements - More Integrated */}
                   <div className="absolute -bottom-4 -left-4 hidden lg:block">
-                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-white/30">
+                    <div className="bg-white/60 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-white/30">
                       <p className="seasun-body text-xs font-semibold" style={{ color: 'var(--seasun-golden-tan)' }}>SPF 30+</p>
                     </div>
                   </div>
                   
                   <div className="absolute -top-4 -right-4 hidden lg:block">
-                    <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg border border-white/30">
+                    <div className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg border border-white/30">
                       <p className="seasun-body text-xs" style={{ color: 'var(--seasun-deep-black)' }}>🌿 Natural</p>
                     </div>
                   </div>
@@ -170,12 +170,12 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
         </div>
       </section>
 
-      {/* Trust/Problem Section */}
-      <section className="py-28 relative">
-        {/* Subtle Section Separator */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+      {/* All sections below hero wrapped in seamless gradient */}
+      <div className="seasun-content-gradient">
+        {/* Trust/Problem Section */}
+        <section className="py-28 relative seasun-section-overlay">
         
-        <div className="container mx-auto px-6" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
+        <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mb-16">
               <h2 className="seasun-h2 mb-8" style={{ color: 'var(--seasun-deep-black)' }}>
@@ -216,12 +216,12 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* What's Inside Section */}
-      <section className="py-24" style={{ background: 'linear-gradient(to bottom, var(--seasun-lighter-sand), var(--seasun-background-white))' }}>
+      <section className="py-24 seasun-section-overlay">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <div className="order-2 lg:order-1">
               {/* Product image placeholder */}
-              <div className="rounded-3xl aspect-square flex items-center justify-center shadow-2xl" style={{ background: 'linear-gradient(to bottom right, var(--seasun-lighter-sand), var(--seasun-sand))' }}>
+              <div className="rounded-3xl aspect-square flex items-center justify-center shadow-2xl bg-white/5 backdrop-blur-sm">
                 <div className="text-center">
                   <div className="text-8xl mb-6">🧴</div>
                   <p className="seasun-h3" style={{ color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
@@ -274,7 +274,7 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Ritual Section */}
-      <section className="py-24" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
+      <section className="py-24 seasun-section-overlay">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-4xl mx-auto mb-16">
             <h2 className="seasun-h2 mb-8">
@@ -285,7 +285,7 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="p-8 rounded-2xl" style={{ backgroundColor: 'var(--seasun-lighter-sand)' }}>
+            <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm">
               <h3 className="seasun-h3 mb-6">The Old Way 😩</h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-2">
@@ -310,30 +310,30 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
             <div className="relative">
               <div className="p-10 rounded-3xl shadow-2xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--seasun-deeper-blue) 0%, var(--seasun-ocean-blue) 100%)' }}>
                 <div className="absolute top-4 right-4 text-4xl opacity-20">☀️</div>
-                <div className="absolute inset-0 bg-white/5"></div>
+                <div className="absolute inset-0 bg-white/3"></div>
                 <div className="relative z-10">
                   <h3 className="seasun-h3 mb-8 text-white">The SEASUN Way</h3>
                   <ul className="space-y-6">
                     <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-white text-sm">✓</span>
                       </div>
                       <span className="seasun-body text-lg leading-relaxed text-white">One product, multiple benefits</span>
                     </li>
                     <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-white text-sm">✓</span>
                       </div>
                       <span className="seasun-body text-lg leading-relaxed text-white">Natural ingredients that nourish</span>
                     </li>
                     <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-white text-sm">✓</span>
                       </div>
                       <span className="seasun-body text-lg leading-relaxed text-white">Affordable luxury that works</span>
                     </li>
                     <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
                         <span className="text-white text-sm">✓</span>
                       </div>
                       <span className="seasun-body text-lg leading-relaxed text-white">Confident, protected, glowing skin</span>
@@ -347,7 +347,7 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24" style={{ background: 'linear-gradient(to bottom, var(--seasun-background-white), var(--seasun-lighter-sand))' }}>
+      <section className="py-24 seasun-section-overlay">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="seasun-h2 text-center mb-16">
@@ -358,11 +358,11 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
-                  className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-200"
+                    className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-white/10 transition-all duration-200"
                   >
                     <span className="seasun-body text-lg font-semibold">{faq.question}</span>
                     <span className="text-2xl transition-transform duration-200" style={{ color: 'var(--seasun-golden-tan)', transform: expandedFAQ === index ? 'rotate(45deg)' : 'rotate(0deg)' }}>
@@ -382,8 +382,7 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Instagram Gallery Section */}
-      <section className="py-28 relative" style={{ backgroundColor: 'var(--seasun-background-white)' }}>
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+      <section className="py-28 relative seasun-section-overlay">
         
         <div className="container mx-auto px-6">
           <div className="text-center max-w-4xl mx-auto mb-20">
@@ -435,16 +434,15 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Newsletter Section - Refined */}
-      <section className="py-24 relative" style={{ background: 'linear-gradient(135deg, var(--seasun-sand) 0%, var(--seasun-golden-tan) 100%)' }}>
-        <div className="absolute inset-0 bg-black/5"></div>
+      <section className="py-24 relative seasun-section-overlay">
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-12">
-              <h2 className="seasun-h2 text-white mb-6">
+            <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-12 shadow-xl">
+              <h2 className="seasun-h2 mb-6" style={{ color: 'var(--seasun-deep-black)' }}>
                 Get 10% off your first order
               </h2>
-              <p className="seasun-body text-lg text-white/90 mb-10 max-w-2xl mx-auto">
+              <p className="seasun-body text-lg mb-10 max-w-2xl mx-auto" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
                 Join the SEASUN family and be the first to know about new products and exclusive offers.
               </p>
               
@@ -455,13 +453,13 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="seasun-body flex-1 bg-white/20 backdrop-blur-sm border border-white/30 px-6 py-4 rounded-2xl text-white placeholder:text-white/70"
+                  className="seasun-body flex-1 bg-white/30 backdrop-blur-sm border border-white/40 px-6 py-4 rounded-2xl placeholder:text-gray-600"
                 />
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
                   className="seasun-body text-white px-8 py-4 rounded-2xl transition-all duration-200 hover:opacity-90 hover:scale-105 shadow-xl"
-                  style={{ backgroundColor: 'var(--seasun-deep-black)' }}
+                  style={{ backgroundColor: 'var(--seasun-golden-tan)' }}
                 >
                   <span className="seasun-body font-medium">{isSubmitting ? "..." : "Subscribe"}</span>
                 </Button>
@@ -472,7 +470,7 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-32" style={{ background: 'linear-gradient(to bottom, var(--seasun-lighter-sand), var(--seasun-background-white))' }}>
+      <section className="py-32 seasun-section-overlay">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="seasun-h1 mb-6">
@@ -521,6 +519,7 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
           </div>
         </div>
       </section>
+      </div>
     </div>
   )
 }

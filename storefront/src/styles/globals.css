@@ -178,4 +178,37 @@
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+
+  /* SEASUN Seamless Background System */
+  .seasun-hero-solid {
+    background-color: #fcf8eb;
+    position: relative;
+  }
+
+  .seasun-content-gradient {
+    background: linear-gradient(
+      180deg,
+      #fcf8eb 0%,
+      #fdf5e6 8%,
+      #fef7ed 16%,
+      #fffaf5 24%,
+      #fefbf7 32%,
+      #fffcf9 40%,
+      #fffcf9 48%,
+      #fefbf7 56%,
+      #fffaf5 64%,
+      #fef7ed 72%,
+      #fdf5e6 80%,
+      #fcf0dc 88%,
+      #fcf8eb 96%,
+      #fcf8eb 100%
+    );
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .seasun-section-overlay {
+    position: relative;
+    z-index: 1;
+  }
 }
