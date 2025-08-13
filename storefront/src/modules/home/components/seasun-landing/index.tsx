@@ -173,43 +173,60 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       {/* All sections below hero wrapped in seamless gradient */}
       <div className="seasun-content-gradient">
         {/* Trust/Problem Section */}
-        <section className="py-28 relative seasun-section-overlay">
+        <section className="py-20 sm:py-24 lg:py-28 relative seasun-section-overlay" aria-labelledby="trust-problem-heading">
         
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mb-16">
-              <h2 className="seasun-h2 mb-8" style={{ color: 'var(--seasun-deep-black)' }}>
-                I understand your frustration...
+              <h2 id="trust-problem-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+                I understand your <span className="underline decoration-2 underline-offset-4" style={{ textDecorationColor: 'var(--seasun-golden-tan)' }}>frustration</span>...
               </h2>
-              <div className="w-24 h-1 mx-auto rounded-full" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}></div>
+              <div className="w-16 h-0.5 mx-auto rounded-full opacity-60" style={{ backgroundColor: 'var(--seasun-deep-black)' }}></div>
             </div>
             
-            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16 max-w-6xl mx-auto" role="text" aria-describedby="trust-problem-heading">
               <div className="space-y-6 text-left">
-                <p className="seasun-body text-lg leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
+                <p className="seasun-body text-base sm:text-lg leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
                   Look, I get it. You've probably tried it all - expensive serums, weekly facials, that 12-step routine 
                   your friend swears by.
                 </p>
-                <p className="seasun-body text-lg leading-relaxed font-medium" style={{ color: 'var(--seasun-deep-black)' }}>
+                <p className="seasun-body text-base sm:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
                   And yet, you're still dealing with uneven skin tone, unexpected breakouts, 
                   and that constant feeling that your skin just isn't living up to its potential.
                 </p>
               </div>
               
               <div className="text-left lg:text-right">
-                <p className="seasun-body text-lg leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
+                <p className="seasun-body text-base sm:text-lg leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
                   You're not alone. Millions struggle with these same issues every day. 
-                  <span className="font-medium">The beauty industry makes it seem so complicated</span>, 
+                  <span className="font-medium" style={{ color: 'var(--seasun-deep-black)' }}>The beauty industry makes it seem so complicated</span>, 
                   but what if the answer has been hiding in the Caribbean all along?
                 </p>
               </div>
             </div>
             
             <Button 
-              className="text-white px-8 py-3 rounded-2xl transition-all duration-300 hover:opacity-90 hover:scale-105 shadow-lg" 
-              style={{ backgroundColor: 'var(--seasun-golden-tan)' }}
+              className="group relative text-white px-8 py-4 sm:px-12 sm:py-5 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[64px]"
+              style={{ 
+                backgroundColor: 'var(--seasun-deep-black)',
+                boxShadow: '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                minWidth: '200px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.5), 0 6px 16px rgba(0, 0, 0, 0.3)';
+                e.currentTarget.style.backgroundColor = '#2a2a2a';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
+              }}
+              aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
+              role="button"
+              tabIndex={0}
             >
-              <span className="seasun-body font-medium">Discover the Secret</span>
+              <span className="relative z-10 seasun-body tracking-wide">Discover the Secret</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
             </Button>
           </div>
         </div>
