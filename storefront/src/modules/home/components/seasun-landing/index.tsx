@@ -216,57 +216,81 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* What's Inside Section */}
-      <section className="py-24 seasun-section-overlay">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
             <div className="order-2 lg:order-1">
               {/* Product image placeholder */}
-              <div className="rounded-3xl aspect-square flex items-center justify-center shadow-2xl bg-white/5 backdrop-blur-sm">
+              <div 
+                className="rounded-3xl aspect-square flex items-center justify-center shadow-2xl bg-white/5 backdrop-blur-sm"
+                role="img"
+                aria-label="SEASUN Caribbean Beauty Product"
+              >
                 <div className="text-center">
-                  <div className="text-8xl mb-6">🧴</div>
+                  <div className="text-8xl mb-6" aria-hidden="true">🧴</div>
                   <p className="seasun-h3" style={{ color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
                 </div>
               </div>
             </div>
             
             <div className="order-1 lg:order-2 text-center lg:text-left">
-              <h2 className="seasun-h2 mb-8">
+              <h2 id="product-showcase-heading" className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
                 You don't have to settle for uneven skin
               </h2>
-              <p className="seasun-body text-xl leading-relaxed mb-10" style={{ color: 'var(--seasun-deep-black)' }}>
-                Meet SEASUN - your new secret weapon for effortlessly radiant, even-toned skin. Inspired by 
-                Caribbean beauty rituals and powered by nature's most effective ingredients.
-              </p>
-              
-              <div className="space-y-6 mb-10">
-                <div className="flex items-start gap-4">
-                  <span className="text-xl mt-1" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-                  <div>
-                    <p className="seasun-body text-lg font-semibold mb-2">Natural Sun Protection</p>
-                    <p className="seasun-body text-gray-600">SPF 30 broad spectrum protection</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-xl" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-                  <div>
-                    <p className="seasun-body font-semibold">Caribbean Botanicals</p>
-                    <p className="seasun-body text-sm text-gray-600">Coconut oil, aloe vera, and sea minerals</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-xl" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-                  <div>
-                    <p className="seasun-body font-semibold">Even Tone Formula</p>
-                    <p className="seasun-body text-sm text-gray-600">Reduces dark spots and hyperpigmentation</p>
-                  </div>
-                </div>
+              <div className="mb-12 max-w-3xl mx-auto lg:mx-0" role="text" aria-describedby="product-showcase-heading">
+                <p id="product-description" className="seasun-body text-lg sm:text-xl leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
+                  Meet SEASUN - your new secret weapon for effortlessly radiant, even-toned skin. Inspired by 
+                  Caribbean beauty rituals and powered by nature's most effective ingredients.
+                </p>
               </div>
               
+              <ul className="space-y-6 mb-12 list-none" role="list" aria-label="Product features and benefits">
+                <li className="flex items-start gap-4" role="listitem">
+                  <span className="text-lg flex-shrink-0 mt-1" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
+                  <div>
+                    <p className="seasun-body text-lg font-medium mb-1" style={{ color: 'var(--seasun-deep-black)' }}>Natural Sun Protection</p>
+                    <p className="seasun-body text-base font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>SPF 30 broad spectrum protection</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4" role="listitem">
+                  <span className="text-lg flex-shrink-0 mt-1" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
+                  <div>
+                    <p className="seasun-body text-lg font-medium mb-1" style={{ color: 'var(--seasun-deep-black)' }}>Caribbean Botanicals</p>
+                    <p className="seasun-body text-base font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>Coconut oil, aloe vera, and sea minerals</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4" role="listitem">
+                  <span className="text-lg flex-shrink-0 mt-1" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
+                  <div>
+                    <p className="seasun-body text-lg font-medium mb-1" style={{ color: 'var(--seasun-deep-black)' }}>Even Tone Formula</p>
+                    <p className="seasun-body text-base font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>Reduces dark spots and hyperpigmentation</p>
+                  </div>
+                </li>
+              </ul>
+              
               <Button 
-                className="text-white px-10 py-4 text-lg rounded-xl transition-all duration-200 hover:opacity-90 hover:scale-105" 
-                style={{ backgroundColor: 'var(--seasun-golden-tan)' }}
+                className="group relative text-white px-8 py-5 sm:px-12 sm:py-5 lg:px-16 lg:py-6 text-base sm:text-lg lg:text-xl rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[68px] lg:min-h-[76px]"
+                style={{ 
+                  backgroundColor: 'var(--seasun-deep-black)',
+                  boxShadow: '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                  minWidth: '280px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.5), 0 6px 16px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.backgroundColor = '#2a2a2a';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                  e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
+                }}
+                aria-label="Purchase SEASUN Caribbean Beauty product for $45"
+                aria-describedby="product-description"
+                role="button"
+                tabIndex={0}
               >
-                <span className="seasun-body">Shop Now - $45</span>
+                <span className="relative z-10 seasun-body tracking-wide">Shop Now - $45</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
               </Button>
             </div>
           </div>
