@@ -470,52 +470,71 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-32 seasun-section-overlay">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-20 sm:py-24 lg:py-32 seasun-section-overlay" aria-labelledby="final-cta-heading">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="seasun-h1 mb-6">
+            <h2 id="final-cta-heading" className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)' }}>
               Ready to feel{" "}
               <span 
-                className="inline-block px-3 py-1 rounded-lg" 
+                className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold text-sm sm:text-base lg:text-lg xl:text-xl" 
                 style={{ 
                   color: 'white', 
                   backgroundColor: 'var(--seasun-golden-tan)',
-                  transform: 'rotate(-1deg)'
+                  transform: 'rotate(-1deg)',
+                  boxShadow: '0 4px 16px rgba(247, 138, 21, 0.3)'
                 }}
+                aria-label="sunkissed"
               >
                 SUNKISSED
               </span>
               ?
             </h2>
             
-            <div className="mb-16">
-              <p className="seasun-body text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
+            <div className="mb-8 sm:mb-10 lg:mb-12 max-w-3xl mx-auto" role="text" aria-describedby="final-cta-heading">
+              <p className="seasun-body text-base sm:text-lg leading-relaxed mb-2 font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
                 Join thousands of women who have discovered the Caribbean secret to
               </p>
-              <p className="seasun-body text-xl leading-relaxed font-medium" style={{ color: 'var(--seasun-deep-black)' }}>
+              <p className="seasun-body text-base sm:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
                 radiant, even-toned skin.
               </p>
             </div>
             
-            <div className="mb-12">
+            <div className="mb-12 sm:mb-14 lg:mb-16">
               <Button 
-                className="text-white px-10 py-4 text-lg rounded-2xl transition-all duration-300 hover:opacity-90 hover:scale-105 shadow-xl" 
-                style={{ backgroundColor: 'var(--seasun-golden-tan)' }}
+                className="group relative text-white px-8 py-4 sm:px-12 sm:py-5 lg:px-16 lg:py-6 text-lg sm:text-xl rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent active:scale-95 active:translate-y-0 w-full sm:w-auto min-h-[60px] sm:min-h-[68px] lg:min-h-[76px]" 
+                style={{ 
+                  backgroundColor: 'var(--seasun-deep-black)',
+                  boxShadow: '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                  minWidth: '280px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.5), 0 6px 16px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.backgroundColor = '#2a2a2a';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                  e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
+                }}
+                aria-label="Purchase SEASUN Caribbean Beauty product for $45"
+                role="button"
+                tabIndex={0}
               >
-                <span className="seasun-body font-medium">Shop SEASUN Now - $45</span>
+                <span className="relative z-10 seasun-body tracking-wide">Shop SEASUN Now - $45</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
               </Button>
             </div>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">✓</span>
-                <span className="seasun-body" style={{ color: 'var(--seasun-deep-black)' }}>30-day money back guarantee</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">🚚</span>
-                <span className="seasun-body" style={{ color: 'var(--seasun-deep-black)' }}>Free shipping on orders over $50</span>
-              </div>
-            </div>
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8 max-w-lg sm:max-w-2xl mx-auto list-none" role="list" aria-label="Product guarantees and shipping information">
+              <li className="flex items-center justify-center sm:justify-center gap-3 opacity-80 p-2 rounded-lg" role="listitem">
+                <span className="text-base sm:text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
+                <span className="seasun-body text-sm sm:text-xs font-normal text-center sm:text-left" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>30-day money back guarantee</span>
+              </li>
+              <li className="flex items-center justify-center sm:justify-center gap-3 opacity-80 p-2 rounded-lg" role="listitem">
+                <span className="text-base sm:text-lg flex-shrink-0" aria-hidden="true">🚚</span>
+                <span className="seasun-body text-sm sm:text-xs font-normal text-center sm:text-left" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Free shipping on orders over $50</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
