@@ -126,23 +126,10 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
             
             <h1 
               id="hero-heading"
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light mb-6 sm:mb-8 leading-tight" 
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight max-w-4xl mx-auto" 
               style={{ fontFamily: 'var(--seasun-font-heading)' }}
             >
-              <span className="italic block mb-2 sm:mb-3">How does it feel to be</span>
-              <span 
-                className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-xl not-italic font-semibold text-lg sm:text-xl lg:text-2xl xl:text-3xl" 
-                style={{ 
-                  background: 'linear-gradient(45deg, var(--seasun-golden-tan), var(--seasun-darker-tan))', 
-                  color: 'white',
-                  transform: 'rotate(-1deg)',
-                  boxShadow: '0 6px 24px rgba(247, 138, 21, 0.3)'
-                }}
-                aria-label="sunkissed - the feeling we want to evoke"
-              >
-                SUNKISSED
-              </span>
-              <span className="italic">?</span>
+              The Caribbean's best kept secret to effortless, radiant skin
             </h1>
             
             {/* Refined Product Showcase */}
@@ -188,14 +175,21 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
                 </div>
               </div>
               
-              {/* Tagline - Better Positioned */}
-              <div className="mt-8 sm:mt-12 max-w-sm sm:max-w-md mx-auto" role="text">
+              {/* Transition Question - Better Positioned */}
+              <div className="mt-10 sm:mt-14 max-w-lg mx-auto" role="text">
                 <p 
                   id="hero-description"
-                  className="seasun-body text-base sm:text-lg leading-relaxed font-light" 
-                  style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}
+                  className="seasun-body text-lg sm:text-xl leading-relaxed font-light italic text-center" 
+                  style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
                 >
-                  The Caribbean's best kept secret to effortless, radiant skin
+                  How does it feel to be{" "}
+                  <span 
+                    className="font-medium not-italic tracking-wide"
+                    style={{ color: 'var(--seasun-golden-tan)' }}
+                  >
+                    SUNKISSED
+                  </span>
+                  ?
                 </p>
               </div>
             </div>
