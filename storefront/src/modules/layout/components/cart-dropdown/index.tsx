@@ -201,14 +201,16 @@ const CartDropdown = ({
                     <span>0</span>
                   </div>
                   <span>Your shopping bag is empty.</span>
-                  <div>
-                    <LocalizedClientLink href="/store">
-                      <>
-                        <span className="sr-only">Go to all products page</span>
-                        <Button onClick={close}>Explore products</Button>
-                      </>
-                    </LocalizedClientLink>
-                  </div>
+                  {process.env.NEXT_PUBLIC_ENABLE_STORE_LINKS && (
+                    <div>
+                      <LocalizedClientLink href="/store">
+                        <>
+                          <span className="sr-only">Go to all products page</span>
+                          <Button onClick={close}>Explore products</Button>
+                        </>
+                      </LocalizedClientLink>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

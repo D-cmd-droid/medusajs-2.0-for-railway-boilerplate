@@ -18,9 +18,11 @@ const EmptyCartMessage = () => {
       >
         You don&apos;t have anything in your cart yet. Let&apos;s change that and discover our Caribbean beauty collection.
       </Text>
-      <div>
-        <InteractiveLink href="/store">Explore products</InteractiveLink>
-      </div>
+      {process.env.NEXT_PUBLIC_ENABLE_STORE_LINKS && (
+        <div>
+          <InteractiveLink href="/store">Explore products</InteractiveLink>
+        </div>
+      )}
     </div>
   )
 }
