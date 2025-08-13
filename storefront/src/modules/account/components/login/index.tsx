@@ -15,11 +15,13 @@ const Login = ({ setCurrentView }: Props) => {
 
   return (
     <div
-      className="max-w-sm w-full flex flex-col items-center"
+      className="max-w-sm w-full flex flex-col items-center bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/25"
       data-testid="login-page"
     >
-      <h1 className="text-large-semi uppercase mb-6">Welcome back</h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-8">
+      <h1 className="text-3xl font-light uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+        Welcome back
+      </h1>
+      <p className="text-center text-lg leading-relaxed font-light mb-8" style={{ fontFamily: 'var(--seasun-font-body)', color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
         Sign in to access an enhanced shopping experience.
       </p>
       <form className="w-full" action={formAction}>
