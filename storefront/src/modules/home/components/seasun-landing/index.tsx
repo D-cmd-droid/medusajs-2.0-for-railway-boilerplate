@@ -274,74 +274,93 @@ export default function SeasunLanding({ countryCode }: { countryCode: string }) 
       </section>
 
       {/* Ritual Section */}
-      <section className="py-24 seasun-section-overlay">
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <h2 className="seasun-h2 mb-8">
+      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="ritual-heading">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-4xl mx-auto mb-12">
+            <h2 id="ritual-heading" className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
               It's time for a ritual of{" "}
-              <span style={{ color: 'var(--seasun-golden-tan)' }}>GLOWING SKIN</span>{" "}
+              <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }} aria-label="glowing skin">GLOWING SKIN</span>{" "}
               - what's in your way?
             </h2>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm">
-              <h3 className="seasun-h3 mb-6">The Old Way 😩</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-red-500">✗</span>
-                  <span className="seasun-body">12-step routines that take forever</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-500">✗</span>
-                  <span className="seasun-body">Harsh chemicals that irritate</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-500">✗</span>
-                  <span className="seasun-body">Expensive treatments with minimal results</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-red-500">✗</span>
-                  <span className="seasun-body">Constant worry about sun damage</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="relative">
-              <div className="p-10 rounded-3xl shadow-2xl relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--seasun-deeper-blue) 0%, var(--seasun-ocean-blue) 100%)' }}>
-                <div className="absolute top-4 right-4 text-4xl opacity-20">☀️</div>
-                <div className="absolute inset-0 bg-white/3"></div>
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto" role="region" aria-labelledby="ritual-heading">
+            <article className="group relative" aria-labelledby="old-way-heading">
+              <div className="p-6 sm:p-8 lg:p-10 rounded-3xl relative overflow-hidden border shadow-xl transition-all duration-300 hover:shadow-2xl" style={{ 
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%)', 
+                backdropFilter: 'blur(12px)',
+                borderColor: 'rgba(0,0,0,0.1)'
+              }}>
+                <div className="absolute top-4 left-4 text-3xl opacity-20" aria-hidden="true">😩</div>
+                <div className="absolute inset-0 bg-gradient-to-br from-red-50/20 to-orange-50/20"></div>
                 <div className="relative z-10">
-                  <h3 className="seasun-h3 mb-8 text-white">The SEASUN Way</h3>
-                  <ul className="space-y-6">
-                    <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm">✓</span>
+                  <h3 id="old-way-heading" className="text-xl sm:text-2xl lg:text-3xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>The Old Way</h3>
+                  <ul className="space-y-6" role="list" aria-label="Problems with traditional skincare approaches">
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
+                        <span className="text-red-600 text-sm font-semibold">✗</span>
                       </div>
-                      <span className="seasun-body text-lg leading-relaxed text-white">One product, multiple benefits</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>12-step routines that take forever</span>
                     </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm">✓</span>
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
+                        <span className="text-red-600 text-sm font-semibold">✗</span>
                       </div>
-                      <span className="seasun-body text-lg leading-relaxed text-white">Natural ingredients that nourish</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Harsh chemicals that irritate</span>
                     </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm">✓</span>
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
+                        <span className="text-red-600 text-sm font-semibold">✗</span>
                       </div>
-                      <span className="seasun-body text-lg leading-relaxed text-white">Affordable luxury that works</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Expensive treatments with minimal results</span>
                     </li>
-                    <li className="flex items-start gap-4">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-sm">✓</span>
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
+                        <span className="text-red-600 text-sm font-semibold">✗</span>
                       </div>
-                      <span className="seasun-body text-lg leading-relaxed text-white">Confident, protected, glowing skin</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Constant worry about sun damage</span>
                     </li>
                   </ul>
                 </div>
               </div>
-            </div>
+            </article>
+            
+            <article className="group relative" aria-labelledby="seasun-way-heading">
+              <div className="p-6 sm:p-8 lg:p-10 rounded-3xl shadow-2xl relative overflow-hidden transition-all duration-300 hover:shadow-3xl hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, var(--seasun-deeper-blue) 0%, var(--seasun-ocean-blue) 100%)' }}>
+                <div className="absolute top-4 right-4 text-4xl opacity-20" aria-hidden="true">☀️</div>
+                <div className="absolute inset-0 bg-white/3"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <h3 id="seasun-way-heading" className="text-xl sm:text-2xl lg:text-3xl font-light mb-8 text-white leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)' }}>The SEASUN Way</h3>
+                  <ul className="space-y-6" role="list" aria-label="Benefits of SEASUN Caribbean skincare approach">
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
+                        <span className="text-white text-sm font-semibold">✓</span>
+                      </div>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">One product, multiple benefits</span>
+                    </li>
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
+                        <span className="text-white text-sm font-semibold">✓</span>
+                      </div>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Natural ingredients that nourish</span>
+                    </li>
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
+                        <span className="text-white text-sm font-semibold">✓</span>
+                      </div>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Affordable luxury that works</span>
+                    </li>
+                    <li className="flex items-start gap-4" role="listitem">
+                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
+                        <span className="text-white text-sm font-semibold">✓</span>
+                      </div>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Confident, protected, glowing skin</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
