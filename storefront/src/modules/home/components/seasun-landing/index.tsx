@@ -33,7 +33,7 @@
 // Maintains consistency with existing Medusa UI components
 // ====================================================================================
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Button, Input } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
 import EmbeddedProductDisplay from "@modules/home/components/embedded-product-display"
@@ -57,6 +57,11 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
   const [email, setEmail] = useState("")
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  
+  // ============================================================================
+  // REFS
+  // ============================================================================
+  const productSectionRef = useRef<HTMLElement>(null)
 
   // ============================================================================
   // EVENT HANDLERS
@@ -74,6 +79,10 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
 
   const toggleFAQ = (index: number) => {
     setExpandedFAQ(expandedFAQ === index ? null : index)
+  }
+  
+  const scrollToProductSection = () => {
+    productSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   // ============================================================================
@@ -241,20 +250,21 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
             </div>
             
             <Button 
-              className="group relative text-white px-8 py-4 sm:px-12 sm:py-5 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[64px]"
+              onClick={scrollToProductSection}
+              className="group relative text-white px-8 py-4 sm:px-12 sm:py-5 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[64px]"
               style={{ 
-                backgroundColor: 'var(--seasun-deep-black)',
-                boxShadow: '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                backgroundColor: 'var(--seasun-golden-tan)',
+                boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
                 transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                 minWidth: '200px'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.5), 0 6px 16px rgba(0, 0, 0, 0.3)';
-                e.currentTarget.style.backgroundColor = '#2a2a2a';
+                e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
+                e.currentTarget.style.backgroundColor = '#cc7a00';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)';
               }}
               aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
               role="button"
@@ -286,7 +296,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                 backdropFilter: 'blur(12px)',
                 borderColor: 'rgba(0,0,0,0.1)'
               }}>
-                <div className="absolute top-4 left-4 text-3xl opacity-20" aria-hidden="true">😩</div>
+                {/* Emoji removed */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-50/20 to-orange-50/20"></div>
                 <div className="relative z-10">
                   <h3 id="old-way-heading" className="text-xl sm:text-2xl lg:text-3xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>The Old Way</h3>
@@ -322,7 +332,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
             
             <article className="group relative" aria-labelledby="seasun-way-heading">
               <div className="p-6 sm:p-8 lg:p-10 rounded-3xl shadow-2xl relative overflow-hidden transition-all duration-300 hover:shadow-3xl hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, var(--seasun-deeper-blue) 0%, var(--seasun-ocean-blue) 100%)' }}>
-                <div className="absolute top-4 right-4 text-4xl opacity-20" aria-hidden="true">☀️</div>
+                {/* Emoji removed */}
                 <div className="absolute inset-0 bg-white/3"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10">
@@ -554,7 +564,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
       </section>
 
       {/* Enhanced Product Display Section */}
-      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
+      <section ref={productSectionRef} className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Product Display */}
           <div className="mb-12 sm:mb-16 lg:mb-20">

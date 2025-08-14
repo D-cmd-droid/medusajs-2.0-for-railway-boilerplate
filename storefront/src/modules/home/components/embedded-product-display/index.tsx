@@ -183,8 +183,8 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               style={{ 
                 fontFamily: 'var(--seasun-font-body)',
                 ...(selectedSize === '100ml' && {
-                  backgroundColor: 'var(--seasun-deep-black)',
-                  borderColor: 'var(--seasun-deep-black)'
+                  backgroundColor: 'var(--seasun-golden-tan)',
+                  borderColor: 'var(--seasun-golden-tan)'
                 })
               }}
             >
@@ -202,8 +202,8 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               style={{ 
                 fontFamily: 'var(--seasun-font-body)',
                 ...(selectedSize === '250ml' && {
-                  backgroundColor: 'var(--seasun-deep-black)',
-                  borderColor: 'var(--seasun-deep-black)'
+                  backgroundColor: 'var(--seasun-golden-tan)',
+                  borderColor: 'var(--seasun-golden-tan)'
                 })
               }}
             >
@@ -230,22 +230,22 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             disabled={!inStock || !selectedVariant || isAdding}
             className="group relative text-white px-12 py-5 text-xl rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto min-h-[68px]"
             style={{
-              backgroundColor: 'var(--seasun-deep-black)',
-              boxShadow: '0 12px 48px rgba(26, 26, 26, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2)',
+              backgroundColor: 'var(--seasun-golden-tan)',
+              boxShadow: '0 12px 48px rgba(247, 138, 21, 0.4), 0 4px 16px rgba(247, 138, 21, 0.2)',
               transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
               minWidth: '280px',
               fontFamily: 'var(--seasun-font-body)'
             }}
             onMouseEnter={(e) => {
               if (!isAdding && inStock && selectedVariant) {
-                e.currentTarget.style.boxShadow = '0 20px 64px rgba(26, 26, 26, 0.6), 0 8px 24px rgba(0, 0, 0, 0.3)'
-                e.currentTarget.style.backgroundColor = '#2a2a2a'
+                e.currentTarget.style.boxShadow = '0 20px 64px rgba(247, 138, 21, 0.6), 0 8px 24px rgba(247, 138, 21, 0.3)'
+                e.currentTarget.style.backgroundColor = '#cc7a00'
               }
             }}
             onMouseLeave={(e) => {
               if (!isAdding && inStock && selectedVariant) {
-                e.currentTarget.style.boxShadow = '0 12px 48px rgba(26, 26, 26, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2)'
-                e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)'
+                e.currentTarget.style.boxShadow = '0 12px 48px rgba(247, 138, 21, 0.4), 0 4px 16px rgba(247, 138, 21, 0.2)'
+                e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)'
               }
             }}
           >
