@@ -181,8 +181,13 @@
 
   /* SEASUN Seamless Background System */
   .seasun-hero-solid {
-    background-color: #fcf8eb;
+    background: linear-gradient(135deg, #fcf8eb 0%, #fef6e8 50%, #fcf0dc 100%);
     position: relative;
+  }
+  
+  /* Radial gradient for product glow effect */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-to));
   }
 
   .seasun-content-gradient {

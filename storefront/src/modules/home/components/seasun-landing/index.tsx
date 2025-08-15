@@ -36,6 +36,7 @@
 import React, { useState, useRef } from 'react'
 import { Button, Input } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
+import Image from "next/image"
 import EmbeddedProductDisplay from "@modules/home/components/embedded-product-display"
 
 interface FAQItem {
@@ -153,40 +154,43 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
             <div className="mt-12 sm:mt-16 lg:mt-20 relative" role="presentation" aria-labelledby="hero-heading">
               <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                 <div className="relative">
-                  {/* Main Product Container */}
+                  {/* Main Product Container - Transparent for dynamic backgrounds */}
                   <div 
-                    className="group rounded-2xl sm:rounded-3xl aspect-square flex items-center justify-center shadow-xl sm:shadow-2xl border border-white/20 transition-all duration-500 ease-out hover:scale-105 hover:shadow-3xl cursor-pointer" 
-                    style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)' }}
+                    className="group aspect-square relative overflow-hidden transition-all duration-500 ease-out hover:scale-105 cursor-pointer" 
                     role="img"
                     aria-label="SEASUN Caribbean Beauty product showcase"
                   >
-                    <div className="text-center transition-all duration-300 group-hover:scale-105">
-                      <div className="text-5xl sm:text-6xl lg:text-7xl mb-4 sm:mb-6 filter drop-shadow-lg transition-transform duration-300 group-hover:rotate-3" aria-hidden="true">🧴</div>
-                      <p className="text-xl sm:text-2xl lg:text-3xl font-light mb-1 sm:mb-2 transition-colors duration-300" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-golden-tan)' }}>SEASUN</p>
-                      <p className="seasun-body text-xs sm:text-sm opacity-80 font-light transition-opacity duration-300 group-hover:opacity-100" style={{ color: 'var(--seasun-deep-black)' }}>Caribbean Beauty Secret</p>
-                    </div>
+                    {/* Product Image with subtle drop shadow */}
+                    <Image
+                      src="/images/seasun-product-hero.png"
+                      alt="SEASUN Organic Tanning Oil - 250ml amber bottle with natural Caribbean ingredients"
+                      fill
+                      priority
+                      className="object-contain p-8 sm:p-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
+                      sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 448px"
+                    />
                   </div>
                   
-                  {/* Floating Elements - More Integrated */}
+                  {/* Floating Elements - Enhanced for real product */}
                   <div 
-                    className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 hidden md:block animate-pulse"
+                    className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 hidden md:block animate-pulse"
                     role="note"
                     aria-label="SPF 30 plus protection feature"
                     style={{ animationDelay: '1s', animationDuration: '3s' }}
                   >
-                    <div className="bg-white/60 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl shadow-lg border border-white/30 transition-all duration-500 hover:scale-110 hover:shadow-xl hover:bg-white/80">
-                      <p className="seasun-body text-xs font-semibold" style={{ color: 'var(--seasun-golden-tan)' }}>SPF 30+</p>
+                    <div className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl shadow-xl border border-[var(--seasun-golden-tan)]/20 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:from-white/90 hover:to-white/70">
+                      <p className="seasun-body text-xs font-semibold" style={{ color: 'var(--seasun-golden-tan)' }}>☀️ SPF 30+</p>
                     </div>
                   </div>
                   
                   <div 
-                    className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 hidden md:block animate-pulse"
+                    className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 hidden md:block animate-pulse"
                     role="note"
                     aria-label="Natural ingredients feature"
                     style={{ animationDelay: '2s', animationDuration: '3s' }}
                   >
-                    <div className="bg-white/60 backdrop-blur-sm px-2.5 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg border border-white/30 transition-all duration-500 hover:scale-110 hover:shadow-xl hover:bg-white/80">
-                      <p className="seasun-body text-xs font-light" style={{ color: 'var(--seasun-deep-black)' }}><span aria-hidden="true">🌿</span> Natural</p>
+                    <div className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-xl border border-[var(--seasun-deeper-blue)]/20 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:from-white/90 hover:to-white/70">
+                      <p className="seasun-body text-xs font-medium" style={{ color: 'var(--seasun-deeper-blue)' }}>🌿 100% Natural</p>
                     </div>
                   </div>
                 </div>
