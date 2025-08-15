@@ -568,10 +568,10 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
       </section>
 
       {/* Enhanced Product Display Section */}
-      <section ref={productSectionRef} className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="product-showcase-heading">
+      <section ref={productSectionRef} className="py-20 sm:py-24 lg:py-28 pb-24 sm:pb-32 lg:pb-40 seasun-section-overlay" aria-labelledby="product-showcase-heading">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Product Display */}
-          <div className="mb-12 sm:mb-16 lg:mb-20">
+          <div className="mb-16 sm:mb-20 lg:mb-24">
             {product ? (
               <EmbeddedProductDisplay product={product} region={region} />
             ) : (
@@ -591,15 +591,15 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
           </div>
 
           {/* Guarantee Badges */}
-          <div className="text-center">
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8 max-w-lg sm:max-w-2xl mx-auto list-none" role="list" aria-label="Product guarantees and shipping information">
-              <li className="flex items-center justify-center sm:justify-center gap-3 opacity-80 p-2 rounded-lg" role="listitem">
-                <span className="text-base sm:text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
-                <span className="seasun-body text-sm sm:text-xs font-normal text-center sm:text-left" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>30-day money back guarantee</span>
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10 max-w-lg sm:max-w-2xl mx-auto list-none" role="list" aria-label="Product guarantees and shipping information">
+              <li className="flex items-center justify-center sm:justify-center gap-4 opacity-90 p-4 rounded-lg" role="listitem">
+                <span className="text-lg sm:text-xl flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
+                <span className="seasun-body text-base sm:text-sm font-medium text-center sm:text-left leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>30-day money back guarantee</span>
               </li>
-              <li className="flex items-center justify-center sm:justify-center gap-3 opacity-80 p-2 rounded-lg" role="listitem">
-                <span className="text-base sm:text-lg flex-shrink-0" aria-hidden="true">🚚</span>
-                <span className="seasun-body text-sm sm:text-xs font-normal text-center sm:text-left" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Free shipping on orders over $50</span>
+              <li className="flex items-center justify-center sm:justify-center gap-4 opacity-90 p-4 rounded-lg" role="listitem">
+                <span className="text-lg sm:text-xl flex-shrink-0" aria-hidden="true">🚚</span>
+                <span className="seasun-body text-base sm:text-sm font-medium text-center sm:text-left leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Free shipping on orders over $50</span>
               </li>
             </ul>
           </div>

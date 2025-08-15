@@ -4,6 +4,7 @@ import { Button } from "@medusajs/ui"
 import { useState, useMemo } from "react"
 import { useParams } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
+import Image from "next/image"
 import { addToCart } from "@lib/data/cart"
 import { getProductPrice } from "@lib/util/get-product-price"
 
@@ -90,7 +91,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
   const displayPrice = selectedSize === '100ml' ? '$29.99' : '$39.99'
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+    <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto pb-8 sm:pb-12 lg:pb-16">
       {/* Product Image Display */}
       <div className="order-2 lg:order-1">
         <div className="relative rounded-3xl aspect-square overflow-hidden shadow-2xl bg-gradient-to-br from-blue-100 to-blue-200">
@@ -111,17 +112,15 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           {/* Product Display */}
           <div className="relative z-10 w-full h-full flex items-center justify-center">
             <div className="text-center">
-              {/* Product Bottle Silhouette */}
-              <div className="text-8xl sm:text-9xl mb-6 filter drop-shadow-lg">
-                🧴
-              </div>
-              <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-2xl border border-white/30">
-                <p className="text-2xl font-semibold text-white mb-1" style={{ fontFamily: 'var(--seasun-font-heading)' }}>
-                  SEASUN
-                </p>
-                <p className="text-sm text-white/90 font-light" style={{ fontFamily: 'var(--seasun-font-body)' }}>
-                  Organic Tanning Oil
-                </p>
+              {/* Actual Product Image */}
+              <div>
+                <Image
+                  src="/images/seasun-product-hero.png"
+                  alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
+                  width={300}
+                  height={450}
+                  className="mx-auto drop-shadow-2xl"
+                />
               </div>
             </div>
           </div>
@@ -170,11 +169,11 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           <p className="text-lg font-medium mb-6" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
             Choose your size:
           </p>
-          <div className="flex gap-4 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button
               onClick={() => setSelectedSize('100ml')}
               className={`
-                px-8 py-4 rounded-2xl border-2 transition-all duration-300 font-medium
+                px-8 py-4 rounded-2xl border-2 transition-all duration-300 font-medium w-full sm:w-auto min-w-[120px]
                 ${selectedSize === '100ml' 
                   ? 'border-black bg-black text-white shadow-lg' 
                   : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -193,7 +192,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             <button
               onClick={() => setSelectedSize('250ml')}
               className={`
-                px-8 py-4 rounded-2xl border-2 transition-all duration-300 font-medium
+                px-8 py-4 rounded-2xl border-2 transition-all duration-300 font-medium w-full sm:w-auto min-w-[120px]
                 ${selectedSize === '250ml' 
                   ? 'border-black bg-black text-white shadow-lg' 
                   : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -263,26 +262,28 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
         </div>
 
         {/* Product Features */}
-        <ul className="space-y-4 list-none max-w-md mx-auto lg:mx-0">
-          <li className="flex items-center gap-3">
-            <span className="text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-            <span className="text-sm font-medium" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-              SPF 30 broad spectrum protection
-            </span>
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-            <span className="text-sm font-medium" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-              Coconut oil, aloe vera, sea minerals
-            </span>
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-            <span className="text-sm font-medium" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-              Reduces dark spots & hyperpigmentation
-            </span>
-          </li>
-        </ul>
+        <div className="mb-8 sm:mb-12">
+          <ul className="space-y-5 sm:space-y-6 list-none max-w-md mx-auto lg:mx-0">
+            <li className="flex items-start gap-4 py-1">
+              <span className="text-xl flex-shrink-0 mt-0.5" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-base sm:text-lg font-medium leading-relaxed" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                SPF 30 broad spectrum protection
+              </span>
+            </li>
+            <li className="flex items-start gap-4 py-1">
+              <span className="text-xl flex-shrink-0 mt-0.5" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-base sm:text-lg font-medium leading-relaxed" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                Coconut oil, aloe vera, sea minerals
+              </span>
+            </li>
+            <li className="flex items-start gap-4 py-1">
+              <span className="text-xl flex-shrink-0 mt-0.5" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-base sm:text-lg font-medium leading-relaxed" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                Reduces dark spots & hyperpigmentation
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   )
