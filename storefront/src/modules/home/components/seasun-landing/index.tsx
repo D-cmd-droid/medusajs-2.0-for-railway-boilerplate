@@ -228,32 +228,6 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                       }}
                     />
                     
-                    {/* SUNKISSED Badge Overlay */}
-                    <div 
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-                      style={{
-                        transform: 'translate(-50%, -50%) rotate(15deg)'
-                      }}
-                    >
-                      <div 
-                        className="px-6 py-3 rounded-full"
-                        style={{
-                          background: 'linear-gradient(135deg, var(--seasun-golden-tan), rgba(247, 138, 21, 0.9))',
-                          boxShadow: '0 8px 32px rgba(247, 138, 21, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
-                          border: '2px solid rgba(255, 255, 255, 0.4)'
-                        }}
-                      >
-                        <span 
-                          className="font-bold text-white text-xl tracking-wider"
-                          style={{ 
-                            fontFamily: 'var(--seasun-font-heading)',
-                            textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
-                          }}
-                        >
-                          SUNKISSED
-                        </span>
-                      </div>
-                    </div>
                     
                     {/* Floating Feature Badges */}
                     <div 
@@ -304,11 +278,18 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   className="seasun-body text-xl sm:text-2xl lg:text-3xl font-light italic" 
                   style={{ 
                     color: 'var(--seasun-deep-black)', 
-                    opacity: 0.7,
+                    opacity: 0.85,
                     textShadow: '0 1px 4px rgba(255, 255, 255, 0.5)'
                   }}
                 >
-                  How does it feel to be ready?
+                  How does it feel to be{" "}
+                  <span 
+                    className="font-medium not-italic tracking-wide"
+                    style={{ color: 'var(--seasun-golden-tan)' }}
+                  >
+                    SUNKISSED
+                  </span>
+                  ?
                 </p>
               </div>
             </div>
