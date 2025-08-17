@@ -122,100 +122,210 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
   // ============================================================================
   return (
     <div className="w-full">
-      {/* Hero Section */}
+      {/* Hero Section - Movie Poster Design */}
       <section 
-        className="relative min-h-[100vh] sm:min-h-screen flex items-center justify-center overflow-hidden seasun-hero-solid py-16 sm:py-20"
+        className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
         role="banner"
         aria-labelledby="hero-heading"
         aria-describedby="hero-description"
+        style={{
+          background: `
+            radial-gradient(ellipse at center, 
+              rgba(255, 255, 255, 0.95) 0%, 
+              rgba(247, 138, 21, 0.08) 35%, 
+              rgba(0, 86, 180, 0.06) 70%, 
+              rgba(255, 255, 255, 0.98) 100%
+            ),
+            linear-gradient(180deg, 
+              var(--seasun-lighter-sand) 0%, 
+              rgba(255, 255, 255, 0.95) 50%, 
+              var(--seasun-sand) 100%
+            )
+          `
+        }}
       >
+        {/* Atmospheric Glow Layer */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: 'radial-gradient(circle at 50% 40%, rgba(247, 138, 21, 0.2) 0%, transparent 60%)',
+            filter: 'blur(60px)'
+          }}
+        />
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="text-center max-w-5xl mx-auto">
+          <div className="relative max-w-6xl mx-auto">
             
-            {/* Premium Badge */}
-            <div 
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 sm:px-6 sm:py-3 mb-8 sm:mb-12"
-              role="banner"
-              aria-label="Premium product badge"
-            >
-              <span className="seasun-body text-xs sm:text-sm font-medium" style={{ color: 'var(--seasun-deep-black)' }}>✨ Premium Caribbean Beauty</span>
+            {/* Premium Badge - Movie Rating Style */}
+            <div className="absolute top-0 left-4 sm:left-8 z-20">
+              <div 
+                className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1.5 sm:px-4 sm:py-2"
+                role="banner"
+                aria-label="Premium product badge"
+                style={{
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.1)'
+                }}
+              >
+                <span className="seasun-body text-xs font-semibold tracking-wider uppercase" style={{ color: 'var(--seasun-golden-tan)' }}>Premium</span>
+              </div>
             </div>
             
-            <h1 
-              id="hero-heading"
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 sm:mb-8 leading-tight max-w-4xl mx-auto" 
-              style={{ fontFamily: 'var(--seasun-font-heading)' }}
-            >
-              The Caribbean's best kept secret to effortless, radiant skin
-            </h1>
-            
-            {/* Refined Product Showcase */}
-            <div className="mt-12 sm:mt-16 lg:mt-20 relative" role="presentation" aria-labelledby="hero-heading">
-              <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-                <div className="relative">
-                  {/* Main Product Container - Transparent for dynamic backgrounds */}
+            {/* Main Cinematic Layout Container */}
+            <div className="relative">
+              
+              {/* Top Text - Curves Above Bottle */}
+              <div className="absolute top-0 left-0 right-0 z-10 text-center">
+                <h1 
+                  id="hero-heading-top"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-none"
+                  style={{ 
+                    fontFamily: 'var(--seasun-font-heading)',
+                    color: 'var(--seasun-deep-black)',
+                    textShadow: '0 2px 20px rgba(255, 255, 255, 0.8)',
+                    letterSpacing: '-0.02em'
+                  }}
+                >
+                  The Caribbean's best kept
+                </h1>
+              </div>
+              
+              {/* Dramatic Product Center Stage */}
+              <div className="relative mx-auto" style={{ height: '70vh', minHeight: '600px', maxHeight: '900px' }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  
+                  {/* Product Glow Effect */}
                   <div 
-                    className="group aspect-square relative overflow-hidden transition-all duration-500 ease-out hover:scale-105 cursor-pointer" 
-                    role="img"
-                    aria-label="SEASUN Caribbean Beauty product showcase"
+                    className="absolute"
+                    style={{
+                      width: '120%',
+                      height: '120%',
+                      background: 'radial-gradient(circle, rgba(247, 138, 21, 0.15) 0%, transparent 70%)',
+                      filter: 'blur(40px)',
+                      animation: 'pulse 4s ease-in-out infinite'
+                    }}
+                  />
+                  
+                  {/* Main Product */}
+                  <div 
+                    className="relative"
+                    style={{
+                      width: 'clamp(280px, 50vw, 500px)',
+                      height: 'clamp(400px, 60vh, 700px)',
+                      transform: 'rotate(-3deg)',
+                      filter: 'drop-shadow(0 40px 60px rgba(0, 0, 0, 0.15))',
+                      animation: 'float 6s ease-in-out infinite'
+                    }}
                   >
-                    {/* Product Image with subtle drop shadow */}
                     <Image
                       src="/images/seasun-product-hero.png"
-                      alt="SEASUN Organic Tanning Oil - 250ml amber bottle with natural Caribbean ingredients"
+                      alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
                       fill
                       priority
-                      className="object-contain p-8 sm:p-10 transition-transform duration-500 group-hover:scale-110 drop-shadow-lg"
-                      sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 448px"
+                      className="object-contain"
+                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 400px, 500px"
+                      style={{
+                        filter: 'brightness(1.05) contrast(1.1)'
+                      }}
                     />
-                  </div>
-                  
-                  {/* Floating Elements - Enhanced for real product */}
-                  <div 
-                    className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-3 hidden md:block animate-pulse"
-                    role="note"
-                    aria-label="SPF 30 plus protection feature"
-                    style={{ animationDelay: '1s', animationDuration: '3s' }}
-                  >
-                    <div className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl shadow-xl border border-[var(--seasun-golden-tan)]/20 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:from-white/90 hover:to-white/70">
-                      <p className="seasun-body text-xs font-semibold" style={{ color: 'var(--seasun-golden-tan)' }}>☀️ SPF 30+</p>
+                    
+                    {/* SUNKISSED Badge Overlay */}
+                    <div 
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+                      style={{
+                        transform: 'translate(-50%, -50%) rotate(15deg)'
+                      }}
+                    >
+                      <div 
+                        className="px-6 py-3 rounded-full"
+                        style={{
+                          background: 'linear-gradient(135deg, var(--seasun-golden-tan), rgba(247, 138, 21, 0.9))',
+                          boxShadow: '0 8px 32px rgba(247, 138, 21, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)',
+                          border: '2px solid rgba(255, 255, 255, 0.4)'
+                        }}
+                      >
+                        <span 
+                          className="font-bold text-white text-xl tracking-wider"
+                          style={{ 
+                            fontFamily: 'var(--seasun-font-heading)',
+                            textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)'
+                          }}
+                        >
+                          SUNKISSED
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div 
-                    className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 hidden md:block animate-pulse"
-                    role="note"
-                    aria-label="Natural ingredients feature"
-                    style={{ animationDelay: '2s', animationDuration: '3s' }}
-                  >
-                    <div className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-xl border border-[var(--seasun-deeper-blue)]/20 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:from-white/90 hover:to-white/70">
-                      <p className="seasun-body text-xs font-medium" style={{ color: 'var(--seasun-deeper-blue)' }}>🌿 100% Natural</p>
+                    
+                    {/* Floating Feature Badges */}
+                    <div 
+                      className="absolute -left-8 top-1/3 hidden lg:block"
+                      style={{
+                        animation: 'float 5s ease-in-out infinite',
+                        animationDelay: '1s'
+                      }}
+                    >
+                      <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
+                        <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-golden-tan)' }}>SPF 30+</p>
+                      </div>
+                    </div>
+                    
+                    <div 
+                      className="absolute -right-8 bottom-1/3 hidden lg:block"
+                      style={{
+                        animation: 'float 5s ease-in-out infinite',
+                        animationDelay: '2.5s'
+                      }}
+                    >
+                      <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
+                        <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deeper-blue)' }}>100% Natural</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               
-              {/* Transition Question - Better Positioned */}
-              <div className="mt-10 sm:mt-14 max-w-lg mx-auto" role="text">
+              {/* Bottom Text - Curves Below Bottle */}
+              <div className="absolute bottom-0 left-0 right-0 z-10 text-center">
+                <h1 
+                  id="hero-heading-bottom"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-none mb-8"
+                  style={{ 
+                    fontFamily: 'var(--seasun-font-heading)',
+                    color: 'var(--seasun-deep-black)',
+                    textShadow: '0 2px 20px rgba(255, 255, 255, 0.8)',
+                    letterSpacing: '-0.02em'
+                  }}
+                >
+                  secret to radiant skin
+                </h1>
+                
+                {/* CTA Question */}
                 <p 
                   id="hero-description"
-                  className="seasun-body text-lg sm:text-xl leading-relaxed font-light italic text-center" 
-                  style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                  className="seasun-body text-xl sm:text-2xl lg:text-3xl font-light italic" 
+                  style={{ 
+                    color: 'var(--seasun-deep-black)', 
+                    opacity: 0.7,
+                    textShadow: '0 1px 4px rgba(255, 255, 255, 0.5)'
+                  }}
                 >
-                  How does it feel to be{" "}
-                  <span 
-                    className="font-medium not-italic tracking-wide"
-                    style={{ color: 'var(--seasun-golden-tan)' }}
-                  >
-                    SUNKISSED
-                  </span>
-                  ?
+                  How does it feel to be ready?
                 </p>
               </div>
             </div>
           </div>
         </div>
+        
+        {/* Add keyframe animations */}
+        <style jsx>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-20px) rotate(-3deg); }
+          }
+          @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+          }
+        `}</style>
       </section>
 
       {/* All sections below hero wrapped in seamless gradient */}
