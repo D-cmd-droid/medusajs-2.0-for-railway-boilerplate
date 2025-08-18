@@ -5,6 +5,31 @@
 /* SEASUN Fonts - From Legacy Webflow Site */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Josefin+Sans:wght@300;400;500;600&display=swap');
 
+/* Cinzel Decorative - Premium Display Font */
+@font-face {
+  font-family: 'Cinzel Decorative';
+  src: url('/fonts/CinzelDecorative-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel Decorative';
+  src: url('/fonts/CinzelDecorative-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel Decorative';
+  src: url('/fonts/CinzelDecorative-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* SEASUN Brand Colors - From Legacy Webflow Site */
 :root {
   --seasun-deep-black: #1a1a1a;
@@ -21,6 +46,11 @@
   /* SEASUN Font Families */
   --seasun-font-heading: 'Cinzel', serif;
   --seasun-font-body: 'Josefin Sans', sans-serif;
+  --seasun-font-decorative: 'Cinzel Decorative', 'Cinzel', serif;
+  
+  /* Animation Timing Functions */
+  --ease-luxury: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* SEASUN Typography Classes */
@@ -215,5 +245,216 @@
   .seasun-section-overlay {
     position: relative;
     z-index: 1;
+  }
+}
+
+/* SEASUN Hero Enhancements */
+@layer components {
+  /* Luxury Text Animations */
+  .seasun-text-reveal {
+    animation: textReveal 1.5s var(--ease-luxury) forwards;
+    opacity: 0;
+  }
+  
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+      letter-spacing: 0.2em;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      letter-spacing: normal;
+    }
+  }
+  
+  /* Gold Foil Text Effect */
+  .seasun-gold-foil {
+    background: linear-gradient(
+      135deg,
+      #f78a15 0%,
+      #ffd700 25%,
+      #f78a15 50%,
+      #ffd700 75%,
+      #f78a15 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: goldShimmer 3s ease-in-out infinite;
+  }
+  
+  @keyframes goldShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Immersive Portal Button */
+  .seasun-portal-btn {
+    position: relative;
+    overflow: visible;
+    transition: all 0.6s var(--ease-luxury);
+  }
+  
+  .seasun-portal-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247, 138, 21, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.8s var(--ease-luxury);
+    pointer-events: none;
+  }
+  
+  .seasun-portal-btn:hover::before {
+    width: 300%;
+    height: 300%;
+    opacity: 0;
+  }
+  
+  .seasun-portal-btn::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(45deg, var(--seasun-golden-tan), var(--seasun-darker-tan));
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .seasun-portal-btn:hover::after {
+    opacity: 1;
+    animation: portalRotate 3s linear infinite;
+  }
+  
+  @keyframes portalRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Magnetic Hover Effect */
+  .seasun-magnetic {
+    transition: transform 0.3s var(--ease-luxury);
+  }
+  
+  /* 3D Card Transform */
+  .seasun-3d-card {
+    transform-style: preserve-3d;
+    transition: transform 0.6s var(--ease-luxury);
+  }
+  
+  .seasun-3d-card:hover {
+    transform: perspective(1000px) rotateY(5deg) rotateX(-5deg) translateZ(20px);
+  }
+  
+  /* Heat Shimmer Effect */
+  .seasun-heat-shimmer {
+    animation: heatShimmer 8s ease-in-out infinite;
+  }
+  
+  @keyframes heatShimmer {
+    0%, 100% { filter: blur(0px) brightness(1); }
+    50% { filter: blur(0.5px) brightness(1.02); }
+  }
+  
+  /* Floating Particles */
+  .seasun-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(247, 138, 21, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFloat 15s linear infinite;
+  }
+  
+  @keyframes particleFloat {
+    from {
+      transform: translateY(100vh) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100vh) translateX(100px);
+      opacity: 0;
+    }
+  }
+  
+  /* Wave Animation */
+  .seasun-wave {
+    animation: wave 20s ease-in-out infinite;
+  }
+  
+  @keyframes wave {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25% { transform: translateX(-20px) translateY(-10px); }
+    50% { transform: translateX(20px) translateY(5px); }
+    75% { transform: translateX(-10px) translateY(-5px); }
+  }
+  
+  /* Enhanced Float Animation */
+  @keyframes luxuryFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(-3deg) scale(1);
+      filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.15));
+    }
+    50% { 
+      transform: translateY(-30px) rotate(-3deg) scale(1.02);
+      filter: drop-shadow(0 50px 80px rgba(0, 0, 0, 0.2));
+    }
+  }
+  
+  /* Staggered Text Animation */
+  .seasun-text-stagger {
+    display: inline-block;
+    animation: textStagger 0.8s var(--ease-bounce) forwards;
+    animation-delay: calc(var(--char-index) * 0.05s);
+    opacity: 0;
+  }
+  
+  @keyframes textStagger {
+    from {
+      opacity: 0;
+      transform: translateY(20px) rotateX(-90deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+    }
+  }
+  
+  /* Parallax Layer */
+  .seasun-parallax {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Respect Motion Preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .seasun-text-reveal,
+    .seasun-gold-foil,
+    .seasun-portal-btn::before,
+    .seasun-portal-btn::after,
+    .seasun-magnetic,
+    .seasun-3d-card,
+    .seasun-heat-shimmer,
+    .seasun-particle,
+    .seasun-wave,
+    .seasun-text-stagger {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 }
