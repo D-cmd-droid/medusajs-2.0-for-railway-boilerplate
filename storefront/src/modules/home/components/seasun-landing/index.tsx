@@ -611,12 +611,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       </div>
                       <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Your natural beauty deserves to be enhanced, not masked</span>
                     </li>
-                    <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
-                        <span className="text-white text-lg font-semibold">✓</span>
-                      </div>
-                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Confident, protected, glowing skin</span>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -865,8 +859,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
-      {/* Simple Wave Divider */}
+      {/* Animated Wave Divider with Safety Border */}
       <div className="relative w-full overflow-hidden mt-8">
+        {/* Safety border to prevent gaps during animation */}
+        <div className="absolute bottom-0 w-full h-[2px] bg-[var(--seasun-ocean-blue)]"></div>
+        
         <svg 
           className="w-full h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px]"
           viewBox="0 0 1440 120" 
@@ -874,14 +871,26 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
           style={{
-            display: 'block', // Removes any gap below the SVG
-            verticalAlign: 'bottom' // Ensures proper alignment
+            display: 'block',
+            verticalAlign: 'bottom',
+            position: 'relative'
           }}
         >
-          <path 
-            d="M0 120V80C80 68 160 56 240 50C320 44 400 44 480 50C560 56 640 68 720 74C800 80 880 80 960 74C1040 68 1120 56 1200 50C1280 44 1360 44 1400 44H1440V120H0Z" 
-            fill="var(--seasun-deeper-blue)"
-          />
+          {/* Bottom wave (ocean blue) */}
+          <g className="footer-wave-animation">
+            <path 
+              d="M-100 120V80C-20 68 60 56 140 50C220 44 300 44 380 50C460 56 540 68 620 74C700 80 780 80 860 74C940 68 1020 56 1100 50C1180 44 1260 44 1300 44H1540V120H-100Z" 
+              fill="var(--seasun-ocean-blue)"
+            />
+          </g>
+          
+          {/* Top wave (deeper blue with transparency) */}
+          <g className="footer-wave-animation-delayed">
+            <path 
+              d="M-120 120V90C0 80 120 70 240 65C360 60 480 60 600 65C720 70 840 80 960 85C1080 90 1200 90 1320 85C1440 80 1560 70 1680 65C1800 60 1920 60 1980 60H2040V120H-120Z" 
+              fill="var(--seasun-deeper-blue)"
+            />
+          </g>
         </svg>
       </div>
       </div>

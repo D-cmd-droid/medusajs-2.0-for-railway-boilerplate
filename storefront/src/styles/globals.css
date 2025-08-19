@@ -755,8 +755,50 @@
   
   /* Motion Preference Support */
   @media (prefers-reduced-motion: reduce) {
-    .seasun-sunkissed-enhanced {
-      animation: none;
+    .seasun-sunkissed-enhanced,
+    .footer-wave-animation,
+    .footer-wave-animation-delayed {
+      animation: none !important;
     }
+  }
+}
+
+@layer components {
+  /* Footer Wave Animation */
+  @keyframes gentleWave {
+    0%, 100% { 
+      transform: translateX(0) scaleY(1);
+    }
+    25% {
+      transform: translateX(-2.5%) scaleY(1.03);
+    }
+    50% { 
+      transform: translateX(-4.5%) scaleY(1);
+    }
+    75% {
+      transform: translateX(-2.5%) scaleY(0.97);
+    }
+  }
+
+  .footer-wave-animation {
+    animation: gentleWave 12s ease-in-out infinite;
+    transform-origin: center bottom;
+    transform-box: fill-box;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  .footer-wave-animation-delayed {
+    animation: gentleWave 14s ease-in-out infinite reverse;
+    transform-origin: center bottom;
+    transform-box: fill-box;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
   }
 }
