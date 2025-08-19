@@ -33,7 +33,7 @@
 // Maintains consistency with existing Medusa UI components
 // ====================================================================================
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Button, Input } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
 import EmbeddedProductDisplay from "@modules/home/components/embedded-product-display"
@@ -69,7 +69,10 @@ const ingredients: Ingredient[] = [
     style: {
       position: 'absolute',
       top: '250px',
-      left: '740px'
+      left: '740px',
+      transform: 'rotate(-2deg) perspective(800px) rotateX(2deg)',
+      transformStyle: 'preserve-3d',
+      transformOrigin: 'center center'
     }
   },
   {
@@ -80,7 +83,10 @@ const ingredients: Ingredient[] = [
     style: {
       position: 'absolute',
       top: '380px',
-      left: '1160px'
+      left: '1160px',
+      transform: 'rotate(1.5deg) perspective(800px) rotateX(-1deg) rotateY(1deg)',
+      transformStyle: 'preserve-3d',
+      transformOrigin: 'center center'
     }
   },
   {
@@ -91,7 +97,10 @@ const ingredients: Ingredient[] = [
     style: {
       position: 'absolute',
       top: '515px',
-      left: '706px'
+      left: '706px',
+      transform: 'rotate(-1deg) perspective(800px) rotateX(1.5deg) rotateY(-0.5deg)',
+      transformStyle: 'preserve-3d',
+      transformOrigin: 'center center'
     }
   }
 ]
@@ -101,56 +110,146 @@ const ingredients: Ingredient[] = [
 // ============================================================================
 function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const pillRef = useRef<HTMLDivElement>(null);
+  
+  const toggleExpand = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+  
+  // Add event listener to handle clicks outside the pill
+  useEffect(() => {
+    if (!isExpanded) return;
+    
+    const handleClickOutside = (event: MouseEvent) => {
+      if (pillRef.current && !pillRef.current.contains(event.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
   
   return (
     <div 
-      className="hidden lg:block pointer-events-auto"
+      ref={pillRef}
+      className="hidden lg:block pointer-events-auto transition-all duration-500 relative"
       style={{
         ...style,
-        zIndex: 30
+        zIndex: isExpanded ? 50 : 30,
+        transform: isHovered && !isExpanded
+          ? `${style.transform?.toString().replace('perspective(800px)', 'perspective(800px)')} scale(1.05) translateZ(10px)` 
+          : style.transform,
+        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
       }}
+      onMouseEnter={() => !isExpanded && setIsHovered(true)}
+      onMouseLeave={() => !isExpanded && setIsHovered(false)}
     >
-      <div className="relative">
-        {/* Ingredient Pill */}
-        <div 
-          className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50 flex items-center gap-2 cursor-pointer"
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-expanded={isExpanded}
-          aria-controls={`ingredient-info-${id}`}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && setIsExpanded(!isExpanded)}
-        >
-          <span className="text-lg mr-1" aria-hidden="true">{emoji}</span>
-          <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deep-black)' }}>{name}</p>
-          <span 
-            className="text-sm ml-1 transition-transform duration-300"
-            style={{ 
-              transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)',
-              color: 'var(--seasun-deep-black)'
-            }}
-            aria-hidden="true"
-          >
-            +
-          </span>
-        </div>
-        
-        {/* Expandable Content */}
-        <div 
-          id={`ingredient-info-${id}`}
-          className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-md px-4 py-3 rounded-xl shadow-2xl border border-white/50 w-64 overflow-hidden transition-all duration-300"
-          style={{
-            maxHeight: isExpanded ? '200px' : '0px',
-            opacity: isExpanded ? 1 : 0,
-            padding: isExpanded ? '0.75rem 1rem' : '0 1rem',
-            zIndex: 40
+      {/* Connecting Line Elements */}
+      <div 
+        className="absolute overflow-hidden"
+        style={{
+          zIndex: 1,
+          width: id === "coconut-oil" ? '60px' : id === "cinnamon" ? '80px' : '50px',
+          height: '2px',
+          background: id === "coconut-oil" 
+            ? 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%)' 
+            : id === "cinnamon" 
+            ? 'linear-gradient(90deg, rgba(255,241,230,0) 0%, rgba(255,241,230,0.6) 100%)'
+            : 'linear-gradient(90deg, rgba(255,250,230,0) 0%, rgba(255,250,230,0.6) 100%)',
+          boxShadow: '0 0 8px rgba(255, 255, 255, 0.4)',
+          top: '50%',
+          left: id === "coconut-oil" ? 'auto' : id === "cinnamon" ? '-80px' : 'auto',
+          right: id === "coconut-oil" ? '100%' : id === "cinnamon" ? 'auto' : '100%',
+          opacity: isHovered ? 0.9 : 0.5,
+          transition: 'all 0.5s ease'
+        }}
+      />
+      
+      {/* Subtle Glow behind pills */}
+      <div 
+        className="absolute inset-0 rounded-full blur-xl"
+        style={{
+          zIndex: 1,
+          background: id === "coconut-oil" 
+            ? 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)' 
+            : id === "cinnamon" 
+            ? 'radial-gradient(circle, rgba(255,230,230,0.2) 0%, rgba(255,230,230,0) 70%)'
+            : 'radial-gradient(circle, rgba(255,240,200,0.2) 0%, rgba(255,240,200,0) 70%)',
+          opacity: isHovered ? 0.8 : 0.4,
+          transform: 'scale(1.5)',
+          transition: 'all 0.5s ease'
+        }}
+      />
+      
+      {/* Ingredient Pill */}
+      <div 
+        className="backdrop-blur-lg px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer transition-all duration-300 relative z-10"
+        onClick={toggleExpand}
+        aria-expanded={isExpanded}
+        aria-controls={`ingredient-info-${id}`}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && toggleExpand(e)}
+        style={{
+          background: id === "coconut-oil" 
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 253, 240, 0.75) 100%)' 
+            : id === "cinnamon" 
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 241, 230, 0.7) 100%)'
+            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 230, 0.7) 100%)',
+          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.8)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.7)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.7)',
+          borderRight: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
+          borderBottom: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
+          transition: 'all 0.3s ease-out'
+        }}
+      >
+        <span className="text-lg mr-1" aria-hidden="true">{emoji}</span>
+        <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deep-black)' }}>{name}</p>
+        <span 
+          className="text-sm ml-1 transition-transform duration-300"
+          style={{ 
+            transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)',
+            color: 'var(--seasun-deep-black)'
           }}
-          aria-hidden={!isExpanded}
+          aria-hidden="true"
         >
-          <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
-            {description}
-          </p>
-        </div>
+          +
+        </span>
+      </div>
+      
+      {/* Expandable Content */}
+      <div 
+        id={`ingredient-info-${id}`}
+        className="absolute top-full left-0 mt-2 backdrop-blur-lg px-4 py-3 rounded-xl w-64 overflow-hidden transition-all duration-500"
+        style={{
+          background: id === "coconut-oil" 
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 253, 240, 0.7) 100%)' 
+            : id === "cinnamon" 
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 241, 230, 0.65) 100%)'
+            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 250, 230, 0.65) 100%)',
+          maxHeight: isExpanded ? '200px' : '0px',
+          opacity: isExpanded ? 1 : 0,
+          padding: isExpanded ? '0.75rem 1rem' : '0 1rem',
+          zIndex: 100,
+          boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.7)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.7)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.7)',
+          borderRight: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
+          borderBottom: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
+          transform: isExpanded ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(0, -10px, 0) scale(0.98)',
+          pointerEvents: isExpanded ? 'auto' : 'none'
+        }}
+        aria-hidden={!isExpanded}
+      >
+        <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)', textShadow: '0 1px 0 rgba(255, 255, 255, 0.5)' }}>
+          {description}
+        </p>
       </div>
     </div>
   )
