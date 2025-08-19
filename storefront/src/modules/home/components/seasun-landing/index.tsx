@@ -460,6 +460,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
+
       {/* All sections below hero wrapped in seamless gradient */}
       <div className="seasun-content-gradient">
         {/* Trust/Problem Section */}
@@ -864,6 +865,25 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
+      {/* Simple Wave Divider */}
+      <div className="relative w-full overflow-hidden mt-8">
+        <svg 
+          className="w-full h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px]"
+          viewBox="0 0 1440 120" 
+          fill="none" 
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            display: 'block', // Removes any gap below the SVG
+            verticalAlign: 'bottom' // Ensures proper alignment
+          }}
+        >
+          <path 
+            d="M0 120V80C80 68 160 56 240 50C320 44 400 44 480 50C560 56 640 68 720 74C800 80 880 80 960 74C1040 68 1120 56 1200 50C1280 44 1360 44 1400 44H1440V120H0Z" 
+            fill="var(--seasun-deeper-blue)"
+          />
+        </svg>
+      </div>
       </div>
     </div>
   )

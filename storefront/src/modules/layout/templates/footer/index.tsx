@@ -12,7 +12,7 @@ export default async function Footer() {
   return (
     <footer 
       className="w-full shadow-sm"
-      style={{ backgroundColor: 'var(--seasun-golden-tan)' }}
+      style={{ backgroundColor: 'var(--seasun-deeper-blue)' }}
     >
       <div className="content-container flex flex-col w-full">
         <div className="flex flex-col gap-y-4 sm:flex-row items-start sm:items-center justify-between py-6">
