@@ -356,26 +356,26 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   <h3 id="old-way-heading" className="text-xl sm:text-2xl lg:text-3xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>The Old Way</h3>
                   <ul className="space-y-6" role="list" aria-label="Problems with traditional skincare approaches">
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
-                        <span className="text-red-600 text-sm font-semibold">✗</span>
+                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <span className="text-red-600 text-lg font-semibold">✗</span>
                       </div>
                       <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>12-step routines that take forever</span>
                     </li>
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
-                        <span className="text-red-600 text-sm font-semibold">✗</span>
+                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <span className="text-red-600 text-lg font-semibold">✗</span>
                       </div>
                       <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Harsh chemicals that irritate</span>
                     </li>
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
-                        <span className="text-red-600 text-sm font-semibold">✗</span>
+                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <span className="text-red-600 text-lg font-semibold">✗</span>
                       </div>
                       <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Expensive treatments with minimal results</span>
                     </li>
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-red-100/80 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-red-200" aria-hidden="true">
-                        <span className="text-red-600 text-sm font-semibold">✗</span>
+                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <span className="text-red-600 text-lg font-semibold">✗</span>
                       </div>
                       <span className="seasun-body text-base lg:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Constant worry about sun damage</span>
                     </li>
@@ -393,26 +393,33 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   <h3 id="seasun-way-heading" className="text-xl sm:text-2xl lg:text-3xl font-light mb-8 text-white leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)' }}>The SEASUN Way</h3>
                   <ul className="space-y-6" role="list" aria-label="Benefits of SEASUN Caribbean skincare approach">
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
-                        <span className="text-white text-sm font-semibold">✓</span>
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-white">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M12 1.25C12.4142 1.25 12.75 1.58579 12.75 2V4C12.75 4.41421 12.4142 4.75 12 4.75C11.5858 4.75 11.25 4.41421 11.25 4V2C11.25 1.58579 11.5858 1.25 12 1.25ZM3.66865 3.71609C3.94815 3.41039 4.42255 3.38915 4.72825 3.66865L6.95026 5.70024C7.25596 5.97974 7.2772 6.45413 6.9977 6.75983C6.7182 7.06553 6.2438 7.08677 5.9381 6.80727L3.71609 4.77569C3.41039 4.49619 3.38915 4.02179 3.66865 3.71609ZM20.3314 3.71609C20.6109 4.02179 20.5896 4.49619 20.2839 4.77569L18.0619 6.80727C17.7562 7.08677 17.2818 7.06553 17.0023 6.75983C16.7228 6.45413 16.744 5.97974 17.0497 5.70024L19.2718 3.66865C19.5775 3.38915 20.0518 3.41039 20.3314 3.71609ZM1.25 12C1.25 11.5858 1.58579 11.25 2 11.25H4C4.41421 11.25 4.75 11.5858 4.75 12C4.75 12.4142 4.41421 12.75 4 12.75H2C1.58579 12.75 1.25 12.4142 1.25 12ZM19.25 12C19.25 11.5858 19.5858 11.25 20 11.25H22C22.4142 11.25 22.75 11.5858 22.75 12C22.75 12.4142 22.4142 12.75 22 12.75H20C19.5858 12.75 19.25 12.4142 19.25 12ZM17.0255 17.0252C17.3184 16.7323 17.7933 16.7323 18.0862 17.0252L20.3082 19.2475C20.6011 19.5404 20.601 20.0153 20.3081 20.3082C20.0152 20.6011 19.5403 20.601 19.2475 20.3081L17.0255 18.0858C16.7326 17.7929 16.7326 17.3181 17.0255 17.0252ZM6.97467 17.0253C7.26756 17.3182 7.26756 17.7931 6.97467 18.086L4.75244 20.3082C4.45955 20.6011 3.98468 20.6011 3.69178 20.3082C3.39889 20.0153 3.39889 19.5404 3.69178 19.2476L5.91401 17.0253C6.2069 16.7324 6.68177 16.7324 6.97467 17.0253ZM12 19.25C12.4142 19.25 12.75 19.5858 12.75 20V22C12.75 22.4142 12.4142 22.75 12 22.75C11.5858 22.75 11.25 22.4142 11.25 22V20C11.25 19.5858 11.5858 19.25 12 19.25Z" fill="currentColor"></path>
+                          <path d="M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12Z" fill="currentColor"></path>
+                        </svg>
                       </div>
-                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">One product, multiple benefits</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Uneven skin tone doesn't have to be your reality anymore</span>
                     </li>
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
-                        <span className="text-white text-sm font-semibold">✓</span>
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 512 512" className="text-white">
+                          <path fill="currentColor" d="M433.814 68.664c-2.74.05-5.495.423-8.242 1.152-8.47 2.25-15.3 7.512-20.44 14.49C292.905 120.865 186.494 154.58 75.276 190.4c-39.714 12.79-64.6 51.163-53.006 86.784 11.597 35.62 54.342 52.277 94.035 39.277l-.002.002c109.41-35.827 214.424-69.036 325.12-104.656.56.212 1.13.39 1.694.58-2.62 2.935-4.226 6.796-4.226 11.04 0 9.164 7.43 16.593 16.594 16.593 9.165 0 16.596-7.43 16.596-16.593 0-4.32-1.664-8.24-4.367-11.192 12.75-4.865 21.353-16.866 25.535-30.898 4.547-15.257 4.504-33.654-.584-52.48-5.088-18.828-14.327-34.77-25.94-45.712-8.712-8.206-19.263-13.79-30.175-14.43-.91-.052-1.822-.07-2.736-.054zm.497 18.68c.455-.007.914.005 1.377.035 5.567.358 11.818 3.34 18.22 9.37 8.535 8.04 16.44 21.165 20.716 36.986 3.622 13.4 4 26.397 2.012 36.852h-52.783c-3.517-6.207-6.512-13.352-8.622-21.158-4.276-15.822-4.046-31.094-.716-42.266 3.33-11.172 9.122-17.497 15.855-19.285 1.262-.336 2.578-.517 3.94-.536zm-38.414 17.043c-3.815 14.734-3.516 32.133 1.29 49.92 1.544 5.707 3.472 11.143 5.728 16.26h-151.22c-64.405 20.742-125.856 40.507-163.35 52.59-23.24 7.486-35.353 27.407-30.406 42.593 4.946 15.188 26.582 24.333 49.75 16.75 66.89-21.89 199.01-64.39 302.822-97.803 3.76 5.807 7.998 10.967 12.62 15.323.066.06.135.118.2.18-104.876 33.753-241.66 77.74-309.83 100.05-30.827 10.09-64.424-1.334-73.344-28.72-8.92-27.385 11.603-56.22 42.438-66.155 68.055-21.93 208.2-66.996 313.302-100.988zm59.58 180.205c-16.948 63.255-40.507 54.472-40.507 91.5 0 22.36 18.146 40.508 40.507 40.508 22.36 0 40.507-18.147 40.507-40.508 0-39.97-23.256-27.12-40.507-91.5z"></path>
+                        </svg>
                       </div>
-                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Natural ingredients that nourish</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Chemical-filled products aren't what your skin is looking for</span>
                     </li>
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
-                        <span className="text-white text-sm font-semibold">✓</span>
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 1024 1024" className="text-white">
+                          <path fill="currentColor" d="M923 283.6a260.04 260.04 0 0 0-56.9-82.8 264.4 264.4 0 0 0-84-55.5A265.34 265.34 0 0 0 679.7 125c-49.3 0-97.4 13.5-139.2 39-10 6.1-19.5 12.8-28.5 20.1-9-7.3-18.5-14-28.5-20.1-41.8-25.5-89.9-39-139.2-39-35.5 0-69.9 6.8-102.4 20.3-31.4 13-59.7 31.7-84 55.5a258.44 258.44 0 0 0-56.9 82.8c-13.9 32.3-21 66.6-21 101.9 0 33.3 6.8 68 20.3 103.3 11.3 29.5 27.5 60.1 48.2 91 32.8 48.9 77.9 99.9 133.9 151.6 92.8 85.7 184.7 144.9 188.6 147.3l23.7 15.2c10.5 6.7 24 6.7 34.5 0l23.7-15.2c3.9-2.5 95.7-61.6 188.6-147.3 56-51.7 101.1-102.7 133.9-151.6 20.7-30.9 37-61.5 48.2-91 13.5-35.3 20.3-70 20.3-103.3.1-35.3-7-69.6-20.9-101.9z"></path>
+                        </svg>
                       </div>
-                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Affordable luxury that works</span>
+                      <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Your natural beauty deserves to be enhanced, not masked</span>
                     </li>
                     <li className="flex items-start gap-4" role="listitem">
-                      <div className="w-6 h-6 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mt-1 border border-white/20" aria-hidden="true">
-                        <span className="text-white text-sm font-semibold">✓</span>
+                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
+                        <span className="text-white text-lg font-semibold">✓</span>
                       </div>
                       <span className="seasun-body text-base lg:text-lg leading-relaxed text-white font-normal">Confident, protected, glowing skin</span>
                     </li>
@@ -432,7 +439,8 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
               HONEST ANSWERS TO YOUR <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>REAL CONCERNS</span>
             </h2>
             
-            <div className="space-y-4 sm:space-y-6" role="region" aria-labelledby="faq-heading">
+            {/* FAQ Questions */}
+            <div className="space-y-4 sm:space-y-6 mb-8" role="region" aria-labelledby="faq-heading">
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
@@ -487,12 +495,13 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   </div>
                 </div>
               ))}
-              
-              <div className="mt-10 p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-white/30">
-                <p className="seasun-body text-sm sm:text-base leading-relaxed font-medium text-center" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
-                  It sounds like you've been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you've been chasing? Reach out at hello@seasun.com and let's find your answer.
-                </p>
-              </div>
+            </div>
+            
+            {/* Final message - separated from the FAQ questions with proper spacing */}
+            <div className="pt-8 pb-4 max-w-3xl mx-auto border-t border-gray-100/30">
+              <p className="text-base sm:text-lg leading-relaxed font-normal text-center" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85, fontFamily: 'var(--seasun-font-body)' }}>
+                It sounds like you've been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you've been chasing? Reach out at <span style={{ color: 'var(--seasun-deeper-blue)', fontWeight: '500' }}>hello@seasun.com</span> and let's find your answer.
+              </p>
             </div>
           </div>
         </div>
