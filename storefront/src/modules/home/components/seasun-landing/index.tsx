@@ -70,9 +70,7 @@ const ingredients: Ingredient[] = [
       position: 'absolute',
       top: '250px',
       left: '740px',
-      transform: 'rotate(-2deg) perspective(800px) rotateX(2deg)',
-      transformStyle: 'preserve-3d',
-      transformOrigin: 'center center'
+      transform: 'rotate(-1deg)'
     }
   },
   {
@@ -84,9 +82,7 @@ const ingredients: Ingredient[] = [
       position: 'absolute',
       top: '380px',
       left: '1160px',
-      transform: 'rotate(1.5deg) perspective(800px) rotateX(-1deg) rotateY(1deg)',
-      transformStyle: 'preserve-3d',
-      transformOrigin: 'center center'
+      transform: 'rotate(1deg)'
     }
   },
   {
@@ -98,9 +94,7 @@ const ingredients: Ingredient[] = [
       position: 'absolute',
       top: '515px',
       left: '706px',
-      transform: 'rotate(-1deg) perspective(800px) rotateX(1.5deg) rotateY(-0.5deg)',
-      transformStyle: 'preserve-3d',
-      transformOrigin: 'center center'
+      transform: 'rotate(-0.5deg)'
     }
   }
 ]
@@ -142,53 +136,16 @@ function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
         ...style,
         zIndex: isExpanded ? 50 : 30,
         transform: isHovered && !isExpanded
-          ? `${style.transform?.toString().replace('perspective(800px)', 'perspective(800px)')} scale(1.05) translateZ(10px)` 
+          ? `${style.transform?.toString()} scale(1.05)` 
           : style.transform,
         transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
       }}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => !isExpanded && setIsHovered(false)}
     >
-      {/* Connecting Line Elements */}
-      <div 
-        className="absolute overflow-hidden"
-        style={{
-          zIndex: 1,
-          width: id === "coconut-oil" ? '60px' : id === "cinnamon" ? '80px' : '50px',
-          height: '2px',
-          background: id === "coconut-oil" 
-            ? 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%)' 
-            : id === "cinnamon" 
-            ? 'linear-gradient(90deg, rgba(255,241,230,0) 0%, rgba(255,241,230,0.6) 100%)'
-            : 'linear-gradient(90deg, rgba(255,250,230,0) 0%, rgba(255,250,230,0.6) 100%)',
-          boxShadow: '0 0 8px rgba(255, 255, 255, 0.4)',
-          top: '50%',
-          left: id === "coconut-oil" ? 'auto' : id === "cinnamon" ? '-80px' : 'auto',
-          right: id === "coconut-oil" ? '100%' : id === "cinnamon" ? 'auto' : '100%',
-          opacity: isHovered ? 0.9 : 0.5,
-          transition: 'all 0.5s ease'
-        }}
-      />
-      
-      {/* Subtle Glow behind pills */}
-      <div 
-        className="absolute inset-0 rounded-full blur-xl"
-        style={{
-          zIndex: 1,
-          background: id === "coconut-oil" 
-            ? 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)' 
-            : id === "cinnamon" 
-            ? 'radial-gradient(circle, rgba(255,230,230,0.2) 0%, rgba(255,230,230,0) 70%)'
-            : 'radial-gradient(circle, rgba(255,240,200,0.2) 0%, rgba(255,240,200,0) 70%)',
-          opacity: isHovered ? 0.8 : 0.4,
-          transform: 'scale(1.5)',
-          transition: 'all 0.5s ease'
-        }}
-      />
-      
       {/* Ingredient Pill */}
       <div 
-        className="backdrop-blur-lg px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer transition-all duration-300 relative z-10"
+        className="backdrop-blur-lg px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer transition-all duration-300 relative"
         onClick={toggleExpand}
         aria-expanded={isExpanded}
         aria-controls={`ingredient-info-${id}`}
@@ -201,11 +158,8 @@ function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
             : id === "cinnamon" 
             ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 241, 230, 0.7) 100%)'
             : 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 230, 0.7) 100%)',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.8)',
-          borderTop: '1px solid rgba(255, 255, 255, 0.7)',
-          borderLeft: '1px solid rgba(255, 255, 255, 0.7)',
-          borderRight: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
-          borderBottom: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.7)',
           transition: 'all 0.3s ease-out'
         }}
       >
@@ -237,11 +191,8 @@ function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
           opacity: isExpanded ? 1 : 0,
           padding: isExpanded ? '0.75rem 1rem' : '0 1rem',
           zIndex: 100,
-          boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.7)',
-          borderTop: '1px solid rgba(255, 255, 255, 0.7)',
-          borderLeft: '1px solid rgba(255, 255, 255, 0.7)',
-          borderRight: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
-          borderBottom: `1px solid ${id === "coconut-oil" ? 'rgba(240, 240, 230, 0.3)' : id === "cinnamon" ? 'rgba(250, 200, 180, 0.3)' : 'rgba(250, 220, 150, 0.3)'}`,
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.08)',
+          border: '1px solid rgba(255, 255, 255, 0.7)',
           transform: isExpanded ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(0, -10px, 0) scale(0.98)',
           pointerEvents: isExpanded ? 'auto' : 'none'
         }}
@@ -432,6 +383,30 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       SUNKISSED
                     </span>?
                   </p>
+                  
+                  <div className="flex justify-start lg:justify-start text-left mt-8">
+                    <button
+                      onClick={scrollToProductSection}
+                      className="group relative seasun-body text-white px-6 py-3 text-base sm:text-lg rounded-xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
+                      style={{ 
+                        backgroundColor: 'var(--seasun-golden-tan)',
+                        boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
+                        e.currentTarget.style.backgroundColor = '#fa9322';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                        e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)';
+                      }}
+                      aria-label="See product details"
+                    >
+                      <span className="relative z-10 seasun-body tracking-wide font-semibold">See for yourself</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                    </button>
+                  </div>
                 </div>
               </div>
               
