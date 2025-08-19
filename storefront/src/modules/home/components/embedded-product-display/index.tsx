@@ -169,19 +169,19 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           </div>
         </div>
 
-        {/* Size Selection, Pricing and Buy Button - Integrated */}
-        <div className="mb-4">
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-1">
+        {/* Size Selection and Pricing */}
+        <div className="mb-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-4 mb-2">
             {/* Size Selection */}
             <div className="flex items-center">
-              <p className="text-xs font-medium mr-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <p className="text-sm font-medium mr-3" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
                 Size:
               </p>
               <div className="flex">
                 <button
                   onClick={() => setSelectedSize('100ml')}
                   className={`
-                    rounded-l-lg px-3 py-1.5 transition-all duration-200 text-xs
+                    rounded-l-lg px-4 py-2 transition-all duration-200 text-sm
                     ${selectedSize === '100ml' 
                       ? 'bg-[#f78a15] text-white font-medium' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -194,7 +194,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                 <button
                   onClick={() => setSelectedSize('250ml')}
                   className={`
-                    rounded-r-lg px-3 py-1.5 transition-all duration-200 text-xs
+                    rounded-r-lg px-4 py-2 transition-all duration-200 text-sm
                     ${selectedSize === '250ml' 
                       ? 'bg-[#f78a15] text-white font-medium' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -209,22 +209,28 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             
             {/* Pricing */}
             <div className="flex items-center">
-              <div className="text-xl font-light" 
+              <div className="text-2xl font-light" 
                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
                 {displayPrice}
               </div>
             </div>
-            
-            {/* Buy Now Button */}
+          </div>
+          <p className="text-xs opacity-70 text-left mb-3" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+            Free shipping on orders over $50
+          </p>
+          
+          {/* Buy Now Button - Separate Row */}
+          <div className="flex justify-center sm:justify-start mb-3">
             <Button
               onClick={handleBuyNow}
               disabled={!inStock || !selectedVariant || isAdding}
-              className="group relative text-white px-6 py-2 text-sm rounded-lg font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed ml-auto"
+              className="group relative text-white px-8 py-3 text-base rounded-lg font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
               style={{
                 backgroundColor: 'var(--seasun-golden-tan)',
                 boxShadow: '0 4px 16px rgba(247, 138, 21, 0.35), 0 2px 8px rgba(247, 138, 21, 0.2)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                fontFamily: 'var(--seasun-font-body)'
+                fontFamily: 'var(--seasun-font-body)',
+                minWidth: '200px'
               }}
               onMouseEnter={(e) => {
                 if (!isAdding && inStock && selectedVariant) {
@@ -248,29 +254,26 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               </span>
             </Button>
           </div>
-          <p className="text-xs opacity-70 text-left" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-            Free shipping on orders over $50
-          </p>
         </div>
 
-        {/* Product Features - Integrated with Purchase Area */}
-        <div className="border-t border-gray-100 pt-2 mt-2">
-          <div className="flex justify-between gap-1">
+        {/* Product Features - Enhanced */}
+        <div className="border-t border-gray-100 pt-3 mt-1">
+          <div className="flex flex-wrap justify-center sm:justify-between gap-4 sm:gap-6">
             <div className="flex items-center">
-              <span className="text-sm flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-[10px] font-medium tracking-wide ml-1" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
                 SPF 30
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-sm flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-[10px] font-medium tracking-wide ml-1" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
                 Coconut, cinnamon, annatto
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-sm flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-[10px] font-medium tracking-wide ml-1" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
                 Evens skin tone
               </span>
             </div>
