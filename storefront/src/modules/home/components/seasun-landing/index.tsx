@@ -36,7 +36,6 @@
 import React, { useState, useRef } from 'react'
 import { Button, Input } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
-import Image from "next/image"
 import EmbeddedProductDisplay from "@modules/home/components/embedded-product-display"
 
 interface FAQItem {
@@ -50,7 +49,114 @@ type SeasunLandingProps = {
   product: HttpTypes.StoreProduct | null
 }
 
-export default function SeasunLanding({ countryCode, region, product }: SeasunLandingProps) {
+// ============================================================================
+// INGREDIENT DATA
+// ============================================================================
+type Ingredient = {
+  id: string
+  name: string
+  emoji: string
+  description: string
+  style: React.CSSProperties
+}
+
+const ingredients: Ingredient[] = [
+  {
+    id: "coconut-oil",
+    name: "Coconut Oil",
+    emoji: "🥥",
+    description: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches.",
+    style: {
+      position: 'absolute',
+      top: '250px',
+      left: '740px'
+    }
+  },
+  {
+    id: "cinnamon",
+    name: "Cinnamon",
+    emoji: "🌶️",
+    description: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth.",
+    style: {
+      position: 'absolute',
+      top: '380px',
+      left: '1160px'
+    }
+  },
+  {
+    id: "annatto",
+    name: "Annatto",
+    emoji: "☀️",
+    description: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow.",
+    style: {
+      position: 'absolute',
+      top: '515px',
+      left: '706px'
+    }
+  }
+]
+
+// ============================================================================
+// INGREDIENT PILL COMPONENT
+// ============================================================================
+function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  
+  return (
+    <div 
+      className="hidden lg:block pointer-events-auto"
+      style={{
+        ...style,
+        zIndex: 30
+      }}
+    >
+      <div className="relative">
+        {/* Ingredient Pill */}
+        <div 
+          className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50 flex items-center gap-2 cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-expanded={isExpanded}
+          aria-controls={`ingredient-info-${id}`}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setIsExpanded(!isExpanded)}
+        >
+          <span className="text-lg mr-1" aria-hidden="true">{emoji}</span>
+          <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deep-black)' }}>{name}</p>
+          <span 
+            className="text-sm ml-1 transition-transform duration-300"
+            style={{ 
+              transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)',
+              color: 'var(--seasun-deep-black)'
+            }}
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </div>
+        
+        {/* Expandable Content */}
+        <div 
+          id={`ingredient-info-${id}`}
+          className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-md px-4 py-3 rounded-xl shadow-2xl border border-white/50 w-64 overflow-hidden transition-all duration-300"
+          style={{
+            maxHeight: isExpanded ? '200px' : '0px',
+            opacity: isExpanded ? 1 : 0,
+            padding: isExpanded ? '0.75rem 1rem' : '0 1rem',
+            zIndex: 40
+          }}
+          aria-hidden={!isExpanded}
+        >
+          <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)' }}>
+            {description}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // countryCode available for future country-specific content
   // ============================================================================
   // STATE MANAGEMENT
@@ -236,35 +342,48 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
               </div>
             </div>
             
-            {/* Floating Feature Badges - Positioned relative to bottle location */}
-            <div 
-              className="absolute top-1/3 right-1/4 hidden lg:block seasun-3d-card pointer-events-auto"
-              style={{
-                animation: 'luxuryFloat 6s ease-in-out infinite',
-                animationDelay: '1s',
-                zIndex: 30
-              }}
-            >
-              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
-                <p className="seasun-body text-sm font-bold seasun-gold-foil">SPF 30+</p>
-              </div>
-            </div>
-            
-            <div 
-              className="absolute bottom-1/3 right-1/3 hidden lg:block seasun-3d-card pointer-events-auto"
-              style={{
-                animation: 'luxuryFloat 6s ease-in-out infinite',
-                animationDelay: '2.5s',
-                zIndex: 30
-              }}
-            >
-              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
-                <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deeper-blue)' }}>100% Natural</p>
-              </div>
-            </div>
+            {/* Interactive Ingredient Pills */}
+            {ingredients.map(ingredient => (
+              <IngredientPill 
+                key={ingredient.id}
+                {...ingredient}
+              />
+            ))}
           </div>
         </div>
         
+      </section>
+
+      {/* Mobile Ingredient Showcase - Only visible on mobile */}
+      <section className="py-10 lg:hidden seasun-section-overlay" aria-labelledby="mobile-ingredients-heading">
+        <div className="container mx-auto px-4">
+          <h2 
+            id="mobile-ingredients-heading" 
+            className="text-xl font-light mb-6 text-center"
+            style={{ 
+              fontFamily: 'var(--seasun-font-heading)', 
+              color: 'var(--seasun-deep-black)'
+            }}
+          >
+            Powerful Natural Ingredients
+          </h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {ingredients.map(ingredient => (
+              <div key={ingredient.id} className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-white/50 overflow-hidden">
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl" aria-hidden="true">{ingredient.emoji}</span>
+                    <h3 className="text-base font-medium" style={{ color: 'var(--seasun-deep-black)' }}>{ingredient.name}</h3>
+                  </div>
+                  <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
+                    {ingredient.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* All sections below hero wrapped in seamless gradient */}
