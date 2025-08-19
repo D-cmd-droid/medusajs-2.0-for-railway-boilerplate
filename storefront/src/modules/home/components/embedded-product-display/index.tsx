@@ -91,23 +91,18 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
   const displayPrice = selectedSize === '100ml' ? '$29.99' : '$39.99'
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto pb-8 sm:pb-12 lg:pb-16">
+    <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center max-w-5xl mx-auto pb-4 sm:pb-6 lg:pb-8">
       {/* Product Image Display */}
       <div className="order-2 lg:order-1">
-        <div className="relative rounded-3xl aspect-square overflow-hidden shadow-2xl bg-gradient-to-br from-blue-100 to-blue-200">
-          {/* Coastal Background */}
+        <div className="relative rounded-2xl aspect-square overflow-hidden shadow-xl">
+          {/* Coastal Background - Simplified */}
           <div 
-            className="absolute inset-0 bg-gradient-to-br from-cyan-200 via-blue-300 to-blue-500"
+            className="absolute inset-0"
             style={{
-              backgroundImage: `linear-gradient(135deg, 
-                var(--seasun-ocean-blue) 0%, 
-                var(--seasun-deeper-blue) 50%, 
-                rgba(58, 166, 185, 0.8) 100%)`
+              backgroundColor: '#78c8e3',
+              background: 'linear-gradient(to bottom, #78c8e3 0%, #49b0d3 100%)'
             }}
           />
-          
-          {/* Glass morphism overlay */}
-          <div className="absolute inset-0 bg-white/15 backdrop-blur-sm border border-white/25" />
           
           {/* Product Display */}
           <div className="relative z-10 w-full h-full flex items-center justify-center">
@@ -117,185 +112,165 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                 <Image
                   src="/images/seasun-product-image.png"
                   alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
-                  width={300}
-                  height={450}
-                  className="mx-auto drop-shadow-2xl"
+                  width={320}
+                  height={480}
+                  className="mx-auto drop-shadow-xl"
+                  style={{ filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.15))' }}
+                  priority
                 />
               </div>
             </div>
           </div>
           
-          {/* Floating elements */}
-          <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
-            <span className="text-white text-xs font-medium">SPF 30</span>
+          {/* Floating elements - Refined */}
+          <div className="absolute top-5 right-5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">
+            <span className="text-white text-xs font-medium tracking-wide">SPF 30</span>
           </div>
           
-          <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30">
-            <span className="text-white text-xs font-medium">🌿 Natural</span>
+          <div className="absolute bottom-5 left-5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">
+            <span className="text-white text-xs font-medium tracking-wide">🌿 Natural</span>
           </div>
         </div>
       </div>
 
       {/* Product Information & Purchase */}
-      <div className="order-1 lg:order-2 text-center lg:text-left">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light mb-8 leading-tight" 
+      <div className="order-1 lg:order-2 text-center lg:text-left px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light mb-6 leading-tight" 
             style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
           Meet{" "}
           <span 
-            className="inline-block px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold text-sm sm:text-base lg:text-lg xl:text-xl" 
+            className="inline-block px-3 py-1 rounded-lg font-semibold text-sm sm:text-base lg:text-lg" 
             style={{ 
               color: 'white', 
               backgroundColor: 'var(--seasun-golden-tan)',
-              transform: 'rotate(-1deg)',
-              boxShadow: '0 4px 16px rgba(247, 138, 21, 0.3)'
+              boxShadow: '0 3px 12px rgba(247, 138, 21, 0.25)'
             }}
             aria-label="SEASUN brand name"
           >
             SEASUN
           </span>{" "}
-          Organic Tanning Oil
+          Organic<br className="hidden sm:block"/> Tanning Oil
         </h2>
         
-        <div className="mb-12 max-w-3xl mx-auto lg:mx-0">
-          <p className="text-lg sm:text-xl leading-relaxed font-light mb-4" 
-             style={{ color: 'var(--seasun-deep-black)', opacity: 0.8, fontFamily: 'var(--seasun-font-body)' }}>
-            Uneven skin tone... it follows you everywhere, doesn't it?
-          </p>
-          <p className="text-lg sm:text-xl leading-relaxed font-light mb-4" 
-             style={{ color: 'var(--seasun-deep-black)', opacity: 0.8, fontFamily: 'var(--seasun-font-body)' }}>
-            <strong className="font-medium">Your natural beauty deserves to be enhanced, not masked.</strong>
-          </p>
-          <p className="text-lg sm:text-xl leading-relaxed font-light mb-4" 
-             style={{ color: 'var(--seasun-deep-black)', opacity: 0.8, fontFamily: 'var(--seasun-font-body)' }}>
-            You're probably wondering what makes this different... The secret lies in what's NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
-          </p>
-          <p className="text-lg sm:text-xl leading-relaxed font-medium mb-2" 
+        <div className="mb-6 max-w-2xl mx-auto lg:mx-0">
+          <p className="text-base sm:text-lg leading-relaxed font-medium mb-3" 
              style={{ color: 'var(--seasun-deep-black)', opacity: 0.9, fontFamily: 'var(--seasun-font-body)' }}>
-            <strong>Uneven skin tone doesn't have to be your reality anymore.</strong>
+            Your natural beauty deserves to be enhanced, not masked.
           </p>
-          <p className="text-lg sm:text-xl leading-relaxed font-medium" 
-             style={{ color: 'var(--seasun-golden-tan)', fontFamily: 'var(--seasun-font-body)' }}>
-            Any reason not to glow?
+          <p className="text-base sm:text-lg leading-relaxed font-normal mb-3" 
+             style={{ color: 'var(--seasun-deep-black)', opacity: 0.85, fontFamily: 'var(--seasun-font-body)' }}>
+            The secret lies in what's NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
           </p>
+          <div>
+            <p className="text-base sm:text-lg leading-relaxed font-medium" 
+               style={{ color: 'var(--seasun-golden-tan)', fontFamily: 'var(--seasun-font-body)' }}>
+              Any reason not to glow?
+            </p>
+          </div>
         </div>
 
-        {/* Size Selection and Pricing - Smaller */}
+        {/* Size Selection, Pricing and Buy Button - Integrated */}
         <div className="mb-4">
-          <div className="flex items-center justify-center lg:justify-start mb-2">
-            <p className="text-sm font-medium mr-4" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-              Size:
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setSelectedSize('100ml')}
-                className={`
-                  px-4 py-2 rounded-xl border-2 transition-all duration-300 font-medium text-sm
-                  ${selectedSize === '100ml' 
-                    ? 'border-black bg-black text-white shadow-md' 
-                    : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-                  }
-                `}
-                style={{ 
-                  fontFamily: 'var(--seasun-font-body)',
-                  ...(selectedSize === '100ml' && {
-                    backgroundColor: 'var(--seasun-golden-tan)',
-                    borderColor: 'var(--seasun-golden-tan)'
-                  })
-                }}
-              >
-                100ml
-              </button>
-              <button
-                onClick={() => setSelectedSize('250ml')}
-                className={`
-                  px-4 py-2 rounded-xl border-2 transition-all duration-300 font-medium text-sm
-                  ${selectedSize === '250ml' 
-                    ? 'border-black bg-black text-white shadow-md' 
-                    : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-                  }
-                `}
-                style={{ 
-                  fontFamily: 'var(--seasun-font-body)',
-                  ...(selectedSize === '250ml' && {
-                    backgroundColor: 'var(--seasun-golden-tan)',
-                    borderColor: 'var(--seasun-golden-tan)'
-                  })
-                }}
-              >
-                250ml
-              </button>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-1">
+            {/* Size Selection */}
+            <div className="flex items-center">
+              <p className="text-xs font-medium mr-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                Size:
+              </p>
+              <div className="flex">
+                <button
+                  onClick={() => setSelectedSize('100ml')}
+                  className={`
+                    rounded-l-lg px-3 py-1.5 transition-all duration-200 text-xs
+                    ${selectedSize === '100ml' 
+                      ? 'bg-[#f78a15] text-white font-medium' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }
+                  `}
+                  style={{ fontFamily: 'var(--seasun-font-body)' }}
+                >
+                  100ml
+                </button>
+                <button
+                  onClick={() => setSelectedSize('250ml')}
+                  className={`
+                    rounded-r-lg px-3 py-1.5 transition-all duration-200 text-xs
+                    ${selectedSize === '250ml' 
+                      ? 'bg-[#f78a15] text-white font-medium' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }
+                  `}
+                  style={{ fontFamily: 'var(--seasun-font-body)' }}
+                >
+                  250ml
+                </button>
+              </div>
             </div>
             
-            {/* Integrated Pricing */}
-            <div className="ml-4 flex items-center">
-              <div className="text-2xl font-light" 
+            {/* Pricing */}
+            <div className="flex items-center">
+              <div className="text-xl font-light" 
                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
                 {displayPrice}
               </div>
             </div>
+            
+            {/* Buy Now Button */}
+            <Button
+              onClick={handleBuyNow}
+              disabled={!inStock || !selectedVariant || isAdding}
+              className="group relative text-white px-6 py-2 text-sm rounded-lg font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed ml-auto"
+              style={{
+                backgroundColor: 'var(--seasun-golden-tan)',
+                boxShadow: '0 4px 16px rgba(247, 138, 21, 0.35), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                fontFamily: 'var(--seasun-font-body)'
+              }}
+              onMouseEnter={(e) => {
+                if (!isAdding && inStock && selectedVariant) {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(247, 138, 21, 0.5), 0 4px 12px rgba(247, 138, 21, 0.25)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isAdding && inStock && selectedVariant) {
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(247, 138, 21, 0.35), 0 2px 8px rgba(247, 138, 21, 0.2)'
+                }
+              }}
+            >
+              <span className="relative z-10 tracking-wide">
+                {!selectedVariant
+                  ? "Select size"
+                  : !inStock
+                  ? "Out of stock"
+                  : isAdding
+                  ? "Adding..."
+                  : "Buy Now"}
+              </span>
+            </Button>
           </div>
-          <p className="text-xs opacity-70 text-center lg:text-left" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+          <p className="text-xs opacity-70 text-left" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
             Free shipping on orders over $50
           </p>
         </div>
 
-        {/* Buy Now Button */}
-        <div className="mb-12">
-          <Button
-            onClick={handleBuyNow}
-            disabled={!inStock || !selectedVariant || isAdding}
-            className="group relative text-white px-12 py-5 text-xl rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto min-h-[68px]"
-            style={{
-              backgroundColor: 'var(--seasun-golden-tan)',
-              boxShadow: '0 12px 48px rgba(247, 138, 21, 0.4), 0 4px 16px rgba(247, 138, 21, 0.2)',
-              transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-              minWidth: '280px',
-              fontFamily: 'var(--seasun-font-body)'
-            }}
-            onMouseEnter={(e) => {
-              if (!isAdding && inStock && selectedVariant) {
-                e.currentTarget.style.boxShadow = '0 20px 64px rgba(247, 138, 21, 0.6), 0 8px 24px rgba(247, 138, 21, 0.3)'
-                e.currentTarget.style.backgroundColor = '#cc7a00'
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isAdding && inStock && selectedVariant) {
-                e.currentTarget.style.boxShadow = '0 12px 48px rgba(247, 138, 21, 0.4), 0 4px 16px rgba(247, 138, 21, 0.2)'
-                e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)'
-              }
-            }}
-          >
-            <span className="relative z-10 tracking-wide">
-              {!selectedVariant
-                ? "Select size"
-                : !inStock
-                ? "Out of stock"
-                : isAdding
-                ? "Adding to cart..."
-                : "Buy Now"}
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-          </Button>
-        </div>
-
-        {/* Product Features - Horizontal Layout */}
-        <div className="mb-8 sm:mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto lg:mx-0">
-            <div className="flex items-center py-1 justify-center md:justify-start">
-              <span className="text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-xs sm:text-sm font-medium leading-tight ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-                SPF 30 protection
+        {/* Product Features - Integrated with Purchase Area */}
+        <div className="border-t border-gray-100 pt-2 mt-2">
+          <div className="flex justify-between gap-1">
+            <div className="flex items-center">
+              <span className="text-sm flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-[10px] font-medium tracking-wide ml-1" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                SPF 30
               </span>
             </div>
-            <div className="flex items-center py-1 justify-center md:justify-start">
-              <span className="text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-xs sm:text-sm font-medium leading-tight ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-                Coconut oil, cinnamon, annatto
+            <div className="flex items-center">
+              <span className="text-sm flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-[10px] font-medium tracking-wide ml-1" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+                Coconut, cinnamon, annatto
               </span>
             </div>
-            <div className="flex items-center py-1 justify-center md:justify-start">
-              <span className="text-lg flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-xs sm:text-sm font-medium leading-tight ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+            <div className="flex items-center">
+              <span className="text-sm flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
+              <span className="text-[10px] font-medium tracking-wide ml-1" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
                 Evens skin tone
               </span>
             </div>
