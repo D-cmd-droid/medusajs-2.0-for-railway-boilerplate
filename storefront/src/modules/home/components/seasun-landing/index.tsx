@@ -228,7 +228,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   >
                     How does it feel to be
                     <span 
-                      className="seasun-gold-foil seasun-sunkissed-enhanced"
+                      className="seasun-sunkissed-enhanced"
                       style={{
                         fontWeight: 'var(--seasun-font-bold)',
                         fontFamily: 'var(--seasun-font-decorative)',
