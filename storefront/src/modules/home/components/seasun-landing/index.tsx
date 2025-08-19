@@ -93,19 +93,19 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
   const faqs: FAQItem[] = [
     {
       question: "Why would this work when nothing else has?",
-      answer: "SEASUN uses a unique Caribbean formula that has been perfected over generations. Our blend of natural ingredients works with your skin's natural processes, not against them."
+      answer: "I hear you-skepticism is the sensible response after endless letdowns. I felt that same frustration. Here's the key: most formulas battle against your skin's rhythm. SEASUN teams up with your body's natural chemistry, guiding it to an even, radiant tan. That's why women who've tried every bottle on the shelf finally see real results here."
     },
     {
       question: "What if my sensitive skin flares up?",
-      answer: "SEASUN is formulated with sensitive skin in mind. Our gentle, natural ingredients are dermatologist-tested and free from harsh chemicals. We offer a 30-day money-back guarantee if you experience any irritation."
+      answer: "Totally valid worry. I've walked in your shoes-sensitive skin isn't a minor annoyance; it's a deal-breaker. That's why SEASUN skips the harsh chemicals and artificial scents that trigger reactions. But let's be honest, your bigger fear is the regret of yet another dud. I get it. So if your skin doesn't adore SEASUN, you owe nothing-no questions asked."
     },
     {
-      question: "Isn't natural skincare just not as effective?",
-      answer: "Natural doesn't mean less effective. SEASUN combines time-tested Caribbean botanicals with modern skincare science to deliver results that rival any synthetic product."
+      question: "Isn't coconut oil alone enough?",
+      answer: "That makes perfect sense-you're drawn to simple, natural fixes. Coconut oil hydrates, yes, but it can't even out your tan by itself. Seasun's magic comes from the precise harmony of coconut, cinnamon, and annatto-three powerhouses working together to protect, nourish, and balance your glow. It's this exact blend-nothing more, nothing less-that delivers what plain oil can't."
     },
     {
-      question: "Am I just overthinking my skincare routine?",
-      answer: "You're not overthinking - you're being thoughtful about what you put on your skin. SEASUN simplifies your routine while delivering the results you want."
+      question: "Am I just overpaying for a fancy label?",
+      answer: "I get it-price matters when you've burned through your budget on empty promises. Here's the difference: Seasun isn't padded with fillers or cheap additives. Every drop is packed with purpose-driven, natural actives. And because it works so efficiently, you use less each application-making Seasun more cost-effective over time than the bargain brands you end up repurchasing month after month."
     }
   ]
 
@@ -151,19 +151,6 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
         <div className="container mx-auto px-4 sm:px-6 relative z-20">
           <div className="relative max-w-6xl mx-auto">
             
-            {/* Premium Badge */}
-            <div className="absolute top-0 left-4 sm:left-8 z-30">
-              <div 
-                className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1.5 sm:px-4 sm:py-2"
-                role="banner"
-                aria-label="Premium product badge"
-                style={{
-                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.1)'
-                }}
-              >
-                <span className="seasun-body text-xs font-semibold tracking-wider uppercase seasun-gold-foil">Premium</span>
-              </div>
-            </div>
             
             {/* New Layout: Left Text + Right Space for Bottle */}
             <div className="relative grid lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
@@ -294,24 +281,27 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
               <div className="w-16 h-0.5 mx-auto rounded-full opacity-60" style={{ backgroundColor: 'var(--seasun-deep-black)' }}></div>
             </div>
             
-            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16 max-w-6xl mx-auto" role="text" aria-describedby="trust-problem-heading">
-              <div className="space-y-6 text-left">
-                <p className="seasun-body text-base sm:text-lg leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
-                  Look, I get it. You've probably tried it all - expensive serums, weekly facials, that 12-step routine 
-                  your friend swears by.
+            <div className="mb-16 max-w-3xl mx-auto" role="text" aria-describedby="trust-problem-heading">
+              <div className="space-y-6 text-center">
+                <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
+                  Look, I get it. You've probably tried so many products that promised to fix your uneven skin tone, and none of them worked. It's exhausting. At this point, you're probably looking at this thinking, 'Yeah, right - here's another one making big claims.' I don't blame you for being skeptical. Your bathroom cabinet probably has the evidence of money wasted on disappointments.
                 </p>
-                <p className="seasun-body text-base sm:text-lg leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
-                  And yet, you're still dealing with uneven skin tone, unexpected breakouts, 
-                  and that constant feeling that your skin just isn't living up to its potential.
+                <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
+                  That's exactly how I felt too. After years of disappointment, I started to believe maybe uneven skin tone was just something I had to live with.
                 </p>
-              </div>
-              
-              <div className="text-left lg:text-right">
-                <p className="seasun-body text-base sm:text-lg leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>
-                  You're not alone. Millions struggle with these same issues every day. 
-                  <span className="font-medium" style={{ color: 'var(--seasun-deep-black)' }}>The beauty industry makes it seem so complicated</span>, 
-                  but what if the answer has been hiding in the Caribbean all along?
-                </p>
+                
+                <div className="pt-6">
+                  <p className="seasun-body text-lg sm:text-xl md:text-2xl leading-relaxed font-medium" style={{ 
+                    color: 'var(--seasun-deep-black)', 
+                    opacity: 1,
+                    borderLeft: '3px solid var(--seasun-golden-tan)',
+                    paddingLeft: '1rem',
+                    margin: '2rem auto',
+                    maxWidth: '80%',
+                  }}>
+                    That's why SEASUN had to be different.
+                  </p>
+                </div>
               </div>
             </div>
             
@@ -439,7 +429,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <h2 id="faq-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-12 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-              Your Questions, Answered
+              HONEST ANSWERS TO YOUR <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>REAL CONCERNS</span>
             </h2>
             
             <div className="space-y-4 sm:space-y-6" role="region" aria-labelledby="faq-heading">
@@ -478,7 +468,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   <div 
                     className="overflow-hidden transition-all duration-500 ease-out"
                     style={{
-                      maxHeight: expandedFAQ === index ? '300px' : '0px',
+                      maxHeight: expandedFAQ === index ? '600px' : '0px',
                       opacity: expandedFAQ === index ? 1 : 0
                     }}
                   >
@@ -497,6 +487,12 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   </div>
                 </div>
               ))}
+              
+              <div className="mt-10 p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-white/30">
+                <p className="seasun-body text-sm sm:text-base leading-relaxed font-medium text-center" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
+                  It sounds like you've been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you've been chasing? Reach out at hello@seasun.com and let's find your answer.
+                </p>
+              </div>
             </div>
           </div>
         </div>
