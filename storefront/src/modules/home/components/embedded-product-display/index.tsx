@@ -115,7 +115,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               {/* Actual Product Image */}
               <div>
                 <Image
-                  src="/images/seasun-product-hero.png"
+                  src="/images/seasun-product-image.png"
                   alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
                   width={300}
                   height={450}

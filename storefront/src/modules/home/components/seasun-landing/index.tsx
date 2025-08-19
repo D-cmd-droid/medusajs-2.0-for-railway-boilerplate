@@ -58,13 +58,11 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
   const [email, setEmail] = useState("")
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   
   // ============================================================================
   // REFS
   // ============================================================================
   const productSectionRef = useRef<HTMLElement>(null)
-  const heroRef = useRef<HTMLElement>(null)
 
   // ============================================================================
   // EVENT HANDLERS
@@ -88,15 +86,6 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
     productSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
   
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = heroRef.current?.getBoundingClientRect()
-    if (rect) {
-      setMousePosition({
-        x: ((e.clientX - rect.left) / rect.width - 0.5) * 20,
-        y: ((e.clientY - rect.top) / rect.height - 0.5) * 20
-      })
-    }
-  }
 
   // ============================================================================
   // DATA
@@ -136,191 +125,164 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
     <div className="w-full">
       {/* Hero Section - Immersive Premium Experience */}
       <section 
-        ref={heroRef}
-        className="relative min-h-[100vh] flex items-center justify-center overflow-hidden seasun-heat-shimmer"
+        className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
         role="banner"
         aria-labelledby="hero-heading"
         aria-describedby="hero-description"
-        onMouseMove={handleMouseMove}
         style={{
-          background: `
-            linear-gradient(180deg, 
-              rgba(252, 248, 235, 0.95) 0%, 
-              rgba(255, 255, 255, 0.85) 50%, 
-              rgba(253, 222, 169, 0.95) 100%
-            ),
-            url('/images/seasun-hero-bg-desktop.jpeg')
-          `,
+          backgroundImage: 'url(/images/seasun-hero-bg-desktop.png)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundBlendMode: 'soft-light'
+          backgroundPosition: 'center'
         }}
       >
-        {/* Atmospheric Glow Layer */}
+        {/* Bottle Layer */}
         <div 
-          className="absolute inset-0 opacity-30 seasun-wave"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 50% 40%, rgba(247, 138, 21, 0.2) 0%, transparent 60%)',
-            filter: 'blur(60px)'
+            backgroundImage: 'url(/images/seasun-hero-bg-bottle.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            zIndex: 10
           }}
         />
         
-        {/* Floating Particles */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="seasun-particle"
-            style={{
-              left: `${20 + i * 15}%`,
-              animationDelay: `${i * 3}s`,
-              animationDuration: `${15 + i * 2}s`
-            }}
-          />
-        ))}
         
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-20">
           <div className="relative max-w-6xl mx-auto">
             
-            {/* Premium Badge - 3D Transform Style */}
-            <div className="absolute top-0 left-4 sm:left-8 z-20">
+            {/* Premium Badge */}
+            <div className="absolute top-0 left-4 sm:left-8 z-30">
               <div 
-                className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 seasun-3d-card"
+                className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-3 py-1.5 sm:px-4 sm:py-2"
                 role="banner"
                 aria-label="Premium product badge"
                 style={{
-                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.1)',
-                  animation: 'textReveal 1s var(--ease-luxury) forwards'
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.1)'
                 }}
               >
                 <span className="seasun-body text-xs font-semibold tracking-wider uppercase seasun-gold-foil">Premium</span>
               </div>
             </div>
             
-            {/* Main Cinematic Layout Container */}
-            <div className="relative">
+            {/* New Layout: Left Text + Right Space for Bottle */}
+            <div className="relative grid lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
               
-              {/* Top Text - Cinzel Decorative with Reveal Animation */}
-              <div className="absolute top-0 left-0 right-0 z-10 text-center">
+              {/* Left Side: Text Content */}
+              <div className="relative z-30 lg:pl-8 xl:pl-16 seasun-hero-text text-center lg:text-left">
                 <h1 
-                  id="hero-heading-top"
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-none seasun-text-reveal"
+                  id="hero-heading"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight mb-8"
                   style={{ 
                     fontFamily: 'var(--seasun-font-decorative)',
                     color: 'var(--seasun-deep-black)',
-                    textShadow: '0 4px 30px rgba(255, 255, 255, 0.9), 0 2px 10px rgba(0, 0, 0, 0.1)',
-                    letterSpacing: '0.05em',
-                    animationDelay: '0.3s'
+                    letterSpacing: '0.05em'
                   }}
                 >
-                  The Caribbean's best kept
-                </h1>
-              </div>
-              
-              {/* Dramatic Product Center Stage */}
-              <div className="relative mx-auto" style={{ height: '70vh', minHeight: '600px', maxHeight: '900px' }}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  
-                  {/* Product Glow Effect */}
-                  <div 
-                    className="absolute"
-                    style={{
-                      width: '120%',
-                      height: '120%',
-                      background: 'radial-gradient(circle, rgba(247, 138, 21, 0.15) 0%, transparent 70%)',
-                      filter: 'blur(40px)',
-                      animation: 'pulse 4s ease-in-out infinite'
-                    }}
-                  />
-                  
-                  {/* Main Product with Parallax */}
-                  <div 
-                    className="relative seasun-parallax"
-                    style={{
-                      width: 'clamp(280px, 50vw, 500px)',
-                      height: 'clamp(400px, 60vh, 700px)',
-                      transform: `rotate(-3deg) translateX(${mousePosition.x}px) translateY(${mousePosition.y}px)`,
-                      filter: 'drop-shadow(0 40px 60px rgba(0, 0, 0, 0.15))',
-                      animation: 'luxuryFloat 8s ease-in-out infinite',
-                      transition: 'transform 0.3s var(--ease-luxury)'
+                  <span 
+                    className="block"
+                    style={{ 
+                      fontWeight: 'var(--seasun-font-light)'
                     }}
                   >
-                    <Image
-                      src="/images/seasun-product-hero.png"
-                      alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
-                      fill
-                      priority
-                      className="object-contain"
-                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 400px, 500px"
-                      style={{
-                        filter: 'brightness(1.05) contrast(1.1)'
-                      }}
-                    />
-                    
-                    
-                    {/* Floating Feature Badges with 3D Transform */}
-                    <div 
-                      className="absolute -left-8 top-1/3 hidden lg:block seasun-3d-card"
-                      style={{
-                        animation: 'luxuryFloat 6s ease-in-out infinite',
-                        animationDelay: '1s'
-                      }}
-                    >
-                      <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
-                        <p className="seasun-body text-sm font-bold seasun-gold-foil">SPF 30+</p>
-                      </div>
-                    </div>
-                    
-                    <div 
-                      className="absolute -right-8 bottom-1/3 hidden lg:block seasun-3d-card"
-                      style={{
-                        animation: 'luxuryFloat 6s ease-in-out infinite',
-                        animationDelay: '2.5s'
-                      }}
-                    >
-                      <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
-                        <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deeper-blue)' }}>100% Natural</p>
-                      </div>
-                    </div>
+                    The Caribbean's
+                  </span>
+                  
+                  <span 
+                    className="block"
+                    style={{ 
+                      fontWeight: 'var(--seasun-font-medium)',
+                      fontSize: '1.15em',
+                      marginTop: '0.5rem'
+                    }}
+                  >
+                    best kept
+                  </span>
+                  
+                  <span 
+                    className="block"
+                    style={{ 
+                      fontWeight: 'var(--seasun-font-semi-bold)',
+                      fontSize: '1.25em',
+                      marginTop: '0.75rem'
+                    }}
+                  >
+                    secret to radiant skin
+                  </span>
+                </h1>
+                
+                <div className="mb-8">
+                  <p 
+                    className="seasun-body text-lg sm:text-xl lg:text-2xl font-light italic" 
+                    style={{ 
+                      color: 'var(--seasun-deep-black)', 
+                      opacity: 0.85,
+                      marginTop: '1.5rem'
+                    }}
+                  >
+                    How does it feel to be
+                  </p>
+                  
+                  <div 
+                    className="seasun-gold-foil"
+                    style={{
+                      fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
+                      fontWeight: 'var(--seasun-font-bold)',
+                      fontFamily: 'var(--seasun-font-decorative)',
+                      letterSpacing: '0.15em',
+                      marginTop: '1rem',
+                      textAlign: 'center'
+                    }}
+                    id="hero-description"
+                    role="text"
+                    aria-label="SUNKISSED"
+                  >
+                    SUNKISSED
                   </div>
+                  
+                  <p 
+                    className="seasun-body text-xl sm:text-2xl font-light text-center" 
+                    style={{ 
+                      color: 'var(--seasun-deep-black)', 
+                      opacity: 0.7,
+                      marginTop: '0.5rem'
+                    }}
+                  >
+                    ?
+                  </p>
                 </div>
               </div>
               
-              {/* Bottom Text - Cinzel Decorative with Reveal */}
-              <div className="absolute bottom-0 left-0 right-0 z-10 text-center">
-                <h1 
-                  id="hero-heading-bottom"
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal leading-none mb-8 seasun-text-reveal"
-                  style={{ 
-                    fontFamily: 'var(--seasun-font-decorative)',
-                    color: 'var(--seasun-deep-black)',
-                    textShadow: '0 4px 30px rgba(255, 255, 255, 0.9), 0 2px 10px rgba(0, 0, 0, 0.1)',
-                    letterSpacing: '0.05em',
-                    animationDelay: '0.6s'
-                  }}
-                >
-                  secret to radiant skin
-                </h1>
-                
-                {/* CTA Question with Gold Foil Effect */}
-                <p 
-                  id="hero-description"
-                  className="seasun-body text-xl sm:text-2xl lg:text-3xl font-light italic seasun-text-reveal" 
-                  style={{ 
-                    color: 'var(--seasun-deep-black)', 
-                    opacity: 0.85,
-                    textShadow: '0 2px 8px rgba(255, 255, 255, 0.5)',
-                    animationDelay: '0.9s'
-                  }}
-                >
-                  How does it feel to be{" "}
-                  <span 
-                    className="font-bold not-italic tracking-wider seasun-gold-foil"
-                    style={{ fontSize: '1.1em' }}
-                  >
-                    SUNKISSED
-                  </span>
-                  ?
-                </p>
+              {/* Right Side: Space for overlaid bottle (no content, just spacing) */}
+              <div className="relative">
+                <div className="aspect-video w-full"></div>
+              </div>
+            </div>
+            
+            {/* Floating Feature Badges - Positioned relative to bottle location */}
+            <div 
+              className="absolute top-1/3 right-1/4 hidden lg:block seasun-3d-card pointer-events-auto"
+              style={{
+                animation: 'luxuryFloat 6s ease-in-out infinite',
+                animationDelay: '1s',
+                zIndex: 30
+              }}
+            >
+              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
+                <p className="seasun-body text-sm font-bold seasun-gold-foil">SPF 30+</p>
+              </div>
+            </div>
+            
+            <div 
+              className="absolute bottom-1/3 right-1/3 hidden lg:block seasun-3d-card pointer-events-auto"
+              style={{
+                animation: 'luxuryFloat 6s ease-in-out infinite',
+                animationDelay: '2.5s',
+                zIndex: 30
+              }}
+            >
+              <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-2xl border border-white/50">
+                <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deeper-blue)' }}>100% Natural</p>
               </div>
             </div>
           </div>
@@ -365,13 +327,12 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
             
             <Button 
               onClick={scrollToProductSection}
-              className="group seasun-portal-btn seasun-magnetic text-white px-8 py-4 sm:px-12 sm:py-5 text-base sm:text-lg rounded-2xl font-semibold transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-2xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[64px]"
+              className="group relative seasun-body text-white px-8 py-4 sm:px-12 sm:py-5 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[64px]"
               style={{ 
                 backgroundColor: 'var(--seasun-golden-tan)',
                 boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
-                minWidth: '200px',
-                position: 'relative',
-                isolation: 'isolate'
+                transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                minWidth: '200px'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';

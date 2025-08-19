@@ -2,8 +2,73 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* SEASUN Fonts - From Legacy Webflow Site */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&family=Josefin+Sans:wght@300;400;500;600&display=swap');
+/* SEASUN Fonts - All Local Font Files */
+
+/* Josefin Sans - Local Font Files */
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/JosefinSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/JosefinSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/JosefinSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('/fonts/JosefinSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cinzel Regular - Local Font Files */
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Cinzel Decorative - Premium Display Font */
 @font-face {
@@ -47,6 +112,14 @@
   --seasun-font-heading: 'Cinzel', serif;
   --seasun-font-body: 'Josefin Sans', sans-serif;
   --seasun-font-decorative: 'Cinzel Decorative', 'Cinzel', serif;
+  
+  /* Enhanced Font Weight System */
+  --seasun-font-light: 300;
+  --seasun-font-regular: 400;
+  --seasun-font-medium: 500;
+  --seasun-font-semi-bold: 600;
+  --seasun-font-bold: 700;
+  
   
   /* Animation Timing Functions */
   --ease-luxury: cubic-bezier(0.4, 0, 0.2, 1);
@@ -153,6 +226,27 @@
     @apply max-w-[1440px] w-full mx-auto px-6;
   }
 
+  /* Glass Morphism Navigation Effects */
+  .seasun-glass-nav {
+    background: rgba(247, 138, 21, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Fallback for browsers without backdrop-filter support */
+  .seasun-glass-nav-fallback {
+    background: rgba(247, 138, 21, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
   .contrast-btn {
     @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
   }
@@ -250,11 +344,6 @@
 
 /* SEASUN Hero Enhancements */
 @layer components {
-  /* Luxury Text Animations */
-  .seasun-text-reveal {
-    animation: textReveal 1.5s var(--ease-luxury) forwards;
-    opacity: 0;
-  }
   
   @keyframes textReveal {
     from {
@@ -269,27 +358,78 @@
     }
   }
   
+  @keyframes narrativeReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px) translateX(-10px);
+      filter: blur(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) translateX(0);
+      filter: blur(0);
+    }
+  }
+  
+  @keyframes climaxReveal {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.8);
+      filter: blur(4px);
+      letter-spacing: 0.3em;
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateY(-5px) scale(1.05);
+      filter: blur(1px);
+      letter-spacing: 0.15em;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+      letter-spacing: 0.1em;
+    }
+  }
+  
+  @keyframes emphasisGlow {
+    from { opacity: 0; }
+    50% { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
   /* Gold Foil Text Effect */
   .seasun-gold-foil {
+    /* Fallback color in case gradient doesn't work */
+    color: var(--seasun-golden-tan);
     background: linear-gradient(
       135deg,
       #f78a15 0%,
-      #ffd700 25%,
-      #f78a15 50%,
-      #ffd700 75%,
-      #f78a15 100%
+      #e6a84e 20%,
+      #f78a15 40%,
+      #e6a84e 60%,
+      #f78a15 80%,
+      #e6a84e 100%
     );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-    animation: goldShimmer 3s ease-in-out infinite;
+    background-size: 300% 300%;
+    animation: goldShimmer 12s ease-in-out infinite;
+  }
+  
+  
+  /* Apply gradient effect only if supported */
+  @supports (background-clip: text) {
+    .seasun-gold-foil {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   }
   
   @keyframes goldShimmer {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+  
   
   /* Immersive Portal Button */
   .seasun-portal-btn {
@@ -441,9 +581,35 @@
     will-change: transform;
   }
   
+  /* Z-Index Utilities for Hero Layering */
+  .z-5 {
+    z-index: 5;
+  }
+  
+  .z-15 {
+    z-index: 15;
+  }
+  
+  /* Hero Responsive Improvements */
+  @media (max-width: 1024px) {
+    .seasun-hero-bottle {
+      transform: scale(0.9);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .seasun-hero-bottle {
+      transform: scale(0.8);
+    }
+    
+    .seasun-hero-text {
+      text-align: center;
+      padding-left: 0;
+    }
+  }
+  
   /* Respect Motion Preferences */
   @media (prefers-reduced-motion: reduce) {
-    .seasun-text-reveal,
     .seasun-gold-foil,
     .seasun-portal-btn::before,
     .seasun-portal-btn::after,
