@@ -169,7 +169,7 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
             <div className="relative grid lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
               
               {/* Left Side: Text Content */}
-              <div className="relative z-30 lg:pl-8 xl:pl-16 seasun-hero-text text-center lg:text-left">
+              <div className="relative z-30 lg:pl-8 xl:pl-16 seasun-hero-text text-center lg:text-left seasun-hero-text-container">
                 <h1 
                   id="hero-heading"
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight mb-8"
@@ -180,31 +180,35 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                   }}
                 >
                   <span 
-                    className="block"
+                    className="block seasun-hero-line-1"
                     style={{ 
-                      fontWeight: 'var(--seasun-font-light)'
+                      fontWeight: 'var(--seasun-font-light)',
+                      fontFamily: 'var(--seasun-font-decorative)',
+                      color: 'var(--seasun-deep-black)'
                     }}
                   >
                     The Caribbean's
                   </span>
                   
                   <span 
-                    className="block"
+                    className="block seasun-hero-line-2"
                     style={{ 
                       fontWeight: 'var(--seasun-font-medium)',
-                      fontSize: '1.15em',
-                      marginTop: '0.5rem'
+                      marginTop: '0.5rem',
+                      fontFamily: 'var(--seasun-font-decorative)',
+                      color: 'var(--seasun-deep-black)'
                     }}
                   >
                     best kept
                   </span>
                   
                   <span 
-                    className="block"
+                    className="block seasun-hero-line-3"
                     style={{ 
                       fontWeight: 'var(--seasun-font-semi-bold)',
-                      fontSize: '1.25em',
-                      marginTop: '0.75rem'
+                      marginTop: '0.75rem',
+                      fontFamily: 'var(--seasun-font-decorative)',
+                      color: 'var(--seasun-deep-black)'
                     }}
                   >
                     secret to radiant skin
@@ -213,42 +217,28 @@ export default function SeasunLanding({ countryCode, region, product }: SeasunLa
                 
                 <div className="mb-8">
                   <p 
-                    className="seasun-body text-lg sm:text-xl lg:text-2xl font-light italic" 
+                    className="seasun-body text-lg sm:text-xl lg:text-2xl font-light italic text-center" 
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
                       opacity: 0.85,
                       marginTop: '1.5rem'
                     }}
-                  >
-                    How does it feel to be
-                  </p>
-                  
-                  <div 
-                    className="seasun-gold-foil"
-                    style={{
-                      fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
-                      fontWeight: 'var(--seasun-font-bold)',
-                      fontFamily: 'var(--seasun-font-decorative)',
-                      letterSpacing: '0.15em',
-                      marginTop: '1rem',
-                      textAlign: 'center'
-                    }}
                     id="hero-description"
                     role="text"
-                    aria-label="SUNKISSED"
                   >
-                    SUNKISSED
-                  </div>
-                  
-                  <p 
-                    className="seasun-body text-xl sm:text-2xl font-light text-center" 
-                    style={{ 
-                      color: 'var(--seasun-deep-black)', 
-                      opacity: 0.7,
-                      marginTop: '0.5rem'
-                    }}
-                  >
-                    ?
+                    How does it feel to be
+                    <span 
+                      className="seasun-gold-foil seasun-sunkissed-enhanced"
+                      style={{
+                        fontWeight: 'var(--seasun-font-bold)',
+                        fontFamily: 'var(--seasun-font-decorative)',
+                        letterSpacing: '0.15em',
+                        fontStyle: 'normal'
+                      }}
+                      aria-label="SUNKISSED"
+                    >
+                      SUNKISSED
+                    </span>?
                   </p>
                 </div>
               </div>
