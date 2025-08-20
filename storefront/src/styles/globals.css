@@ -763,6 +763,157 @@
   }
 }
 
+/* Breakpoint Indicators for easier communication */
+/* Large 1440px+ - Circle */
+@media (min-width: 1440px) {
+  .breakpoint-indicator::before {
+    content: "";
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(247, 138, 21, 0.7);
+    border-radius: 50%;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* Medium 1280px-1440px - Square */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .breakpoint-indicator::before {
+    content: "";
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 212, 50, 0.7);
+    border-radius: 0;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* Small 1024px-1280px - Triangle */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .breakpoint-indicator::before {
+    content: "";
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 40px solid rgba(58, 166, 185, 0.7);
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* Mobile <1024px - Diamond */
+@media (max-width: 1023px) {
+  .breakpoint-indicator::before {
+    content: "";
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 158, 170, 0.7);
+    transform: rotate(45deg);
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+}
+
+/* Comprehensive fix for SEASUN landing page responsiveness */
+@media (min-width: 1024px) {
+  /* Prevent content shifting */
+  .container.mx-auto.px-4.sm\:px-6.relative.z-20 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Preserve grid layout down to 1024px */
+  .seasun-landing-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  /* Maintain consistent padding/alignment */
+  .seasun-hero-text-container {
+    padding-left: 2rem !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+    position: relative !important;
+    left: 0 !important;
+  }
+  
+  /* Ensure button alignment */
+  .seasun-hero-text-container .group {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+  
+  /* Ensure cinnamon pill position is not overridden */
+  /* .cinnamon-pill {
+    left: 80% !important;
+  } */
+}
+
+/* Medium Breakpoint (Square): 1280px-1440px */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  /* Force consistent padding for hero text */
+  .seasun-hero-text-container {
+    padding-left: 2rem !important;
+  }
+  
+  /* Square breakpoint-specific pill positioning */
+  .cinnamon-pill {
+    left: 84% !important;
+    top: 57% !important;
+  }
+  
+  .coconut-pill {
+    left: 64% !important;
+    top: 41% !important;
+  }
+  
+  .annatto-pill {
+    left: 62% !important;
+    top: 69% !important;
+  }
+}
+
+/* Small Breakpoint (Triangle): 1024px-1280px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  /* Force consistent padding for hero text */
+  .seasun-hero-text-container {
+    padding-left: 2rem !important;
+  }
+  
+  /* Triangle breakpoint-specific pill positioning - same as Square */
+  .cinnamon-pill {
+    left: 84% !important;
+    top: 57% !important;
+  }
+  
+  .coconut-pill {
+    left: 64% !important;
+    top: 41% !important;
+  }
+  
+  .annatto-pill {
+    left: 62% !important;
+    top: 69% !important;
+  }
+}
+
 @layer components {
   /* Footer Wave Animation */
   @keyframes gentleWave {

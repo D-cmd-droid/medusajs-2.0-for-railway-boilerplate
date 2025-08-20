@@ -58,6 +58,7 @@ type Ingredient = {
   emoji: string
   description: string
   style: React.CSSProperties
+  className?: string
 }
 
 const ingredients: Ingredient[] = [
@@ -68,10 +69,11 @@ const ingredients: Ingredient[] = [
     description: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches.",
     style: {
       position: 'absolute',
-      top: '250px',
-      left: '740px',
+      top: '38%',
+      left: '62%',
       transform: 'rotate(-1deg)'
-    }
+    },
+    className: 'coconut-pill'
   },
   {
     id: "cinnamon",
@@ -80,10 +82,11 @@ const ingredients: Ingredient[] = [
     description: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth.",
     style: {
       position: 'absolute',
-      top: '380px',
-      left: '1160px',
+      top: '53%',
+      left: '80%',
       transform: 'rotate(1deg)'
-    }
+    },
+    className: 'cinnamon-pill'
   },
   {
     id: "annatto",
@@ -92,17 +95,18 @@ const ingredients: Ingredient[] = [
     description: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow.",
     style: {
       position: 'absolute',
-      top: '515px',
-      left: '706px',
+      top: '71%',
+      left: '65%',
       transform: 'rotate(-0.5deg)'
-    }
+    },
+    className: 'annatto-pill'
   }
 ]
 
 // ============================================================================
 // INGREDIENT PILL COMPONENT
 // ============================================================================
-function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
+function IngredientPill({ id, name, emoji, description, style, className = '' }: Ingredient) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const pillRef = useRef<HTMLDivElement>(null);
@@ -131,7 +135,7 @@ function IngredientPill({ id, name, emoji, description, style }: Ingredient) {
   return (
     <div 
       ref={pillRef}
-      className="hidden lg:block pointer-events-auto transition-all duration-500 relative"
+      className={`hidden small:block pointer-events-auto transition-all duration-500 relative ${className}`}
       style={{
         ...style,
         zIndex: isExpanded ? 50 : 30,
@@ -279,6 +283,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // ============================================================================
   return (
     <div className="w-full">
+      {/* Breakpoint indicator - visual aid for responsive debugging */}
+      <div className="breakpoint-indicator"></div>
       {/* Hero Section - Immersive Premium Experience */}
       <section 
         className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
@@ -291,7 +297,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           backgroundPosition: 'center'
         }}
       >
-        {/* Bottle Layer */}
+        {/* Bottle Layer with Positioned Container */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -301,7 +307,18 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             backgroundRepeat: 'no-repeat',
             zIndex: 10
           }}
-        />
+        >
+          {/* Positioned container that scales with background image */}
+          <div className="relative w-full h-full" id="bottle-container">
+            {/* Pills rendered inside bottle container to scale with background */}
+            {ingredients.map(ingredient => (
+              <IngredientPill 
+                key={ingredient.id}
+                {...ingredient}
+              />
+            ))}
+          </div>
+        </div>
         
         
         <div className="container mx-auto px-4 sm:px-6 relative z-20">
@@ -309,10 +326,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             
             
             {/* New Layout: Left Text + Right Space for Bottle */}
-            <div className="relative grid lg:grid-cols-2 gap-8 items-center min-h-[80vh]">
+            <div className="relative grid lg:grid-cols-2 gap-8 items-center min-h-[80vh] seasun-landing-grid">
               
               {/* Left Side: Text Content */}
-              <div className="relative z-30 lg:pl-8 xl:pl-16 seasun-hero-text text-center lg:text-left seasun-hero-text-container">
+              <div className="relative z-30 lg:pl-8 xl:pl-16 seasun-hero-text text-center sm:text-left seasun-hero-text-container">
                 <h1 
                   id="hero-heading"
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight mb-8"
@@ -416,20 +433,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               </div>
             </div>
             
-            {/* Interactive Ingredient Pills */}
-            {ingredients.map(ingredient => (
-              <IngredientPill 
-                key={ingredient.id}
-                {...ingredient}
-              />
-            ))}
+{/* Removed from here - pills now rendered in bottle container */}
           </div>
         </div>
         
       </section>
 
       {/* Mobile Ingredient Showcase - Only visible on mobile */}
-      <section className="py-10 lg:hidden seasun-section-overlay" aria-labelledby="mobile-ingredients-heading">
+      <section className="py-10 sm:hidden seasun-section-overlay" aria-labelledby="mobile-ingredients-heading">
         <div className="container mx-auto px-4">
           <h2 
             id="mobile-ingredients-heading" 
