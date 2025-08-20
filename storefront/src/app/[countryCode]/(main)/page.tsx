@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "SEASUN - Caribbean Beauty Secret | Natural Skincare",
   description:
     "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural sun protection meets luxury skincare.",
+  openGraph: {
+    title: "SEASUN - Caribbean Beauty Secret | Natural Skincare",
+    description: "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural sun protection meets luxury skincare.",
+    images: ["/images/seasun-opengraph.jpg"],
+  }
 }
 
 export default async function Home({
