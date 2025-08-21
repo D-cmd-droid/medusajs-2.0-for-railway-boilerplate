@@ -70,7 +70,7 @@ const ingredients: Ingredient[] = [
     style: {
       position: 'absolute',
       top: '41%',
-      left: '64%',
+      left: '61%',
       transform: 'rotate(-1deg)'
     },
     className: 'coconut-pill'
@@ -83,7 +83,7 @@ const ingredients: Ingredient[] = [
     style: {
       position: 'absolute',
       top: '57%',
-      left: '84%',
+      left: '82%',
       transform: 'rotate(1deg)'
     },
     className: 'cinnamon-pill'
@@ -302,14 +302,22 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: 'url(/images/seasun-hero-bg-bottle.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: 'cover',  // Restored to original for proper bottle size
+            backgroundPosition: 'center',  // Restored to original positioning
             backgroundRepeat: 'no-repeat',
-            zIndex: 10
+            zIndex: 25  // Above text content (z-20) to make pills clickable
           }}
         >
-          {/* Positioned container that scales with background image */}
-          <div className="relative w-full h-full pointer-events-auto" id="bottle-container">
+          {/* Pills container with strategic constraints to prevent drift */}
+          <div 
+            className="relative w-full h-full pointer-events-auto" 
+            id="bottle-container"
+            style={{
+              // Constrain pills within design bounds on ultra-wide screens
+              maxWidth: '1920px',
+              margin: '0 auto',
+            }}
+          >
             {/* Pills rendered inside bottle container to scale with background */}
             {ingredients.map(ingredient => (
               <IngredientPill 

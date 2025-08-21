@@ -779,15 +779,7 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
   }
   
-  /* Circle breakpoint-specific adjustments */
-  .cinnamon-pill {
-    left: 80.3% !important;
-    top: 57.67% !important;
-  }
-  
-  .coconut-pill {
-    left: 62% !important;
-  }
+  /* Pill adjustments removed - handled by container constraints now */
 }
 
 /* Medium 1280px-1440px - Square */
@@ -883,21 +875,7 @@
     padding-left: 2rem !important;
   }
   
-  /* Square breakpoint-specific pill positioning */
-  .cinnamon-pill {
-    left: 80% !important;
-    top: 57% !important;
-  }
-  
-  .coconut-pill {
-    left: 60.33% !important;
-    top: 41% !important;
-  }
-  
-  .annatto-pill {
-    left: 62% !important;
-    top: 69% !important;
-  }
+  /* Pill adjustments removed - handled by container constraints now */
 }
 
 /* Small Breakpoint (Triangle): 1024px-1280px */
@@ -907,21 +885,7 @@
     padding-left: 2rem !important;
   }
   
-  /* Triangle breakpoint-specific pill positioning - same as Square */
-  .cinnamon-pill {
-    left: 85.67% !important;
-    top: 57% !important;
-  }
-  
-  .coconut-pill {
-    left: 64% !important;
-    top: 41% !important;
-  }
-  
-  .annatto-pill {
-    left: 62% !important;
-    top: 69% !important;
-  }
+  /* Pill adjustments removed - handled by container constraints now */
 }
 
 @layer components {
