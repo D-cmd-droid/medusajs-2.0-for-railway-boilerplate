@@ -69,8 +69,8 @@ const ingredients: Ingredient[] = [
     description: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches.",
     style: {
       position: 'absolute',
-      top: '38%',
-      left: '62%',
+      top: '41%',
+      left: '64%',
       transform: 'rotate(-1deg)'
     },
     className: 'coconut-pill'
@@ -82,8 +82,8 @@ const ingredients: Ingredient[] = [
     description: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth.",
     style: {
       position: 'absolute',
-      top: '53%',
-      left: '80%',
+      top: '57%',
+      left: '84%',
       transform: 'rotate(1deg)'
     },
     className: 'cinnamon-pill'
@@ -95,8 +95,8 @@ const ingredients: Ingredient[] = [
     description: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow.",
     style: {
       position: 'absolute',
-      top: '71%',
-      left: '65%',
+      top: '69%',
+      left: '62%',
       transform: 'rotate(-0.5deg)'
     },
     className: 'annatto-pill'
@@ -377,7 +377,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 
                 <div className="mb-8">
                   <p 
-                    className="seasun-body text-lg sm:text-xl lg:text-2xl font-light italic text-center" 
+                    className="seasun-body text-lg sm:text-xl lg:text-2xl font-light italic text-center sm:text-left" 
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
                       opacity: 0.85,

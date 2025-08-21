@@ -778,6 +778,16 @@
     z-index: 9999;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
   }
+  
+  /* Circle breakpoint-specific adjustments */
+  .cinnamon-pill {
+    left: 80.3% !important;
+    top: 57.67% !important;
+  }
+  
+  .coconut-pill {
+    left: 62% !important;
+  }
 }
 
 /* Medium 1280px-1440px - Square */
@@ -875,12 +885,12 @@
   
   /* Square breakpoint-specific pill positioning */
   .cinnamon-pill {
-    left: 84% !important;
+    left: 80% !important;
     top: 57% !important;
   }
   
   .coconut-pill {
-    left: 64% !important;
+    left: 60.33% !important;
     top: 41% !important;
   }
   
@@ -899,7 +909,7 @@
   
   /* Triangle breakpoint-specific pill positioning - same as Square */
   .cinnamon-pill {
-    left: 84% !important;
+    left: 85.67% !important;
     top: 57% !important;
   }
   
