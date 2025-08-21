@@ -146,11 +146,11 @@ function IngredientPill({ id, name, emoji, description, style, className = '' }:
       }}
       onMouseEnter={() => !isExpanded && setIsHovered(true)}
       onMouseLeave={() => !isExpanded && setIsHovered(false)}
+      onClick={toggleExpand}
     >
       {/* Ingredient Pill */}
       <div 
         className="backdrop-blur-lg px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer transition-all duration-300 relative"
-        onClick={toggleExpand}
         aria-expanded={isExpanded}
         aria-controls={`ingredient-info-${id}`}
         role="button"
@@ -309,7 +309,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           }}
         >
           {/* Positioned container that scales with background image */}
-          <div className="relative w-full h-full" id="bottle-container">
+          <div className="relative w-full h-full pointer-events-auto" id="bottle-container">
             {/* Pills rendered inside bottle container to scale with background */}
             {ingredients.map(ingredient => (
               <IngredientPill 
