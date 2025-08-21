@@ -83,7 +83,7 @@ const ingredients: Ingredient[] = [
     style: {
       position: 'absolute',
       top: '57%',
-      left: '82%',
+      left: '84%',  // Stable positioning in aspect-ratio container
       transform: 'rotate(1deg)'
     },
     className: 'cinnamon-pill'
@@ -297,34 +297,42 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           backgroundPosition: 'center'
         }}
       >
-        {/* Bottle Layer with Positioned Container */}
+        {/* Bottle Visual Layer - Full hero coverage */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: 'url(/images/seasun-hero-bg-bottle.png)',
-            backgroundSize: 'cover',  // Restored to original for proper bottle size
-            backgroundPosition: 'center',  // Restored to original positioning
+            backgroundSize: 'cover',  // Full hero coverage for visual impact
+            backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            zIndex: 25  // Above text content (z-20) to make pills clickable
+            zIndex: 24  // Just below pills layer
           }}
+        />
+        
+        {/* Pills Positioning Layer - Invisible aspect-ratio container */}
+        <div 
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{ zIndex: 25 }}
         >
-          {/* Pills container with strategic constraints to prevent drift */}
+          {/* Aspect-ratio container matching image 16:9 ratio for stable positioning */}
           <div 
-            className="relative w-full h-full pointer-events-auto" 
-            id="bottle-container"
+            className="relative"
             style={{
-              // Constrain pills within design bounds on ultra-wide screens
-              maxWidth: '1920px',
-              margin: '0 auto',
+              width: 'min(100vw, 177.78vh)',   // 16:9 width constraint
+              height: 'min(100vh, 56.25vw)',   // 16:9 height constraint
+              // No background - this is just for positioning
             }}
           >
-            {/* Pills rendered inside bottle container to scale with background */}
-            {ingredients.map(ingredient => (
-              <IngredientPill 
-                key={ingredient.id}
-                {...ingredient}
-              />
-            ))}
+            {/* Pills positioned within the aspect-constrained container */}
+            <div className="absolute inset-0 pointer-events-auto" id="bottle-container">
+              {/* Pills rendered inside stable container */}
+              {ingredients.map(ingredient => (
+                <IngredientPill 
+                  key={ingredient.id}
+                  {...ingredient}
+                />
+              ))}
+            </div>
           </div>
         </div>
         
