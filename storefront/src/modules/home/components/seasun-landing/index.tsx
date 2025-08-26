@@ -34,6 +34,7 @@
 // ====================================================================================
 
 import React, { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 import { Button, Input } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
 import EmbeddedProductDisplay from "@modules/home/components/embedded-product-display"
@@ -69,9 +70,10 @@ const ingredients: Ingredient[] = [
     description: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches.",
     style: {
       position: 'absolute',
+      // Simple percentage positioning on Image element
       top: '41%',
       left: '61%',
-      transform: 'rotate(-1deg)'
+      transform: 'translate(-50%, -50%) rotate(-1deg)'  // Center on coordinates
     },
     className: 'coconut-pill'
   },
@@ -82,9 +84,10 @@ const ingredients: Ingredient[] = [
     description: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth.",
     style: {
       position: 'absolute',
+      // Temporary visual adjustment until bottle PNG is edited
       top: '57%',
-      left: '84%',  // Stable positioning in aspect-ratio container
-      transform: 'rotate(1deg)'
+      left: '82%',  // Slightly right for visual alignment
+      transform: 'translate(-50%, -50%) rotate(1deg)'  // Center on coordinates
     },
     className: 'cinnamon-pill'
   },
@@ -95,9 +98,10 @@ const ingredients: Ingredient[] = [
     description: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow.",
     style: {
       position: 'absolute',
+      // Simple percentage positioning on Image element
       top: '69%',
       left: '62%',
-      transform: 'rotate(-0.5deg)'
+      transform: 'translate(-50%, -50%) rotate(-0.5deg)'  // Center on coordinates
     },
     className: 'annatto-pill'
   }
@@ -167,10 +171,10 @@ function IngredientPill({ id, name, emoji, description, style, className = '' }:
           transition: 'all 0.3s ease-out'
         }}
       >
-        <span className="text-lg mr-1" aria-hidden="true">{emoji}</span>
+        <span className="text-lg" aria-hidden="true">{emoji}</span>
         <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deep-black)' }}>{name}</p>
         <span 
-          className="text-sm ml-1 transition-transform duration-300"
+          className="text-sm transition-transform duration-300"
           style={{ 
             transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)',
             color: 'var(--seasun-deep-black)'
@@ -202,7 +206,10 @@ function IngredientPill({ id, name, emoji, description, style, className = '' }:
         }}
         aria-hidden={!isExpanded}
       >
-        <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)', textShadow: '0 1px 0 rgba(255, 255, 255, 0.5)' }}>
+        <p className="seasun-body text-sm leading-relaxed" style={{ 
+          color: 'var(--seasun-deep-black)', 
+          textShadow: '0 1px 0 rgba(255, 255, 255, 0.5)'
+        }}>
           {description}
         </p>
       </div>
@@ -294,45 +301,36 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         style={{
           backgroundImage: 'url(/images/seasun-hero-bg-desktop.png)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: '45% center'  // Shifted left to create more space on right
         }}
       >
-        {/* Bottle Visual Layer - Full hero coverage */}
+        {/* Bottle Image with Positioned Pills */}
         <div 
           className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: 'url(/images/seasun-hero-bg-bottle.png)',
-            backgroundSize: 'cover',  // Full hero coverage for visual impact
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            zIndex: 24  // Just below pills layer
-          }}
-        />
-        
-        {/* Pills Positioning Layer - Invisible aspect-ratio container */}
-        <div 
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
           style={{ zIndex: 25 }}
         >
-          {/* Aspect-ratio container matching image 16:9 ratio for stable positioning */}
-          <div 
-            className="relative"
-            style={{
-              width: 'min(100vw, 177.78vh)',   // 16:9 width constraint
-              height: 'min(100vh, 56.25vw)',   // 16:9 height constraint
-              // No background - this is just for positioning
+          {/* Next.js Image component for proper tracking */}
+          <Image
+            src="/images/seasun-hero-bg-bottle.png"
+            alt="SEASUN Caribbean beauty product bottle"
+            fill
+            priority
+            style={{ 
+              objectFit: 'cover',
+              objectPosition: '45% center'  // Shifted left to match background and create space for pills
             }}
-          >
-            {/* Pills positioned within the aspect-constrained container */}
-            <div className="absolute inset-0 pointer-events-auto" id="bottle-container">
-              {/* Pills rendered inside stable container */}
-              {ingredients.map(ingredient => (
-                <IngredientPill 
-                  key={ingredient.id}
-                  {...ingredient}
-                />
-              ))}
-            </div>
+            sizes="100vw"
+          />
+          
+          {/* Pills positioned as overlays on the Image */}
+          <div className="absolute inset-0 pointer-events-auto" id="bottle-container">
+            {/* Pills rendered as overlays */}
+            {ingredients.map(ingredient => (
+              <IngredientPill 
+                key={ingredient.id}
+                {...ingredient}
+              />
+            ))}
           </div>
         </div>
         
