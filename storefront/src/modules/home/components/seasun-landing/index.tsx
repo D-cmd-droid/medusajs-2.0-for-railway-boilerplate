@@ -182,12 +182,16 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           {/* 
           RESPONSIVE GRID: 
           - Single column by default (mobile-first)
-          - Two columns at larger screens (lg:grid-cols-2)
+          - Two columns starting at xsmall breakpoint (512px)
+          - Grid maintains side-by-side layout when text is left-aligned
           - Gap scales with viewport to maintain consistent visual rhythm
           */}
-          <div className="relative grid lg:grid-cols-2 items-center" style={{
+          <div className="relative grid xsmall:grid-cols-2 items-center" style={{
             gap: 'clamp(2rem, 5vw, 5rem)', 
-            minHeight: 'clamp(400px, 70vh, 700px)'
+            minHeight: 'clamp(400px, 70vh, 700px)',
+            // Ensure grid container doesn't grow too wide and stretch bottle image
+            maxWidth: '1600px',
+            margin: '0 auto'
           }}>
             
             {/* 
@@ -195,11 +199,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             - Centered on mobile, left-aligned on larger screens
             - Padding scales proportionally with viewport
             - Max-width prevents excessively long line lengths
+            - Column sizing ensures proper proportions
             */}
-            <div className="relative text-center sm:text-left" style={{
+            <div className="relative text-center xsmall:text-left xsmall:col-span-1" style={{
               paddingLeft: 'clamp(0rem, 2vw, 3rem)',
               maxWidth: 'min(100%, 640px)',
-              margin: '0 auto lg:0',
+              margin: '0 auto xsmall:ml-0',
             }}>
               {/* 
               HEADING: 
@@ -368,14 +373,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             - Maintains proper aspect ratio
             - Scales fluidly with viewport
             - Proper alignment with text content
+            - Only appears beside text at appropriate breakpoints
             */}
-            <div className="relative flex items-center justify-center" style={{
+            <div className="relative flex items-center justify-center xsmall:col-span-1" style={{
               minHeight: 'clamp(200px, 50vh, 500px)',
             }}>
               <div className="relative" style={{
                 width: 'clamp(280px, 90%, 600px)',
                 aspectRatio: '1/1.2',
-                margin: '0 auto',
+                margin: '0 auto xsmall:mr-0 xsmall:ml-auto',
               }}>
                 <Image
                   src="/images/seasun-hero-bottle.png"
