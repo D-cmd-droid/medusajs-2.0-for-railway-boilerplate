@@ -367,7 +367,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               <h1 
                 id="hero-heading"
                 style={{ 
-                  fontFamily: 'var(--seasun-font-decorative)',
+                  fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                   color: 'var(--seasun-deep-black)',
                   letterSpacing: '0.05em',
                   marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
@@ -383,13 +383,13 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 <span 
                   className="block seasun-hero-line-1"
                   style={{ 
-                    fontWeight: 'var(--seasun-font-light)',
-                    fontFamily: 'var(--seasun-font-decorative)',
+                    fontWeight: 'bold', /* Changed from light to bold */
+                    fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                     color: 'var(--seasun-deep-black)',
-                    fontSize: 'clamp(1.5rem, 2vw + 1rem, 3.5rem)'
+                    fontSize: 'clamp(1.25rem, 1.5vw + 0.75rem, 2.75rem)' /* Reduced size */
                   }}
                 >
-                  The Caribbean's
+                  The glow
                 </span>
                 
                 {/* 
@@ -400,14 +400,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 <span 
                   className="block seasun-hero-line-2"
                   style={{ 
-                    fontWeight: 'var(--seasun-font-medium)',
+                    fontWeight: 'bold', /* Changed from medium to bold */
                     marginTop: 'clamp(0.25rem, 1vh, 0.75rem)',
-                    fontFamily: 'var(--seasun-font-decorative)',
+                    fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                     color: 'var(--seasun-deep-black)',
-                    fontSize: 'clamp(1.75rem, 3vw + 1rem, 4rem)'
+                    fontSize: 'clamp(1.5rem, 2.5vw + 0.75rem, 3.25rem)' /* Reduced size */
                   }}
                 >
-                  best kept
+                  you've been
                 </span>
                 
                 {/* 
@@ -418,14 +418,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 <span 
                   className="block seasun-hero-line-3"
                   style={{ 
-                    fontWeight: 'var(--seasun-font-semi-bold)',
+                    fontWeight: 'bold', /* Changed from semi-bold to bold */
                     marginTop: 'clamp(0.5rem, 1.5vh, 1rem)',
-                    fontFamily: 'var(--seasun-font-decorative)',
+                    fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                     color: 'var(--seasun-deep-black)',
-                    fontSize: 'clamp(2rem, 3.5vw + 1rem, 4.5rem)'
+                    fontSize: 'clamp(1.75rem, 3vw + 0.75rem, 3.75rem)' /* Reduced size */
                   }}
                 >
-                  secret to radiant skin
+                  searching for
                 </span>
               </h1>
               
@@ -463,12 +463,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   <span 
                     className="seasun-sunkissed-enhanced"
                     style={{
-                      fontWeight: 'var(--seasun-font-bold)',
-                      fontFamily: 'var(--seasun-font-decorative)',
+                      fontWeight: 'bold', /* Changed from seasun-font-bold to bold */
+                      fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                       letterSpacing: '0.15em',
                       fontStyle: 'normal',
                       marginLeft: 'clamp(0.25rem, 0.5vw, 0.5rem)',
-                      fontSize: 'clamp(1.1rem, 1.1vw + 0.6rem, 1.7rem)',
+                      fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)', /* Reduced size */
                     }}
                     aria-label="SUNKISSED"
                   >
