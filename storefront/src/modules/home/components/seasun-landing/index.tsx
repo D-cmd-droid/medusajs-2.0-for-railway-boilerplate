@@ -186,8 +186,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           - Grid maintains side-by-side layout when text is left-aligned
           - Gap scales with viewport to maintain consistent visual rhythm
           */}
-          <div className="relative grid xsmall:grid-cols-2 items-center" style={{
-            gap: 'clamp(2rem, 5vw, 5rem)', 
+          <div className="relative grid xsmall:grid-cols-5 items-center" style={{
+            gap: 'clamp(1rem, 3vw, 3rem)', // Reduced gap for better text-bottle relationship
             minHeight: 'clamp(400px, 70vh, 700px)',
             // Ensure grid container doesn't grow too wide and stretch bottle image
             maxWidth: '1600px',
@@ -201,10 +201,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             - Max-width prevents excessively long line lengths
             - Column sizing ensures proper proportions
             */}
-            <div className="relative text-center xsmall:text-left xsmall:col-span-1" style={{
+            <div className="relative text-center xsmall:text-left xsmall:col-span-3" style={{
               paddingLeft: 'clamp(0rem, 2vw, 3rem)',
-              maxWidth: 'min(100%, 640px)',
-              margin: '0 auto xsmall:ml-0',
+              // Allow for more natural text width with better constraints
+              maxWidth: 'min(100%, 540px)',
+              // Better margin control with vertical alignment
+              margin: '0 auto xsmall:m-0',
+              // Ensure vertical alignment with bottle
+              paddingTop: 'clamp(1rem, 5vh, 3rem)',
             }}>
               {/* 
               HEADING: 
@@ -218,9 +222,9 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                   color: 'var(--seasun-deep-black)',
                   letterSpacing: '0.05em',
-                  marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
+                  marginBottom: 'clamp(1rem, 4vh, 2.5rem)', // Adjusted for better spacing
                   /* Create better visual rhythm with a more natural line height */
-                  lineHeight: '1.1',
+                  lineHeight: '1.15', // Slightly increased for better text flow
                 }}
               >
                 {/* 
@@ -234,7 +238,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     fontWeight: 'bold', /* Changed from light to bold */
                     fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                     color: 'var(--seasun-deep-black)',
-                    fontSize: 'clamp(1.25rem, 1.5vw + 0.75rem, 2.75rem)' /* Reduced size */
+                    fontSize: 'clamp(1.25rem, 1.5vw + 0.75rem, 2.75rem)', /* Reduced size */
+                    marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)' // Add spacing between lines
                   }}
                 >
                   The glow
@@ -250,6 +255,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   style={{ 
                     fontWeight: 'bold', /* Changed from medium to bold */
                     marginTop: 'clamp(0.25rem, 1vh, 0.75rem)',
+                    marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)', // Add spacing between lines
                     fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                     color: 'var(--seasun-deep-black)',
                     fontSize: 'clamp(1.5rem, 2.5vw + 0.75rem, 3.25rem)' /* Reduced size */
@@ -283,7 +289,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               - Creates consistent spacing relationship with heading
               */}
               <div style={{ 
-                marginBottom: 'clamp(1.5rem, 5vh, 3rem)'
+                marginBottom: 'clamp(1rem, 4vh, 2.5rem)' // Reduced for better proportions
               }}>
                 {/* 
                 TAGLINE: 
@@ -375,11 +381,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             - Proper alignment with text content
             - Only appears beside text at appropriate breakpoints
             */}
-            <div className="relative flex items-center justify-center xsmall:col-span-1" style={{
+            <div className="relative flex items-center justify-center xsmall:col-span-2" style={{
               minHeight: 'clamp(200px, 50vh, 500px)',
             }}>
               <div className="relative" style={{
-                width: 'clamp(280px, 90%, 600px)',
+                width: 'clamp(280px, 90%, 500px)',
                 aspectRatio: '1/1.2',
                 margin: '0 auto xsmall:mr-0 xsmall:ml-auto',
               }}>
