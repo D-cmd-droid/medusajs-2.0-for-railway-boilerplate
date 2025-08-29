@@ -292,165 +292,243 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     <div className="w-full">
       {/* Breakpoint indicator - visual aid for responsive debugging */}
       <div className="breakpoint-indicator"></div>
-      {/* Hero Section - Immersive Premium Experience */}
+      {/* 
+      ===============================================================
+      HERO SECTION - APPLE-INSPIRED RESPONSIVE APPROACH
+      ===============================================================
+      
+      Key principles:
+      1. Content-first vs device-first: Using natural content breakpoints
+      2. Fluid typography: Text that scales smoothly across viewport sizes
+      3. Proportional spacing: Elements that maintain visual relationships 
+      4. Intrinsic design: Layout responds to content needs, not fixed sizes
+
+      Implementation techniques:
+      - clamp(): For fluid values that scale between min/max bounds
+      - calc(): For responsive mathematical calculations
+      - min()/max(): For constraining values responsively
+      - CSS variables: For consistent values across components
+      */}
       <section 
-        className="relative min-h-[100vh] flex items-center justify-center overflow-hidden"
+        className="relative flex items-center justify-center"
+        style={{
+          /* 
+          FLUID HEIGHT: Instead of fixed 100vh (which causes mobile issues),
+          use clamp() to set minimum height while allowing natural expansion.
+          This prevents content overflow on small screens.
+          */
+          minHeight: 'clamp(500px, 100vh, 900px)',
+          /* Allows proper spacing on ultra-tall screens */
+          paddingTop: 'clamp(2rem, 8vh, 6rem)',
+          paddingBottom: 'clamp(2rem, 8vh, 6rem)',
+        }}
         role="banner"
         aria-labelledby="hero-heading"
         aria-describedby="hero-description"
-        style={{
-          backgroundImage: 'url(/images/seasun-hero-bg-desktop.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: '45% center'  // Shifted left to create more space on right
-        }}
       >
-        {/* Bottle Image with Positioned Pills */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{ zIndex: 25 }}
-        >
-          {/* Next.js Image component for proper tracking */}
-          <Image
-            src="/images/seasun-hero-bg-bottle.png"
-            alt="SEASUN Caribbean beauty product bottle"
-            fill
-            priority
-            style={{ 
-              objectFit: 'cover',
-              objectPosition: '45% center'  // Shifted left to match background and create space for pills
-            }}
-            sizes="100vw"
-          />
-          
-          {/* Pills positioned as overlays on the Image */}
-          <div className="absolute inset-0 pointer-events-auto" id="bottle-container">
-            {/* Pills rendered as overlays */}
-            {ingredients.map(ingredient => (
-              <IngredientPill 
-                key={ingredient.id}
-                {...ingredient}
-              />
-            ))}
-          </div>
-        </div>
-        
-        
-        <div className="container mx-auto px-4 sm:px-6 relative z-20">
-          <div className="relative max-w-6xl mx-auto">
+        {/* 
+        CONTENT CONTAINER: 
+        - Using min() for max-width creates a fluid container that responds to viewport
+        - Percentage-based horizontal padding (5vw) creates proportional spacing
+        - Maintains centered alignment with auto margins
+        */}
+        <div className="relative w-full mx-auto" style={{ 
+          maxWidth: 'min(90vw, 1400px)', 
+          padding: '0 clamp(1rem, 5vw, 3rem)'
+        }}>
+          {/* 
+          RESPONSIVE GRID: 
+          - Single column by default (mobile-first)
+          - Two columns at larger screens (lg:grid-cols-2)
+          - Gap scales with viewport to maintain consistent visual rhythm
+          */}
+          <div className="relative grid lg:grid-cols-2 items-center" style={{
+            gap: 'clamp(2rem, 5vw, 5rem)', 
+            minHeight: 'clamp(400px, 70vh, 700px)'
+          }}>
             
-            
-            {/* New Layout: Left Text + Right Space for Bottle */}
-            <div className="relative grid lg:grid-cols-2 gap-8 items-center min-h-[80vh] seasun-landing-grid">
-              
-              {/* Left Side: Text Content */}
-              <div className="relative z-30 lg:pl-8 xl:pl-16 seasun-hero-text text-center sm:text-left seasun-hero-text-container">
-                <h1 
-                  id="hero-heading"
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight mb-8"
+            {/* 
+            TEXT CONTENT CONTAINER: 
+            - Centered on mobile, left-aligned on larger screens
+            - Padding scales proportionally with viewport
+            - Max-width prevents excessively long line lengths
+            */}
+            <div className="relative text-center sm:text-left" style={{
+              paddingLeft: 'clamp(0rem, 2vw, 3rem)',
+              maxWidth: 'min(100%, 640px)',
+              margin: '0 auto lg:0',
+            }}>
+              {/* 
+              HEADING: 
+              - Uses clamp() for fluid typography that scales smoothly
+              - Maintains proper visual hierarchy with proportional line heights
+              - Eliminates multiple breakpoint-specific text sizes
+              */}
+              <h1 
+                id="hero-heading"
+                style={{ 
+                  fontFamily: 'var(--seasun-font-decorative)',
+                  color: 'var(--seasun-deep-black)',
+                  letterSpacing: '0.05em',
+                  marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
+                  /* Create better visual rhythm with a more natural line height */
+                  lineHeight: '1.1',
+                }}
+              >
+                {/* 
+                HERO LINE 1: 
+                - Font size scales fluidly between 1.5rem (24px) and 3.5rem (56px)
+                - Maintains specific font weight characteristics
+                */}
+                <span 
+                  className="block seasun-hero-line-1"
                   style={{ 
+                    fontWeight: 'var(--seasun-font-light)',
                     fontFamily: 'var(--seasun-font-decorative)',
                     color: 'var(--seasun-deep-black)',
-                    letterSpacing: '0.05em'
+                    fontSize: 'clamp(1.5rem, 2vw + 1rem, 3.5rem)'
                   }}
                 >
-                  <span 
-                    className="block seasun-hero-line-1"
-                    style={{ 
-                      fontWeight: 'var(--seasun-font-light)',
-                      fontFamily: 'var(--seasun-font-decorative)',
-                      color: 'var(--seasun-deep-black)'
-                    }}
-                  >
-                    The Caribbean's
-                  </span>
-                  
-                  <span 
-                    className="block seasun-hero-line-2"
-                    style={{ 
-                      fontWeight: 'var(--seasun-font-medium)',
-                      marginTop: '0.5rem',
-                      fontFamily: 'var(--seasun-font-decorative)',
-                      color: 'var(--seasun-deep-black)'
-                    }}
-                  >
-                    best kept
-                  </span>
-                  
-                  <span 
-                    className="block seasun-hero-line-3"
-                    style={{ 
-                      fontWeight: 'var(--seasun-font-semi-bold)',
-                      marginTop: '0.75rem',
-                      fontFamily: 'var(--seasun-font-decorative)',
-                      color: 'var(--seasun-deep-black)'
-                    }}
-                  >
-                    secret to radiant skin
-                  </span>
-                </h1>
+                  The Caribbean's
+                </span>
                 
-                <div className="mb-8">
-                  <p 
-                    className="seasun-body text-lg sm:text-xl lg:text-2xl font-light italic text-center sm:text-left" 
-                    style={{ 
-                      color: 'var(--seasun-deep-black)', 
-                      opacity: 0.85,
-                      marginTop: '1.5rem'
-                    }}
-                    id="hero-description"
-                    role="text"
-                  >
-                    How does it feel to be
-                    <span 
-                      className="seasun-sunkissed-enhanced"
-                      style={{
-                        fontWeight: 'var(--seasun-font-bold)',
-                        fontFamily: 'var(--seasun-font-decorative)',
-                        letterSpacing: '0.15em',
-                        fontStyle: 'normal'
-                      }}
-                      aria-label="SUNKISSED"
-                    >
-                      SUNKISSED
-                    </span>?
-                  </p>
-                  
-                  <div className="flex justify-start lg:justify-start text-left mt-8">
-                    <button
-                      onClick={scrollToProductSection}
-                      className="group relative seasun-body text-white px-6 py-3 text-base sm:text-lg rounded-xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
-                      style={{ 
-                        backgroundColor: 'var(--seasun-golden-tan)',
-                        boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
-                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
-                        e.currentTarget.style.backgroundColor = '#fa9322';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
-                        e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)';
-                      }}
-                      aria-label="See product details"
-                    >
-                      <span className="relative z-10 seasun-body tracking-wide font-semibold">See for yourself</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-                    </button>
-                  </div>
-                </div>
-              </div>
+                {/* 
+                HERO LINE 2: 
+                - Slightly larger than line 1 for visual emphasis
+                - Margin scales proportionally with viewport
+                */}
+                <span 
+                  className="block seasun-hero-line-2"
+                  style={{ 
+                    fontWeight: 'var(--seasun-font-medium)',
+                    marginTop: 'clamp(0.25rem, 1vh, 0.75rem)',
+                    fontFamily: 'var(--seasun-font-decorative)',
+                    color: 'var(--seasun-deep-black)',
+                    fontSize: 'clamp(1.75rem, 3vw + 1rem, 4rem)'
+                  }}
+                >
+                  best kept
+                </span>
+                
+                {/* 
+                HERO LINE 3: 
+                - Largest line for maximum impact
+                - Semi-bold weight enhances visual hierarchy
+                */}
+                <span 
+                  className="block seasun-hero-line-3"
+                  style={{ 
+                    fontWeight: 'var(--seasun-font-semi-bold)',
+                    marginTop: 'clamp(0.5rem, 1.5vh, 1rem)',
+                    fontFamily: 'var(--seasun-font-decorative)',
+                    color: 'var(--seasun-deep-black)',
+                    fontSize: 'clamp(2rem, 3.5vw + 1rem, 4.5rem)'
+                  }}
+                >
+                  secret to radiant skin
+                </span>
+              </h1>
               
-              {/* Right Side: Space for overlaid bottle (no content, just spacing) */}
-              <div className="relative">
-                <div className="aspect-video w-full"></div>
+              {/* 
+              TAGLINE & CTA CONTAINER: 
+              - Proportional bottom margin scales with viewport
+              - Creates consistent spacing relationship with heading
+              */}
+              <div style={{ 
+                marginBottom: 'clamp(1.5rem, 5vh, 3rem)'
+              }}>
+                {/* 
+                TAGLINE: 
+                - Fluid typography scales between 1rem (16px) and 1.5rem (24px)
+                - Maintains proper spacing relationship with heading
+                */}
+                <p 
+                  className="seasun-body font-light italic text-center sm:text-left" 
+                  style={{ 
+                    color: 'var(--seasun-deep-black)', 
+                    opacity: 0.85,
+                    marginTop: 'clamp(1rem, 3vh, 2rem)',
+                    fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)',
+                    lineHeight: '1.6',
+                  }}
+                  id="hero-description"
+                  role="text"
+                >
+                  How does it feel to be
+                  {/* 
+                  ENHANCED TEXT: 
+                  - Scaled in proportion to surrounding text
+                  - Maintains proper visual weight with consistent font styling
+                  */}
+                  <span 
+                    className="seasun-sunkissed-enhanced"
+                    style={{
+                      fontWeight: 'var(--seasun-font-bold)',
+                      fontFamily: 'var(--seasun-font-decorative)',
+                      letterSpacing: '0.15em',
+                      fontStyle: 'normal',
+                      marginLeft: 'clamp(0.25rem, 0.5vw, 0.5rem)',
+                      fontSize: 'clamp(1.1rem, 1.1vw + 0.6rem, 1.7rem)',
+                    }}
+                    aria-label="SUNKISSED"
+                  >
+                    SUNKISSED
+                  </span>?
+                </p>
+                
+                {/* 
+                CTA BUTTON CONTAINER: 
+                - Maintains consistent alignment with text content
+                - Scales margin proportionally with viewport
+                */}
+                <div className="flex justify-start lg:justify-start text-left" style={{
+                  marginTop: 'clamp(1.5rem, 4vh, 3rem)'
+                }}>
+                  {/* 
+                  CTA BUTTON: 
+                  - Padding scales proportionally with viewport
+                  - Text size scales for proper readability
+                  - Maintains consistent visual appearance across devices
+                  */}
+                  <button
+                    onClick={scrollToProductSection}
+                    className="group relative seasun-body text-white rounded-xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
+                    style={{ 
+                      backgroundColor: 'var(--seasun-golden-tan)',
+                      boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      /* Fluid padding creates consistent visual weight */
+                      padding: 'clamp(0.5rem, 1vh, 0.75rem) clamp(1rem, 2vw, 2rem)',
+                      /* Button text scales appropriately with viewport */
+                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
+                      e.currentTarget.style.backgroundColor = '#fa9322';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                      e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)';
+                    }}
+                    aria-label="See product details"
+                  >
+                    <span className="relative z-10 seasun-body tracking-wide font-semibold">See for yourself</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  </button>
+                </div>
               </div>
             </div>
             
-{/* Removed from here - pills now rendered in bottle container */}
+            {/* 
+            RIGHT COLUMN: Empty placeholder for future content
+            - Maintains proper sizing relationship with left column
+            - Will eventually contain the bottle image
+            */}
+            <div className="relative" style={{
+              minHeight: 'clamp(200px, 50vh, 500px)',
+            }}></div>
           </div>
         </div>
-        
       </section>
 
       {/* Mobile Ingredient Showcase - Only visible on mobile */}
