@@ -153,7 +153,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       - CSS variables: For consistent values across components
       */}
       <section 
-        className="relative flex items-center justify-center"
+        className="relative flex items-center justify-center overflow-hidden"
         style={{
           /* 
           FLUID HEIGHT: Instead of fixed 100vh (which causes mobile issues),
@@ -169,6 +169,27 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         aria-labelledby="hero-heading"
         aria-describedby="hero-description"
       >
+        {/* 
+        BACKGROUND IMAGE: 
+        - Using Next.js Image component for optimized loading and responsive behavior
+        - fill prop ensures image covers entire container
+        - objectFit='cover' maintains aspect ratio while filling container
+        - z-index -10 positions image behind all content
+        - priority ensures immediate loading as this is a critical above-fold element
+        */}
+        <div className="absolute inset-0" style={{ zIndex: -10 }}>
+          <Image
+            src="/images/seasun-hero-bg.png"
+            alt="Tropical beach scene background"
+            fill
+            style={{ 
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+            quality={90}
+            priority
+          />
+        </div>
         {/* 
         CONTENT CONTAINER: 
         - Using min() for max-width creates a fluid container that responds to viewport
@@ -205,6 +226,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               paddingLeft: 'clamp(0rem, 2vw, 3rem)',
               // Allow for more natural text width with better constraints
               maxWidth: 'min(100%, 540px)',
+              // Add subtle text shadow for better readability against background image
+              textShadow: '0 1px 3px rgba(0, 0, 0, 0.25)',
               // Better margin control with vertical alignment
               margin: '0 auto xsmall:m-0',
               // Ensure vertical alignment with bottle
@@ -220,7 +243,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 id="hero-heading"
                 style={{ 
                   fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
-                  color: 'var(--seasun-deep-black)',
+                  color: 'var(--seasun-white)', /* Changed to brand white for better contrast with background */
                   letterSpacing: '0.05em',
                   marginBottom: 'clamp(1rem, 4vh, 2.5rem)', // Adjusted for better spacing
                   /* Create better visual rhythm with a more natural line height */
@@ -237,7 +260,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   style={{ 
                     fontWeight: 'bold', /* Changed from light to bold */
                     fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
-                    color: 'var(--seasun-deep-black)',
+                    color: 'var(--seasun-white)', /* Changed to brand white for better contrast */
                     fontSize: 'clamp(1.25rem, 1.5vw + 0.75rem, 2.75rem)', /* Reduced size */
                     marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)' // Add spacing between lines
                   }}
@@ -257,7 +280,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     marginTop: 'clamp(0.25rem, 1vh, 0.75rem)',
                     marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)', // Add spacing between lines
                     fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
-                    color: 'var(--seasun-deep-black)',
+                    color: 'var(--seasun-white)', /* Changed to brand white for better contrast */
                     fontSize: 'clamp(1.5rem, 2.5vw + 0.75rem, 3.25rem)' /* Reduced size */
                   }}
                 >
@@ -275,7 +298,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     fontWeight: 'bold', /* Changed from semi-bold to bold */
                     marginTop: 'clamp(0.5rem, 1.5vh, 1rem)',
                     fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
-                    color: 'var(--seasun-deep-black)',
+                    color: 'var(--seasun-white)', /* Changed to brand white for better contrast */
                     fontSize: 'clamp(1.75rem, 3vw + 0.75rem, 3.75rem)' /* Reduced size */
                   }}
                 >
@@ -299,8 +322,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 <p 
                   className="seasun-body font-light italic text-center xsmall:text-left" 
                   style={{ 
-                    color: 'var(--seasun-deep-black)', 
-                    opacity: 0.85,
+                    color: 'var(--seasun-white)', /* Changed to brand white for better contrast */
+                    opacity: 0.95, /* Increased opacity for better visibility */
                     marginTop: 'clamp(1rem, 3vh, 2rem)',
                     fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)',
                     lineHeight: '1.6',
@@ -323,6 +346,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                         letterSpacing: '0.15em',
                         fontStyle: 'normal',
+                        /* Keeping original color (no specific color means it inherits from parent) */
                         marginLeft: 'clamp(0.25rem, 0.5vw, 0.5rem)',
                         fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)', /* Reduced size */
                       }}
