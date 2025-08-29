@@ -297,7 +297,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 - Maintains proper spacing relationship with heading
                 */}
                 <p 
-                  className="seasun-body font-light italic text-center sm:text-left" 
+                  className="seasun-body font-light italic text-center xsmall:text-left" 
                   style={{ 
                     color: 'var(--seasun-deep-black)', 
                     opacity: 0.85,
@@ -309,25 +309,28 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   role="text"
                 >
                   How does it feel to be
-                  {/* 
-                  ENHANCED TEXT: 
-                  - Scaled in proportion to surrounding text
-                  - Maintains proper visual weight with consistent font styling
-                  */}
-                  <span 
-                    className="seasun-sunkissed-enhanced"
-                    style={{
-                      fontWeight: 'bold', /* Changed from seasun-font-bold to bold */
-                      fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
-                      letterSpacing: '0.15em',
-                      fontStyle: 'normal',
-                      marginLeft: 'clamp(0.25rem, 0.5vw, 0.5rem)',
-                      fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)', /* Reduced size */
-                    }}
-                    aria-label="SUNKISSED"
-                  >
-                    SUNKISSED
-                  </span>?
+                  {/* Wrapping SUNKISSED and ? together to prevent line breaks between them */}
+                  <span style={{ whiteSpace: 'nowrap' }}>
+                    {/* 
+                    ENHANCED TEXT: 
+                    - Scaled in proportion to surrounding text
+                    - Maintains proper visual weight with consistent font styling
+                    */}
+                    <span 
+                      className="seasun-sunkissed-enhanced"
+                      style={{
+                        fontWeight: 'bold', /* Changed from seasun-font-bold to bold */
+                        fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
+                        letterSpacing: '0.15em',
+                        fontStyle: 'normal',
+                        marginLeft: 'clamp(0.25rem, 0.5vw, 0.5rem)',
+                        fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.5rem)', /* Reduced size */
+                      }}
+                      aria-label="SUNKISSED"
+                    >
+                      SUNKISSED
+                    </span>?
+                  </span>
                 </p>
                 
                 {/* 
@@ -335,7 +338,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 - Maintains consistent alignment with text content
                 - Scales margin proportionally with viewport
                 */}
-                <div className="flex justify-start lg:justify-start text-left" style={{
+                <div className="flex justify-center xsmall:justify-start text-left" style={{
                   marginTop: 'clamp(1.5rem, 4vh, 3rem)'
                 }}>
                   {/* 
