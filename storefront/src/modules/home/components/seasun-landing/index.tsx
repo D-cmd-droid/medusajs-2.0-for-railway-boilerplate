@@ -51,171 +51,14 @@ type SeasunLandingProps = {
 }
 
 // ============================================================================
-// INGREDIENT DATA
+// PRODUCT INFORMATION
 // ============================================================================
-type Ingredient = {
-  id: string
-  name: string
-  emoji: string
-  description: string
-  style: React.CSSProperties
-  className?: string
-}
-
-const ingredients: Ingredient[] = [
-  {
-    id: "coconut-oil",
-    name: "Coconut Oil",
-    emoji: "🥥",
-    description: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches.",
-    style: {
-      position: 'absolute',
-      // Simple percentage positioning on Image element
-      top: '41%',
-      left: '61%',
-      transform: 'translate(-50%, -50%) rotate(-1deg)'  // Center on coordinates
-    },
-    className: 'coconut-pill'
-  },
-  {
-    id: "cinnamon",
-    name: "Cinnamon",
-    emoji: "🌶️",
-    description: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth.",
-    style: {
-      position: 'absolute',
-      // Temporary visual adjustment until bottle PNG is edited
-      top: '57%',
-      left: '82%',  // Slightly right for visual alignment
-      transform: 'translate(-50%, -50%) rotate(1deg)'  // Center on coordinates
-    },
-    className: 'cinnamon-pill'
-  },
-  {
-    id: "annatto",
-    name: "Annatto",
-    emoji: "☀️",
-    description: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow.",
-    style: {
-      position: 'absolute',
-      // Simple percentage positioning on Image element
-      top: '69%',
-      left: '62%',
-      transform: 'translate(-50%, -50%) rotate(-0.5deg)'  // Center on coordinates
-    },
-    className: 'annatto-pill'
-  }
+// Key ingredients (previously shown as pills, now displayed in hero image)
+const productIngredients = [
+  { name: "Coconut Oil", benefit: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches." },
+  { name: "Cinnamon", benefit: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth." },
+  { name: "Annatto", benefit: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow." }
 ]
-
-// ============================================================================
-// INGREDIENT PILL COMPONENT
-// ============================================================================
-function IngredientPill({ id, name, emoji, description, style, className = '' }: Ingredient) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const pillRef = useRef<HTMLDivElement>(null);
-  
-  const toggleExpand = (e: React.MouseEvent | React.KeyboardEvent) => {
-    e.stopPropagation();
-    setIsExpanded(!isExpanded);
-  };
-  
-  // Add event listener to handle clicks outside the pill
-  useEffect(() => {
-    if (!isExpanded) return;
-    
-    const handleClickOutside = (event: MouseEvent) => {
-      if (pillRef.current && !pillRef.current.contains(event.target as Node)) {
-        setIsExpanded(false);
-      }
-    };
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isExpanded]);
-  
-  return (
-    <div 
-      ref={pillRef}
-      className={`hidden small:block pointer-events-auto transition-all duration-500 relative ${className}`}
-      style={{
-        ...style,
-        zIndex: isExpanded ? 50 : 30,
-        transform: isHovered && !isExpanded
-          ? `${style.transform?.toString()} scale(1.05)` 
-          : style.transform,
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-      }}
-      onMouseEnter={() => !isExpanded && setIsHovered(true)}
-      onMouseLeave={() => !isExpanded && setIsHovered(false)}
-      onClick={toggleExpand}
-    >
-      {/* Ingredient Pill */}
-      <div 
-        className="backdrop-blur-lg px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer transition-all duration-300 relative"
-        aria-expanded={isExpanded}
-        aria-controls={`ingredient-info-${id}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && toggleExpand(e)}
-        style={{
-          background: id === "coconut-oil" 
-            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 253, 240, 0.75) 100%)' 
-            : id === "cinnamon" 
-            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 241, 230, 0.7) 100%)'
-            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 250, 230, 0.7) 100%)',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.05)',
-          border: '1px solid rgba(255, 255, 255, 0.7)',
-          transition: 'all 0.3s ease-out'
-        }}
-      >
-        <span className="text-lg" aria-hidden="true">{emoji}</span>
-        <p className="seasun-body text-sm font-bold" style={{ color: 'var(--seasun-deep-black)' }}>{name}</p>
-        <span 
-          className="text-sm transition-transform duration-300"
-          style={{ 
-            transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)',
-            color: 'var(--seasun-deep-black)'
-          }}
-          aria-hidden="true"
-        >
-          +
-        </span>
-      </div>
-      
-      {/* Expandable Content */}
-      <div 
-        id={`ingredient-info-${id}`}
-        className="absolute top-full left-0 mt-2 backdrop-blur-lg px-4 py-3 rounded-xl w-64 overflow-hidden transition-all duration-500"
-        style={{
-          background: id === "coconut-oil" 
-            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 253, 240, 0.7) 100%)' 
-            : id === "cinnamon" 
-            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 241, 230, 0.65) 100%)'
-            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 250, 230, 0.65) 100%)',
-          maxHeight: isExpanded ? '200px' : '0px',
-          opacity: isExpanded ? 1 : 0,
-          padding: isExpanded ? '0.75rem 1rem' : '0 1rem',
-          zIndex: 100,
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.08)',
-          border: '1px solid rgba(255, 255, 255, 0.7)',
-          transform: isExpanded ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(0, -10px, 0) scale(0.98)',
-          pointerEvents: isExpanded ? 'auto' : 'none'
-        }}
-        aria-hidden={!isExpanded}
-      >
-        <p className="seasun-body text-sm leading-relaxed" style={{ 
-          color: 'var(--seasun-deep-black)', 
-          textShadow: '0 1px 0 rgba(255, 255, 255, 0.5)'
-        }}>
-          {description}
-        </p>
-      </div>
-    </div>
-  )
-}
 
 export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // countryCode available for future country-specific content
@@ -520,13 +363,33 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             </div>
             
             {/* 
-            RIGHT COLUMN: Empty placeholder for future content
-            - Maintains proper sizing relationship with left column
-            - Will eventually contain the bottle image
+            RIGHT COLUMN: Product Image Container
+            - Uses Next.js Image for optimized loading
+            - Maintains proper aspect ratio
+            - Scales fluidly with viewport
+            - Proper alignment with text content
             */}
-            <div className="relative" style={{
+            <div className="relative flex items-center justify-center" style={{
               minHeight: 'clamp(200px, 50vh, 500px)',
-            }}></div>
+            }}>
+              <div className="relative" style={{
+                width: 'clamp(280px, 90%, 600px)',
+                aspectRatio: '1/1.2',
+                margin: '0 auto',
+              }}>
+                <Image
+                  src="/images/seasun-hero-bottle.png"
+                  alt="SEASUN organic tanning oil with natural ingredients: coconut, cinnamon, and annatto"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 600px"
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'center',
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -546,15 +409,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            {ingredients.map(ingredient => (
-              <div key={ingredient.id} className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-white/50 overflow-hidden">
+            {productIngredients.map(ingredient => (
+              <div key={ingredient.name} className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-white/50 overflow-hidden">
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-2xl" aria-hidden="true">{ingredient.emoji}</span>
                     <h3 className="text-base font-medium" style={{ color: 'var(--seasun-deep-black)' }}>{ingredient.name}</h3>
                   </div>
                   <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
-                    {ingredient.description}
+                    {ingredient.benefit}
                   </p>
                 </div>
               </div>
