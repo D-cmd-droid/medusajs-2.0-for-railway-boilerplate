@@ -607,11 +607,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           <div className="mb-24 relative overflow-hidden">
             {/* Image Container */}
             <div 
-              className="relative mx-auto lg:float-left lg:mr-8 mb-4"
+              className="relative mx-auto lg:float-left lg:mr-4 mb-2"
               style={{ 
-                width: 'clamp(240px, 30vw, 400px)',
-                height: 'clamp(300px, 40vw, 500px)',
-                margin: '0 auto 2rem auto',
+                width: 'clamp(120px, 15vw, 180px)',
+                height: 'clamp(150px, 20vw, 220px)',
+                margin: '0 auto 1rem auto',
               }}
               data-scroll-animation="fade-right"
             >
@@ -667,11 +667,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           <div className="mb-24 relative overflow-hidden">
             {/* Image Container */}
             <div 
-              className="relative mx-auto lg:float-right lg:ml-8 mb-4"
+              className="relative mx-auto lg:float-right lg:ml-4 mb-2"
               style={{ 
-                width: 'clamp(240px, 30vw, 400px)',
-                height: 'clamp(300px, 40vw, 500px)',
-                margin: '0 auto 2rem auto',
+                width: 'clamp(120px, 15vw, 180px)',
+                height: 'clamp(150px, 20vw, 220px)',
+                margin: '0 auto 1rem auto',
               }}
               data-scroll-animation="fade-left"
             >
@@ -727,11 +727,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           <div className="mb-24 relative overflow-hidden">
             {/* Image Container */}
             <div 
-              className="relative mx-auto lg:float-left lg:mr-8 mb-4"
+              className="relative mx-auto lg:float-left lg:mr-4 mb-2"
               style={{ 
-                width: 'clamp(240px, 30vw, 400px)',
-                height: 'clamp(300px, 40vw, 500px)',
-                margin: '0 auto 2rem auto',
+                width: 'clamp(120px, 15vw, 180px)',
+                height: 'clamp(150px, 20vw, 220px)',
+                margin: '0 auto 1rem auto',
               }}
               data-scroll-animation="fade-right"
             >
