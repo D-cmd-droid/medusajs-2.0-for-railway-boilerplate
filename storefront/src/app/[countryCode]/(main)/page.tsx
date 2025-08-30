@@ -10,10 +10,10 @@ import { getProductByHandle } from "@lib/data/products"
 export const metadata: Metadata = {
   title: "SEASUN - Caribbean Beauty Secret | Natural Skincare",
   description:
-    "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural sun protection meets luxury skincare.",
+    "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural luxury skincare that enhances your glow.",
   openGraph: {
     title: "SEASUN - Caribbean Beauty Secret | Natural Skincare",
-    description: "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural sun protection meets luxury skincare.",
+    description: "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural luxury skincare that enhances your glow.",
     images: ["/images/seasun-opengraph.jpg"],
   }
 }

@@ -122,10 +122,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             </div>
           </div>
           
-          {/* Floating elements - Refined */}
-          <div className="absolute top-5 right-5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">
-            <span className="text-white text-xs font-medium tracking-wide">SPF 30</span>
-          </div>
+          {/* SPF reference removed */}
           
           <div className="absolute bottom-5 left-5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">
             <span className="text-white text-xs font-medium tracking-wide">🌿 Natural</span>
@@ -259,12 +256,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
         {/* Product Features - Enhanced */}
         <div className="border-t border-gray-100 pt-3 mt-1">
           <div className="flex flex-wrap justify-center sm:justify-between gap-4 sm:gap-6">
-            <div className="flex items-center">
-              <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
-                SPF 30
-              </span>
-            </div>
+            {/* SPF reference removed */}
             <div className="flex items-center">
               <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
               <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>

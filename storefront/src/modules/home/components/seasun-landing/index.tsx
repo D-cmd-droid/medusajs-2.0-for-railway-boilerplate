@@ -53,12 +53,7 @@ type SeasunLandingProps = {
 // ============================================================================
 // PRODUCT INFORMATION
 // ============================================================================
-// Key ingredients (previously shown as pills, now displayed in hero image)
-const productIngredients = [
-  { name: "Coconut Oil", benefit: "Deep Moisture... retains hydration so your tan develops smoothly, not in dry patches." },
-  { name: "Cinnamon", benefit: "Circulation Boost... increases blood flow so pigment spreads evenly for that sun-kissed warmth." },
-  { name: "Annatto", benefit: "Golden Tint... infuses a natural warmth, deepening your tan with a vibrant glow." }
-]
+// Ingredients information removed
 
 export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // countryCode available for future country-specific content
@@ -597,36 +592,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
-      {/* Mobile Ingredient Showcase - Only visible on mobile */}
-      <section className="py-10 sm:hidden seasun-section-overlay" aria-labelledby="mobile-ingredients-heading">
-        <div className="container mx-auto px-4">
-          <h2 
-            id="mobile-ingredients-heading" 
-            className="text-xl font-light mb-6 text-center"
-            style={{ 
-              fontFamily: 'var(--seasun-font-heading)', 
-              color: 'var(--seasun-deep-black)'
-            }}
-          >
-            Powerful Natural Ingredients
-          </h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            {productIngredients.map(ingredient => (
-              <div key={ingredient.name} className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-white/50 overflow-hidden">
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-base font-medium" style={{ color: 'var(--seasun-deep-black)' }}>{ingredient.name}</h3>
-                  </div>
-                  <p className="seasun-body text-sm leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
-                    {ingredient.benefit}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Mobile Ingredient Showcase removed */}
 
 
       {/* All sections below hero wrapped in seamless gradient */}
