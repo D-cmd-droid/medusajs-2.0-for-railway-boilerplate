@@ -518,102 +518,46 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               </div>
             </div>
             
-            <div className="max-w-5xl mx-auto">
-              {/* Two-column layout for larger screens */}
-              <div className="grid lg:grid-cols-7 gap-8 lg:gap-12 items-center">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 id="trust-problem-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+                When the sun plays <span className="relative inline-block">
+                  hard to get
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-amber-300 to-amber-500"></span>
+                </span>
+              </h2>
+              
+              <div className="space-y-6">
+                <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
+                  How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, "Sure, I've heard these promises before." Your bathroom cabinet probably tells that story all too well.
+                </p>
                 
-                {/* Left column - Image/Visual */}
-                <div className="lg:col-span-3 order-2 lg:order-1">
-                  <div className="relative bg-gradient-to-br from-white/80 to-white/30 backdrop-blur-sm p-6 sm:p-8 rounded-3xl shadow-xl border border-white/40 transform hover:scale-[1.02] transition-all duration-500">
-                    <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-amber-300 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                      </svg>
-                    </div>
-                    
-                    <p className="seasun-body text-lg sm:text-xl md:text-2xl leading-relaxed font-medium mb-6" style={{ 
-                      color: 'var(--seasun-deep-black)',
-                      opacity: 1,
-                      paddingLeft: '1rem',
-                      borderLeft: '3px solid var(--seasun-golden-tan)',
-                    }}>
-                      Our organic oil gently gives those stubborn lighter areas the boost they need, helps your tan develop faster, and transforms your skin into the golden, even, hydrated glow you've been chasing all along.
-                    </p>
-                    
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="text-center">
-                        <div className="h-12 w-12 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 mx-auto flex items-center justify-center shadow-md">
-                          <span className="text-white font-semibold">1</span>
-                        </div>
-                        <p className="mt-2 text-sm text-center">Boosts</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="h-12 w-12 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 mx-auto flex items-center justify-center shadow-md">
-                          <span className="text-white font-semibold">2</span>
-                        </div>
-                        <p className="mt-2 text-sm text-center">Speeds</p>
-                      </div>
-                      <div className="text-center">
-                        <div className="h-12 w-12 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 mx-auto flex items-center justify-center shadow-md">
-                          <span className="text-white font-semibold">3</span>
-                        </div>
-                        <p className="mt-2 text-sm text-center">Transforms</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
+                  I felt the same way until I couldn't take it anymore. That's why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
+                </p>
                 
-                {/* Right column - Text content */}
-                <div className="lg:col-span-4 order-1 lg:order-2">
-                  <h2 id="trust-problem-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 leading-tight lg:text-left text-center" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-                    When the sun plays <span className="relative inline-block">
-                      hard to get
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-amber-300 to-amber-500"></span>
-                    </span>
-                  </h2>
-                  
-                  <div className="space-y-6 lg:text-left text-center">
-                    <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
-                      How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, "Sure, I've heard these promises before." Your bathroom cabinet probably tells that story all too well.
-                    </p>
-                    
-                    <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
-                      I felt the same way until I couldn't take it anymore. That's why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
-                    </p>
-                    
-                    <div className="pt-4">
-                      <Button 
-                        onClick={scrollToProductSection}
-                        className="group relative seasun-body text-white px-8 py-4 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px]"
-                        style={{ 
-                          backgroundColor: 'var(--seasun-golden-tan)',
-                          boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
-                          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                          minWidth: '200px'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
-                        }}
-                        aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
-                        role="button"
-                        tabIndex={0}
-                      >
-                        <span className="relative z-10 seasun-body tracking-wide font-semibold">See the Difference</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-                      </Button>
-                    </div>
-                  </div>
+                <div className="pt-6">
+                  <Button 
+                    onClick={scrollToProductSection}
+                    className="group relative seasun-body text-white px-8 py-4 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px]"
+                    style={{ 
+                      backgroundColor: 'var(--seasun-golden-tan)',
+                      boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      minWidth: '200px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                    }}
+                    aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <span className="relative z-10 seasun-body tracking-wide font-semibold">See the Difference</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -624,7 +568,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       {/* Why Ingredients Matter Section */}
       <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28" aria-labelledby="ingredients-heading">
         {/* Background Elements */}
-        <div className="absolute inset-0 seasun-content-gradient"></div>
         <div 
           className="absolute inset-0 opacity-20 pointer-events-none" 
           style={{
