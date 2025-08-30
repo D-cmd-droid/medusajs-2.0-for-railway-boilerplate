@@ -603,177 +603,184 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             How many skincare products have you tried that promised results but left your skin irritated and your wallet empty? Most beauty companies rely on complicated formulas with ingredients you can't pronounce. But what if the answer was actually simpler?
           </p>
           
-          {/* Coconut Oil Ingredient */}
-          <div className="mb-24 relative overflow-hidden">
-            {/* Image Container */}
-            <div 
-              className="relative mx-auto lg:float-left lg:mr-4 mb-2"
-              style={{ 
-                width: 'clamp(120px, 15vw, 180px)',
-                height: 'clamp(150px, 20vw, 220px)',
-                margin: '0 auto 1rem auto',
-              }}
-              data-scroll-animation="fade-right"
-            >
-              {/* Image Placeholder */}
-              <div 
-                className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
-                style={{
-                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)'
-                }}
-              >
-                <Image
-                  src="/images/ingredients/coconut.png"
-                  alt="Coconut Oil"
-                  fill
+          {/* Ingredient Diagonal Layout Container */}
+          <div className="relative mb-20">
+
+            {/* Coconut Oil Ingredient - First position (0% offset) */}
+            <div className="mb-24 relative overflow-hidden" style={{ paddingLeft: '0%' }}>
+              <div className="flex flex-col lg:flex-row items-center lg:items-start">
+                {/* Image Container */}
+                <div 
+                  className="relative mb-2 lg:mr-4"
                   style={{ 
-                    objectFit: 'contain',
-                    objectPosition: 'center',
+                    width: 'clamp(120px, 15vw, 180px)',
+                    height: 'clamp(150px, 20vw, 220px)',
+                    zIndex: 1
                   }}
-                />
+                  data-scroll-animation="fade-right"
+                  data-aos-delay="0"
+                >
+                  {/* Image Placeholder */}
+                  <div 
+                    className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
+                    style={{
+                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
+                  >
+                    <Image
+                      src="/images/ingredients/coconut.png"
+                      alt="Coconut Oil"
+                      fill
+                      style={{ 
+                        objectFit: 'contain',
+                        objectPosition: 'center',
+                      }}
+                    />
+                  </div>
+                </div>
+                
+                {/* Content Container */}
+                <div className="lg:w-2/3">
+                  {/* Title */}
+                  <h3 
+                    className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
+                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+                    data-scroll-animation="fade-up"
+                    data-aos-delay="50"
+                  >
+                    Coconut Oil Boosts
+                  </h3>
+                  
+                  {/* Description */}
+                  <p 
+                    className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
+                    style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                    data-scroll-animation="fade-up"
+                    data-aos-delay="100"
+                  >
+                    While synthetic moisturizers sit on your skin creating that greasy, artificial feel, pure coconut oil penetrates deeply. It finds those stubborn lighter areas that never seem to catch the sun and creates the perfect canvas for an even, natural tan by providing intense hydration exactly where you need it most—no 12-step routine required.
+                  </p>
+                </div>
               </div>
             </div>
             
-            {/* Content Container */}
-            <div className="lg:w-1/2 lg:ml-auto">
-              {/* Title */}
-              <h3 
-                className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
-                style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
-                data-scroll-animation="fade-up"
-              >
-                Coconut Oil Boosts
-              </h3>
-              
-              {/* Description */}
-              <p 
-                className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
-                style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
-                data-scroll-animation="fade-up"
-              >
-                While synthetic moisturizers sit on your skin creating that greasy, artificial feel, pure coconut oil penetrates deeply. It finds those stubborn lighter areas that never seem to catch the sun and creates the perfect canvas for an even, natural tan by providing intense hydration exactly where you need it most—no 12-step routine required.
-              </p>
-            </div>
-            
-            {/* Visual connector to next ingredient */}
-            <div 
-              className="hidden lg:block absolute h-16 w-1 bg-gradient-to-b from-amber-300 to-transparent bottom-[-24px] left-[25%]"
-              data-scroll-animation="height"
-            ></div>
-          </div>
-          
-          {/* Cinnamon Ingredient */}
-          <div className="mb-24 relative overflow-hidden">
-            {/* Image Container */}
-            <div 
-              className="relative mx-auto lg:float-right lg:ml-4 mb-2"
-              style={{ 
-                width: 'clamp(120px, 15vw, 180px)',
-                height: 'clamp(150px, 20vw, 220px)',
-                margin: '0 auto 1rem auto',
-              }}
-              data-scroll-animation="fade-left"
-            >
-              {/* Image Placeholder */}
-              <div 
-                className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
-                style={{
-                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)'
-                }}
-              >
-                <Image
-                  src="/images/ingredients/cinnamon.png"
-                  alt="Cinnamon"
-                  fill
+            {/* Cinnamon Ingredient - Second position (20% offset) */}
+            <div className="mb-24 relative overflow-hidden" style={{ paddingLeft: '20%' }}>
+              <div className="flex flex-col lg:flex-row items-center lg:items-start">
+                {/* Image Container */}
+                <div 
+                  className="relative mb-2 lg:mr-4"
                   style={{ 
-                    objectFit: 'contain',
-                    objectPosition: 'center',
+                    width: 'clamp(120px, 15vw, 180px)',
+                    height: 'clamp(150px, 20vw, 220px)',
+                    zIndex: 1
                   }}
-                />
+                  data-scroll-animation="fade-right"
+                  data-aos-delay="200"
+                >
+                  {/* Image Placeholder */}
+                  <div 
+                    className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
+                    style={{
+                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
+                  >
+                    <Image
+                      src="/images/ingredients/cinnamon.png"
+                      alt="Cinnamon"
+                      fill
+                      style={{ 
+                        objectFit: 'contain',
+                        objectPosition: 'center',
+                      }}
+                    />
+                  </div>
+                </div>
+                
+                {/* Content Container */}
+                <div className="lg:w-2/3">
+                  {/* Title */}
+                  <h3 
+                    className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
+                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+                    data-scroll-animation="fade-up"
+                    data-aos-delay="250"
+                  >
+                    Cinnamon Speeds
+                  </h3>
+                  
+                  {/* Description */}
+                  <p 
+                    className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
+                    style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                    data-scroll-animation="fade-up"
+                    data-aos-delay="300"
+                  >
+                    Chemical accelerators force your skin to change, often causing irritation and damage. Cinnamon takes a different approach. It works with your body's natural processes, gently increasing circulation exactly where it's applied. This brings more blood flow to the surface, speeding up your natural tanning process without the harsh effects you've experienced before.
+                  </p>
+                </div>
               </div>
             </div>
             
-            {/* Content Container */}
-            <div className="lg:w-1/2 lg:mr-auto">
-              {/* Title */}
-              <h3 
-                className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
-                style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
-                data-scroll-animation="fade-up"
-              >
-                Cinnamon Speeds
-              </h3>
-              
-              {/* Description */}
-              <p 
-                className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
-                style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
-                data-scroll-animation="fade-up"
-              >
-                Chemical accelerators force your skin to change, often causing irritation and damage. Cinnamon takes a different approach. It works with your body's natural processes, gently increasing circulation exactly where it's applied. This brings more blood flow to the surface, speeding up your natural tanning process without the harsh effects you've experienced before.
-              </p>
-            </div>
-            
-            {/* Visual connector to next ingredient */}
-            <div 
-              className="hidden lg:block absolute h-16 w-1 bg-gradient-to-b from-amber-300 to-transparent bottom-[-24px] right-[25%]"
-              data-scroll-animation="height"
-            ></div>
-          </div>
-          
-          {/* Annatto Ingredient */}
-          <div className="mb-24 relative overflow-hidden">
-            {/* Image Container */}
-            <div 
-              className="relative mx-auto lg:float-left lg:mr-4 mb-2"
-              style={{ 
-                width: 'clamp(120px, 15vw, 180px)',
-                height: 'clamp(150px, 20vw, 220px)',
-                margin: '0 auto 1rem auto',
-              }}
-              data-scroll-animation="fade-right"
-            >
-              {/* Image Placeholder */}
-              <div 
-                className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
-                style={{
-                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)'
-                }}
-              >
-                <Image
-                  src="/images/ingredients/annatto.png"
-                  alt="Annatto"
-                  fill
+            {/* Annatto Ingredient - Third position (40% offset) */}
+            <div className="mb-24 relative overflow-hidden" style={{ paddingLeft: '40%' }}>
+              <div className="flex flex-col lg:flex-row items-center lg:items-start">
+                {/* Image Container */}
+                <div 
+                  className="relative mb-2 lg:mr-4"
                   style={{ 
-                    objectFit: 'contain',
-                    objectPosition: 'center',
+                    width: 'clamp(120px, 15vw, 180px)',
+                    height: 'clamp(150px, 20vw, 220px)',
+                    zIndex: 1
                   }}
-                />
+                  data-scroll-animation="fade-right"
+                  data-aos-delay="400"
+                >
+                  {/* Image Placeholder */}
+                  <div 
+                    className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
+                    style={{
+                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                    }}
+                  >
+                    <Image
+                      src="/images/ingredients/annatto.png"
+                      alt="Annatto"
+                      fill
+                      style={{ 
+                        objectFit: 'contain',
+                        objectPosition: 'center',
+                      }}
+                    />
+                  </div>
+                </div>
+                
+                {/* Content Container */}
+                <div className="lg:w-2/3">
+                  {/* Title */}
+                  <h3 
+                    className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
+                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+                    data-scroll-animation="fade-up"
+                    data-aos-delay="450"
+                  >
+                    Annatto Transforms
+                  </h3>
+                  
+                  {/* Description */}
+                  <p 
+                    className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
+                    style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                    data-scroll-animation="fade-up"
+                    data-aos-delay="500"
+                  >
+                    Forget artificial dyes and bronzers that wash away after your first swim. Annatto infuses your skin with a golden warmth that enhances your natural complexion. This ancient Caribbean secret transforms your skin from within, creating that coveted sun-kissed glow that looks completely natural because it is—not an expensive treatment with minimal results, but an affordable solution that actually works.
+                  </p>
+                </div>
               </div>
-            </div>
-            
-            {/* Content Container */}
-            <div className="lg:w-1/2 lg:ml-auto">
-              {/* Title */}
-              <h3 
-                className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
-                style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
-                data-scroll-animation="fade-up"
-              >
-                Annatto Transforms
-              </h3>
-              
-              {/* Description */}
-              <p 
-                className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
-                style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
-                data-scroll-animation="fade-up"
-              >
-                Forget artificial dyes and bronzers that wash away after your first swim. Annatto infuses your skin with a golden warmth that enhances your natural complexion. This ancient Caribbean secret transforms your skin from within, creating that coveted sun-kissed glow that looks completely natural because it is—not an expensive treatment with minimal results, but an affordable solution that actually works.
-              </p>
             </div>
           </div>
           
