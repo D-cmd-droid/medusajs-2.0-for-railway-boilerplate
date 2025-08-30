@@ -620,6 +620,78 @@
     }
   }
   
+  /* Ingredient Section Animations */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes expandWidth {
+    from {
+      width: 0;
+    }
+    to {
+      width: 8rem; /* 32px */
+    }
+  }
+
+  @keyframes expandHeight {
+    from {
+      height: 0;
+    }
+    to {
+      height: 4rem; /* 16px */
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.8s var(--ease-luxury) forwards;
+  }
+
+  .animate-fade-left {
+    animation: fadeLeft 0.8s var(--ease-luxury) forwards;
+  }
+
+  .animate-fade-right {
+    animation: fadeRight 0.8s var(--ease-luxury) forwards;
+  }
+
+  .animate-width {
+    animation: expandWidth 1s var(--ease-luxury) forwards;
+  }
+
+  .animate-height {
+    animation: expandHeight 1s var(--ease-luxury) forwards;
+  }
+  
   /* Respect Motion Preferences */
   @media (prefers-reduced-motion: reduce) {
     .seasun-gold-foil,
@@ -630,9 +702,18 @@
     .seasun-heat-shimmer,
     .seasun-particle,
     .seasun-wave,
-    .seasun-text-stagger {
+    .seasun-text-stagger,
+    .animate-fade-up,
+    .animate-fade-left,
+    .animate-fade-right,
+    .animate-width,
+    .animate-height {
       animation: none !important;
       transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      width: auto !important;
+      height: auto !important;
     }
   }
 }
