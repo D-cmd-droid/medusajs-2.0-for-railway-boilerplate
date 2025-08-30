@@ -895,15 +895,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
 
             {/* 
             COCONUT OIL - FIRST INGREDIENT: 
-            - Viewport-proportional left offset (0%)
-            - Margin scales smoothly with viewport height
+            - Centered on mobile with auto margins
+            - Desktop maintains original positioning
             */}
             <div 
+              className="mx-auto lg:mx-0 max-w-full lg:max-w-none lg:pl-0"
               style={{ 
                 marginBottom: 'clamp(3rem, 12vh, 6rem)',
-                paddingLeft: 'clamp(0rem, calc(0vw), 0rem)',
                 position: 'relative',
-                overflow: 'hidden',
+                overflow: 'hidden'
               }}
             >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
@@ -957,10 +957,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                      textAlign: 'center',
-                      '@media (min-width: 1024px)': {
-                        textAlign: 'left',
-                      }
+                      textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="50"
@@ -980,10 +977,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       opacity: 0.85,
                       fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
                       lineHeight: '1.6',
-                      textAlign: 'center',
-                      '@media (min-width: 1024px)': {
-                        textAlign: 'left',
-                      }
+                      textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="100"
@@ -996,15 +990,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             
             {/* 
             CINNAMON - SECOND INGREDIENT: 
-            - Progressive left offset scales proportionally with viewport width
-            - Creates visual interest through diagonal layout pattern
+            - Centered on mobile with auto margins
+            - Desktop maintains progressive left offset
             */}
             <div 
+              className="mx-auto lg:mx-0 max-w-full lg:max-w-none lg:pl-[clamp(1rem,calc(15vw-2rem),15rem)]"
               style={{ 
                 marginBottom: 'clamp(3rem, 12vh, 6rem)',
-                paddingLeft: 'clamp(1rem, calc(15vw - 2rem), 15rem)',
                 position: 'relative',
-                overflow: 'hidden',
+                overflow: 'hidden'
               }}
             >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
@@ -1044,10 +1038,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                      textAlign: 'center',
-                      '@media (min-width: 1024px)': {
-                        textAlign: 'left',
-                      }
+                      textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="250"
@@ -1062,10 +1053,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       opacity: 0.85,
                       fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
                       lineHeight: '1.6',
-                      textAlign: 'center',
-                      '@media (min-width: 1024px)': {
-                        textAlign: 'left',
-                      }
+                      textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="300"
@@ -1078,15 +1066,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             
             {/* 
             ANNATTO - THIRD INGREDIENT: 
-            - Maximum left offset creates strongest diagonal effect
-            - Maintains visual pattern established by previous ingredients
+            - Centered on mobile with auto margins
+            - Desktop maintains maximum left offset for diagonal effect
             */}
             <div 
+              className="mx-auto lg:mx-0 max-w-full lg:max-w-none lg:pl-[clamp(2rem,calc(25vw-3rem),25rem)]"
               style={{ 
                 marginBottom: 'clamp(3rem, 12vh, 6rem)',
-                paddingLeft: 'clamp(2rem, calc(25vw - 3rem), 25rem)',
                 position: 'relative',
-                overflow: 'hidden',
+                overflow: 'hidden'
               }}
             >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
@@ -1126,10 +1114,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                      textAlign: 'center',
-                      '@media (min-width: 1024px)': {
-                        textAlign: 'left',
-                      }
+                      textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="450"
@@ -1144,10 +1129,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       opacity: 0.85,
                       fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
                       lineHeight: '1.6',
-                      textAlign: 'center',
-                      '@media (min-width: 1024px)': {
-                        textAlign: 'left',
-                      }
+                      textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="500"
