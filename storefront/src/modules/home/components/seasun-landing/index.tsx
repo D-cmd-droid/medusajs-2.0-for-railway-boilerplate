@@ -565,66 +565,160 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </section>
 
 
-      {/* Why Ingredients Matter Section */}
-      <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28" aria-labelledby="ingredients-heading">
-        {/* Background Elements */}
+      {/* 
+      ===============================================================
+      INGREDIENTS SECTION - APPLE-INSPIRED RESPONSIVE APPROACH
+      ===============================================================
+      
+      Key principles applied:
+      1. Content-first spacing: Proportional spacing that maintains visual rhythm
+      2. Fluid typography: Text that scales smoothly across viewport sizes
+      3. Diagonal offset pattern: Content layout that scales proportionally 
+      4. Aspect-ratio preservation: Images that maintain proportions naturally
+      */}
+      <section 
+        className="relative overflow-hidden" 
+        aria-labelledby="ingredients-heading"
+        style={{
+          /* Fluid vertical padding that scales with viewport height */
+          paddingTop: 'clamp(3rem, 10vh, 7rem)',
+          paddingBottom: 'clamp(3rem, 10vh, 7rem)',
+        }}
+      >
+        {/* 
+        BACKGROUND TEXTURE: 
+        - Subtle sand texture provides natural depth
+        - Overlay blend mode ensures proper contrast with content
+        */}
         <div 
           className="absolute inset-0 opacity-20 pointer-events-none" 
           style={{
             background: 'url(/images/sand-texture.png)',
-            backgroundSize: '400px',
+            backgroundSize: 'clamp(200px, 30vw, 400px)', // Responsive texture size
             mixBlendMode: 'overlay'
           }}
         ></div>
         
-        {/* Content Container */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6">
-          {/* Header */}
+        {/* 
+        CONTENT CONTAINER: 
+        - Fluid width container that maintains optimal reading length
+        - Consistent horizontal padding that scales with viewport
+        */}
+        <div 
+          className="relative z-10 w-full mx-auto" 
+          style={{ 
+            maxWidth: 'min(90vw, 1400px)', 
+            padding: '0 clamp(1rem, 5vw, 3rem)'
+          }}
+        >
+          {/* 
+          SECTION HEADING: 
+          - Fluid typography scales smoothly between viewport sizes
+          - Bottom margin scales proportionally with viewport height
+          - Maintains proper visual hierarchy with consistent styling
+          */}
           <h2 
             id="ingredients-heading" 
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-light text-center mb-16 leading-tight"
-            style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+            style={{ 
+              fontFamily: 'var(--seasun-font-heading)', 
+              color: 'var(--seasun-deep-black)',
+              fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
+              lineHeight: '1.2',
+              fontWeight: 300,
+              textAlign: 'center',
+              marginBottom: 'clamp(2rem, 8vh, 4rem)',
+            }}
             data-scroll-animation="fade-up"
           >
             The Power of Pure Caribbean Ingredients
+            
+            {/* 
+            DECORATIVE UNDERLINE: 
+            - Width scales proportionally with viewport
+            - Maintains consistent visual weight across screen sizes
+            */}
             <span 
-              className="block mx-auto w-32 h-1 mt-6" 
-              style={{ background: 'linear-gradient(to right, transparent, var(--seasun-golden-tan), transparent)' }}
+              className="block mx-auto mt-6" 
+              style={{ 
+                height: 'clamp(2px, 0.3vh, 4px)',
+                width: 'clamp(4rem, 8vw, 8rem)',
+                background: 'linear-gradient(to right, transparent, var(--seasun-golden-tan), transparent)' 
+              }}
               data-scroll-animation="width"
             ></span>
           </h2>
           
-          {/* Opening Statement */}
+          {/* 
+          OPENING STATEMENT: 
+          - Fluid typography and line height for optimal readability
+          - Max-width prevents excessive line lengths on large screens
+          - Margin scales proportionally with viewport
+          */}
           <p 
-            className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-3xl mx-auto mb-20"
-            style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+            className="seasun-body font-light text-center"
+            style={{ 
+              color: 'var(--seasun-deep-black)', 
+              opacity: 0.85,
+              fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+              lineHeight: '1.6',
+              maxWidth: 'min(100%, 800px)',
+              margin: '0 auto clamp(2.5rem, 10vh, 5rem) auto',
+            }}
             data-scroll-animation="fade-up"
           >
             How many skincare products have you tried that promised results but left your skin irritated and your wallet empty? Most beauty companies rely on complicated formulas with ingredients you can't pronounce. But what if the answer was actually simpler?
           </p>
           
-          {/* Ingredient Diagonal Layout Container */}
-          <div className="relative mb-20">
+          {/* 
+          INGREDIENT DISPLAY CONTAINER: 
+          - Creates progressive visual rhythm with proportional spacing
+          - Maintains consistent layout structure across viewport sizes
+          */}
+          <div style={{
+            marginBottom: 'clamp(2.5rem, 8vh, 5rem)',
+          }}>
 
-            {/* Coconut Oil Ingredient - First position (0% offset) */}
-            <div className="mb-24 relative overflow-hidden" style={{ paddingLeft: '0%' }}>
+            {/* 
+            COCONUT OIL - FIRST INGREDIENT: 
+            - Viewport-proportional left offset (0%)
+            - Margin scales smoothly with viewport height
+            */}
+            <div 
+              style={{ 
+                marginBottom: 'clamp(3rem, 12vh, 6rem)',
+                paddingLeft: 'clamp(0rem, calc(0vw), 0rem)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
-                {/* Image Container */}
+                {/* 
+                IMAGE CONTAINER: 
+                - Size scales proportionally with viewport
+                - Maintains consistent aspect ratio
+                - Proper spacing scales with viewport
+                */}
                 <div 
-                  className="relative mb-2 lg:mr-4"
                   style={{ 
                     width: 'clamp(120px, 15vw, 180px)',
-                    height: 'clamp(150px, 20vw, 220px)',
-                    zIndex: 1
+                    aspectRatio: '1/1.2',
+                    marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
+                    marginRight: 'clamp(0rem, 3vw, 1.5rem)',
+                    zIndex: 1,
+                    position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
                   data-aos-delay="0"
                 >
-                  {/* Image Placeholder */}
+                  {/* 
+                  IMAGE FRAME: 
+                  - Creates consistent visual container for ingredient images
+                  - Shadow and border create subtle depth
+                  */}
                   <div 
                     className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
                     style={{
-                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      boxShadow: '0 clamp(10px, 3vw, 20px) clamp(15px, 4vw, 25px) rgba(0, 0, 0, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.2)'
                     }}
                   >
@@ -640,22 +734,57 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   </div>
                 </div>
                 
-                {/* Content Container */}
-                <div className="lg:w-2/3">
-                  {/* Title */}
+                {/* 
+                CONTENT CONTAINER: 
+                - Optimal width for readability
+                - Maintains proper spacing relationship with image
+                */}
+                <div style={{
+                  maxWidth: 'min(100%, 640px)',
+                  flex: '1',
+                }}>
+                  {/* 
+                  INGREDIENT TITLE: 
+                  - Fluid typography scales smoothly with viewport
+                  - Consistent visual hierarchy with section heading
+                  */}
                   <h3 
-                    className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
-                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+                    style={{ 
+                      fontFamily: 'var(--seasun-font-heading)', 
+                      color: 'var(--seasun-deep-black)',
+                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                      lineHeight: '1.3',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
+                      textAlign: 'center',
+                      '@media (min-width: 1024px)': {
+                        textAlign: 'left',
+                      }
+                    }}
+                    className="text-center lg:text-left"
                     data-scroll-animation="fade-up"
                     data-aos-delay="50"
                   >
                     Coconut Oil Boosts
                   </h3>
                   
-                  {/* Description */}
+                  {/* 
+                  INGREDIENT DESCRIPTION: 
+                  - Fluid typography for optimal readability
+                  - Line height scales proportionally with font size
+                  */}
                   <p 
-                    className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
-                    style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                    className="seasun-body font-light text-center lg:text-left"
+                    style={{ 
+                      color: 'var(--seasun-deep-black)', 
+                      opacity: 0.85,
+                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                      lineHeight: '1.6',
+                      textAlign: 'center',
+                      '@media (min-width: 1024px)': {
+                        textAlign: 'left',
+                      }
+                    }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="100"
                   >
@@ -665,25 +794,37 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               </div>
             </div>
             
-            {/* Cinnamon Ingredient - Second position (20% offset) */}
-            <div className="mb-24 relative overflow-hidden" style={{ paddingLeft: '20%' }}>
+            {/* 
+            CINNAMON - SECOND INGREDIENT: 
+            - Progressive left offset scales proportionally with viewport width
+            - Creates visual interest through diagonal layout pattern
+            */}
+            <div 
+              style={{ 
+                marginBottom: 'clamp(3rem, 12vh, 6rem)',
+                paddingLeft: 'clamp(1rem, calc(15vw - 2rem), 15rem)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
-                {/* Image Container */}
+                {/* Image Container - Maintains same proportional styling as first ingredient */}
                 <div 
-                  className="relative mb-2 lg:mr-4"
                   style={{ 
                     width: 'clamp(120px, 15vw, 180px)',
-                    height: 'clamp(150px, 20vw, 220px)',
-                    zIndex: 1
+                    aspectRatio: '1/1.2',
+                    marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
+                    marginRight: 'clamp(0rem, 3vw, 1.5rem)',
+                    zIndex: 1,
+                    position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
                   data-aos-delay="200"
                 >
-                  {/* Image Placeholder */}
                   <div 
                     className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
                     style={{
-                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      boxShadow: '0 clamp(10px, 3vw, 20px) clamp(15px, 4vw, 25px) rgba(0, 0, 0, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.2)'
                     }}
                   >
@@ -699,22 +840,43 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   </div>
                 </div>
                 
-                {/* Content Container */}
-                <div className="lg:w-2/3">
-                  {/* Title */}
+                {/* Content Container - Consistent with first ingredient */}
+                <div style={{
+                  maxWidth: 'min(100%, 640px)',
+                  flex: '1',
+                }}>
                   <h3 
-                    className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
-                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+                    style={{ 
+                      fontFamily: 'var(--seasun-font-heading)', 
+                      color: 'var(--seasun-deep-black)',
+                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                      lineHeight: '1.3',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
+                      textAlign: 'center',
+                      '@media (min-width: 1024px)': {
+                        textAlign: 'left',
+                      }
+                    }}
+                    className="text-center lg:text-left"
                     data-scroll-animation="fade-up"
                     data-aos-delay="250"
                   >
                     Cinnamon Speeds
                   </h3>
                   
-                  {/* Description */}
                   <p 
-                    className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
-                    style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                    className="seasun-body font-light text-center lg:text-left"
+                    style={{ 
+                      color: 'var(--seasun-deep-black)', 
+                      opacity: 0.85,
+                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                      lineHeight: '1.6',
+                      textAlign: 'center',
+                      '@media (min-width: 1024px)': {
+                        textAlign: 'left',
+                      }
+                    }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="300"
                   >
@@ -724,25 +886,37 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               </div>
             </div>
             
-            {/* Annatto Ingredient - Third position (40% offset) */}
-            <div className="mb-24 relative overflow-hidden" style={{ paddingLeft: '40%' }}>
+            {/* 
+            ANNATTO - THIRD INGREDIENT: 
+            - Maximum left offset creates strongest diagonal effect
+            - Maintains visual pattern established by previous ingredients
+            */}
+            <div 
+              style={{ 
+                marginBottom: 'clamp(3rem, 12vh, 6rem)',
+                paddingLeft: 'clamp(2rem, calc(25vw - 3rem), 25rem)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
-                {/* Image Container */}
+                {/* Image Container - Consistent with previous ingredients */}
                 <div 
-                  className="relative mb-2 lg:mr-4"
                   style={{ 
                     width: 'clamp(120px, 15vw, 180px)',
-                    height: 'clamp(150px, 20vw, 220px)',
-                    zIndex: 1
+                    aspectRatio: '1/1.2',
+                    marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
+                    marginRight: 'clamp(0rem, 3vw, 1.5rem)',
+                    zIndex: 1,
+                    position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
                   data-aos-delay="400"
                 >
-                  {/* Image Placeholder */}
                   <div 
                     className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
                     style={{
-                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+                      boxShadow: '0 clamp(10px, 3vw, 20px) clamp(15px, 4vw, 25px) rgba(0, 0, 0, 0.1)',
                       border: '1px solid rgba(255, 255, 255, 0.2)'
                     }}
                   >
@@ -758,22 +932,43 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   </div>
                 </div>
                 
-                {/* Content Container */}
-                <div className="lg:w-2/3">
-                  {/* Title */}
+                {/* Content Container - Consistent with previous ingredients */}
+                <div style={{
+                  maxWidth: 'min(100%, 640px)',
+                  flex: '1',
+                }}>
                   <h3 
-                    className="text-xl sm:text-2xl lg:text-3xl font-light mb-4 leading-tight text-center lg:text-left"
-                    style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}
+                    style={{ 
+                      fontFamily: 'var(--seasun-font-heading)', 
+                      color: 'var(--seasun-deep-black)',
+                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                      lineHeight: '1.3',
+                      fontWeight: 300,
+                      marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
+                      textAlign: 'center',
+                      '@media (min-width: 1024px)': {
+                        textAlign: 'left',
+                      }
+                    }}
+                    className="text-center lg:text-left"
                     data-scroll-animation="fade-up"
                     data-aos-delay="450"
                   >
                     Annatto Transforms
                   </h3>
                   
-                  {/* Description */}
                   <p 
-                    className="seasun-body text-base sm:text-lg leading-relaxed text-center lg:text-left"
-                    style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}
+                    className="seasun-body font-light text-center lg:text-left"
+                    style={{ 
+                      color: 'var(--seasun-deep-black)', 
+                      opacity: 0.85,
+                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                      lineHeight: '1.6',
+                      textAlign: 'center',
+                      '@media (min-width: 1024px)': {
+                        textAlign: 'left',
+                      }
+                    }}
                     data-scroll-animation="fade-up"
                     data-aos-delay="500"
                   >
@@ -784,26 +979,50 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             </div>
           </div>
           
-          {/* Closing Statement */}
+          {/* 
+          CLOSING STATEMENT: 
+          - Centered layout with maximum width for optimal readability
+          - Fluid typography and margins scale proportionally with viewport
+          - Creates natural visual conclusion to the section
+          */}
           <div 
-            className="text-center max-w-3xl mx-auto mt-16"
+            style={{
+              textAlign: 'center',
+              maxWidth: 'min(100%, 800px)',
+              margin: '0 auto',
+              marginTop: 'clamp(2rem, 8vh, 4rem)',
+            }}
             data-scroll-animation="fade-up"
           >
             <p 
-              className="seasun-body text-lg sm:text-xl leading-relaxed mb-8"
-              style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}
+              className="seasun-body font-light"
+              style={{ 
+                color: 'var(--seasun-deep-black)', 
+                opacity: 0.9,
+                fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+                lineHeight: '1.6',
+                marginBottom: 'clamp(1.5rem, 5vh, 2.5rem)',
+              }}
             >
               That's why SEASUN doesn't just work differently—it works better. When harsh chemicals leave you constantly worried about sun damage, our natural formula gives you confidence in the sun. A beautiful, sexy glow isn't about masking your skin with chemicals. It's about enhancing what nature already gave you, with ingredients nature has already perfected.
             </p>
             
+            {/* 
+            CTA BUTTON: 
+            - Consistent styling with hero CTA
+            - Fluid padding and font size scale with viewport
+            - Maintains proper visual weight across all sizes
+            */}
             <Button 
               onClick={scrollToProductSection}
-              className="group relative seasun-body text-white px-8 py-4 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px]"
+              className="group relative seasun-body text-white rounded-xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
               style={{ 
                 backgroundColor: 'var(--seasun-golden-tan)',
                 boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
                 transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                minWidth: '200px'
+                padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)',
+                fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                minWidth: 'clamp(150px, 20vw, 200px)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
