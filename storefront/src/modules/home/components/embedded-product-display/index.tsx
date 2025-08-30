@@ -1,5 +1,28 @@
 "use client"
 
+// ====================================================================================
+// # EMBEDDED PRODUCT DISPLAY - FLUID DESIGN IMPLEMENTATION
+// ====================================================================================
+//
+// ## FLUID DESIGN SYSTEM
+// This component implements Apple-inspired fluid design principles:
+//
+// 1. Content-Driven Breakpoints: Design responds to content needs, not device sizes
+// 2. Fluid Typography: Text scales smoothly using clamp() between viewport bounds
+// 3. Fluid Spacing: Margins and padding scale proportionally with viewport
+// 4. Aspect-Ratio Preservation: Image containers maintain proportions
+// 5. Visual Consistency: UI elements scale uniformly across viewport sizes
+//
+// ## IMPLEMENTATION DETAILS
+// - Typography: Uses clamp(min, preferred, max) for smooth text scaling
+// - Spacing: Fluid margins and padding with min/max constraints
+// - Layout: Responsive grid with fluid gap values
+// - Buttons: Proportional padding and consistent visual weight
+// ====================================================================================
+
+// ====================================================================================
+// IMPORTS AND DEPENDENCIES
+// ====================================================================================
 import { Button } from "@medusajs/ui"
 import { useState, useMemo } from "react"
 import { useParams } from "next/navigation"
@@ -8,19 +31,28 @@ import Image from "next/image"
 import { addToCart } from "@lib/data/cart"
 import { getProductPrice } from "@lib/util/get-product-price"
 
+// ====================================================================================
+// TYPE DEFINITIONS
+// ====================================================================================
 type EmbeddedProductDisplayProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
 }
 
+// ====================================================================================
+// COMPONENT IMPLEMENTATION
+// ====================================================================================
 const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
   product,
-  region,
+  region, // Required for prop type validation
 }) => {
+  // ====================================================================================
+  // STATE AND DATA MANAGEMENT
+  // ====================================================================================
   const [selectedSize, setSelectedSize] = useState<'100ml' | '250ml'>('100ml')
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
-
+  
   // Map sizes to existing variants (S = 100ml, M = 250ml)
   const sizeVariantMap = useMemo(() => {
     const variants = product.variants || []
@@ -37,11 +69,11 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     }
   }, [product.variants])
 
-  // Get selected variant
+  // Get selected variant based on user selection
   const selectedVariant = sizeVariantMap[selectedSize]
 
-  // Get pricing for selected variant
-  const { variantPrice } = getProductPrice({
+  // Get pricing for selected variant (used internally by Medusa)
+  getProductPrice({
     product,
     variantId: selectedVariant?.id,
   })
@@ -67,6 +99,9 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     return false
   }, [selectedVariant])
 
+  // ====================================================================================
+  // EVENT HANDLERS
+  // ====================================================================================
   // Buy Now functionality - adds to cart and redirects to checkout
   const handleBuyNow = async () => {
     if (!selectedVariant?.id) return
@@ -88,35 +123,74 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     }
   }
 
+  // Display price based on selected size
   const displayPrice = selectedSize === '100ml' ? '$29.99' : '$39.99'
 
+  // ===================================================================
+  // MATCHING HERO LAYOUT STRUCTURE - USING XSMALL BREAKPOINT (512px)
+  // ===================================================================
   return (
-    <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center max-w-5xl mx-auto pb-4 sm:pb-6 lg:pb-8">
-      {/* Product Image Display */}
-      <div className="order-2 lg:order-1">
-        <div className="relative rounded-2xl aspect-square overflow-hidden shadow-xl">
-          {/* Coastal Background - Simplified */}
+    <div 
+      className="relative w-full mx-auto" 
+      style={{
+        maxWidth: 'min(90vw, 1400px)', // Match hero container width
+        padding: '0 clamp(1rem, 3vw, 2rem)',
+        paddingBottom: 'clamp(1rem, 4vh, 2rem)'
+      }}>
+      <div 
+        className="grid xsmall:grid-cols-5 items-center" 
+        style={{
+          gap: 'clamp(1rem, 3vw, 2.5rem)',
+          minHeight: 'clamp(300px, 60vh, 600px)',
+          maxWidth: '1600px',
+          margin: '0 auto'
+        }}>
+      {/* ===================================================================
+         PRODUCT IMAGE DISPLAY - FLUID CONTAINER WITH ASPECT RATIO
+         =================================================================== */}
+      <div className="order-2 xsmall:order-1 xsmall:col-span-2 flex items-center justify-center">
+        <div className="relative" style={{
+            width: 'clamp(240px, 90%, 400px)',
+            aspectRatio: '1/1.2',
+            margin: '0 auto xsmall:mr-0 xsmall:ml-auto',
+          }}>
+          <div 
+            className="relative overflow-hidden w-full h-full" 
+            style={{
+              borderRadius: 'clamp(0.75rem, 1.5vw, 1.5rem)',
+              boxShadow: '0 clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) rgba(0,0,0,0.1)',
+            }}>
+          {/* Coastal Background - Simplified with fluid gradient */}
           <div 
             className="absolute inset-0"
             style={{
               backgroundColor: '#78c8e3',
-              background: 'linear-gradient(to bottom, #78c8e3 0%, #49b0d3 100%)'
+              background: 'linear-gradient(to bottom, #78c8e3 0%, #49b0d3 100%)',
+              transition: 'all 0.5s ease-in-out' // Smooth transitions for any dynamic changes
             }}
           />
           
-          {/* Product Display */}
+          {/* Product Display - Centered with responsive scaling */}
           <div className="relative z-10 w-full h-full flex items-center justify-center">
             <div className="text-center">
-              {/* Actual Product Image */}
+              {/* Product Image - Responsive sizing with fluid shadows */}
               <div>
                 <Image
                   src="/images/seasun-product-image.png"
                   alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
                   width={320}
                   height={480}
-                  className="mx-auto drop-shadow-xl"
-                  style={{ filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.15))' }}
+                  className="mx-auto"
+                  style={{ 
+                    filter: 'drop-shadow(0 clamp(6px, 1.5vw, 16px) clamp(12px, 3vw, 24px) rgba(0,0,0,0.15))',
+                    maxWidth: 'clamp(160px, 80%, 280px)', // Smaller, more constrained image size
+                    height: 'auto', // Maintain aspect ratio
+                    objectFit: 'contain',
+                    objectPosition: 'center',
+                    transition: 'transform 0.3s ease-in-out' // Smooth scaling on viewport changes
+                  }}
                   priority
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 600px"
                 />
               </div>
             </div>
@@ -124,80 +198,152 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           
           {/* SPF reference removed */}
           
-          <div className="absolute bottom-5 left-5 bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">
-            <span className="text-white text-xs font-medium tracking-wide">🌿 Natural</span>
+          {/* Natural Badge - Fluid positioning and sizing */}
+          <div 
+            className="absolute bg-white/15 backdrop-blur-sm border border-white/30"
+            style={{
+              bottom: 'clamp(1rem, 3vw, 1.5rem)',
+              left: 'clamp(1rem, 3vw, 1.5rem)',
+              padding: 'clamp(0.375rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)',
+              borderRadius: '9999px',
+            }}>
+            <span 
+              className="text-white font-medium tracking-wide"
+              style={{ fontSize: 'clamp(0.65rem, 0.8vw, 0.875rem)' }}
+            >🌿 Natural</span>
+          </div>
           </div>
         </div>
       </div>
 
-      {/* Product Information & Purchase */}
-      <div className="order-1 lg:order-2 text-center lg:text-left px-4 sm:px-6">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light mb-6 leading-tight" 
-            style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+      {/* ===================================================================
+         PRODUCT INFORMATION & PURCHASE - FLUID LAYOUT AND TYPOGRAPHY
+         =================================================================== */}
+      <div 
+        className="order-1 xsmall:order-2 xsmall:col-span-3 text-center xsmall:text-left" 
+        style={{ 
+          padding: 'clamp(0.5rem, 2vw, 1.5rem)',
+          maxWidth: 'min(100%, 540px)',
+          margin: '0 auto xsmall:m-0'
+        }}>
+        <h2 
+            className="font-light leading-tight" 
+            style={{ 
+              fontFamily: 'var(--seasun-font-heading)', 
+              color: 'var(--seasun-deep-black)',
+              fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 2.5rem)',
+              marginBottom: 'clamp(1rem, 3vh, 1.5rem)'
+            }}>
           Meet{" "}
           <span 
-            className="inline-block px-3 py-1 rounded-lg font-semibold text-sm sm:text-base lg:text-lg" 
+            className="inline-block rounded-lg font-semibold" 
             style={{ 
               color: 'white', 
               backgroundColor: 'var(--seasun-golden-tan)',
-              boxShadow: '0 3px 12px rgba(247, 138, 21, 0.25)'
+              boxShadow: '0 3px 12px rgba(247, 138, 21, 0.25)',
+              padding: 'clamp(0.25rem, 0.5vw, 0.5rem) clamp(0.5rem, 1vw, 0.75rem)',
+              fontSize: 'clamp(0.75rem, 1vw, 1.125rem)'
             }}
             aria-label="SEASUN brand name"
           >
             SEASUN
           </span>{" "}
-          Organic<br className="hidden sm:block"/> Tanning Oil
+          Organic<br className="hidden xsmall:block"/> Tanning Oil
         </h2>
         
-        <div className="mb-6 max-w-2xl mx-auto lg:mx-0">
-          <p className="text-base sm:text-lg leading-relaxed font-medium mb-3" 
-             style={{ color: 'var(--seasun-deep-black)', opacity: 0.9, fontFamily: 'var(--seasun-font-body)' }}>
+        <div style={{ marginBottom: 'clamp(1.5rem, 4vh, 2.5rem)' }} className="max-w-2xl mx-auto xsmall:mx-0">
+          <p 
+             className="leading-relaxed font-medium" 
+             style={{ 
+               color: 'var(--seasun-deep-black)', 
+               opacity: 0.9, 
+               fontFamily: 'var(--seasun-font-body)',
+               fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+               marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
+             }}>
             Your natural beauty deserves to be enhanced, not masked.
           </p>
-          <p className="text-base sm:text-lg leading-relaxed font-normal mb-3" 
-             style={{ color: 'var(--seasun-deep-black)', opacity: 0.85, fontFamily: 'var(--seasun-font-body)' }}>
+          <p 
+             className="leading-relaxed font-normal" 
+             style={{ 
+               color: 'var(--seasun-deep-black)', 
+               opacity: 0.85, 
+               fontFamily: 'var(--seasun-font-body)',
+               fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+               marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
+             }}>
             The secret lies in what's NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
           </p>
           <div>
-            <p className="text-base sm:text-lg leading-relaxed font-medium" 
-               style={{ color: 'var(--seasun-golden-tan)', fontFamily: 'var(--seasun-font-body)' }}>
+            <p 
+               className="leading-relaxed font-medium" 
+               style={{ 
+                 color: 'var(--seasun-golden-tan)', 
+                 fontFamily: 'var(--seasun-font-body)',
+                 fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)'
+               }}>
               Any reason not to glow?
             </p>
           </div>
         </div>
 
-        {/* Size Selection and Pricing */}
-        <div className="mb-3">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-4 mb-2">
+        {/* ===================================================================
+           SIZE SELECTION AND PRICING - FLUID COMPONENTS
+           =================================================================== */}
+        <div style={{ marginBottom: 'clamp(0.75rem, 2vh, 1.5rem)' }}>
+          <div 
+            className="flex flex-col xsmall:flex-row items-start xsmall:items-center xsmall:justify-between" 
+            style={{ 
+              gap: 'clamp(1rem, 2vw, 1.5rem)', 
+              marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)' 
+            }}>
             {/* Size Selection */}
             <div className="flex items-center">
-              <p className="text-sm font-medium mr-3" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <p 
+                style={{ 
+                  color: 'var(--seasun-deep-black)', 
+                  fontFamily: 'var(--seasun-font-body)', 
+                  fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+                  fontWeight: '500',
+                  marginRight: 'clamp(0.5rem, 1vw, 0.75rem)'
+                }}
+              >
                 Size:
               </p>
               <div className="flex">
                 <button
                   onClick={() => setSelectedSize('100ml')}
                   className={`
-                    rounded-l-lg px-4 py-2 transition-all duration-200 text-sm
+                    rounded-l-lg transition-all duration-300 
                     ${selectedSize === '100ml' 
                       ? 'bg-[#f78a15] text-white font-medium' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }
                   `}
-                  style={{ fontFamily: 'var(--seasun-font-body)' }}
+                  style={{ 
+                    fontFamily: 'var(--seasun-font-body)',
+                    fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+                    padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem)',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
                 >
                   100ml
                 </button>
                 <button
                   onClick={() => setSelectedSize('250ml')}
                   className={`
-                    rounded-r-lg px-4 py-2 transition-all duration-200 text-sm
+                    rounded-r-lg transition-all duration-300
                     ${selectedSize === '250ml' 
                       ? 'bg-[#f78a15] text-white font-medium' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }
                   `}
-                  style={{ fontFamily: 'var(--seasun-font-body)' }}
+                  style={{ 
+                    fontFamily: 'var(--seasun-font-body)',
+                    fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+                    padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem)',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
                 >
                   250ml
                 </button>
@@ -206,41 +352,68 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             
             {/* Pricing */}
             <div className="flex items-center">
-              <div className="text-2xl font-light" 
-                   style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-                {displayPrice}
-              </div>
+              <div 
+              style={{ 
+                fontFamily: 'var(--seasun-font-heading)', 
+                color: 'var(--seasun-deep-black)',
+                fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                fontWeight: '300'
+              }}
+            >
+              {displayPrice}
+            </div>
             </div>
           </div>
-          <p className="text-xs opacity-70 text-left mb-3" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+          <p 
+            className="opacity-70 text-left" 
+            style={{ 
+              color: 'var(--seasun-deep-black)', 
+              fontFamily: 'var(--seasun-font-body)',
+              fontSize: 'clamp(0.65rem, 0.75vw, 0.75rem)',
+              marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
+            }}
+          >
             Free shipping on orders over $50
           </p>
           
-          {/* Buy Now Button - Separate Row */}
-          <div className="flex justify-center sm:justify-start mb-3">
+          {/* ===================================================================
+           BUY NOW BUTTON - FLUID STYLING WITH ENHANCED ANIMATIONS
+           =================================================================== */}
+          <div 
+            className="flex justify-center xsmall:justify-start" 
+            style={{ marginBottom: 'clamp(0.75rem, 2vh, 1.5rem)' }}
+          >
             <Button
               onClick={handleBuyNow}
               disabled={!inStock || !selectedVariant || isAdding}
-              className="group relative text-white px-8 py-3 text-base rounded-lg font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+              className="group relative text-white font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full xsmall:w-auto"
               style={{
                 backgroundColor: 'var(--seasun-golden-tan)',
-                boxShadow: '0 4px 16px rgba(247, 138, 21, 0.35), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                boxShadow: '0 clamp(4px, 1vw, 16px) clamp(8px, 2vw, 24px) rgba(247, 138, 21, 0.35), 0 clamp(2px, 0.5vw, 8px) clamp(4px, 1vw, 12px) rgba(247, 138, 21, 0.2)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 fontFamily: 'var(--seasun-font-body)',
-                minWidth: '200px'
+                fontSize: 'clamp(0.875rem, 1vw, 1rem)',
+                padding: 'clamp(0.6rem, 1.5vh, 0.9rem) clamp(1.5rem, 3vw, 2.25rem)',
+                borderRadius: 'clamp(0.5rem, 1vw, 0.75rem)',
+                minWidth: 'clamp(160px, 30vw, 240px)',
+                maxWidth: '100%'
               }}
               onMouseEnter={(e) => {
                 if (!isAdding && inStock && selectedVariant) {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(247, 138, 21, 0.5), 0 4px 12px rgba(247, 138, 21, 0.25)'
+                  e.currentTarget.style.boxShadow = '0 clamp(8px, 2vw, 24px) clamp(16px, 4vw, 32px) rgba(247, 138, 21, 0.5), 0 clamp(4px, 1vw, 12px) clamp(8px, 2vw, 16px) rgba(247, 138, 21, 0.25)'
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isAdding && inStock && selectedVariant) {
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(247, 138, 21, 0.35), 0 2px 8px rgba(247, 138, 21, 0.2)'
+                  e.currentTarget.style.boxShadow = '0 clamp(4px, 1vw, 16px) clamp(8px, 2vw, 24px) rgba(247, 138, 21, 0.35), 0 clamp(2px, 0.5vw, 8px) clamp(4px, 1vw, 12px) rgba(247, 138, 21, 0.2)'
                 }
               }}
             >
-              <span className="relative z-10 tracking-wide">
+              {/* Button Text - Changes based on product state */}
+              <span 
+                className="relative z-10 tracking-wide"
+                style={{ letterSpacing: 'clamp(0.01em, 0.02vw, 0.05em)' }}
+              >
                 {!selectedVariant
                   ? "Select size"
                   : !inStock
@@ -253,24 +426,61 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           </div>
         </div>
 
-        {/* Product Features - Enhanced */}
-        <div className="border-t border-gray-100 pt-3 mt-1">
-          <div className="flex flex-wrap justify-center sm:justify-between gap-4 sm:gap-6">
+        {/* ===================================================================
+           PRODUCT FEATURES - ENHANCED WITH FLUID DESIGN
+           =================================================================== */}
+        <div style={{ 
+          borderTop: '1px solid rgba(229, 231, 235, 0.8)', 
+          paddingTop: 'clamp(0.75rem, 2vh, 1.25rem)',
+          marginTop: 'clamp(0.25rem, 1vh, 0.5rem)'
+        }}>
+          <div 
+            className="flex flex-wrap justify-center xsmall:justify-between"
+            style={{ gap: 'clamp(1rem, 2vw, 1.5rem)' }}>
             {/* SPF reference removed */}
             <div className="flex items-center">
-              <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <span 
+                className="flex-shrink-0" 
+                style={{ 
+                  color: 'var(--seasun-golden-tan)',
+                  fontSize: 'clamp(0.875rem, 1.25vw, 1.125rem)' 
+                }}
+              >✓</span>
+              <span 
+                className="font-medium tracking-wide" 
+                style={{ 
+                  color: 'var(--seasun-deep-black)', 
+                  fontFamily: 'var(--seasun-font-body)',
+                  fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)',
+                  marginLeft: 'clamp(0.375rem, 0.75vw, 0.5rem)'
+                }}
+              >
                 Coconut, cinnamon, annatto
               </span>
             </div>
             <div className="flex items-center">
-              <span className="text-base flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }}>✓</span>
-              <span className="text-xs font-medium tracking-wide ml-2" style={{ color: 'var(--seasun-deep-black)', fontFamily: 'var(--seasun-font-body)' }}>
+              <span 
+                className="flex-shrink-0" 
+                style={{ 
+                  color: 'var(--seasun-golden-tan)',
+                  fontSize: 'clamp(0.875rem, 1.25vw, 1.125rem)' 
+                }}
+              >✓</span>
+              <span 
+                className="font-medium tracking-wide" 
+                style={{ 
+                  color: 'var(--seasun-deep-black)', 
+                  fontFamily: 'var(--seasun-font-body)',
+                  fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)',
+                  marginLeft: 'clamp(0.375rem, 0.75vw, 0.5rem)'
+                }}
+              >
                 Evens skin tone
               </span>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )
