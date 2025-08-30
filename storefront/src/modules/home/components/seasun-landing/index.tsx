@@ -75,43 +75,104 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   const productSectionRef = useRef<HTMLElement>(null)
   
   // ============================================================================
-  // SCROLL ANIMATION UTILITY
+  // SCROLL ANIMATION UTILITY - ENHANCED WITH SCROLL DIRECTION DETECTION
   // ============================================================================
   useEffect(() => {
+    // Get all elements with animations - already hidden by CSS
     const animatedElements = document.querySelectorAll('[data-scroll-animation]');
     
+    // Track scroll position to determine direction
+    let lastScrollY = window.scrollY;
+    let scrollingDown = true;
+    
+    // Update scroll direction on scroll
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      scrollingDown = scrollY > lastScrollY;
+      lastScrollY = scrollY;
+    };
+    
+    // Add scroll listener to track direction
+    window.addEventListener('scroll', updateScrollDirection, { passive: true });
+    
+    // Keep track of elements that have been animated
+    const animatedElementsMap = new Map();
+    
+    // Configure observer with optimal settings
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          const animation = element.getAttribute('data-scroll-animation');
+        const element = entry.target;
+        const animation = element.getAttribute('data-scroll-animation');
+        
+        // Skip if element has been animated before and is not supposed to repeat
+        if (animatedElementsMap.has(element) && element.getAttribute('data-animation-repeat') !== 'true') {
+          return;
+        }
+        
+        // Check if element is intersecting AND we're scrolling down
+        // This is the key part - only animate on downward scroll
+        if (entry.isIntersecting && scrollingDown) {
+          // Calculate visibility percentage (how much of the element is visible)
+          const visibleHeight = Math.min(
+            entry.boundingClientRect.bottom, 
+            window.innerHeight
+          ) - Math.max(entry.boundingClientRect.top, 0);
           
-          // Apply appropriate animation class based on attribute
-          if (animation === 'fade-up') {
-            element.classList.add('animate-fade-up');
-          } else if (animation === 'fade-left') {
-            element.classList.add('animate-fade-left');
-          } else if (animation === 'fade-right') {
-            element.classList.add('animate-fade-right');
-          } else if (animation === 'width') {
-            element.classList.add('animate-width');
-          } else if (animation === 'height') {
-            element.classList.add('animate-height');
+          const visibilityRatio = visibleHeight / entry.boundingClientRect.height;
+          
+          // Only animate if enough of the element is visible (at least 15%)
+          if (visibilityRatio >= 0.15) {
+            // Get any delay for sequenced animations
+            const delay = parseInt(element.getAttribute('data-animation-delay') || '0');
+            
+            // Apply animation with optional delay
+            setTimeout(() => {
+              // Add the animation class - keyframes handle the rest
+              if (animation === 'fade-up') {
+                element.classList.add('animate-fade-up');
+              } else if (animation === 'fade-left') {
+                element.classList.add('animate-fade-left');
+              } else if (animation === 'fade-right') {
+                element.classList.add('animate-fade-right');
+              } else if (animation === 'width') {
+                element.classList.add('animate-width');
+              } else if (animation === 'height') {
+                element.classList.add('animate-height');
+              }
+              
+              // Mark element as animated
+              animatedElementsMap.set(element, true);
+            }, delay);
+            
+            // If no repeat is specified, stop observing
+            if (element.getAttribute('data-animation-repeat') !== 'true') {
+              observer.unobserve(element);
+            }
           }
-          
-          observer.unobserve(element);
         }
       });
-    }, { threshold: 0.2 });
+    }, { 
+      threshold: [0.15, 0.3, 0.5, 0.75],  // Multiple thresholds for smoother detection
+      rootMargin: '0px 0px -10% 0px' // Slight bottom offset to trigger animations earlier
+    });
     
+    // Observe all animated elements
     animatedElements.forEach(element => {
       observer.observe(element);
     });
     
+    // Cleanup observer and event listeners on component unmount
     return () => {
+      // Remove scroll direction tracking
+      window.removeEventListener('scroll', updateScrollDirection);
+      
+      // Clean up observer
       animatedElements.forEach(element => {
-        observer.unobserve(element);
+        if (element) observer.unobserve(element);
       });
+      
+      // Clean up map
+      animatedElementsMap.clear();
     };
   }, []);
 

@@ -969,6 +969,130 @@
   /* Pill adjustments removed - handled by container constraints now */
 }
 
+/* Scroll Animation System - Prevents flashing before animation */
+[data-scroll-animation] {
+  opacity: 0;
+  visibility: hidden;
+  /* Ensures transitions run smoothly */
+  will-change: opacity, transform;
+}
+
+/* Controls all animations during initial page load */
+.animation-loading [data-scroll-animation] {
+  opacity: 0 !important; 
+  visibility: hidden !important;
+  animation: none !important;
+}
+
+/* Direction-specific transforms - maintain same distances as the existing animations */
+[data-scroll-animation="fade-up"] {
+  transform: translateY(clamp(15px, 2vh, 30px));
+}
+
+[data-scroll-animation="fade-left"] {
+  transform: translateX(clamp(-30px, -3vw, -15px));
+}
+
+[data-scroll-animation="fade-right"] {
+  transform: translateX(clamp(15px, 3vw, 30px));
+}
+
+[data-scroll-animation="width"] {
+  width: 0 !important;
+}
+
+/* Keyframe animations for scroll effects */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(clamp(15px, 2vh, 30px));
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(clamp(-30px, -3vw, -15px));
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(clamp(15px, 3vw, 30px));
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+@keyframes widthGrow {
+  from {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes heightGrow {
+  from {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Animation classes using keyframes */
+.animate-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-fade-left {
+  animation: fadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-fade-right {
+  animation: fadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-width {
+  animation: widthGrow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: width, opacity;
+}
+
+.animate-height {
+  animation: heightGrow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: height, opacity;
+}
+
 @layer components {
   /* Footer Wave Animation */
   @keyframes gentleWave {
