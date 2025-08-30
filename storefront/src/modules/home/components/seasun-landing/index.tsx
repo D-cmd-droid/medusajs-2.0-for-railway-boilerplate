@@ -853,7 +853,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             }}
             data-scroll-animation="fade-up"
           >
-            How many skincare products have you tried that promised results but left your skin irritated and your wallet empty? Most beauty companies rely on complicated formulas with ingredients you can't pronounce. But what if the answer was actually simpler?
+            ✨ If the sun plays hard to get with your skin, SEASUN makes it easy. Forget those complicated formulas with ingredients you can't pronounce. We've found a simpler answer that actually works.
           </p>
           
           {/* 
@@ -880,45 +880,31 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             >
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
                 {/* 
-                IMAGE CONTAINER: 
+                IMAGE: 
+                - Uses pre-made transparent image with natural shadows
                 - Size scales proportionally with viewport
-                - Maintains consistent aspect ratio
-                - Proper spacing scales with viewport
+                - Maintains proper spacing with content
                 */}
                 <div 
                   style={{ 
                     width: 'clamp(120px, 15vw, 180px)',
-                    aspectRatio: '1/1.2',
+                    aspectRatio: '1/1',
                     marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                     marginRight: 'clamp(0rem, 3vw, 1.5rem)',
-                    zIndex: 1,
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
                   data-aos-delay="0"
                 >
-                  {/* 
-                  IMAGE FRAME: 
-                  - Creates consistent visual container for ingredient images
-                  - Shadow and border create subtle depth
-                  */}
-                  <div 
-                    className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
-                    style={{
-                      boxShadow: '0 clamp(10px, 3vw, 20px) clamp(15px, 4vw, 25px) rgba(0, 0, 0, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                  <Image
+                    src="/images/ingredients/coconut.png"
+                    alt="Coconut Oil"
+                    fill
+                    style={{ 
+                      objectFit: 'contain',
+                      objectPosition: 'center',
                     }}
-                  >
-                    <Image
-                      src="/images/ingredients/coconut.png"
-                      alt="Coconut Oil"
-                      fill
-                      style={{ 
-                        objectFit: 'contain',
-                        objectPosition: 'center',
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
                 
                 {/* 
@@ -951,7 +937,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     data-scroll-animation="fade-up"
                     data-aos-delay="50"
                   >
-                    Coconut Oil Boosts
+                    Coconut Oil 🥥 Boosts
                   </h3>
                   
                   {/* 
@@ -974,7 +960,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     data-scroll-animation="fade-up"
                     data-aos-delay="100"
                   >
-                    While synthetic moisturizers sit on your skin creating that greasy, artificial feel, pure coconut oil penetrates deeply. It finds those stubborn lighter areas that never seem to catch the sun and creates the perfect canvas for an even, natural tan by providing intense hydration exactly where you need it most—no 12-step routine required.
+                    Say goodbye to greasy, artificial moisturizers that just sit on your skin. Pure coconut oil dives deep, finding those stubborn lighter areas that never seem to catch the sun. It creates the perfect canvas for an even, natural tan by delivering intense hydration exactly where you need it most—no 12-step routine required. Just smooth, ready-to-tan skin.
                   </p>
                 </div>
               </div>
@@ -998,32 +984,23 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 <div 
                   style={{ 
                     width: 'clamp(120px, 15vw, 180px)',
-                    aspectRatio: '1/1.2',
+                    aspectRatio: '1/1',
                     marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                     marginRight: 'clamp(0rem, 3vw, 1.5rem)',
-                    zIndex: 1,
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
                   data-aos-delay="200"
                 >
-                  <div 
-                    className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
-                    style={{
-                      boxShadow: '0 clamp(10px, 3vw, 20px) clamp(15px, 4vw, 25px) rgba(0, 0, 0, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                  <Image
+                    src="/images/ingredients/cinnamon.png"
+                    alt="Cinnamon"
+                    fill
+                    style={{ 
+                      objectFit: 'contain',
+                      objectPosition: 'center',
                     }}
-                  >
-                    <Image
-                      src="/images/ingredients/cinnamon.png"
-                      alt="Cinnamon"
-                      fill
-                      style={{ 
-                        objectFit: 'contain',
-                        objectPosition: 'center',
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
                 
                 {/* Content Container - Consistent with first ingredient */}
@@ -1047,7 +1024,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     data-scroll-animation="fade-up"
                     data-aos-delay="250"
                   >
-                    Cinnamon Speeds
+                    Cinnamon 🌶️ Speeds
                   </h3>
                   
                   <p 
@@ -1065,7 +1042,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     data-scroll-animation="fade-up"
                     data-aos-delay="300"
                   >
-                    Chemical accelerators force your skin to change, often causing irritation and damage. Cinnamon takes a different approach. It works with your body's natural processes, gently increasing circulation exactly where it's applied. This brings more blood flow to the surface, speeding up your natural tanning process without the harsh effects you've experienced before.
+                    Tired of harsh chemical accelerators that irritate and damage your skin? Cinnamon takes a different approach. It works with your body, not against it—gently boosting circulation exactly where you apply it. This brings more blood flow to the surface, speeding up your natural tanning process without the redness and irritation. No more waiting forever for results that never come.
                   </p>
                 </div>
               </div>
@@ -1089,32 +1066,23 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 <div 
                   style={{ 
                     width: 'clamp(120px, 15vw, 180px)',
-                    aspectRatio: '1/1.2',
+                    aspectRatio: '1/1',
                     marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                     marginRight: 'clamp(0rem, 3vw, 1.5rem)',
-                    zIndex: 1,
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
                   data-aos-delay="400"
                 >
-                  <div 
-                    className="w-full h-full bg-white/20 rounded-xl flex items-center justify-center"
-                    style={{
-                      boxShadow: '0 clamp(10px, 3vw, 20px) clamp(15px, 4vw, 25px) rgba(0, 0, 0, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)'
+                  <Image
+                    src="/images/ingredients/annatto.png"
+                    alt="Annatto"
+                    fill
+                    style={{ 
+                      objectFit: 'contain',
+                      objectPosition: 'center',
                     }}
-                  >
-                    <Image
-                      src="/images/ingredients/annatto.png"
-                      alt="Annatto"
-                      fill
-                      style={{ 
-                        objectFit: 'contain',
-                        objectPosition: 'center',
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
                 
                 {/* Content Container - Consistent with previous ingredients */}
@@ -1138,7 +1106,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     data-scroll-animation="fade-up"
                     data-aos-delay="450"
                   >
-                    Annatto Transforms
+                    Annatto ☀️ Transforms
                   </h3>
                   
                   <p 
@@ -1156,7 +1124,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     data-scroll-animation="fade-up"
                     data-aos-delay="500"
                   >
-                    Forget artificial dyes and bronzers that wash away after your first swim. Annatto infuses your skin with a golden warmth that enhances your natural complexion. This ancient Caribbean secret transforms your skin from within, creating that coveted sun-kissed glow that looks completely natural because it is—not an expensive treatment with minimal results, but an affordable solution that actually works.
+                    Forget about those artificial bronzers that wash away after your first swim. Annatto infuses your skin with a golden warmth that brings out your natural beauty. This ancient Caribbean secret transforms your skin from within, creating that head-turning sun-kissed glow that looks completely natural—because it is! Not an expensive treatment with disappointing results, but an affordable solution that delivers every time. Your skin, but better.
                   </p>
                 </div>
               </div>
@@ -1188,7 +1156,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 marginBottom: 'clamp(1.5rem, 5vh, 2.5rem)',
               }}
             >
-              That's why SEASUN doesn't just work differently—it works better. When harsh chemicals leave you constantly worried about sun damage, our natural formula gives you confidence in the sun. A beautiful, sexy glow isn't about masking your skin with chemicals. It's about enhancing what nature already gave you, with ingredients nature has already perfected.
+              That's why SEASUN doesn't just work differently—it works better. No more lobster red, muddy brown, or hours under the sun with no results. Our organic oil boosts those stubborn lighter areas, speeds up your tan, and transforms it into a golden, even, hydrated glow. A beautiful, sexy glow—no chemicals, no frustration. 💛🌴
             </p>
             
             {/* 
