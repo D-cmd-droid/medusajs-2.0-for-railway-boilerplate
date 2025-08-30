@@ -619,13 +619,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           */}
           <h2 
             id="ingredients-heading" 
+            className="font-light text-center"
             style={{ 
               fontFamily: 'var(--seasun-font-heading)', 
               color: 'var(--seasun-deep-black)',
               fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
               lineHeight: '1.2',
-              fontWeight: 300,
-              textAlign: 'center',
               marginBottom: 'clamp(2rem, 8vh, 4rem)',
             }}
             data-scroll-animation="fade-up"
@@ -749,19 +748,18 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   - Consistent visual hierarchy with section heading
                   */}
                   <h3 
+                    className="font-light text-center lg:text-left"
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
                       fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: '1.3',
-                      fontWeight: 300,
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                       textAlign: 'center',
                       '@media (min-width: 1024px)': {
                         textAlign: 'left',
                       }
                     }}
-                    className="text-center lg:text-left"
                     data-scroll-animation="fade-up"
                     data-aos-delay="50"
                   >
@@ -846,19 +844,18 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   flex: '1',
                 }}>
                   <h3 
+                    className="font-light text-center lg:text-left"
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
                       fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: '1.3',
-                      fontWeight: 300,
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                       textAlign: 'center',
                       '@media (min-width: 1024px)': {
                         textAlign: 'left',
                       }
                     }}
-                    className="text-center lg:text-left"
                     data-scroll-animation="fade-up"
                     data-aos-delay="250"
                   >
@@ -938,19 +935,18 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   flex: '1',
                 }}>
                   <h3 
+                    className="font-light text-center lg:text-left"
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
                       fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
                       lineHeight: '1.3',
-                      fontWeight: 300,
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                       textAlign: 'center',
                       '@media (min-width: 1024px)': {
                         textAlign: 'left',
                       }
                     }}
-                    className="text-center lg:text-left"
                     data-scroll-animation="fade-up"
                     data-aos-delay="450"
                   >
