@@ -75,7 +75,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   const productSectionRef = useRef<HTMLElement>(null)
   
   // ============================================================================
-  // SCROLL ANIMATION UTILITY - ENHANCED WITH SCROLL DIRECTION DETECTION
+  // SCROLL ANIMATION UTILITY - ENHANCED WITH SCROLL DIRECTION DETECTION & INITIAL CHECK
   // ============================================================================
   useEffect(() => {
     // Get all elements with animations - already hidden by CSS
@@ -98,11 +98,74 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     // Keep track of elements that have been animated
     const animatedElementsMap = new Map();
     
+    // Store position before refresh
+    window.addEventListener('beforeunload', () => {
+      sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+    });
+    
+    // Reusable function to animate an element
+    const animateElement = (element: Element, delay = 0) => {
+      const animation = element.getAttribute('data-scroll-animation');
+      
+      setTimeout(() => {
+        // Add the animation class - keyframes handle the rest
+        if (animation === 'fade-up') {
+          element.classList.add('animate-fade-up');
+        } else if (animation === 'fade-left') {
+          element.classList.add('animate-fade-left');
+        } else if (animation === 'fade-right') {
+          element.classList.add('animate-fade-right');
+        } else if (animation === 'width') {
+          element.classList.add('animate-width');
+        } else if (animation === 'height') {
+          element.classList.add('animate-height');
+        }
+        
+        // Mark element as animated
+        animatedElementsMap.set(element, true);
+      }, delay);
+    };
+    
+    // Function to check elements for animation - handles both viewport and above viewport
+    const checkElementsForAnimation = () => {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      animatedElements.forEach(element => {
+        // Skip if already animated
+        if (animatedElementsMap.has(element) && 
+            element.getAttribute('data-animation-repeat') !== 'true') {
+          return;
+        }
+        
+        // Get element position
+        const rect = element.getBoundingClientRect();
+        
+        // Get element's absolute position on page
+        const elementTop = rect.top + scrollY;
+        const elementBottom = rect.bottom + scrollY;
+        
+        // Check if element is at or above current scroll position
+        // (This means it's either in viewport or we've already scrolled past it)
+        if (elementBottom <= scrollY + window.innerHeight) {
+          // Element is above or in the current viewport - should be animated
+          const delay = parseInt(element.getAttribute('data-animation-delay') || '0');
+          
+          // Apply animation
+          animateElement(element, delay);
+          
+          // Stop observing if not repeating
+          if (element.getAttribute('data-animation-repeat') !== 'true') {
+            observer.unobserve(element);
+          }
+        }
+      });
+    };
+    
     // Configure observer with optimal settings
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const element = entry.target;
-        const animation = element.getAttribute('data-scroll-animation');
         
         // Skip if element has been animated before and is not supposed to repeat
         if (animatedElementsMap.has(element) && element.getAttribute('data-animation-repeat') !== 'true') {
@@ -126,23 +189,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             const delay = parseInt(element.getAttribute('data-animation-delay') || '0');
             
             // Apply animation with optional delay
-            setTimeout(() => {
-              // Add the animation class - keyframes handle the rest
-              if (animation === 'fade-up') {
-                element.classList.add('animate-fade-up');
-              } else if (animation === 'fade-left') {
-                element.classList.add('animate-fade-left');
-              } else if (animation === 'fade-right') {
-                element.classList.add('animate-fade-right');
-              } else if (animation === 'width') {
-                element.classList.add('animate-width');
-              } else if (animation === 'height') {
-                element.classList.add('animate-height');
-              }
-              
-              // Mark element as animated
-              animatedElementsMap.set(element, true);
-            }, delay);
+            animateElement(element, delay);
             
             // If no repeat is specified, stop observing
             if (element.getAttribute('data-animation-repeat') !== 'true') {
@@ -161,10 +208,25 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       observer.observe(element);
     });
     
+    // Restore scroll position if we have it saved
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+      window.scrollTo(0, parseInt(scrollPosition));
+    }
+    
+    // Run animation check after a small delay to ensure page is fully rendered
+    // This will handle both in-viewport and above-viewport elements
+    setTimeout(checkElementsForAnimation, 200);
+    
     // Cleanup observer and event listeners on component unmount
     return () => {
       // Remove scroll direction tracking
       window.removeEventListener('scroll', updateScrollDirection);
+      
+      // Remove beforeunload listener
+      window.removeEventListener('beforeunload', () => {
+        sessionStorage.setItem('scrollPosition', window.scrollY.toString());
+      });
       
       // Clean up observer
       animatedElements.forEach(element => {
