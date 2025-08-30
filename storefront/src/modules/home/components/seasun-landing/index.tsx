@@ -508,57 +508,184 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
 
       {/* All sections below hero wrapped in seamless gradient */}
       <div className="seasun-content-gradient">
-        {/* Trust/Problem Section - Redesigned */}
-        <section className="py-20 sm:py-24 lg:py-28 relative seasun-section-overlay" aria-labelledby="trust-problem-heading">
-          <div className="container mx-auto px-4 sm:px-6">
-            {/* Visual Elements - Sun rays background */}
-            <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full">
-                <div className="w-full h-full bg-gradient-radial from-yellow-400/30 to-transparent"></div>
-              </div>
+        {/* 
+        ===============================================================
+        TRUST/PROBLEM SECTION - STANDARDIZED DESIGN PATTERNS
+        ===============================================================
+        
+        Design standardization:
+        1. Matching container structure with other sections
+        2. Consistent background elements and textures
+        3. Uniform heading decoration with centered gradient
+        4. Standardized spacing and animations
+        5. Visual consistency with Ingredients section
+        */}
+        <section 
+          className="relative overflow-hidden" 
+          aria-labelledby="trust-problem-heading"
+          style={{
+            paddingTop: 'clamp(3rem, 10vh, 7rem)',
+            paddingBottom: 'clamp(3rem, 10vh, 7rem)',
+          }}
+        >
+          {/* 
+          BACKGROUND TEXTURE:
+          - Matches Ingredients section sand texture 
+          - Creates consistent visual language across sections
+          */}
+          <div 
+            className="absolute inset-0 opacity-20 pointer-events-none" 
+            style={{
+              background: 'url(/images/sand-texture.png)',
+              backgroundSize: 'clamp(200px, 30vw, 400px)', 
+              mixBlendMode: 'overlay'
+            }}
+          ></div>
+          
+          {/* Visual Elements - Sun rays background (preserved) */}
+          <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full">
+              <div className="w-full h-full bg-gradient-radial from-yellow-400/30 to-transparent"></div>
             </div>
-            
+          </div>
+          
+          {/* 
+          CONTENT CONTAINER:
+          - Matches structure of Ingredients section
+          - Consistent max-width and padding
+          */}
+          <div 
+            className="relative z-10 w-full mx-auto" 
+            style={{ 
+              maxWidth: 'min(90vw, 1400px)', 
+              padding: '0 clamp(1rem, 5vw, 3rem)'
+            }}
+          >
             <div className="max-w-3xl mx-auto text-center">
-              <h2 id="trust-problem-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-                When the sun plays <span className="relative inline-block">
-                  hard to get
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-amber-300 to-amber-500"></span>
-                </span>
+              {/* 
+              SECTION HEADING:
+              - Matches heading style across all sections
+              - Consistent decoration with centered gradient underline
+              - Standardized margin-bottom that matches Ingredients
+              */}
+              <h2 
+                id="trust-problem-heading" 
+                className="font-light text-center"
+                style={{ 
+                  fontFamily: 'var(--seasun-font-heading)', 
+                  color: 'var(--seasun-deep-black)',
+                  fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
+                  lineHeight: '1.2',
+                  marginBottom: 'clamp(2rem, 8vh, 4rem)',
+                }}
+                data-scroll-animation="fade-up"
+              >
+                When the sun plays hard to get
+                
+                {/* 
+                DECORATIVE UNDERLINE:
+                - Matches style from Ingredients section
+                - Centered gradient for consistent visual language
+                */}
+                <span 
+                  className="block mx-auto mt-6" 
+                  style={{ 
+                    height: 'clamp(2px, 0.3vh, 4px)',
+                    width: 'clamp(4rem, 8vw, 8rem)',
+                    background: 'linear-gradient(to right, transparent, var(--seasun-golden-tan), transparent)' 
+                  }}
+                  data-scroll-animation="width"
+                ></span>
               </h2>
               
-              <div className="space-y-6">
-                <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85 }}>
-                  How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, "Sure, I've heard these promises before." Your bathroom cabinet probably tells that story all too well.
-                </p>
-                
-                <p className="seasun-body text-base sm:text-lg md:text-xl leading-relaxed font-normal" style={{ color: 'var(--seasun-deep-black)', opacity: 0.9 }}>
-                  I felt the same way until I couldn't take it anymore. That's why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
-                </p>
-                
-                <div className="pt-6">
-                  <Button 
-                    onClick={scrollToProductSection}
-                    className="group relative seasun-body text-white px-8 py-4 text-base sm:text-lg rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px]"
-                    style={{ 
-                      backgroundColor: 'var(--seasun-golden-tan)',
-                      boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
-                      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                      minWidth: '200px'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
-                    }}
-                    aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
-                    role="button"
-                    tabIndex={0}
-                  >
-                    <span className="relative z-10 seasun-body tracking-wide font-semibold">See the Difference</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-                  </Button>
-                </div>
+              {/* 
+              FIRST PARAGRAPH:
+              - Matches structure of Ingredients opening statement
+              - Consistent max-width and margin
+              - Added animation attributes for consistency
+              */}
+              <p 
+                className="seasun-body font-light text-center"
+                style={{ 
+                  color: 'var(--seasun-deep-black)', 
+                  opacity: 0.85,
+                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+                  lineHeight: '1.6',
+                  maxWidth: 'min(100%, 800px)',
+                  margin: '0 auto clamp(1.5rem, 5vh, 3rem) auto',
+                }}
+                data-scroll-animation="fade-up"
+              >
+                How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, "Sure, I've heard these promises before." Your bathroom cabinet probably tells that story all too well.
+              </p>
+              
+              {/* 
+              SECOND PARAGRAPH:
+              - Consistent styling with first paragraph
+              - Maintains font-normal weight for emphasis
+              - Added animation with slight delay
+              */}
+              <p 
+                className="seasun-body font-normal text-center"
+                style={{ 
+                  color: 'var(--seasun-deep-black)', 
+                  opacity: 0.85,
+                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+                  lineHeight: '1.6',
+                  maxWidth: 'min(100%, 800px)',
+                  margin: '0 auto',
+                }}
+                data-scroll-animation="fade-up"
+                data-aos-delay="50"
+              >
+                I felt the same way until I couldn't take it anymore. That's why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
+              </p>
+              
+              {/* 
+              BUTTON CONTAINER:
+              - Matches spacing from Ingredients section
+              - Added animation with delayed reveal
+              */}
+              <div 
+                style={{ 
+                  marginTop: 'clamp(2rem, 5vh, 4rem)',
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
+                data-scroll-animation="fade-up"
+                data-aos-delay="100"
+              >
+                {/* 
+                CTA BUTTON:
+                - Preserved existing styling
+                - Maintained fluid padding and font sizing
+                */}
+                <Button 
+                  onClick={scrollToProductSection}
+                  className="group relative seasun-body text-white rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto"
+                  style={{ 
+                    backgroundColor: 'var(--seasun-golden-tan)',
+                    boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                    minWidth: '200px',
+                    /* Fluid padding creates consistent visual weight */
+                    padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)',
+                    /* Button text scales appropriately with viewport */
+                    fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                  }}
+                  aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span className="relative z-10 seasun-body tracking-wide font-semibold">See the Difference</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                </Button>
               </div>
             </div>
           </div>
@@ -1034,16 +1161,55 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 sm:py-24 lg:py-28 seasun-section-overlay" aria-labelledby="faq-heading">
+      {/* 
+      ===============================================================
+      FAQ SECTION - STANDARDIZED TYPOGRAPHY
+      ===============================================================
+      
+      Typography standardization:
+      1. Fluid typography with clamp() instead of breakpoints
+      2. Consistent visual hierarchy across sections
+      3. Standardized line heights and font weights
+      4. Unified opacity values for similar text types
+      */}
+      <section 
+        className="seasun-section-overlay" 
+        aria-labelledby="faq-heading"
+        style={{
+          /* Consistent section padding that scales with viewport */
+          paddingTop: 'clamp(3rem, 10vh, 7rem)',
+          paddingBottom: 'clamp(3rem, 10vh, 7rem)',
+        }}
+      >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 id="faq-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-12 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
+            {/* 
+            SECTION HEADING:
+            - Matches ingredient section heading style
+            - Fluid typography that scales smoothly 
+            - Consistent visual hierarchy with other h2 elements
+            */}
+            <h2 
+              id="faq-heading" 
+              className="font-light text-center"
+              style={{ 
+                fontFamily: 'var(--seasun-font-heading)', 
+                color: 'var(--seasun-deep-black)',
+                fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
+                lineHeight: '1.2',
+                marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
+              }}
+            >
               HONEST ANSWERS TO YOUR <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>REAL CONCERNS</span>
             </h2>
             
-            {/* FAQ Questions */}
-            <div className="space-y-4 sm:space-y-6 mb-8" role="region" aria-labelledby="faq-heading">
+            {/* FAQ Questions - Container with proportional spacing */}
+            <div 
+              className="space-y-4 sm:space-y-6" 
+              style={{ marginBottom: 'clamp(1.5rem, 5vh, 3rem)' }}
+              role="region" 
+              aria-labelledby="faq-heading"
+            >
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
@@ -1062,13 +1228,31 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       id={`faq-question-${index}`}
                       type="button"
                     >
-                      <span className="seasun-body text-sm sm:text-base lg:text-lg font-medium leading-relaxed group-hover:opacity-90 transition-opacity duration-300 pr-3" style={{ color: 'var(--seasun-deep-black)' }}>{faq.question}</span>
+                      {/* 
+                      QUESTION TEXT:
+                      - Standardized font sizing with clamp()
+                      - Consistent font weight and line height
+                      - Matches interactive text styling across sections 
+                      */}
                       <span 
-                        className="text-xl sm:text-2xl transition-all duration-500 ease-out group-hover:scale-110 flex-shrink-0 ml-2 sm:ml-4 min-w-[24px] min-h-[24px] flex items-center justify-center" 
+                        className="seasun-body font-medium group-hover:opacity-90 transition-opacity duration-300 pr-3" 
+                        style={{ 
+                          color: 'var(--seasun-deep-black)',
+                          fontSize: 'clamp(0.875rem, 0.75vw + 0.75rem, 1.125rem)',
+                          lineHeight: '1.6',
+                        }}
+                      >
+                        {faq.question}
+                      </span>
+                      
+                      {/* Plus icon - Maintained original styling */}
+                      <span 
+                        className="transition-all duration-500 ease-out group-hover:scale-110 flex-shrink-0 ml-2 sm:ml-4 min-w-[24px] min-h-[24px] flex items-center justify-center" 
                         style={{ 
                           color: 'var(--seasun-deep-black)', 
                           transform: expandedFAQ === index ? 'rotate(45deg)' : 'rotate(0deg)',
-                          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                          fontSize: 'clamp(1.25rem, 1vw + 1rem, 1.75rem)',
                         }}
                         aria-hidden="true"
                       >
@@ -1076,6 +1260,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       </span>
                     </button>
                   </h3>
+                  
+                  {/* 
+                  ANSWER CONTAINER:
+                  - Smooth height transition maintained
+                  - Consistent padding that scales with viewport
+                  */}
                   <div 
                     className="overflow-hidden transition-all duration-500 ease-out"
                     style={{
@@ -1085,24 +1275,66 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   >
                     <div 
                       id={`faq-answer-${index}`}
-                      className="px-4 pb-5 sm:px-6 sm:pb-6 lg:px-8 lg:pb-6 border-t border-gray-100"
+                      className="border-t border-gray-100"
                       role="region"
                       aria-labelledby={`faq-question-${index}`}
                       style={{
                         transform: expandedFAQ === index ? 'translateY(0)' : 'translateY(-10px)',
-                        transition: 'transform 0.3s ease-out 0.2s'
+                        transition: 'transform 0.3s ease-out 0.2s',
+                        padding: 'clamp(0.75rem, 3vh, 1.5rem) clamp(1rem, 4vw, 2rem)',
                       }}
                     >
-                      <p className="seasun-body text-xs sm:text-sm lg:text-base leading-relaxed pt-3 sm:pt-4 font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>{faq.answer}</p>
+                      {/* 
+                      ANSWER TEXT:
+                      - Standardized font sizing with clamp()
+                      - Consistent opacity and line height 
+                      - Matches secondary text styling across sections
+                      */}
+                      <p 
+                        className="seasun-body font-light" 
+                        style={{ 
+                          color: 'var(--seasun-deep-black)', 
+                          opacity: 0.8,
+                          fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
+                          lineHeight: '1.6',
+                        }}
+                      >
+                        {faq.answer}
+                      </p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
             
-            {/* Final message - separated from the FAQ questions with proper spacing */}
-            <div className="pt-8 pb-4 max-w-3xl mx-auto border-t border-gray-100/30">
-              <p className="text-base sm:text-lg leading-relaxed font-normal text-center" style={{ color: 'var(--seasun-deep-black)', opacity: 0.85, fontFamily: 'var(--seasun-font-body)' }}>
+            {/* 
+            FINAL MESSAGE:
+            - Consistent spacing that scales with viewport
+            - Standardized typography matches body text elsewhere
+            - Maintains border separator with proportional spacing
+            */}
+            <div 
+              className="max-w-3xl mx-auto border-t border-gray-100/30"
+              style={{
+                paddingTop: 'clamp(1.5rem, 4vh, 3rem)',
+                paddingBottom: 'clamp(1rem, 2vh, 2rem)',
+              }}
+            >
+              {/* 
+              FINAL MESSAGE TEXT:
+              - Matches standard body text styling
+              - Fluid typography with clamp()
+              - Consistent line height and opacity
+              */}
+              <p 
+                className="seasun-body font-normal text-center" 
+                style={{ 
+                  color: 'var(--seasun-deep-black)', 
+                  opacity: 0.85,
+                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+                  lineHeight: '1.6',
+                }}
+              >
                 It sounds like you've been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you've been chasing? Reach out at <span style={{ color: 'var(--seasun-deeper-blue)', fontWeight: '500' }}>hello@seasun.com</span> and let's find your answer.
               </p>
             </div>
