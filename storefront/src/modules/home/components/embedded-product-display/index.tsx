@@ -263,11 +263,12 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           </p>
           <div>
             <p 
-               className="seasun-body font-light" 
+               className="seasun-body font-medium" 
                style={{ 
                  color: 'var(--seasun-golden-tan)', 
                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
-                 lineHeight: '1.7'
+                 lineHeight: '1.7',
+                 fontWeight: 'bold'
                }}>
               Any reason not to glow?
             </p>
