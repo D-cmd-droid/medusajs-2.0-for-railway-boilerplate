@@ -45,7 +45,7 @@ interface FAQItem {
 }
 
 type SeasunLandingProps = {
-  countryCode: string
+  countryCode?: string  // Optional since it's not currently used
   region: HttpTypes.StoreRegion
   product: HttpTypes.StoreProduct | null
 }
@@ -53,7 +53,6 @@ type SeasunLandingProps = {
 // ============================================================================
 // PRODUCT INFORMATION
 // ============================================================================
-// Ingredients information removed
 
 export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // countryCode available for future country-specific content
@@ -93,10 +92,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     // Keep track of elements that have been animated
     const animatedElementsMap = new Map();
     
-    // Store position before refresh
-    window.addEventListener('beforeunload', () => {
+    // Store position before refresh - using named function for proper cleanup
+    const handleBeforeUnload = () => {
       sessionStorage.setItem('scrollPosition', window.scrollY.toString());
-    });
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
     
     // Reusable function to animate an element
     const animateElement = (element: Element, delay = 0) => {
@@ -218,10 +218,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       // Remove scroll direction tracking
       window.removeEventListener('scroll', updateScrollDirection);
       
-      // Remove beforeunload listener
-      window.removeEventListener('beforeunload', () => {
-        sessionStorage.setItem('scrollPosition', window.scrollY.toString());
-      });
+      // Remove beforeunload listener with the same function reference
+      window.removeEventListener('beforeunload', handleBeforeUnload);
       
       // Clean up observer
       animatedElements.forEach(element => {
@@ -278,22 +276,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     }
   ]
 
-  const instagramImages = [
-    "/beach-sunset.jpg",
-    "/beach-chair.jpg", 
-    "/ocean-view.jpg",
-    "/beach-rocks.jpg",
-    "/palm-trees.jpg",
-    "/coastal-path.jpg"
-  ]
+  // Instead of unused image paths, use a constant for the number of placeholder items
+  const INSTAGRAM_IMAGES_COUNT = 6;
 
   // ============================================================================
   // MAIN RENDER
   // ============================================================================
   return (
     <div className="w-full">
-      {/* Breakpoint indicator - visual aid for responsive debugging */}
-      <div className="breakpoint-indicator"></div>
       {/* 
       ===============================================================
       HERO SECTION - APPLE-INSPIRED RESPONSIVE APPROACH
@@ -592,7 +582,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
-      {/* Mobile Ingredient Showcase removed */}
 
 
       {/* All sections below hero wrapped in seamless gradient */}
@@ -725,7 +714,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   margin: '0 auto',
                 }}
                 data-scroll-animation="fade-up"
-                data-aos-delay="50"
               >
                 I felt the same way until I couldn't take it anymore. That's why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
               </p>
@@ -742,7 +730,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   justifyContent: 'center'
                 }}
                 data-scroll-animation="fade-up"
-                data-aos-delay="100"
               >
                 {/* 
                 CTA BUTTON:
@@ -922,7 +909,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
-                  data-aos-delay="0"
                 >
                   <Image
                     src="/images/ingredients/coconut.png"
@@ -960,7 +946,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
-                    data-aos-delay="50"
                   >
                     Coconut Oil 🥥 Boosts
                   </h3>
@@ -980,7 +965,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
-                    data-aos-delay="100"
                   >
                     Say goodbye to greasy, artificial moisturizers that just sit on your skin. Pure coconut oil dives deep, finding those stubborn lighter areas that never seem to catch the sun. It creates the perfect canvas for an even, natural tan by delivering intense hydration exactly where you need it most—no 12-step routine required. Just smooth, ready-to-tan skin.
                   </p>
@@ -1012,7 +996,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
-                  data-aos-delay="200"
                 >
                   <Image
                     src="/images/ingredients/cinnamon.png"
@@ -1041,7 +1024,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
-                    data-aos-delay="250"
                   >
                     Cinnamon 🌶️ Speeds
                   </h3>
@@ -1056,7 +1038,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
-                    data-aos-delay="300"
                   >
                     Tired of harsh chemical accelerators that irritate and damage your skin? Cinnamon takes a different approach. It works with your body, not against it—gently boosting circulation exactly where you apply it. This brings more blood flow to the surface, speeding up your natural tanning process without the redness and irritation. No more waiting forever for results that never come.
                   </p>
@@ -1088,7 +1069,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
-                  data-aos-delay="400"
                 >
                   <Image
                     src="/images/ingredients/annatto.png"
@@ -1117,7 +1097,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
-                    data-aos-delay="450"
                   >
                     Annatto ☀️ Transforms
                   </h3>
@@ -1132,7 +1111,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       textAlign: 'center'
                     }}
                     data-scroll-animation="fade-up"
-                    data-aos-delay="500"
                   >
                     Forget about those artificial bronzers that wash away after your first swim. Annatto infuses your skin with a golden warmth that brings out your natural beauty. This ancient Caribbean secret transforms your skin from within, creating that head-turning sun-kissed glow that looks completely natural—because it is! Not an expensive treatment with disappointing results, but an affordable solution that delivers every time. Your skin, but better.
                   </p>
@@ -1396,7 +1374,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           </div>
           
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-            {instagramImages.map((_, index) => (
+            {Array(INSTAGRAM_IMAGES_COUNT).fill(0).map((_, index) => (
               <div 
                 key={index}
                 className="group relative aspect-square rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" 
