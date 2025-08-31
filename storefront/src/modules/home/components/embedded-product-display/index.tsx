@@ -193,10 +193,9 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               borderRadius: '9999px',
             }}>
             <span 
-              className="seasun-body text-white tracking-wide"
+              className="seasun-body font-light text-white tracking-wide"
               style={{ 
                 fontSize: 'clamp(0.65rem, 0.8vw, 0.875rem)',
-                fontWeight: 'var(--seasun-font-medium)',
                 lineHeight: '1.5'
               }}
             >🌿 Natural</span>
@@ -241,11 +240,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
         
         <div style={{ marginBottom: 'clamp(1.5rem, 4vh, 2.5rem)' }} className="max-w-2xl mx-auto xsmall:mx-0">
           <p 
-             className="seasun-body" 
+             className="seasun-body font-light" 
              style={{ 
                color: 'var(--seasun-deep-black)', 
                opacity: 0.9, 
-               fontWeight: 'var(--seasun-font-medium)',
                fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
                lineHeight: '1.7',
                marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
@@ -253,11 +251,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             Your natural beauty deserves to be enhanced, not masked.
           </p>
           <p 
-             className="seasun-body font-normal" 
+             className="seasun-body font-light" 
              style={{ 
                color: 'var(--seasun-deep-black)', 
                opacity: 0.85, 
-               fontWeight: 'var(--seasun-font-regular)',
                fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
                lineHeight: '1.7',
                marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
@@ -266,10 +263,9 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           </p>
           <div>
             <p 
-               className="seasun-body" 
+               className="seasun-body font-light" 
                style={{ 
                  color: 'var(--seasun-golden-tan)', 
-                 fontWeight: 'var(--seasun-font-medium)',
                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
                  lineHeight: '1.7'
                }}>
@@ -291,11 +287,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             {/* Size Selection */}
             <div className="flex items-center">
               <p 
-                className="seasun-body"
+                className="seasun-body font-light"
                 style={{ 
                   color: 'var(--seasun-deep-black)', 
                   fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
-                  fontWeight: 'var(--seasun-font-medium)',
                   lineHeight: '1.7',
                   marginRight: 'clamp(0.5rem, 1vw, 0.75rem)'
                 }}
@@ -313,11 +308,12 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     }
                   `}
                   style={{ 
-                    fontFamily: 'var(--seasun-font-body)',
                     fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
                     padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem)',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    lineHeight: '1.5'
+                    lineHeight: '1.5',
+                    fontFamily: 'var(--seasun-font-body)',
+                    fontWeight: '300'
                   }}
                 >
                   100ml
@@ -332,11 +328,12 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     }
                   `}
                   style={{ 
-                    fontFamily: 'var(--seasun-font-body)',
                     fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
                     padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem)',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    lineHeight: '1.5'
+                    lineHeight: '1.5',
+                    fontFamily: 'var(--seasun-font-body)',
+                    fontWeight: '300'
                   }}
                 >
                   250ml
@@ -360,11 +357,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             </div>
           </div>
           <p 
-            className="seasun-body opacity-70 text-left" 
+            className="seasun-body font-light opacity-70 text-left" 
             style={{ 
               color: 'var(--seasun-deep-black)', 
               fontSize: 'clamp(0.65rem, 0.75vw, 0.75rem)',
-              fontWeight: 'var(--seasun-font-regular)',
               lineHeight: '1.7',
               marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
             }}
@@ -407,11 +403,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             >
               {/* Button Text - Changes based on product state */}
               <span 
-                className="seasun-body relative z-10 tracking-wide"
+                className="seasun-body font-light relative z-10 tracking-wide"
                 style={{ 
                   letterSpacing: 'clamp(0.01em, 0.02vw, 0.05em)',
-                  lineHeight: '1.5',
-                  fontWeight: 'var(--seasun-font-semibold)'
+                  lineHeight: '1.5'
                 }}
               >
                 {!selectedVariant
@@ -447,10 +442,9 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                 }}
               >✓</span>
               <span 
-                className="font-medium tracking-wide" 
+                className="seasun-body font-light tracking-wide" 
                 style={{ 
                   color: 'var(--seasun-deep-black)', 
-                  fontFamily: 'var(--seasun-font-body)',
                   fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)',
                   marginLeft: 'clamp(0.375rem, 0.75vw, 0.5rem)'
                 }}
@@ -467,10 +461,9 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                 }}
               >✓</span>
               <span 
-                className="font-medium tracking-wide" 
+                className="seasun-body font-light tracking-wide" 
                 style={{ 
                   color: 'var(--seasun-deep-black)', 
-                  fontFamily: 'var(--seasun-font-body)',
                   fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)',
                   marginLeft: 'clamp(0.375rem, 0.75vw, 0.5rem)'
                 }}
