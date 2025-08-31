@@ -149,20 +149,18 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
          PRODUCT IMAGE DISPLAY - FLUID CONTAINER WITH ASPECT RATIO
          =================================================================== */}
       <div className="order-2 xsmall:order-1 xsmall:col-span-2 flex items-center justify-center">
+        {/* Simplified container structure - matching hero layout pattern */}
         <div className="relative" style={{
             width: 'clamp(240px, 90%, 400px)',
             aspectRatio: '1/1.2',
             margin: '0 auto xsmall:mr-0 xsmall:ml-auto',
-          }}>
-          <div 
-            className="relative overflow-hidden w-full h-full" 
-            style={{
-              borderRadius: 'clamp(0.75rem, 1.5vw, 1.5rem)',
-              boxShadow: '0 clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) rgba(0,0,0,0.1)',
-            }}>
+            borderRadius: 'clamp(0.75rem, 1.5vw, 1.5rem)',
+            boxShadow: '0 clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) rgba(0,0,0,0.1)',
+            overflow: 'hidden'
+        }}>
           {/* Coastal Background - Simplified with fluid gradient */}
           <div 
-            className="absolute inset-0"
+            className="absolute inset-0 z-0"
             style={{
               backgroundColor: '#78c8e3',
               background: 'linear-gradient(to bottom, #78c8e3 0%, #49b0d3 100%)',
@@ -170,37 +168,24 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             }}
           />
           
-          {/* Product Display - Centered with responsive scaling */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center">
-            <div className="text-center">
-              {/* Product Image - Responsive sizing with fluid shadows */}
-              <div>
-                <Image
-                  src="/images/seasun-product-image.png"
-                  alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
-                  width={320}
-                  height={480}
-                  className="mx-auto"
-                  style={{ 
-                    filter: 'drop-shadow(0 clamp(6px, 1.5vw, 16px) clamp(12px, 3vw, 24px) rgba(0,0,0,0.15))',
-                    maxWidth: 'clamp(160px, 80%, 280px)', // Smaller, more constrained image size
-                    height: 'auto', // Maintain aspect ratio
-                    objectFit: 'contain',
-                    objectPosition: 'center',
-                    transition: 'transform 0.3s ease-in-out' // Smooth scaling on viewport changes
-                  }}
-                  priority
-                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 600px"
-                />
-              </div>
-            </div>
-          </div>
-          
-          {/* SPF reference removed */}
+          {/* Product Image with fill property - matches hero section pattern */}
+          <Image
+            src="/images/seasun-product-image.png"
+            alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
+            fill
+            priority
+            sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 600px"
+            className="z-10 object-contain"
+            style={{ 
+              filter: 'drop-shadow(0 clamp(6px, 1.5vw, 16px) clamp(12px, 3vw, 24px) rgba(0,0,0,0.15))',
+              transition: 'all 0.3s ease-in-out',
+              transform: 'scale(0.85)' // Slightly smaller to fit container better
+            }}
+          />
           
           {/* Natural Badge - Fluid positioning and sizing */}
           <div 
-            className="absolute bg-white/15 backdrop-blur-sm border border-white/30"
+            className="absolute bg-white/15 backdrop-blur-sm border border-white/30 z-20"
             style={{
               bottom: 'clamp(1rem, 3vw, 1.5rem)',
               left: 'clamp(1rem, 3vw, 1.5rem)',
@@ -211,7 +196,6 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               className="text-white font-medium tracking-wide"
               style={{ fontSize: 'clamp(0.65rem, 0.8vw, 0.875rem)' }}
             >🌿 Natural</span>
-          </div>
           </div>
         </div>
       </div>
