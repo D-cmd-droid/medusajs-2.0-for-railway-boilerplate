@@ -24,7 +24,7 @@
 // IMPORTS AND DEPENDENCIES
 // ====================================================================================
 import { Button } from "@medusajs/ui"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { useParams } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
@@ -52,7 +52,28 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
   const [selectedSize, setSelectedSize] = useState<'100ml' | '250ml'>('100ml')
   const [quantity, setQuantity] = useState<number>(1)
   const [isAdding, setIsAdding] = useState(false)
+  const [isBelowBreakpoint, setIsBelowBreakpoint] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
+  )
   const countryCode = useParams().countryCode as string
+  
+  // Handle responsive breakpoint changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsBelowBreakpoint(window.innerWidth < 1024)
+    }
+    
+    // Set initial value
+    handleResize()
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   
   // Map sizes to existing variants (S = 100ml, M = 250ml)
   const sizeVariantMap = useMemo(() => {
@@ -144,11 +165,11 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
       className="relative w-full mx-auto" 
       style={{
         maxWidth: 'min(90vw, 1400px)', // Match hero container width
-        padding: '0 clamp(1rem, 3vw, 2rem)',
+        padding: '0 clamp(0.5rem, 2vw, 1.5rem)', // Reduced horizontal padding to give more space
         paddingBottom: 'clamp(1rem, 4vh, 2rem)'
       }}>
       <div 
-        className="grid xsmall:grid-cols-5 items-center" 
+        className="grid sm:grid-cols-5 items-center" 
         style={{
           gap: 'clamp(1rem, 3vw, 2.5rem)',
           minHeight: 'clamp(300px, 60vh, 600px)',
@@ -158,16 +179,29 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
       {/* ===================================================================
          PRODUCT IMAGE DISPLAY - FLUID CONTAINER WITH ASPECT RATIO
          =================================================================== */}
-      <div className="order-2 xsmall:order-1 xsmall:col-span-2 flex items-center justify-center">
+      <div className="order-2 sm:order-1 sm:col-span-2 flex items-center justify-center">
         {/* Simplified container structure - matching hero layout pattern */}
-        <div className="relative" style={{
-            width: 'clamp(240px, 90%, 400px)',
-            aspectRatio: '1/1.2',
-            margin: '0 auto xsmall:mr-0 xsmall:ml-auto',
+        {/* 
+          PRODUCT IMAGE CONTAINER:
+          - Content-aware fluid sizing that adapts to viewport
+          - Uses dynamic aspect ratio that adjusts based on screen width
+          - Maintains consistent visual proportions across devices
+        */}
+        <div 
+          className="relative"
+          style={{
+            // Increased width values at all breakpoints for more spacious container
+            width: isBelowBreakpoint 
+              ? 'clamp(280px, 95%, 440px)' // Wider below 1024px
+              : 'clamp(240px, 90%, 400px)', // Original size above 1024px
+            // More vertical aspect ratio below lg breakpoint (1024px)
+            aspectRatio: isBelowBreakpoint ? '9/16' : '1/1.2',
+            margin: '0 auto sm:mr-0 sm:ml-auto',
             borderRadius: 'clamp(0.75rem, 1.5vw, 1.5rem)',
             boxShadow: '0 clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) rgba(0,0,0,0.1)',
             overflow: 'hidden'
-        }}>
+          }}
+        >
           {/* Coastal Background - Simplified with fluid gradient */}
           <div 
             className="absolute inset-0 z-0"
@@ -179,6 +213,12 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           />
           
           {/* Product Image with fill property - matches hero section pattern */}
+          {/* 
+            PRODUCT IMAGE:
+            - Content-aware fluid scaling based on viewport width
+            - Progressively scales up on smaller screens to maintain visibility
+            - Dynamic object positioning for optimal framing at all sizes
+          */}
           <Image
             src="/images/seasun-product-image.png"
             alt="SEASUN Organic Tanning Oil - 250ml amber bottle"
@@ -189,7 +229,14 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             style={{ 
               filter: 'drop-shadow(0 clamp(6px, 1.5vw, 16px) clamp(12px, 3vw, 24px) rgba(0,0,0,0.15))',
               transition: 'all 0.3s ease-in-out',
-              transform: 'scale(0.85)' // Slightly smaller to fit container better
+              // Adaptive scaling based on the 1024px breakpoint - reduced scale to create more padding
+              transform: isBelowBreakpoint
+                ? 'scale(0.85)' // Slightly smaller below 1024px to create padding
+                : 'scale(0.75)', // Even smaller above 1024px
+              // Dynamic object position to adjust vertical alignment based on container proportions
+              objectPosition: isBelowBreakpoint
+                ? 'center 45%' // Slight upward shift in taller container
+                : 'center center'
             }}
           />
           
@@ -217,11 +264,11 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
          PRODUCT INFORMATION & PURCHASE - FLUID LAYOUT AND TYPOGRAPHY
          =================================================================== */}
       <div 
-        className="order-1 xsmall:order-2 xsmall:col-span-3 text-center xsmall:text-left" 
+        className="order-1 sm:order-2 sm:col-span-3 text-center sm:text-left" 
         style={{ 
           padding: 'clamp(0.5rem, 2vw, 1.5rem)',
           maxWidth: 'min(100%, 540px)',
-          margin: '0 auto xsmall:m-0'
+          margin: '0 auto sm:m-0'
         }}>
         <h2 
             className="seasun-h2 font-light" 
@@ -299,15 +346,15 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
            =================================================================== */}
         <div style={{ marginBottom: 'clamp(0.75rem, 2vh, 1.5rem)' }}>
           <div 
-            className="flex flex-col xsmall:flex-row items-start xsmall:items-center xsmall:justify-between" 
+            className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between" 
             style={{ 
               gap: 'clamp(1rem, 2vw, 1.5rem)', 
               marginBottom: 'clamp(0.5rem, 1vh, 0.75rem)' 
             }}>
             {/* Size Selection */}
-            <div className="flex items-center">
+            <div className="flex flex-col sm:flex-row sm:items-center w-full">
               <p 
-                className="seasun-body font-light"
+                className="seasun-body font-light mb-2 sm:mb-0"
                 style={{ 
                   color: 'var(--seasun-deep-black)', 
                   fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
@@ -317,7 +364,21 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               >
                 Size:
               </p>
-              <div className="flex">
+              {/* 
+              SIZE SELECTOR BUTTONS:
+              - Uses fluid layout approach that responds to both viewport width and content
+              - Stacks vertically below 768px or when container gets too narrow
+              - Ensures prices don't get cut off at intermediate breakpoints
+              */}
+              <div 
+                className="flex flex-col gap-3 w-full"
+                style={{
+                  // Create content-aware display mode based on available width
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
+                  gap: 'clamp(0.75rem, 2vw, 1rem)',
+                }}
+              >
                 <button
                   onClick={() => setSelectedSize('100ml')}
                   className={`
@@ -334,10 +395,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     lineHeight: '1.5',
                     fontFamily: 'var(--seasun-font-body)',
                     fontWeight: selectedSize === '100ml' ? '500' : '300',
-                    marginRight: '0.75rem',
-                    minWidth: '180px',
-                    width: '100%',
-                    flex: '1'
+                    width: '100%'
                   }}
                 >
                   <div className="flex flex-row items-center justify-between w-full px-2">
@@ -365,9 +423,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     lineHeight: '1.5',
                     fontFamily: 'var(--seasun-font-body)',
                     fontWeight: selectedSize === '250ml' ? '500' : '300',
-                    minWidth: '180px',
-                    width: '100%',
-                    flex: '1'
+                    width: '100%'
                   }}
                 >
                   <div className="flex flex-row items-center justify-between w-full px-2">
@@ -384,9 +440,9 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             
           </div>
           {/* Quantity Selector */}
-          <div className="flex items-center mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center mb-4">
             <p 
-              className="seasun-body font-light"
+              className="seasun-body font-light mb-2 sm:mb-0"
               style={{ 
                 color: 'var(--seasun-deep-black)', 
                 fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
