@@ -135,8 +135,11 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     }
   }
 
-  // Display price based on selected size
-  const displayPrice = selectedSize === '100ml' ? '$29.99' : '$39.99'
+  // Calculate unit and total price based on selected size and quantity
+  const unitPrice = selectedSize === '100ml' ? 29.99 : 39.99
+  const totalPrice = unitPrice * quantity
+  const displayPrice = `$${unitPrice.toFixed(2)}`
+  const displayTotalPrice = `$${totalPrice.toFixed(2)}`
 
   // ===================================================================
   // MATCHING HERO LAYOUT STRUCTURE - USING XSMALL BREAKPOINT (512px)
@@ -273,16 +276,20 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
              }}>
             The secret lies in what's NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
           </p>
-          <div>
+          <div className="py-2 my-2 border-t border-b border-golden-tan/20">
             <p 
-               className="seasun-body font-medium" 
+               className="seasun-body font-medium text-center" 
                style={{ 
                  color: 'var(--seasun-golden-tan)', 
-                 fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
-                 lineHeight: '1.7',
-                 fontWeight: 'bold'
+                 fontSize: 'clamp(1.1rem, 1.1vw + 0.5rem, 1.4rem)',
+                 lineHeight: '1.5',
+                 fontWeight: 'bold',
+                 letterSpacing: '0.02em',
+                 textShadow: '0 1px 2px rgba(0,0,0,0.05)'
                }}>
+              <span className="mr-2">✨</span>
               Any reason not to glow?
+              <span className="ml-2">✨</span>
             </p>
           </div>
         </div>
@@ -314,10 +321,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                 <button
                   onClick={() => setSelectedSize('100ml')}
                   className={`
-                    rounded-l-lg transition-all duration-300 
+                    rounded-lg transition-all duration-300 relative
                     ${selectedSize === '100ml' 
-                      ? 'bg-[#f78a15] text-white font-medium' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-[#f78a15] text-white shadow-lg' 
+                      : 'bg-white/30 backdrop-blur-sm border border-white/40 text-gray-700 hover:bg-white/50'
                     }
                   `}
                   style={{ 
@@ -326,18 +333,26 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     lineHeight: '1.5',
                     fontFamily: 'var(--seasun-font-body)',
-                    fontWeight: '300'
+                    fontWeight: selectedSize === '100ml' ? '500' : '300',
+                    marginRight: '0.5rem',
+                    minWidth: '95px'
                   }}
                 >
-                  100ml
+                  <div className="flex flex-col items-center">
+                    <span>100ml</span>
+                    <span className="text-xs mt-1 opacity-90">$29.99</span>
+                  </div>
+                  {selectedSize === '100ml' && (
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full shadow-sm"></span>
+                  )}
                 </button>
                 <button
                   onClick={() => setSelectedSize('250ml')}
                   className={`
-                    rounded-r-lg transition-all duration-300
+                    rounded-lg transition-all duration-300 relative
                     ${selectedSize === '250ml' 
-                      ? 'bg-[#f78a15] text-white font-medium' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-[#f78a15] text-white shadow-lg' 
+                      : 'bg-white/30 backdrop-blur-sm border border-white/40 text-gray-700 hover:bg-white/50'
                     }
                   `}
                   style={{ 
@@ -346,27 +361,44 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     lineHeight: '1.5',
                     fontFamily: 'var(--seasun-font-body)',
-                    fontWeight: '300'
+                    fontWeight: selectedSize === '250ml' ? '500' : '300',
+                    minWidth: '95px'
                   }}
                 >
-                  250ml
+                  <div className="flex flex-col items-center">
+                    <span>250ml</span>
+                    <span className="text-xs mt-1 opacity-90">$39.99</span>
+                  </div>
+                  {selectedSize === '250ml' && (
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full shadow-sm"></span>
+                  )}
                 </button>
               </div>
             </div>
             
             {/* Pricing */}
-            <div className="flex items-center">
-              <div 
-              className="seasun-h4"
-              style={{ 
-                color: 'var(--seasun-deep-black)',
-                fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
-                fontWeight: 'var(--seasun-font-light)',
-                lineHeight: '1.4'
-              }}
-            >
-              {displayPrice}
-            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center justify-between">
+                <div 
+                  className="seasun-h4"
+                  style={{ 
+                    color: 'var(--seasun-deep-black)',
+                    fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                    fontWeight: 'var(--seasun-font-light)',
+                    lineHeight: '1.4'
+                  }}
+                >
+                  {displayPrice}
+                  <span className="text-sm ml-1 opacity-70">each</span>
+                </div>
+              </div>
+              
+              {quantity > 1 && (
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-sm opacity-70">Total:</span>
+                  <span className="font-medium">{displayTotalPrice}</span>
+                </div>
+              )}
             </div>
           </div>
           {/* Quantity Selector */}
@@ -382,26 +414,53 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             >
               Quantity:
             </p>
-            <select
-              value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value))}
-              className="appearance-none bg-white/30 backdrop-blur-sm border border-white/40 px-4 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 rounded-lg"
-              style={{
-                fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
-                padding: 'clamp(0.4rem, 1vw, 0.6rem)',
-                width: '60px',
-                height: '40px',
-              }}
-            >
-              {Array.from(
-                { length: maxQuantity },
-                (_, i) => (
-                  <option value={i + 1} key={i}>
-                    {i + 1}
-                  </option>
-                )
+            <div className="flex items-center">
+              <button
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                disabled={quantity <= 1}
+                className="w-9 h-9 flex items-center justify-center rounded-l-lg bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Decrease quantity"
+                style={{
+                  transition: 'all 0.2s ease-in-out',
+                }}
+              >
+                <span className="text-lg font-light">−</span>
+              </button>
+              
+              <input
+                type="text"
+                value={quantity}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value);
+                  if (!isNaN(val) && val >= 1 && val <= maxQuantity) {
+                    setQuantity(val);
+                  }
+                }}
+                className="w-10 h-9 text-center bg-white/20 backdrop-blur-sm border-t border-b border-white/40 focus:outline-none"
+                aria-label="Quantity"
+                style={{
+                  fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+                }}
+              />
+              
+              <button
+                onClick={() => setQuantity(Math.min(maxQuantity, quantity + 1))}
+                disabled={quantity >= maxQuantity}
+                className="w-9 h-9 flex items-center justify-center rounded-r-lg bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Increase quantity"
+                style={{
+                  transition: 'all 0.2s ease-in-out',
+                }}
+              >
+                <span className="text-lg font-light">+</span>
+              </button>
+              
+              {maxQuantity < 10 && (
+                <span className="ml-3 text-xs opacity-70">
+                  (Only {maxQuantity} left)
+                </span>
               )}
-            </select>
+            </div>
           </div>
           
           <p 
@@ -426,16 +485,15 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             <Button
               onClick={handleBuyNow}
               disabled={!inStock || !selectedVariant || isAdding}
-              className="group relative text-white font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full xsmall:w-auto"
+              className="group relative text-white font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full"
               style={{
                 backgroundColor: 'var(--seasun-golden-tan)',
                 boxShadow: '0 clamp(4px, 1vw, 16px) clamp(8px, 2vw, 24px) rgba(247, 138, 21, 0.35), 0 clamp(2px, 0.5vw, 8px) clamp(4px, 1vw, 12px) rgba(247, 138, 21, 0.2)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 fontFamily: 'var(--seasun-font-body)',
                 fontSize: 'clamp(0.875rem, 1vw, 1rem)',
-                padding: 'clamp(0.6rem, 1.5vh, 0.9rem) clamp(1.5rem, 3vw, 2.25rem)',
+                padding: 'clamp(0.9rem, 1.5vh, 1.2rem) clamp(1.5rem, 3vw, 2.25rem)',
                 borderRadius: 'clamp(0.5rem, 1vw, 0.75rem)',
-                minWidth: 'clamp(160px, 30vw, 240px)',
                 maxWidth: '100%'
               }}
               onMouseEnter={(e) => {
@@ -451,10 +509,11 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             >
               {/* Button Text - Changes based on product state */}
               <span 
-                className="seasun-body font-light relative z-10 tracking-wide"
+                className="seasun-body relative z-10 tracking-wide flex items-center justify-center"
                 style={{ 
                   letterSpacing: 'clamp(0.01em, 0.02vw, 0.05em)',
-                  lineHeight: '1.5'
+                  lineHeight: '1.5',
+                  fontWeight: '600'
                 }}
               >
                 {!selectedVariant
@@ -462,10 +521,38 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                   : !inStock
                   ? "Out of stock"
                   : isAdding
-                  ? "Adding..."
-                  : "Buy Now"}
+                  ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Processing...
+                    </>
+                  )
+                  : (
+                    <>
+                      <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5H7C4.79086 5 3 6.79086 3 9V17C3 19.2091 4.79086 21 7 21H17C19.2091 21 21 19.2091 21 17V9C21 6.79086 19.2091 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M12 12V16M12 12L9 14.5M12 12L15 14.5" 
+                          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Buy Now
+                    </>
+                  )}
               </span>
+              
+              {/* Animated highlight effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
             </Button>
+            
+            {/* Secure checkout indicator */}
+            <div className="text-xs text-center mt-3 opacity-70 flex items-center justify-center">
+              <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V5C20 3.89543 19.1046 3 18 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21ZM16 3V7H8V3H16Z" 
+                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Secure checkout • Fast delivery
+            </div>
           </div>
         </div>
 
