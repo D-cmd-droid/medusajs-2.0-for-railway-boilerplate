@@ -249,7 +249,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             fontWeight: 'lighter',
             opacity: '0.9'
           }}>
-            Organic<br className="hidden xsmall:block"/> Tanning Oil
+            Organic Tanning Oil
           </span>
         </h2>
         
