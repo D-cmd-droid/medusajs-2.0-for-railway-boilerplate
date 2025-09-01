@@ -135,11 +135,6 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     }
   }
 
-  // Calculate unit and total price based on selected size and quantity
-  const unitPrice = selectedSize === '100ml' ? 29.99 : 39.99
-  const totalPrice = unitPrice * quantity
-  const displayPrice = `$${unitPrice.toFixed(2)}`
-  const displayTotalPrice = `$${totalPrice.toFixed(2)}`
 
   // ===================================================================
   // MATCHING HERO LAYOUT STRUCTURE - USING XSMALL BREAKPOINT (512px)
@@ -236,7 +231,6 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               lineHeight: '1.2',
               marginBottom: 'clamp(1rem, 3vh, 1.5rem)'
             }}>
-          Meet{" "}
           <span 
             className="inline-block rounded-lg font-semibold" 
             style={{ 
@@ -329,18 +323,21 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                   `}
                   style={{ 
                     fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
-                    padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem)',
+                    padding: 'clamp(0.5rem, 0.75vw, 0.75rem) clamp(0.5rem, 1vw, 0.75rem)',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     lineHeight: '1.5',
                     fontFamily: 'var(--seasun-font-body)',
                     fontWeight: selectedSize === '100ml' ? '500' : '300',
-                    marginRight: '0.5rem',
-                    minWidth: '95px'
+                    marginRight: '0.75rem',
+                    minWidth: '180px',
+                    width: '100%',
+                    flex: '1'
                   }}
                 >
-                  <div className="flex flex-col items-center">
-                    <span>100ml</span>
-                    <span className="text-xs mt-1 opacity-90">$29.99</span>
+                  <div className="flex flex-row items-center justify-between w-full px-2">
+                    <span className="text-base font-medium">100ml</span>
+                    <div className="h-10 border-l border-white/20 mx-2"></div>
+                    <span className={`${selectedSize === '100ml' ? 'font-medium' : ''}`}>$29.99</span>
                   </div>
                   {selectedSize === '100ml' && (
                     <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full shadow-sm"></span>
@@ -357,17 +354,20 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                   `}
                   style={{ 
                     fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
-                    padding: 'clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem)',
+                    padding: 'clamp(0.5rem, 0.75vw, 0.75rem) clamp(0.5rem, 1vw, 0.75rem)',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     lineHeight: '1.5',
                     fontFamily: 'var(--seasun-font-body)',
                     fontWeight: selectedSize === '250ml' ? '500' : '300',
-                    minWidth: '95px'
+                    minWidth: '180px',
+                    width: '100%',
+                    flex: '1'
                   }}
                 >
-                  <div className="flex flex-col items-center">
-                    <span>250ml</span>
-                    <span className="text-xs mt-1 opacity-90">$39.99</span>
+                  <div className="flex flex-row items-center justify-between w-full px-2">
+                    <span className="text-base font-medium">250ml</span>
+                    <div className="h-10 border-l border-white/20 mx-2"></div>
+                    <span className={`${selectedSize === '250ml' ? 'font-medium' : ''}`}>$39.99</span>
                   </div>
                   {selectedSize === '250ml' && (
                     <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full shadow-sm"></span>
@@ -376,30 +376,6 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               </div>
             </div>
             
-            {/* Pricing */}
-            <div className="flex flex-col">
-              <div className="flex items-center justify-between">
-                <div 
-                  className="seasun-h4"
-                  style={{ 
-                    color: 'var(--seasun-deep-black)',
-                    fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
-                    fontWeight: 'var(--seasun-font-light)',
-                    lineHeight: '1.4'
-                  }}
-                >
-                  {displayPrice}
-                  <span className="text-sm ml-1 opacity-70">each</span>
-                </div>
-              </div>
-              
-              {quantity > 1 && (
-                <div className="flex justify-between items-center mt-1">
-                  <span className="text-sm opacity-70">Total:</span>
-                  <span className="font-medium">{displayTotalPrice}</span>
-                </div>
-              )}
-            </div>
           </div>
           {/* Quantity Selector */}
           <div className="flex items-center mb-4">
@@ -463,17 +439,6 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             </div>
           </div>
           
-          <p 
-            className="seasun-body font-light opacity-70 text-left" 
-            style={{ 
-              color: 'var(--seasun-deep-black)', 
-              fontSize: 'clamp(0.65rem, 0.75vw, 0.75rem)',
-              lineHeight: '1.7',
-              marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
-            }}
-          >
-            Free shipping on orders over $50
-          </p>
           
           {/* ===================================================================
            BUY NOW BUTTON - FLUID STYLING WITH ENHANCED ANIMATIONS
@@ -556,58 +521,6 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
           </div>
         </div>
 
-        {/* ===================================================================
-           PRODUCT FEATURES - ENHANCED WITH FLUID DESIGN
-           =================================================================== */}
-        <div style={{ 
-          borderTop: '1px solid rgba(229, 231, 235, 0.8)', 
-          paddingTop: 'clamp(0.75rem, 2vh, 1.25rem)',
-          marginTop: 'clamp(0.25rem, 1vh, 0.5rem)'
-        }}>
-          <div 
-            className="flex flex-wrap justify-center xsmall:justify-between"
-            style={{ gap: 'clamp(1rem, 2vw, 1.5rem)' }}>
-            {/* SPF reference removed */}
-            <div className="flex items-center">
-              <span 
-                className="flex-shrink-0" 
-                style={{ 
-                  color: 'var(--seasun-golden-tan)',
-                  fontSize: 'clamp(0.875rem, 1.25vw, 1.125rem)' 
-                }}
-              >✓</span>
-              <span 
-                className="seasun-body font-light tracking-wide" 
-                style={{ 
-                  color: 'var(--seasun-deep-black)', 
-                  fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)',
-                  marginLeft: 'clamp(0.375rem, 0.75vw, 0.5rem)'
-                }}
-              >
-                Coconut, cinnamon, annatto
-              </span>
-            </div>
-            <div className="flex items-center">
-              <span 
-                className="flex-shrink-0" 
-                style={{ 
-                  color: 'var(--seasun-golden-tan)',
-                  fontSize: 'clamp(0.875rem, 1.25vw, 1.125rem)' 
-                }}
-              >✓</span>
-              <span 
-                className="seasun-body font-light tracking-wide" 
-                style={{ 
-                  color: 'var(--seasun-deep-black)', 
-                  fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)',
-                  marginLeft: 'clamp(0.375rem, 0.75vw, 0.5rem)'
-                }}
-              >
-                Evens skin tone
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
       </div>
     </div>
