@@ -52,18 +52,18 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
   const [selectedSize, setSelectedSize] = useState<'100ml' | '250ml'>('100ml')
   const [quantity, setQuantity] = useState<number>(1)
   const [isAdding, setIsAdding] = useState(false)
-  const [isBelowBreakpoint, setIsBelowBreakpoint] = useState(
-    typeof window !== 'undefined' ? window.innerWidth < 1024 : false
-  )
+  // Initialize with null for SSR compatibility
+  const [isBelowBreakpoint, setIsBelowBreakpoint] = useState<boolean | null>(null)
   const countryCode = useParams().countryCode as string
   
   // Handle responsive breakpoint changes
   useEffect(() => {
+    // Function to calculate and set breakpoint
     const handleResize = () => {
       setIsBelowBreakpoint(window.innerWidth < 1024)
     }
     
-    // Set initial value
+    // Set initial value immediately on client
     handleResize()
     
     // Add event listener
@@ -190,16 +190,22 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
         <div 
           className="relative"
           style={{
-            // Increased width values at all breakpoints for more spacious container
-            width: isBelowBreakpoint 
-              ? 'clamp(280px, 95%, 440px)' // Wider below 1024px
-              : 'clamp(240px, 90%, 400px)', // Original size above 1024px
-            // More vertical aspect ratio below lg breakpoint (1024px)
-            aspectRatio: isBelowBreakpoint ? '9/16' : '1/1.2',
+            // Responsive width based on screen size with safe initial value
+            width: isBelowBreakpoint === null
+              ? 'clamp(240px, 90%, 400px)' // Default/SSR value
+              : isBelowBreakpoint 
+                ? 'clamp(280px, 95%, 440px)' // Wider below 1024px
+                : 'clamp(240px, 90%, 400px)', // Original size above 1024px
+            // Responsive aspect ratio with safe initial value
+            aspectRatio: isBelowBreakpoint === null
+              ? '1/1.2' // Default/SSR value 
+              : isBelowBreakpoint ? '9/16' : '1/1.2',
             margin: '0 auto sm:mr-0 sm:ml-auto',
             borderRadius: 'clamp(0.75rem, 1.5vw, 1.5rem)',
             boxShadow: '0 clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) rgba(0,0,0,0.1)',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            // Add smooth transition for width and aspect ratio changes
+            transition: 'width 0.5s ease-in-out, aspect-ratio 0.5s ease-in-out'
           }}
         >
           {/* Coastal Background - Simplified with fluid gradient */}
@@ -229,14 +235,18 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             style={{ 
               filter: 'drop-shadow(0 clamp(6px, 1.5vw, 16px) clamp(12px, 3vw, 24px) rgba(0,0,0,0.15))',
               transition: 'all 0.3s ease-in-out',
-              // Adaptive scaling based on the 1024px breakpoint - reduced scale to create more padding
-              transform: isBelowBreakpoint
-                ? 'scale(0.85)' // Slightly smaller below 1024px to create padding
-                : 'scale(0.75)', // Even smaller above 1024px
-              // Dynamic object position to adjust vertical alignment based on container proportions
-              objectPosition: isBelowBreakpoint
-                ? 'center 45%' // Slight upward shift in taller container
-                : 'center center'
+              // Adaptive scaling with safe SSR fallback
+              transform: isBelowBreakpoint === null
+                ? 'scale(0.75)' // Default/SSR value
+                : isBelowBreakpoint
+                  ? 'scale(0.85)' // Slightly smaller below 1024px to create padding
+                  : 'scale(0.75)', // Even smaller above 1024px
+              // Dynamic object position with safe SSR fallback
+              objectPosition: isBelowBreakpoint === null
+                ? 'center center' // Default/SSR value
+                : isBelowBreakpoint
+                  ? 'center 45%' // Slight upward shift in taller container
+                  : 'center center'
             }}
           />
           
@@ -366,16 +376,13 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               </p>
               {/* 
               SIZE SELECTOR BUTTONS:
-              - Uses fluid layout approach that responds to both viewport width and content
-              - Stacks vertically below 768px or when container gets too narrow
-              - Ensures prices don't get cut off at intermediate breakpoints
+              - Side-by-side layout until true mobile breakpoint (sm = 640px)
+              - Clean stacked layout on mobile devices
+              - Maintains consistent horizontal presentation on larger screens
               */}
               <div 
-                className="flex flex-col gap-3 w-full"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full"
                 style={{
-                  // Create content-aware display mode based on available width
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
                   gap: 'clamp(0.75rem, 2vw, 1rem)',
                 }}
               >

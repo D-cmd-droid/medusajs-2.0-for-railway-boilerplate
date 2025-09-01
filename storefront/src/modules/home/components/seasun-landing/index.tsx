@@ -276,8 +276,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     }
   ]
 
-  // Instead of unused image paths, use a constant for the number of placeholder items
-  const INSTAGRAM_IMAGES_COUNT = 6;
+  // Instagram gallery uses fixed layout cards with custom styling
+  // Removed INSTAGRAM_IMAGES_COUNT constant as no longer needed
 
   // ============================================================================
   // MAIN RENDER
@@ -1373,23 +1373,108 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             <div className="w-24 h-1 mx-auto rounded-full mt-8" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}></div>
           </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-            {Array(INSTAGRAM_IMAGES_COUNT).fill(0).map((_, index) => (
+          {/* 
+          APPLE-INSPIRED CARD GALLERY:
+          - Asymmetrical card layout for visual interest
+          - Fluid responsive sizing with variable heights
+          - Consistent spacing that scales with viewport
+          - Smooth transitions between breakpoints
+          */}
+          <div 
+            className="max-w-6xl mx-auto mb-16 px-4"
+            style={{
+              // Content-driven container sizing
+              width: '100%',
+              maxWidth: 'min(100%, 1400px)',
+            }}
+          >
+            {/* Card grid with custom responsive layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
+              {/* First featured card - large size (spans 2 rows on larger screens) */}
               <div 
-                key={index}
-                className="group relative aspect-square rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500" 
-                style={{ background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))' }}
+                className="sm:col-span-6 md:col-span-8 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                style={{ 
+                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  aspectRatio: '4/3',
+                }}
               >
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                 <div className="w-full h-full flex items-center justify-center relative z-10">
-                  <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🏖️</span>
+                  <span className="text-6xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🏝️</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="seasun-body text-lg font-medium">Caribbean paradise • 2h</p>
+                </div>
+              </div>
+              
+              {/* Secondary card - vertical */}
+              <div 
+                className="sm:col-span-6 md:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                style={{ 
+                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  aspectRatio: '3/4',
+                }}
+              >
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                <div className="w-full h-full flex items-center justify-center relative z-10">
+                  <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🥥</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="seasun-body text-base font-medium">Natural ingredients • 4h</p>
+                </div>
+              </div>
+              
+              {/* Small square cards row */}
+              <div className="sm:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                style={{ 
+                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  aspectRatio: '1/1',
+                }}
+              >
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                <div className="w-full h-full flex items-center justify-center relative z-10">
+                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌊</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="seasun-body text-sm font-medium">Beach lifestyle • {index + 1}h</p>
+                  <p className="seasun-body text-sm font-medium">Ocean vibes • 6h</p>
                 </div>
               </div>
-            ))}
+              
+              <div className="sm:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                style={{ 
+                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  aspectRatio: '1/1',
+                }}
+              >
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                <div className="w-full h-full flex items-center justify-center relative z-10">
+                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌴</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="seasun-body text-sm font-medium">Island life • 8h</p>
+                </div>
+              </div>
+              
+              <div className="sm:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                style={{ 
+                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  aspectRatio: '1/1',
+                }}
+              >
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                <div className="w-full h-full flex items-center justify-center relative z-10">
+                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">☀️</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="seasun-body text-sm font-medium">Sunshine glow • 5h</p>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div className="text-center">
