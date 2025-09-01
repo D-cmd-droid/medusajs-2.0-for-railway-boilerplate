@@ -50,6 +50,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
   // STATE AND DATA MANAGEMENT
   // ====================================================================================
   const [selectedSize, setSelectedSize] = useState<'100ml' | '250ml'>('100ml')
+  const [quantity, setQuantity] = useState<number>(1)
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
   
@@ -98,6 +99,17 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     
     return false
   }, [selectedVariant])
+  
+  // Calculate max quantity based on inventory
+  const maxQuantity = useMemo(() => {
+    if (!selectedVariant) return 10
+    
+    if (!selectedVariant.manage_inventory || selectedVariant.allow_backorder) {
+      return 10 // Default max if inventory not managed
+    }
+    
+    return Math.min(selectedVariant.inventory_quantity || 0, 10)
+  }, [selectedVariant])
 
   // ====================================================================================
   // EVENT HANDLERS
@@ -111,7 +123,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
     try {
       await addToCart({
         variantId: selectedVariant.id,
-        quantity: 1,
+        quantity: quantity,
         countryCode,
       })
       
@@ -357,6 +369,41 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             </div>
             </div>
           </div>
+          {/* Quantity Selector */}
+          <div className="flex items-center mb-4">
+            <p 
+              className="seasun-body font-light"
+              style={{ 
+                color: 'var(--seasun-deep-black)', 
+                fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+                lineHeight: '1.7',
+                marginRight: 'clamp(0.5rem, 1vw, 0.75rem)'
+              }}
+            >
+              Quantity:
+            </p>
+            <select
+              value={quantity}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+              className="appearance-none bg-white/30 backdrop-blur-sm border border-white/40 px-4 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-black/20 focus:border-black/40 rounded-lg"
+              style={{
+                fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+                padding: 'clamp(0.4rem, 1vw, 0.6rem)',
+                width: '60px',
+                height: '40px',
+              }}
+            >
+              {Array.from(
+                { length: maxQuantity },
+                (_, i) => (
+                  <option value={i + 1} key={i}>
+                    {i + 1}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+          
           <p 
             className="seasun-body font-light opacity-70 text-left" 
             style={{ 
