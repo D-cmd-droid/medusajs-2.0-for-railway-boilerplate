@@ -276,8 +276,32 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     }
   ]
 
-  // Instagram gallery uses fixed layout cards with custom styling
-  // Removed INSTAGRAM_IMAGES_COUNT constant as no longer needed
+  // Instagram gallery with horizontal scroll behavior and navigation
+  // Add effect to handle scroll button initialization
+  useEffect(() => {
+    // Initialize scroll controls once component is mounted
+    const scrollContainer = document.getElementById('instagram-scroll-container');
+    const backButton = document.getElementById('gallery-back-button');
+    const nextButton = document.getElementById('gallery-next-button');
+    
+    if (scrollContainer && backButton && nextButton) {
+      // Check if we can scroll right (content wider than container)
+      const canScrollRight = scrollContainer.scrollWidth > scrollContainer.clientWidth;
+      
+      // Initialize next button visibility
+      if (canScrollRight) {
+        nextButton.style.opacity = '1';
+        nextButton.style.pointerEvents = 'auto';
+      } else {
+        nextButton.style.opacity = '0';
+        nextButton.style.pointerEvents = 'none';
+      }
+      
+      // Initialize back button (always hidden initially)
+      backButton.style.opacity = '0';
+      backButton.style.pointerEvents = 'none';
+    }
+  }, []);
 
   // ============================================================================
   // MAIN RENDER
@@ -1374,107 +1398,249 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           </div>
           
           {/* 
-          APPLE-INSPIRED CARD GALLERY:
-          - Asymmetrical card layout for visual interest
-          - Fluid responsive sizing with variable heights
-          - Consistent spacing that scales with viewport
-          - Smooth transitions between breakpoints
+          APPLE-INSPIRED HORIZONTAL SCROLL GALLERY:
+          - Full-width scrolling section extends to page edges
+          - Cards scroll horizontally with consistent sizing
+          - Smooth snap scrolling behavior with navigation controls
+          - Adapts to swipeable interface on mobile
           */}
           <div 
-            className="max-w-6xl mx-auto mb-16 px-4"
+            className="relative w-screen -mx-[calc(50vw-50%)] mb-16"
             style={{
-              // Content-driven container sizing
-              width: '100%',
-              maxWidth: 'min(100%, 1400px)',
+              // Full width container that extends beyond normal content margins
+              overflow: 'hidden', // Ensure nothing spills outside
+              marginBottom: 'clamp(3rem, 10vh, 5rem)'
             }}
           >
-            {/* Card grid with custom responsive layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
-              {/* First featured card - large size (spans 2 rows on larger screens) */}
-              <div 
-                className="sm:col-span-6 md:col-span-8 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                style={{ 
-                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
-                  aspectRatio: '4/3',
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="w-full h-full flex items-center justify-center relative z-10">
-                  <span className="text-6xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🏝️</span>
+            {/* Horizontal scrolling container with snap behavior */}
+            <div 
+              id="instagram-scroll-container"
+              className="relative overflow-x-auto"
+              style={{
+                // Hide scrollbar but maintain functionality
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                // Add scroll snap for clean stops at each card
+                scrollBehavior: 'smooth',
+                scrollSnapType: 'x mandatory',
+                // Padding for sides creates breathing room at screen edges
+                paddingLeft: 'max(1rem, calc((100vw - 1400px) / 2))',
+                paddingRight: 'max(4rem, calc((100vw - 1400px) / 2 + 3rem))', // Extra space for arrow
+              }}
+              onScroll={(e) => {
+                // Get the scroll container
+                const container = e.currentTarget;
+                const backButton = document.getElementById('gallery-back-button');
+                const nextButton = document.getElementById('gallery-next-button');
+                
+                if (backButton && nextButton) {
+                  // Show/hide back button based on scroll position
+                  if (container.scrollLeft > 20) {
+                    // Show back button when scrolled
+                    backButton.style.opacity = '1';
+                    backButton.style.pointerEvents = 'auto';
+                  } else {
+                    // Hide back button at the beginning
+                    backButton.style.opacity = '0';
+                    backButton.style.pointerEvents = 'none';
+                  }
+                  
+                  // Check if we're near the end (allowing for some rounding errors)
+                  const isAtEnd = container.scrollWidth - container.scrollLeft <= container.clientWidth + 20;
+                  
+                  // Show/hide next button based on scroll position
+                  if (isAtEnd) {
+                    // Hide next button at the end
+                    nextButton.style.opacity = '0';
+                    nextButton.style.pointerEvents = 'none';
+                  } else {
+                    // Show next button when not at the end
+                    nextButton.style.opacity = '1';
+                    nextButton.style.pointerEvents = 'auto';
+                  }
+                }
+              }}
+            >
+              {/* Card row with proper spacing that scales with viewport */}
+              <div className="flex gap-x-4 pb-8 md:gap-x-6 lg:gap-x-8">
+                {/* Card 1 */}
+                <div 
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  style={{ 
+                    // Fluid card sizing using clamp for min/max constraints with viewport scaling
+                    width: 'clamp(260px, 30vw, 320px)',
+                    aspectRatio: '0.8/1',
+                    scrollSnapAlign: 'start',
+                    background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🏝️</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="seasun-body text-sm font-medium">Caribbean paradise • 2h</p>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="seasun-body text-lg font-medium">Caribbean paradise • 2h</p>
+                
+                {/* Card 2 */}
+                <div 
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  style={{ 
+                    width: 'clamp(260px, 30vw, 320px)',
+                    aspectRatio: '0.8/1',
+                    scrollSnapAlign: 'start',
+                    background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🥥</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="seasun-body text-sm font-medium">Natural ingredients • 4h</p>
+                  </div>
+                </div>
+                
+                {/* Card 3 */}
+                <div 
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  style={{ 
+                    width: 'clamp(260px, 30vw, 320px)',
+                    aspectRatio: '0.8/1',
+                    scrollSnapAlign: 'start',
+                    background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌊</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="seasun-body text-sm font-medium">Ocean vibes • 6h</p>
+                  </div>
+                </div>
+                
+                {/* Card 4 */}
+                <div 
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  style={{ 
+                    width: 'clamp(260px, 30vw, 320px)',
+                    aspectRatio: '0.8/1',
+                    scrollSnapAlign: 'start',
+                    background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌴</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="seasun-body text-sm font-medium">Island life • 8h</p>
+                  </div>
+                </div>
+                
+                {/* Card 5 */}
+                <div 
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  style={{ 
+                    width: 'clamp(260px, 30vw, 320px)',
+                    aspectRatio: '0.8/1',
+                    scrollSnapAlign: 'start',
+                    background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">☀️</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="seasun-body text-sm font-medium">Sunshine glow • 5h</p>
+                  </div>
+                </div>
+                
+                {/* Card 6 */}
+                <div 
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  style={{ 
+                    width: 'clamp(260px, 30vw, 320px)',
+                    aspectRatio: '0.8/1',
+                    scrollSnapAlign: 'start',
+                    background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                  <div className="w-full h-full flex items-center justify-center relative z-10">
+                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🧴</span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="seasun-body text-sm font-medium">Product showcase • 3h</p>
+                  </div>
                 </div>
               </div>
               
-              {/* Secondary card - vertical */}
-              <div 
-                className="sm:col-span-6 md:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                style={{ 
-                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
-                  aspectRatio: '3/4',
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="w-full h-full flex items-center justify-center relative z-10">
-                  <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🥥</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="seasun-body text-base font-medium">Natural ingredients • 4h</p>
-                </div>
-              </div>
-              
-              {/* Small square cards row */}
-              <div className="sm:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                style={{ 
-                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
-                  aspectRatio: '1/1',
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="w-full h-full flex items-center justify-center relative z-10">
-                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌊</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="seasun-body text-sm font-medium">Ocean vibes • 6h</p>
-                </div>
-              </div>
-              
-              <div className="sm:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                style={{ 
-                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
-                  aspectRatio: '1/1',
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="w-full h-full flex items-center justify-center relative z-10">
-                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌴</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="seasun-body text-sm font-medium">Island life • 8h</p>
-                </div>
-              </div>
-              
-              <div className="sm:col-span-4 group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
-                style={{ 
-                  background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
-                  aspectRatio: '1/1',
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="w-full h-full flex items-center justify-center relative z-10">
-                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">☀️</span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="seasun-body text-sm font-medium">Sunshine glow • 5h</p>
-                </div>
-              </div>
+              {/* Custom CSS to hide scrollbar across browsers */}
+              <style jsx>{`
+                div::-webkit-scrollbar {
+                  display: none;
+                }
+              `}</style>
             </div>
+            
+            {/* Back button - only visible when scrolled */}
+            <button 
+              id="gallery-back-button"
+              className="absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hidden md:flex opacity-0"
+              style={{
+                left: 'max(1rem, calc((100vw - 1400px) / 2 + 1rem))', // Align with container padding
+                width: 'clamp(40px, 5vw, 56px)',
+                height: 'clamp(40px, 5vw, 56px)',
+                transition: 'all 0.3s ease-in-out',
+                pointerEvents: 'none', // Initially disabled
+              }}
+              onClick={() => {
+                const container = document.querySelector('.overflow-x-auto');
+                if (container) {
+                  container.scrollBy({ left: -300, behavior: 'smooth' });
+                }
+              }}
+              aria-label="Scroll back"
+            >
+              {/* Back arrow icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6L9 12L15 18" stroke="#2D3748" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            
+            {/* Forward button - default visible */}
+            <button 
+              id="gallery-next-button"
+              className="absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hidden md:flex"
+              style={{
+                right: 'max(1rem, calc((100vw - 1400px) / 2 + 1rem))', // Align with container padding
+                width: 'clamp(40px, 5vw, 56px)',
+                height: 'clamp(40px, 5vw, 56px)',
+                transition: 'all 0.3s ease-in-out',
+              }}
+              onClick={() => {
+                const container = document.querySelector('.overflow-x-auto');
+                if (container) {
+                  container.scrollBy({ left: 300, behavior: 'smooth' });
+                }
+              }}
+              aria-label="Scroll to see more"
+            >
+              {/* Forward arrow icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6L15 12L9 18" stroke="#2D3748" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
           </div>
           
           <div className="text-center">
