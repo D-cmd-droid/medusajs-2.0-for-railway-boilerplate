@@ -237,14 +237,20 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               color: 'white', 
               backgroundColor: 'var(--seasun-golden-tan)',
               boxShadow: '0 3px 12px rgba(247, 138, 21, 0.25)',
-              padding: 'clamp(0.25rem, 0.5vw, 0.5rem) clamp(0.5rem, 1vw, 0.75rem)',
-              fontSize: 'clamp(0.75rem, 1vw, 1.125rem)'
+              padding: 'clamp(0.3rem, 0.7vw, 0.7rem) clamp(0.7rem, 1.2vw, 1rem)',
+              fontSize: 'clamp(1rem, 1.5vw, 1.5rem)'
             }}
             aria-label="SEASUN brand name"
           >
             SEASUN
           </span>{" "}
-          Organic<br className="hidden xsmall:block"/> Tanning Oil
+          <span style={{ 
+            fontSize: 'clamp(1rem, 1.5vw + 0.5rem, 1.8rem)', 
+            fontWeight: 'lighter',
+            opacity: '0.9'
+          }}>
+            Organic<br className="hidden xsmall:block"/> Tanning Oil
+          </span>
         </h2>
         
         <div style={{ marginBottom: 'clamp(1.5rem, 4vh, 2.5rem)' }} className="max-w-2xl mx-auto xsmall:mx-0">
@@ -270,20 +276,20 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
              }}>
             The secret lies in what's NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
           </p>
-          <div className="py-2 my-2 border-t border-b border-golden-tan/20">
+          <div className="py-1.5 my-1 border-t border-b border-golden-tan/20">
             <p 
                className="seasun-body font-medium text-center" 
                style={{ 
                  color: 'var(--seasun-golden-tan)', 
-                 fontSize: 'clamp(1.1rem, 1.1vw + 0.5rem, 1.4rem)',
-                 lineHeight: '1.5',
+                 fontSize: 'clamp(0.85rem, 0.9vw + 0.3rem, 1.1rem)',
+                 lineHeight: '1.4',
                  fontWeight: 'bold',
-                 letterSpacing: '0.02em',
+                 letterSpacing: '0.01em',
                  textShadow: '0 1px 2px rgba(0,0,0,0.05)'
                }}>
-              <span className="mr-2">✨</span>
+              <span className="mr-2 text-xs">✨</span>
               Any reason not to glow?
-              <span className="ml-2">✨</span>
+              <span className="ml-2 text-xs">✨</span>
             </p>
           </div>
         </div>
@@ -511,11 +517,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             </Button>
             
             {/* Secure checkout indicator */}
-            <div className="text-xs text-center mt-3 opacity-70 flex items-center justify-center">
-              <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V5C20 3.89543 19.1046 3 18 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21ZM16 3V7H8V3H16Z" 
-                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className="text-xs text-center mt-3 opacity-70">
               Secure checkout • Fast delivery
             </div>
           </div>
