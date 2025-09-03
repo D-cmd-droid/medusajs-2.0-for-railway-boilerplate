@@ -78,13 +78,16 @@ const Login = ({ setCurrentView }: Props) => {
       </form>
       <div className="text-center mt-8">
         <div className="relative overflow-hidden group" style={{
-          background: 'var(--seasun-white)',
-          borderRadius: '8px',
-          transform: 'translateY(0)',
+          background: 'var(--seasun-background-white)',
+          borderRadius: '16px',
+          padding: '2px', // Creates space for the inner div
+          boxShadow: '8px 8px 16px rgba(200, 200, 200, 0.4), -8px -8px 16px rgba(255, 255, 255, 0.8)', // Neomorphic outer shadow
           transition: 'all 0.3s ease',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04)', // Neo drop shadow - subtle with two layers
-          border: '1px solid rgba(0, 0, 0, 0.06)', // Very subtle border
         }}>
+          {/* Inner neomorphic container */}
+          <div className="relative w-full h-full rounded-[14px] overflow-hidden" style={{
+            background: 'var(--seasun-background-white)',
+          }}>
           <div className="py-6 px-8 relative z-10">
             <span className="block mb-3" style={{ 
               color: 'var(--seasun-deep-black)', 
@@ -104,15 +107,27 @@ const Login = ({ setCurrentView }: Props) => {
             </span>
             <button
               onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-              className="inline-block px-5 py-2 rounded-md transition-all duration-200 font-medium"
-              style={{
+              className="group relative seasun-body px-5 py-2 text-base font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent rounded-xl"
+              style={{ 
                 backgroundColor: 'var(--seasun-golden-tan)',
                 color: 'var(--seasun-white)',
+                boxShadow: '0 4px 16px rgba(247, 138, 21, 0.2), 0 2px 6px rgba(247, 138, 21, 0.1)',
+                transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(247, 138, 21, 0.3), 0 3px 8px rgba(247, 138, 21, 0.2)';
+                e.currentTarget.style.backgroundColor = '#fa9322';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(247, 138, 21, 0.2), 0 2px 6px rgba(247, 138, 21, 0.1)';
+                e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)';
               }}
               data-testid="register-button"
             >
-              Join now
+              <span className="relative z-10">Join now</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
             </button>
+          </div>
           </div>
         </div>
       </div>
