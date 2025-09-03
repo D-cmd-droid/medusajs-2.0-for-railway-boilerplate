@@ -62,15 +62,7 @@ const Login = ({ setCurrentView }: Props) => {
         <div style={{ height: 'clamp(1rem, 3vh, 1.5rem)' }}></div>
         <SubmitButton 
           data-testid="sign-in-button" 
-          className="group relative seasun-body text-white w-full overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent rounded-xl font-medium"
-          style={{ 
-            backgroundColor: 'var(--seasun-deep-black)',
-            boxShadow: '0 6px 24px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
-            transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-            marginTop: 'clamp(2.5rem, 8vh, 4rem)',
-            padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)',
-            fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)'
-          }}
+          className="group relative seasun-body text-white w-full overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent rounded-xl font-medium mt-[clamp(2.5rem,8vh,4rem)] bg-[var(--seasun-deep-black)]"
         >
           <span className="relative z-10 seasun-body tracking-wide">Sign in</span>
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
