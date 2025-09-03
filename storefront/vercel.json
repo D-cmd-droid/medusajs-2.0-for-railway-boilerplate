@@ -1,0 +1,8 @@
+{
+  "env": {
+    "NEXT_LOGGER_LEVEL": "info"
+  },
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install",
+  "outputDirectory": ".next"
+}

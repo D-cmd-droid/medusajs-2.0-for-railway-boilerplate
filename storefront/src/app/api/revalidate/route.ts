@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
+import { createLogger } from '@lib/util/logger'
 
 export async function GET(request: NextRequest) {
   const correlationId = crypto.randomUUID()
   const timestamp = new Date().toISOString()
+  
+  const logger = createLogger('revalidation-api')
 
-  console.log('[Revalidation] Endpoint called', {
+  logger.info('Endpoint called', {
     correlationId,
     timestamp,
     headers: {
@@ -17,7 +20,7 @@ export async function GET(request: NextRequest) {
   // Validate secret
   const secret = request.headers.get('X-Revalidate-Secret')
   if (!secret || secret !== process.env.REVALIDATE_SECRET) {
-    console.log('[Revalidation] Unauthorized', {
+    logger.warn('Unauthorized', {
       correlationId,
       secret: secret ? 'PROVIDED' : 'MISSING',
       envSecret: process.env.REVALIDATE_SECRET ? 'SET' : 'NOT SET'
@@ -30,11 +33,11 @@ export async function GET(request: NextRequest) {
   const tags = searchParams.get('tags') as string
 
   if (!tags) {
-    console.log('[Revalidation] No tags provided', { correlationId })
+    logger.warn('No tags provided', { correlationId })
     return NextResponse.json({ error: 'No tags provided' }, { status: 400 })
   }
 
-  console.log('[Revalidation] Processing tags', {
+  logger.info('Processing tags', {
     correlationId,
     tags
   })
@@ -47,7 +50,7 @@ export async function GET(request: NextRequest) {
         switch (tag.trim()) {
           case 'products':
             // Revalidate all product-related pages using revalidatePath
-            console.log('[Revalidation] Revalidating product pages', { correlationId })
+            logger.info('Revalidating product pages', { correlationId })
             
             // Store page
             revalidatePath('/[countryCode]/(main)/store', 'page')
@@ -71,13 +74,13 @@ export async function GET(request: NextRequest) {
             break
             
           default:
-            console.log('[Revalidation] Unknown tag', { correlationId, tag })
+            logger.warn('Unknown tag', { correlationId, tag })
             break
         }
       })
     )
 
-    console.log('[Revalidation] Success', {
+    logger.info('Success', {
       correlationId,
       tags,
       timestamp: new Date().toISOString()
@@ -91,7 +94,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('[Revalidation] Error', {
+    logger.error('Error', {
       correlationId,
       error: error instanceof Error ? error.message : 'Unknown error',
       tags

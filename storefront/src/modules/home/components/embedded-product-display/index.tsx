@@ -30,6 +30,7 @@ import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { addToCart } from "@lib/data/cart"
 import { getProductPrice } from "@lib/util/get-product-price"
+import { clientLogger } from "@lib/util/client-logger"
 
 // ====================================================================================
 // TYPE DEFINITIONS
@@ -151,7 +152,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
       // Redirect to checkout starting at address step
       window.location.href = `/${countryCode}/checkout?step=address`
     } catch (error) {
-      console.error("Error adding to cart:", error)
+      clientLogger.error("Error adding to cart", { error })
       setIsAdding(false)
     }
   }

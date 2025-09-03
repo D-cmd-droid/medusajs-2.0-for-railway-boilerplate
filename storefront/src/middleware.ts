@@ -1,6 +1,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { notFound } from "next/navigation"
 import { NextRequest, NextResponse } from "next/server"
+import logger from "@lib/util/logger"
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
 const PUBLISHABLE_API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
@@ -77,9 +78,9 @@ async function getCountryCode(
     return countryCode
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
-      console.error(
-        "Middleware.ts: Error getting the country code. Did you set up regions in your Medusa Admin and define a NEXT_PUBLIC_MEDUSA_BACKEND_URL environment variable?"
-      )
+      logger.error("Error getting the country code", { 
+        message: "Did you set up regions in your Medusa Admin and define a NEXT_PUBLIC_MEDUSA_BACKEND_URL environment variable?"
+      })
     }
   }
 }
