@@ -35,9 +35,10 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { Button, Input } from "@medusajs/ui"
+import { Button } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
 import EmbeddedProductDisplay from "@modules/home/components/embedded-product-display"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 interface FAQItem {
   question: string
@@ -59,9 +60,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // ============================================================================
   // STATE MANAGEMENT
   // ============================================================================
-  const [email, setEmail] = useState("")
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   
   // ============================================================================
   // REFS
@@ -234,16 +233,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // ============================================================================
   // EVENT HANDLERS
   // ============================================================================
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    // TODO: Implement newsletter signup
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setEmail("")
-      alert("Thank you for subscribing!")
-    }, 1000)
-  }
 
   const toggleFAQ = (index: number) => {
     setExpandedFAQ(expandedFAQ === index ? null : index)
@@ -1662,74 +1651,75 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         </div>
       </section>
 
-      {/* Newsletter Section - Refined */}
-      <section className="py-20 sm:py-24 lg:py-28 relative seasun-section-overlay" aria-labelledby="newsletter-heading">
+      {/* Membership Sign-up Section */}
+      <section className="py-20 sm:py-24 lg:py-28 relative seasun-section-overlay" aria-labelledby="membership-heading">
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl">
-              <h2 id="newsletter-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
-                Get 10% off your first order
+            <div className="relative rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl overflow-hidden">
+              {/* Background image with fluid responsive approach */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <Image
+                  src="/images/seasun-beach-image.png"
+                  alt="Tropical beach scene"
+                  fill
+                  style={{ 
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  priority
+                  quality={90}
+                />
+                {/* Very faint black overlay for improved readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/15 to-black/5"></div>
+              </div>
+              
+              {/* Card content with proper z-index */}
+              <div className="relative z-10">
+              <h2 id="membership-heading" className="text-2xl sm:text-3xl lg:text-4xl font-light mb-8 leading-tight" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-sand)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)' }}>
+                Become a SEASUN Member
               </h2>
-              <div className="mb-12 max-w-3xl mx-auto" role="text" aria-describedby="newsletter-heading">
-                <p id="newsletter-description" className="seasun-body text-base sm:text-lg leading-relaxed font-light" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
-                  Join the SEASUN family and be the first to know about new products and exclusive offers.
+              <div className="mb-12 max-w-3xl mx-auto" role="text" aria-describedby="membership-heading">
+                <p id="membership-description" className="seasun-body text-base sm:text-lg leading-relaxed font-light" style={{ color: 'var(--seasun-sand)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)' }}>
+                  Join the SEASUN family to enjoy exclusive benefits, early access to new products, and special member-only offers.
                 </p>
               </div>
               
-              <form 
-                onSubmit={handleNewsletterSubmit} 
-                className="flex flex-col gap-4 sm:flex-row sm:gap-6 max-w-md sm:max-w-lg mx-auto"
-                role="form"
-                aria-labelledby="newsletter-heading"
-                aria-describedby="newsletter-description"
-              >
-                <div className="flex-1 w-full">
-                  <label htmlFor="newsletter-email" className="sr-only">
-                    Email address for newsletter subscription
-                  </label>
-                  <Input
-                    id="newsletter-email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    aria-label="Email address for newsletter subscription"
-                    aria-describedby="newsletter-description"
-                    className="seasun-body w-full bg-white/30 backdrop-blur-sm border border-white/40 px-4 py-4 sm:px-6 sm:py-4 rounded-2xl placeholder:text-gray-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-2 focus:ring-offset-transparent focus:border-black/40 min-h-[60px] sm:min-h-[56px] text-base"
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="group relative seasun-body text-white px-6 py-4 sm:px-8 sm:py-4 text-base sm:text-lg rounded-2xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto min-h-[60px] sm:min-h-[56px]"
-                  style={{ 
-                    backgroundColor: 'var(--seasun-deep-black)',
-                    boxShadow: '0 6px 24px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                    minWidth: '140px'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isSubmitting) {
+              <div className="flex justify-center">
+                <LocalizedClientLink
+                  href="/account"
+                  className="inline-block"
+                  aria-label="Create your SEASUN member account"
+                >
+                  <button 
+                    className="group relative seasun-body text-white px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg rounded-2xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent"
+                    style={{ 
+                      backgroundColor: 'var(--seasun-deep-black)',
+                      boxShadow: '0 6px 24px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      minWidth: '220px'
+                    }}
+                    onMouseEnter={(e) => {
                       e.currentTarget.style.boxShadow = '0 12px 36px rgba(26, 26, 26, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3)';
                       e.currentTarget.style.backgroundColor = '#2a2a2a';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isSubmitting) {
+                    }}
+                    onMouseLeave={(e) => {
                       e.currentTarget.style.boxShadow = '0 6px 24px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
                       e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
-                    }
-                  }}
-                  aria-label={isSubmitting ? "Subscribing to newsletter" : "Subscribe to newsletter for 10% discount"}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <span className="relative z-10 seasun-body tracking-wide">{isSubmitting ? "Subscribing..." : "Subscribe"}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-                </Button>
-              </form>
+                    }}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <span className="relative z-10 seasun-body tracking-wide font-semibold">Create Account</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  </button>
+                </LocalizedClientLink>
+              </div>
+              
+              <p className="mt-6 text-sm seasun-body font-light" style={{ color: 'var(--seasun-sand)', textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)' }}>
+                Already a member? <LocalizedClientLink href="/account" className="underline hover:opacity-80 transition-opacity duration-200 font-medium" style={{ color: 'var(--seasun-lighter-sand)' }}>Sign in</LocalizedClientLink>
+              </p>
+              </div>
             </div>
           </div>
         </div>
