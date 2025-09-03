@@ -15,9 +15,9 @@ const LoginTemplate = () => {
 
   return (
     <div 
-      className="w-full flex justify-center items-center min-h-[80vh] px-8 py-8"
+      className="w-full min-h-[85vh] flex justify-center items-center py-12"
       style={{
-        background: 'linear-gradient(135deg, var(--seasun-lighter-sand) 0%, var(--seasun-background-white) 50%, var(--seasun-lighter-sand) 100%)'
+        background: 'var(--seasun-background-white)'
       }}
     >
       {currentView === "sign-in" ? (
