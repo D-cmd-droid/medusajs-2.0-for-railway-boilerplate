@@ -331,7 +331,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                lineHeight: '1.7',
                marginBottom: 'clamp(0.75rem, 2vh, 1rem)'
              }}>
-            The secret lies in what's NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
+            The secret lies in what&apos;s NOT in the bottle: no artificial chemicals, no synthetic dyes, no empty promises - just coconut oil, cinnamon, and annatto working together as nature intended.
           </p>
           <div className="py-1.5 my-1 border-t border-b border-golden-tan/20">
             <p 

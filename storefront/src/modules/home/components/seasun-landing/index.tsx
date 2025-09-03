@@ -457,7 +457,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     fontSize: 'clamp(1.5rem, 2.5vw + 0.75rem, 3.25rem)' /* Reduced size */
                   }}
                 >
-                  you've been
+                  you&apos;ve been
                 </span>
                 
                 {/* 
@@ -718,7 +718,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 }}
                 data-scroll-animation="fade-up"
               >
-                How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, "Sure, I've heard these promises before." Your bathroom cabinet probably tells that story all too well.
+                How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, &quot;Sure, I&apos;ve heard these promises before.&quot; Your bathroom cabinet probably tells that story all too well.
               </p>
               
               {/* 
@@ -739,7 +739,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 }}
                 data-scroll-animation="fade-up"
               >
-                I felt the same way until I couldn't take it anymore. That's why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
+                I felt the same way until I couldn&apos;t take it anymore. That&apos;s why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
               </p>
               
               {/* 
@@ -892,7 +892,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             }}
             data-scroll-animation="fade-up"
           >
-            ✨ If the sun plays hard to get with your skin, SEASUN makes it easy. Forget those complicated formulas with ingredients you can't pronounce. We've found a simpler answer that actually works.
+            ✨ If the sun plays hard to get with your skin, SEASUN makes it easy. Forget those complicated formulas with ingredients you can&apos;t pronounce. We&apos;ve found a simpler answer that actually works.
           </p>
           
           {/* 
@@ -1168,7 +1168,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 marginBottom: 'clamp(1.5rem, 5vh, 2.5rem)',
               }}
             >
-              That's why SEASUN doesn't just work differently—it works better. No more lobster red, muddy brown, or hours under the sun with no results. Our organic oil boosts those stubborn lighter areas, speeds up your tan, and transforms it into a golden, even, hydrated glow. A beautiful, sexy glow—no chemicals, no frustration. 💛🌴
+              That&apos;s why SEASUN doesn&apos;t just work differently—it works better. No more lobster red, muddy brown, or hours under the sun with no results. Our organic oil boosts those stubborn lighter areas, speeds up your tan, and transforms it into a golden, even, hydrated glow. A beautiful, sexy glow—no chemicals, no frustration. 💛🌴
             </p>
             
             {/* 
@@ -1376,7 +1376,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   lineHeight: '1.6',
                 }}
               >
-                It sounds like you've been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you've been chasing? Reach out at <span style={{ color: 'var(--seasun-deeper-blue)', fontWeight: '500' }}>hello@seasun.com</span> and let's find your answer.
+                It sounds like you&apos;ve been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you&apos;ve been chasing? Reach out at <span style={{ color: 'var(--seasun-deeper-blue)', fontWeight: '500' }}>hello@seasun.com</span> and let&apos;s find your answer.
               </p>
             </div>
           </div>
