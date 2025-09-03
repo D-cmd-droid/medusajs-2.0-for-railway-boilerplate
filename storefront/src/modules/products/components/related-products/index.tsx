@@ -8,7 +8,7 @@ type RelatedProductsProps = {
   countryCode: string
 }
 
-type StoreProductParamsWithTags = HttpTypes.StoreProductParams & {
+type StoreProductParamsWithTags = HttpTypes.StoreProductListParams & {
   tags?: string[]
 }
 
