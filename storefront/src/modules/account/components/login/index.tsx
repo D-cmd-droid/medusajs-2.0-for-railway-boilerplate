@@ -76,22 +76,46 @@ const Login = ({ setCurrentView }: Props) => {
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
         </SubmitButton>
       </form>
-      <span className="text-center mt-6" style={{ 
-        color: 'var(--seasun-deep-black)', 
-        fontSize: 'clamp(0.75rem, 0.25vw + 0.7rem, 0.875rem)',
-        opacity: 0.7
-      }}>
-        Not a member?{" "}
-        <button
-          onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          className="underline font-medium hover:opacity-80 transition-opacity duration-200"
-          style={{ color: 'var(--seasun-golden-tan)' }}
-          data-testid="register-button"
-        >
-          Join us
-        </button>
-        .
-      </span>
+      <div className="text-center mt-8">
+        <div className="relative overflow-hidden group" style={{
+          background: 'var(--seasun-white)',
+          borderRadius: '8px',
+          transform: 'translateY(0)',
+          transition: 'all 0.3s ease',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04)', // Neo drop shadow - subtle with two layers
+          border: '1px solid rgba(0, 0, 0, 0.06)', // Very subtle border
+        }}>
+          <div className="py-6 px-8 relative z-10">
+            <span className="block mb-3" style={{ 
+              color: 'var(--seasun-deep-black)', 
+              fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1rem)',
+              fontWeight: '500'
+            }}>
+              New to SEASUN?
+            </span>
+            <span style={{ 
+              color: 'var(--seasun-deep-black)', 
+              opacity: 0.8,
+              fontSize: 'clamp(0.75rem, 0.25vw + 0.7rem, 0.875rem)',
+              display: 'block',
+              marginBottom: '1.5rem'
+            }}>
+              Create an account for exclusive benefits and a personalized shopping experience.
+            </span>
+            <button
+              onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
+              className="inline-block px-5 py-2 rounded-md transition-all duration-200 font-medium"
+              style={{
+                backgroundColor: 'var(--seasun-golden-tan)',
+                color: 'var(--seasun-white)',
+              }}
+              data-testid="register-button"
+            >
+              Join now
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
