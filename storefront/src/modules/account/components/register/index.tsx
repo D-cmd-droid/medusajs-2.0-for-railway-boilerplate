@@ -24,7 +24,7 @@ const Register = ({ setCurrentView }: Props) => {
       <h1 className="font-light uppercase leading-tight" style={{ 
         fontFamily: 'var(--seasun-font-heading)', 
         color: 'var(--seasun-deep-black)', 
-        fontSize: 'clamp(1.5rem, 2vw + 0.5rem, 2.5rem)',
+        fontSize: 'clamp(1.25rem, 1.5vw + 0.25rem, 2rem)',
         marginBottom: 'clamp(0.75rem, 3vh, 1.5rem)'
       }}>
         Become a SEASUN Member
@@ -68,14 +68,6 @@ const Register = ({ setCurrentView }: Props) => {
             className="rounded-xl border-gray-200 focus:border-black focus:ring-0"
           />
           <Input
-            label="Phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            data-testid="phone-input"
-            className="rounded-xl border-gray-200 focus:border-black focus:ring-0"
-          />
-          <Input
             label="Password"
             name="password"
             required
@@ -109,6 +101,7 @@ const Register = ({ setCurrentView }: Props) => {
           </LocalizedClientLink>
           .
         </span>
+        <div style={{ height: 'clamp(1rem, 3vh, 1.5rem)' }}></div>
         <SubmitButton 
           data-testid="register-button" 
           className="group relative seasun-body text-white w-full overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent rounded-xl font-medium"

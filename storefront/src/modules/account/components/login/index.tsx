@@ -21,7 +21,7 @@ const Login = ({ setCurrentView }: Props) => {
       <h1 className="font-light uppercase leading-tight" style={{ 
         fontFamily: 'var(--seasun-font-heading)', 
         color: 'var(--seasun-deep-black)', 
-        fontSize: 'clamp(1.5rem, 2vw + 0.5rem, 2.5rem)',
+        fontSize: 'clamp(1.25rem, 1.5vw + 0.25rem, 2rem)',
         marginBottom: 'clamp(0.75rem, 3vh, 1.5rem)'
       }}>
         Welcome Back
