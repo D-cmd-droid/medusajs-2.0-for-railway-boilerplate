@@ -390,7 +390,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                 <button
                   onClick={() => setSelectedSize('100ml')}
                   className={`
-                    rounded-lg transition-all duration-300 relative
+                    rounded-full transition-all duration-300 relative
                     ${selectedSize === '100ml' 
                       ? 'bg-[#f78a15] text-white shadow-lg' 
                       : 'bg-white/30 backdrop-blur-sm border border-white/40 text-gray-700 hover:bg-white/50'
@@ -412,13 +412,13 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     <span className={`${selectedSize === '100ml' ? 'font-medium' : ''}`}>$29.99</span>
                   </div>
                   {selectedSize === '100ml' && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full shadow-sm"></span>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full shadow-sm" style={{ backgroundColor: 'var(--seasun-deeper-blue)' }}></span>
                   )}
                 </button>
                 <button
                   onClick={() => setSelectedSize('250ml')}
                   className={`
-                    rounded-lg transition-all duration-300 relative
+                    rounded-full transition-all duration-300 relative
                     ${selectedSize === '250ml' 
                       ? 'bg-[#f78a15] text-white shadow-lg' 
                       : 'bg-white/30 backdrop-blur-sm border border-white/40 text-gray-700 hover:bg-white/50'
@@ -440,7 +440,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                     <span className={`${selectedSize === '250ml' ? 'font-medium' : ''}`}>$39.99</span>
                   </div>
                   {selectedSize === '250ml' && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full shadow-sm"></span>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full shadow-sm" style={{ backgroundColor: 'var(--seasun-deeper-blue)' }}></span>
                   )}
                 </button>
               </div>
@@ -520,25 +520,26 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             <Button
               onClick={handleBuyNow}
               disabled={!inStock || !selectedVariant || isAdding}
-              className="group relative text-white font-semibold overflow-hidden transform transition-all duration-300 ease-out hover:scale-[1.02] shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed w-full"
+              className="group relative text-white font-medium overflow-hidden transform transition-all duration-700 ease-out hover:-translate-y-[1px] shadow-lg active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed w-full rounded-full"
               style={{
                 backgroundColor: 'var(--seasun-golden-tan)',
-                boxShadow: '0 clamp(4px, 1vw, 16px) clamp(8px, 2vw, 24px) rgba(247, 138, 21, 0.35), 0 clamp(2px, 0.5vw, 8px) clamp(4px, 1vw, 12px) rgba(247, 138, 21, 0.2)',
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 4px 12px rgba(247, 138, 21, 0.15), 0 1px 3px rgba(247, 138, 21, 0.1)',
+                transition: 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)',
                 fontFamily: 'var(--seasun-font-body)',
                 fontSize: 'clamp(0.875rem, 1vw, 1rem)',
                 padding: 'clamp(0.9rem, 1.5vh, 1.2rem) clamp(1.5rem, 3vw, 2.25rem)',
-                borderRadius: 'clamp(0.5rem, 1vw, 0.75rem)',
                 maxWidth: '100%'
               }}
               onMouseEnter={(e) => {
                 if (!isAdding && inStock && selectedVariant) {
-                  e.currentTarget.style.boxShadow = '0 clamp(8px, 2vw, 24px) clamp(16px, 4vw, 32px) rgba(247, 138, 21, 0.5), 0 clamp(4px, 1vw, 12px) clamp(8px, 2vw, 16px) rgba(247, 138, 21, 0.25)'
+                  e.currentTarget.style.boxShadow = '0 8px 16px rgba(247, 138, 21, 0.2), 0 2px 6px rgba(247, 138, 21, 0.15), 0 0 0 1px rgba(247, 138, 21, 0.05)';
+                  e.currentTarget.style.transform = 'translateY(-1px) scale3d(1.01, 1.01, 1)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isAdding && inStock && selectedVariant) {
-                  e.currentTarget.style.boxShadow = '0 clamp(4px, 1vw, 16px) clamp(8px, 2vw, 24px) rgba(247, 138, 21, 0.35), 0 clamp(2px, 0.5vw, 8px) clamp(4px, 1vw, 12px) rgba(247, 138, 21, 0.2)'
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(247, 138, 21, 0.15), 0 1px 3px rgba(247, 138, 21, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(0) scale3d(1, 1, 1)';
                 }
               }}
             >
@@ -576,8 +577,10 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
                   )}
               </span>
               
-              {/* Animated highlight effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+              {/* Subtle hover effect */}
+              <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)' }}>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-700" style={{ willChange: 'opacity' }}></div>
+              </div>
             </Button>
             
             {/* Secure checkout indicator */}

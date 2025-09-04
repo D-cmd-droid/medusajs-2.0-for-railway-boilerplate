@@ -539,10 +539,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   */}
                   <button
                     onClick={scrollToProductSection}
-                    className="group relative seasun-body text-white rounded-xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
+                    className="group relative seasun-body text-white rounded-full font-medium overflow-hidden transform transition-all duration-700 ease-out hover:-translate-y-[1px] shadow-lg active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
                     style={{ 
                       backgroundColor: 'var(--seasun-golden-tan)',
-                      boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
+                      boxShadow: '0 4px 12px rgba(247, 138, 21, 0.15), 0 1px 3px rgba(247, 138, 21, 0.1)',
                       transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                       /* Fluid padding creates consistent visual weight */
                       padding: 'clamp(0.5rem, 1vh, 0.75rem) clamp(1rem, 2vw, 2rem)',
@@ -550,17 +550,21 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
-                      e.currentTarget.style.backgroundColor = '#fa9322';
+                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(247, 138, 21, 0.2), 0 2px 6px rgba(247, 138, 21, 0.15), 0 0 0 1px rgba(247, 138, 21, 0.05)';
+                      e.currentTarget.style.backgroundColor = 'rgba(247, 138, 21, 0.95)';
+                      e.currentTarget.style.transform = 'translateY(-1px) scale3d(1.02, 1.02, 1)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(247, 138, 21, 0.15), 0 1px 3px rgba(247, 138, 21, 0.1)';
                       e.currentTarget.style.backgroundColor = 'var(--seasun-golden-tan)';
+                      e.currentTarget.style.transform = 'translateY(0) scale3d(1, 1, 1)';
                     }}
                     aria-label="See product details"
                   >
-                    <span className="relative z-10 seasun-body tracking-wide font-semibold">See for yourself</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                    <span className="relative z-10 seasun-body tracking-wide font-semibold transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>See for yourself</span>
+                    <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)', willChange: 'transform', transform: 'translateZ(0)' }}>
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-700" style={{ willChange: 'opacity' }}></div>
+                    </div>
                   </button>
                 </div>
               </div>
@@ -758,30 +762,37 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 - Maintained fluid padding and font sizing
                 */}
                 <Button 
+                  variant="secondary"
                   onClick={scrollToProductSection}
-                  className="group relative seasun-body text-white rounded-2xl font-semibold overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto"
+                  className="group relative seasun-body rounded-full transform transition-all duration-700 ease-out hover:-translate-y-[1px] shadow-sm border active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-golden-tan/20 focus:ring-offset-4 focus:ring-offset-transparent w-full sm:w-auto"
                   style={{ 
-                    backgroundColor: 'var(--seasun-golden-tan)',
-                    boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                    borderColor: 'var(--seasun-golden-tan)', 
+                    color: 'var(--seasun-golden-tan)',
+                    background: 'linear-gradient(135deg, transparent 0%, rgba(247, 138, 21, 0.05) 100%)',
+                    boxShadow: '0 2px 8px rgba(247, 138, 21, 0.1), 0 0 2px rgba(247, 138, 21, 0.05)',
                     minWidth: '200px',
-                    /* Fluid padding creates consistent visual weight */
                     padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)',
-                    /* Button text scales appropriately with viewport */
                     fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 16px 48px rgba(247, 138, 21, 0.5), 0 6px 16px rgba(247, 138, 21, 0.3)';
+                    e.currentTarget.style.boxShadow = '0 4px 10px rgba(247, 138, 21, 0.15), 0 1px 3px rgba(247, 138, 21, 0.1), 0 0 0 1px rgba(247, 138, 21, 0.08)';
+                    e.currentTarget.style.transform = 'translateY(-1px) scale3d(1.01, 1.01, 1)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(247, 138, 21, 0.1), 0 0 2px rgba(247, 138, 21, 0.05)';
+                    e.currentTarget.style.transform = 'translateY(0) scale3d(1, 1, 1)';
                   }}
                   aria-label="Discover the Caribbean beauty secret to solve your skincare frustrations"
                   role="button"
                   tabIndex={0}
                 >
-                  <span className="relative z-10 seasun-body tracking-wide font-semibold">See the Difference</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                  <span className="seasun-body font-medium relative z-10 transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>See the Difference</span>
+                  <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(247,138,21,0.01)' }}>
+                    {/* Subtle gradient animation for secondary button */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-gradient-to-r from-[#f78a15] via-[#f9a444] to-[#f78a15] bg-[length:200%_100%] animate-gradientShift"></div>
+                    {/* Thin border that appears on hover */}
+                    <div className="absolute inset-px rounded-full border border-[#f78a15]/0 group-hover:border-[#f78a15]/40 transition-all duration-700"></div>
+                  </div>
                 </Button>
               </div>
             </div>
@@ -1187,7 +1198,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             */}
             <Button 
               onClick={scrollToProductSection}
-              className="group relative seasun-body text-white rounded-xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
+              className="group relative seasun-body text-white rounded-full font-medium overflow-hidden transform transition-all duration-700 ease-out hover:-translate-y-[1px] shadow-lg active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange/20 focus:ring-offset-4 focus:ring-offset-transparent"
               style={{ 
                 backgroundColor: 'var(--seasun-golden-tan)',
                 boxShadow: '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)',
@@ -1203,8 +1214,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 e.currentTarget.style.boxShadow = '0 8px 32px rgba(247, 138, 21, 0.3), 0 2px 8px rgba(247, 138, 21, 0.2)';
               }}
             >
-              <span className="relative z-10 seasun-body tracking-wide font-semibold">Experience the Difference</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+              <span className="relative z-10 seasun-body tracking-wide font-semibold transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>Experience the Difference</span>
+              <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)', willChange: 'transform', transform: 'translateZ(0)' }}>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-700" style={{ willChange: 'opacity' }}></div>
+              </div>
             </Button>
           </div>
         </div>
@@ -1620,7 +1633,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         objectPosition: 'center',
                         transform: 'translateZ(0)', /* Hardware acceleration hint */
                       }}
-                      className="group-hover:scale-105 transition-transform duration-700"
+                      className="group- transition-transform duration-700"
                       loading="eager" /* Ensure first cards load immediately */
                     />
                   </div>
@@ -1655,7 +1668,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         objectPosition: 'center',
                         transform: 'translateZ(0)', /* Hardware acceleration hint */
                       }}
-                      className="group-hover:scale-105 transition-transform duration-700"
+                      className="group- transition-transform duration-700"
                       loading="eager"
                     />
                   </div>
@@ -1689,7 +1702,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         objectPosition: 'center 40%', /* Position to focus on the most interesting part */
                         transform: 'translateZ(0)',
                       }}
-                      className="group-hover:scale-105 transition-transform duration-700"
+                      className="group- transition-transform duration-700"
                       loading="lazy" /* Lazy load cards that might be offscreen initially */
                     />
                   </div>
@@ -1723,7 +1736,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         objectPosition: 'center',
                         transform: 'translateZ(0)',
                       }}
-                      className="group-hover:scale-105 transition-transform duration-700"
+                      className="group- transition-transform duration-700"
                       loading="lazy"
                     />
                   </div>
@@ -1757,7 +1770,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         objectPosition: 'center',
                         transform: 'translateZ(0)',
                       }}
-                      className="group-hover:scale-105 transition-transform duration-700"
+                      className="group- transition-transform duration-700"
                       loading="lazy"
                     />
                   </div>
@@ -1791,7 +1804,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         objectPosition: 'center',
                         transform: 'translateZ(0)',
                       }}
-                      className="group-hover:scale-105 transition-transform duration-700"
+                      className="group- transition-transform duration-700"
                       loading="lazy"
                     />
                   </div>
@@ -1905,26 +1918,34 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             */}
             <Button 
               variant="secondary" 
-              className="px-10 py-4 text-lg rounded-2xl transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-lg border-2 active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-golden-tan/20 focus:ring-offset-4 focus:ring-offset-transparent" 
+              className="px-10 py-4 text-lg rounded-full transform transition-all duration-700 ease-out hover:-translate-y-[1px] shadow-sm border active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-golden-tan/20 focus:ring-offset-4 focus:ring-offset-transparent" 
               style={{ 
                 borderColor: 'var(--seasun-golden-tan)', 
                 color: 'var(--seasun-golden-tan)',
                 background: 'linear-gradient(135deg, transparent 0%, rgba(247, 138, 21, 0.05) 100%)',
-                boxShadow: '0 4px 16px rgba(247, 138, 21, 0.15), 0 1px 4px rgba(247, 138, 21, 0.1)',
+                boxShadow: '0 2px 8px rgba(247, 138, 21, 0.1), 0 0 2px rgba(247, 138, 21, 0.05)',
                 padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(247, 138, 21, 0.2), 0 2px 8px rgba(247, 138, 21, 0.15)';
+                e.currentTarget.style.boxShadow = '0 4px 10px rgba(247, 138, 21, 0.15), 0 1px 3px rgba(247, 138, 21, 0.1), 0 0 0 1px rgba(247, 138, 21, 0.08)';
+                e.currentTarget.style.transform = 'translateY(-1px) scale3d(1.01, 1.01, 1)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(247, 138, 21, 0.15), 0 1px 4px rgba(247, 138, 21, 0.1)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(247, 138, 21, 0.1), 0 0 2px rgba(247, 138, 21, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0) scale3d(1, 1, 1)';
               }}
               aria-label="Follow SEASUN on Instagram"
             >
-              <span className="seasun-body font-medium flex items-center gap-2">
+              <span className="seasun-body font-medium flex items-center gap-2 relative z-10 transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>
                 <span>🌊</span>
                 @seasunbeauty
               </span>
+              <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(247,138,21,0.01)' }}>
+                {/* Subtle gradient animation for secondary button */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-gradient-to-r from-[#f78a15] via-[#f9a444] to-[#f78a15] bg-[length:200%_100%] animate-gradientShift"></div>
+                {/* Thin border that appears on hover */}
+                <div className="absolute inset-px rounded-full border border-[#f78a15]/0 group-hover:border-[#f78a15]/40 transition-all duration-700"></div>
+              </div>
             </Button>
           </div>
         </div>
@@ -1971,26 +1992,31 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   aria-label="Create your SEASUN member account"
                 >
                   <button 
-                    className="group relative seasun-body text-white px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg rounded-2xl font-medium overflow-hidden transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-xl active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-4 focus:ring-offset-transparent"
+                    className="group relative seasun-body text-white rounded-full font-medium overflow-hidden transform transition-all duration-700 ease-out hover:-translate-y-[1px] shadow-lg active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-2 focus:ring-offset-transparent"
                     style={{ 
                       backgroundColor: 'var(--seasun-deep-black)',
-                      boxShadow: '0 6px 24px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)',
-                      transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                      minWidth: '220px'
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1)',
+                      transition: 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                      minWidth: '220px',
+                      padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 12px 36px rgba(26, 26, 26, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3)';
-                      e.currentTarget.style.backgroundColor = '#2a2a2a';
+                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05)';
+                      e.currentTarget.style.transform = 'translateY(-1px) scale3d(1.01, 1.01, 1)';
+                      e.currentTarget.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 6px 24px rgba(26, 26, 26, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1)';
+                      e.currentTarget.style.transform = 'translateY(0) scale3d(1, 1, 1)';
                       e.currentTarget.style.backgroundColor = 'var(--seasun-deep-black)';
                     }}
                     role="button"
                     tabIndex={0}
                   >
-                    <span className="relative z-10 seasun-body tracking-wide font-semibold">Create Account</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+                    <span className="relative z-10 seasun-body tracking-wide font-semibold transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>Create Account</span>
+                    <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)' }}>
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-700" style={{ willChange: 'opacity' }}></div>
+                    </div>
                   </button>
                 </LocalizedClientLink>
               </div>
