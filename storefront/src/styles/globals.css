@@ -97,9 +97,12 @@
 
 /* SEASUN Brand Colors - From Legacy Webflow Site */
 :root {
-  /* Mobile Viewport Fix - 2025 Solution */
-  --seasun-vh: 1vh;
-  --seasun-mobile-browser-height: calc(var(--seasun-vh) * 100);
+  /* Mobile Viewport Fix - 2025 Production Solution */
+  --svh-unit: 1svh; /* Small viewport height - consistent with visible UI */
+  --lvh-unit: 1lvh; /* Large viewport height - when UI is hidden */
+  --seasun-vh: 1vh;  /* Fallback for older browsers */
+  --app-height: calc(var(--svh-unit, var(--seasun-vh)) * 100);
+  --expanded-height: calc(var(--lvh-unit, var(--seasun-vh)) * 100);
   
   --seasun-deep-black: #1a1a1a;
   --seasun-golden-tan: #f78a15;
@@ -130,18 +133,40 @@
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Fix for mobile browser UI hiding/showing causing jumps */
-@supports (height: 100dvh) {
-  html, body, main {
-    height: 100dvh; /* Modern browsers - Dynamic viewport height */
-  }
+/* Fix for mobile browser UI hiding/showing causing jumps - 2025 Production Solution */
+html {
+  height: 100%;
+  /* Prevent scroll chaining and bounce effects */
+  overscroll-behavior: none;
 }
 
-@supports not (height: 100dvh) {
-  /* Fallback for older browsers */
-  html, body, main {
-    height: 100vh;
-    height: var(--seasun-mobile-browser-height);
+body, main {
+  min-height: 100%;
+}
+
+/* Content that needs to fill the visible viewport */
+.content-full-height {
+  min-height: 100vh; /* Fallback */
+  min-height: var(--app-height);
+}
+
+/* Fixed elements that need to span full height */
+.fixed-full-height {
+  height: 100vh; /* Fallback */
+  height: var(--app-height);
+}
+
+/* For elements that should expand when browser UI is hidden */
+.expanded-height {
+  min-height: var(--expanded-height);
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

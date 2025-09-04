@@ -238,8 +238,20 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
     setExpandedFAQ(expandedFAQ === index ? null : index)
   }
   
+  // Optimized scrolling function for consistent behavior across mobile browsers
   const scrollToProductSection = () => {
-    productSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (!productSectionRef.current) return;
+    
+    // Calculate position with offset to account for any fixed headers
+    const yOffset = -60; 
+    const element = productSectionRef.current;
+    const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    
+    // Use scrollTo instead of scrollIntoView for better mobile compatibility
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
   }
   
 
@@ -326,10 +338,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           which includes both modern dvh and fallback solutions.
           Additional constraint with clamp for minimum/maximum heights.
           */
-          minHeight: 'clamp(500px, 100dvh, 900px)',
+          /* Use small viewport height (svh) for more consistent behavior */
+          minHeight: 'clamp(500px, var(--app-height), 900px)',
           /* Allows proper spacing on ultra-tall screens */
-          paddingTop: 'clamp(2rem, 8dvh, 6rem)',
-          paddingBottom: 'clamp(2rem, 8dvh, 6rem)',
+          paddingTop: 'clamp(2rem, 8svh, 6rem)',
+          paddingBottom: 'clamp(2rem, 8svh, 6rem)',
         }}
         role="banner"
         aria-labelledby="hero-heading"
@@ -374,7 +387,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           - Gap scales with viewport to maintain consistent visual rhythm
           */}
           <div className="relative grid small:grid-cols-2 items-center" style={{
-            minHeight: 'clamp(400px, 70dvh, 700px)',
+            minHeight: 'clamp(400px, 70svh, 700px)',
             maxWidth: '1400px',
             margin: '0 auto'
           }}>
@@ -559,7 +572,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     aria-label="See product details"
                   >
                     <span className="relative z-10 seasun-body tracking-wide font-semibold transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>See for yourself</span>
-                    <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)', willChange: 'transform', transform: 'translateZ(0)' }}>
+                    <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)', willChange: 'opacity' }}>
                       <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-700" style={{ willChange: 'opacity' }}></div>
                     </div>
                   </button>
@@ -1246,7 +1259,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               }}
             >
               <span className="relative z-10 seasun-body tracking-wide font-semibold transition-all duration-700 group-hover:tracking-wider group-hover:opacity-95" style={{ transitionProperty: 'letter-spacing, opacity' }}>Experience the Difference</span>
-              <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)', willChange: 'transform', transform: 'translateZ(0)' }}>
+              <div className="absolute inset-0 overflow-hidden rounded-full" style={{ boxShadow: '0 0 1px rgba(255,255,255,0.01)', willChange: 'opacity' }}>
                 <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-all duration-700" style={{ willChange: 'opacity' }}></div>
               </div>
             </Button>
@@ -2050,7 +2063,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       </section>
 
       {/* Enhanced Product Display Section */}
-      <section ref={productSectionRef} className="py-20 sm:py-24 lg:py-28 pb-24 sm:pb-32 lg:pb-40 seasun-section-overlay" aria-labelledby="product-showcase-heading">
+      <section ref={productSectionRef} className="py-20 sm:py-24 lg:py-28 pb-24 sm:pb-32 lg:pb-40 seasun-section-overlay content-full-height" aria-labelledby="product-showcase-heading">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Product Display */}
           <div className="mb-16 sm:mb-20 lg:mb-24">

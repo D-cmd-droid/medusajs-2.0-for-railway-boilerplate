@@ -32,23 +32,35 @@ export default function RootLayout(props: { children: React.ReactNode }) {
                   });
                 });
 
-                // 2025 Fix for mobile browser address bar hiding/showing causing jumps
-                // Set the mobile browser height CSS variable based on actual viewport
-                function updateMobileHeight() {
-                  let vh = window.innerHeight * 0.01;
-                  document.documentElement.style.setProperty('--seasun-vh', \`\${vh}px\`);
+                // 2025 Production-ready Fix for mobile browser address bar issues
+                // Optimize for browsers that don't support svh/lvh units
+                function updateMobileViewport() {
+                  // Use RAF to ensure smooth updates
+                  requestAnimationFrame(() => {
+                    // Calculate viewport heights
+                    const vh = window.innerHeight * 0.01;
+                    
+                    // Set fallback custom properties
+                    document.documentElement.style.setProperty('--seasun-vh', \`\${vh}px\`);
+                    
+                    // No need to update svh/lvh variables as browsers handle those natively
+                    // This is just a fallback for older browsers
+                  });
                 }
                 
-                // Initialize height on load
-                updateMobileHeight();
+                // Initialize once on page load
+                updateMobileViewport();
                 
-                // Update on resize and orientation change
-                window.addEventListener('resize', updateMobileHeight);
-                window.addEventListener('orientationchange', updateMobileHeight);
-                window.addEventListener('scroll', function() {
-                  // Delay update to ensure address bar is fully shown/hidden
-                  setTimeout(updateMobileHeight, 100);
-                });
+                // Use a debounced approach to prevent excessive updates
+                let resizeTimeout;
+                const handleResize = () => {
+                  clearTimeout(resizeTimeout);
+                  resizeTimeout = setTimeout(updateMobileViewport, 150);
+                };
+                
+                // Better event handling with passive option for better performance
+                window.addEventListener('resize', handleResize, { passive: true });
+                window.addEventListener('orientationchange', handleResize, { passive: true });
               })();
             `,
           }}
