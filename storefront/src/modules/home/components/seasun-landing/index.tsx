@@ -248,20 +248,24 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
   // ============================================================================
   const faqs: FAQItem[] = [
     {
-      question: "Why would this work when nothing else has?",
-      answer: "I hear you-skepticism is the sensible response after endless letdowns. I felt that same frustration. Here's the key: most formulas battle against your skin's rhythm. SEASUN teams up with your body's natural chemistry, guiding it to an even, radiant tan. That's why women who've tried every bottle on the shelf finally see real results here."
+      question: "Does it work if I have trouble tanning?",
+      answer: "Yes. SEASUN was specially created for skin that takes longer to tan or has lighter areas. It gives your skin a boost to achieve an even, golden, and beautiful tan. We've seen exceptional results with customers who previously struggled to get any color at all."
     },
     {
-      question: "What if my sensitive skin flares up?",
-      answer: "Totally valid worry. I've walked in your shoes-sensitive skin isn't a minor annoyance; it's a deal-breaker. That's why SEASUN skips the harsh chemicals and artificial scents that trigger reactions. But let's be honest, your bigger fear is the regret of yet another dud. I get it. So if your skin doesn't adore SEASUN, you owe nothing-no questions asked."
+      question: "Will I turn red or orange?",
+      answer: "No. Unlike other products, SEASUN won't stain or leave your skin looking 'muddy brown' or 'lobster red.' Its formula enhances your natural tone to achieve a healthy golden glow through a carefully balanced blend of natural ingredients that work with your skin, not against it."
     },
     {
-      question: "Isn't coconut oil alone enough?",
-      answer: "That makes perfect sense-you're drawn to simple, natural fixes. Coconut oil hydrates, yes, but it can't even out your tan by itself. Seasun's magic comes from the precise harmony of coconut, cinnamon, and annatto-three powerhouses working together to protect, nourish, and balance your glow. It's this exact blend-nothing more, nothing less-that delivers what plain oil can't."
+      question: "How soon will I see results?",
+      answer: "Many people notice results from the very first day in the sun: a faster, more even, and radiant tan. Results may vary depending on your skin type and sun exposure, but the majority of our customers report visible improvements after their first session using SEASUN."
     },
     {
-      question: "Am I just overpaying for a fancy label?",
-      answer: "I get it-price matters when you've burned through your budget on empty promises. Here's the difference: Seasun isn't padded with fillers or cheap additives. Every drop is packed with purpose-driven, natural actives. And because it works so efficiently, you use less each application-making Seasun more cost-effective over time than the bargain brands you end up repurchasing month after month."
+      question: "What if my order arrives damaged or I want to return it?",
+      answer: "We want you to love your SEASUN. If something doesn't arrive in perfect condition, contact us within 7 days and we'll arrange a replacement or refund with no questions asked. Your satisfaction is our priority, and we stand behind our product completely."
+    },
+    {
+      question: "Can I use it if I have very sensitive skin?",
+      answer: "Yes, although we recommend testing a small area first. Since it's natural, it's generally well tolerated, but every skin is different. SEASUN's formula was specifically designed to be gentle, using only natural ingredients without harsh chemicals or artificial fragrances that typically cause reactions."
     }
   ]
 
@@ -1245,49 +1249,25 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               HONEST ANSWERS TO YOUR <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>REAL CONCERNS</span>
             </h2>
             
-            {/* FAQ Questions - Container with proportional spacing and optimal reading width */}
+            {/* FAQ Questions - Simplified container with optimal reading width */}
             <div 
-              className="space-y-8 sm:space-y-10 mx-auto" 
-              style={{ 
-                marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
-                /* Constrain width on larger screens for optimal reading */
-                maxWidth: 'min(100%, 700px)',
-                /* Ensure content is properly centered */
-                width: '100%',
-                /* Add some padding for mobile screens */
-                paddingLeft: 'clamp(0rem, 2vw, 0.5rem)',
-                paddingRight: 'clamp(0rem, 2vw, 0.5rem)'
-              }}
+              className="mx-auto mb-12" 
+              style={{ maxWidth: '700px' }}
               role="region" 
               aria-labelledby="faq-heading"
             >
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
-                  className="group/card bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30 hover:shadow-xl hover:bg-white/90 transition-all duration-500 ease-out"
+                  className="group/card bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30 hover:shadow-xl hover:bg-white/90 transition-all duration-500 mb-8"
                   style={{
-                    transform: expandedFAQ === index ? 'scale(1.02)' : 'scale(1)',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                    /* Responsive width constraints for optimal display */
-                    width: '100%',
-                    minWidth: 'min(100%, 280px)',
-                    /* Centered layout */
-                    margin: '0 auto',
-                    /* Add subtle spacing between card content and edges */
-                    boxSizing: 'border-box',
-                    /* Add direct vertical spacing between cards */
-                    marginBottom: '2rem'
+                    transform: expandedFAQ === index ? 'scale(1.02)' : 'scale(1)'
                   }}
                 >
                   <h3>
                     <button
                       onClick={() => toggleFAQ(index)}
-                      className="group w-full text-left flex justify-between items-center hover:bg-white/20 transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-2 focus:ring-offset-transparent"
-                      style={{
-                        /* Fluid padding that scales with viewport instead of breakpoint-specific classes */
-                        padding: 'clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem)',
-                        minHeight: 'clamp(60px, 10vh, 80px)',
-                      }}
+                      className="group w-full text-left flex justify-between items-center hover:bg-white/20 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-black/20 py-4 px-5 min-h-[60px]"
                       aria-expanded={expandedFAQ === index}
                       aria-controls={`faq-answer-${index}`}
                       id={`faq-question-${index}`}
