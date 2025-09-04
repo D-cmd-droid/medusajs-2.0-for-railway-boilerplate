@@ -658,7 +658,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             
             <div 
                 style={{ 
-                  marginBottom: 'clamp(2rem, 8vh, 4rem)',
+                  marginBottom: 'clamp(3rem, 12vh, 6rem)',
                 }}
                 data-scroll-animation="fade-up"
               >
@@ -799,6 +799,57 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           }}
         ></div>
         
+        {/* Palm leaf decoration - only visible at lg breakpoint and above when ingredients are in diagonal layout */}
+        <div 
+          className="absolute pointer-events-none hidden lg:block"
+          style={{
+            bottom: 'clamp(24rem, 46vh, 38rem)', /* Positioned for desktop diagonal layout */
+            left: 0,
+            zIndex: 0,
+            opacity: 1,
+          }}
+          data-scroll-animation="fade-right"
+        >
+          <Image
+            src="/images/seasun-palmtree-left.png"
+            alt=""
+            width={180}
+            height={230}
+            style={{ 
+              width: 'clamp(100px, 12vw, 180px)',
+              height: 'auto',
+              objectFit: 'contain',
+            }}
+            aria-hidden="true"
+          />
+        </div>
+        
+        {/* Palm leaf decoration - top right, only visible at lg breakpoint */}
+        <div 
+          className="absolute pointer-events-none hidden lg:block"
+          style={{
+            top: 'clamp(30rem, 60vh, 45rem)', /* Positioned very low in the section */
+            right: 0,
+            zIndex: 0,
+            opacity: 1,
+          }}
+          data-scroll-animation="fade-left" /* Mirror animation of the left leaf */
+        >
+          <Image
+            src="/images/seasun-palmtree-left.png"
+            alt=""
+            width={180}
+            height={230}
+            style={{ 
+              width: 'clamp(100px, 12vw, 180px)',
+              height: 'auto',
+              objectFit: 'contain',
+              transform: 'scaleX(-1)', /* Mirror the leaf horizontally */
+            }}
+            aria-hidden="true"
+          />
+        </div>
+        
         {/* 
         CONTENT CONTAINER: 
         - Fluid width container that maintains optimal reading length
@@ -903,10 +954,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 */}
                 <div 
                   style={{ 
-                    width: 'clamp(120px, 15vw, 180px)',
+                    width: 'clamp(80px, 10vw, 120px)',
                     aspectRatio: '1/1',
-                    marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                    marginRight: 'clamp(0rem, 3vw, 1.5rem)',
+                    marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)',
+                    marginRight: 'clamp(0rem, 2vw, 1rem)',
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
@@ -993,10 +1044,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 {/* Image Container - Maintains same proportional styling as first ingredient */}
                 <div 
                   style={{ 
-                    width: 'clamp(120px, 15vw, 180px)',
+                    width: 'clamp(80px, 10vw, 120px)',
                     aspectRatio: '1/1',
-                    marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                    marginRight: 'clamp(0rem, 3vw, 1.5rem)',
+                    marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)',
+                    marginRight: 'clamp(0rem, 2vw, 1rem)',
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
@@ -1069,10 +1120,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 {/* Image Container - Consistent with previous ingredients */}
                 <div 
                   style={{ 
-                    width: 'clamp(120px, 15vw, 180px)',
+                    width: 'clamp(80px, 10vw, 120px)',
                     aspectRatio: '1/1',
-                    marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                    marginRight: 'clamp(0rem, 3vw, 1.5rem)',
+                    marginBottom: 'clamp(0.25rem, 1vh, 0.5rem)',
+                    marginRight: 'clamp(0rem, 2vw, 1rem)',
                     position: 'relative'
                   }}
                   data-scroll-animation="fade-right"
