@@ -373,11 +373,9 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           - Grid maintains side-by-side layout when text is left-aligned
           - Gap scales with viewport to maintain consistent visual rhythm
           */}
-          <div className="relative grid xsmall:grid-cols-5 items-center" style={{
-            gap: 'clamp(1rem, 3vw, 3rem)', // Reduced gap for better text-bottle relationship
+          <div className="relative grid small:grid-cols-2 items-center" style={{
             minHeight: 'clamp(400px, 70vh, 700px)',
-            // Ensure grid container doesn't grow too wide and stretch bottle image
-            maxWidth: '1600px',
+            maxWidth: '1400px',
             margin: '0 auto'
           }}>
             
@@ -388,15 +386,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             - Max-width prevents excessively long line lengths
             - Column sizing ensures proper proportions
             */}
-            <div className="relative text-center xsmall:text-left xsmall:col-span-3" style={{
+            <div className="relative text-center small:text-left" style={{
               paddingLeft: 'clamp(0rem, 2vw, 3rem)',
               // Allow for more natural text width with better constraints
-              maxWidth: 'min(100%, 540px)',
+              maxWidth: 'min(100%, 640px)',
               // Add subtle text shadow for better readability against background image
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.25)',
               // Better margin control with vertical alignment
               margin: '0 auto xsmall:m-0',
-              // Ensure vertical alignment with bottle
               paddingTop: 'clamp(1rem, 5vh, 3rem)',
             }}>
               {/* 
@@ -486,7 +483,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 - Maintains proper spacing relationship with heading
                 */}
                 <p 
-                  className="seasun-body font-light italic text-center xsmall:text-left" 
+                  className="seasun-body font-light italic text-center small:text-left" 
                   style={{ 
                     color: 'var(--seasun-white)', /* Changed to brand white for better contrast */
                     opacity: 0.95, /* Increased opacity for better visibility */
@@ -528,7 +525,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 - Maintains consistent alignment with text content
                 - Scales margin proportionally with viewport
                 */}
-                <div className="flex justify-center xsmall:justify-start text-left" style={{
+                <div className="flex justify-center small:justify-start text-left" style={{
                   marginTop: 'clamp(1.5rem, 4vh, 3rem)'
                 }}>
                   {/* 
@@ -570,35 +567,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               </div>
             </div>
             
-            {/* 
-            RIGHT COLUMN: Product Image Container
-            - Uses Next.js Image for optimized loading
-            - Maintains proper aspect ratio
-            - Scales fluidly with viewport
-            - Proper alignment with text content
-            - Only appears beside text at appropriate breakpoints
-            */}
-            <div className="relative flex items-center justify-center xsmall:col-span-2" style={{
-              minHeight: 'clamp(200px, 50vh, 500px)',
-            }}>
-              <div className="relative" style={{
-                width: 'clamp(280px, 90%, 500px)',
-                aspectRatio: '1/1.2',
-                margin: '0 auto xsmall:mr-0 xsmall:ml-auto',
-              }}>
-                <Image
-                  src="/images/seasun-hero-bottle.png"
-                  alt="SEASUN organic tanning oil with natural ingredients: coconut, cinnamon, and annatto"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 600px"
-                  style={{
-                    objectFit: 'contain',
-                    objectPosition: 'center',
-                  }}
-                />
-              </div>
-            </div>
+{/* Product image removed as requested */}
           </div>
         </div>
       </section>

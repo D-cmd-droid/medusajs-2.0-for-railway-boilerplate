@@ -226,25 +226,22 @@
     @apply max-w-[1440px] w-full mx-auto px-6;
   }
 
-  /* Glass Morphism Navigation Effects */
+  /* Solid Navigation Bar */
   .seasun-glass-nav {
-    background: rgba(247, 138, 21, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--seasun-golden-tan);
+    border-bottom: 1px solid #ffffff33;
     box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      0 2px 8px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 4px 12px rgba(0, 0, 0, 0.08),
+      0 2px 4px rgba(0, 0, 0, 0.04);
   }
 
-  /* Fallback for browsers without backdrop-filter support */
+  /* Fallback kept for backwards compatibility */
   .seasun-glass-nav-fallback {
-    background: rgba(247, 138, 21, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--seasun-golden-tan);
+    border-bottom: 1px solid #ffffff33;
     box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      0 2px 8px rgba(0, 0, 0, 0.05);
+      0 4px 12px rgba(0, 0, 0, 0.08),
+      0 2px 4px rgba(0, 0, 0, 0.04);
   }
 
   .contrast-btn {
