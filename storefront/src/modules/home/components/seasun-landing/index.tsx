@@ -927,7 +927,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           >
             Forget about lobster red, muddy brown, or spending hours under the sun with no results. Our organic oil gives a boost to those stubborn lighter areas, speeds up your tan, and transforms it into a golden, even, and hydrated glow.
             
-            A beautiful, sexy glow—no chemicals, no frustration. 💛🌴
+            A beautiful, sexy glow—no chemicals, no frustration. 💛
           </p>
           
           {/* 
@@ -1469,7 +1469,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   lineHeight: '1.6',
                 }}
               >
-                It sounds like you&apos;ve been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you&apos;ve been chasing? Reach out at <span style={{ color: 'var(--seasun-deeper-blue)', fontWeight: '500' }}>hello@seasun.com</span> and let&apos;s find your answer.
+                Ready for that golden glow you deserve? We understand the search hasn't always been easy. That's why we invite you to experience SEASUN for yourself and feel the difference. Imagine stepping out with that radiant, sun-kissed skin you've been dreaming of. Reach out at <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>hello@seasun.com</span> and let's start your SEASUN journey.
               </p>
             </div>
         </div>
