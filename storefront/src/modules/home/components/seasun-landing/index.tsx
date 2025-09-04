@@ -1193,17 +1193,18 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
 
       {/* 
       ===============================================================
-      FAQ SECTION - STANDARDIZED TYPOGRAPHY
+      FAQ SECTION - FLUID DESIGN APPROACH
       ===============================================================
       
-      Typography standardization:
+      Key design principles:
       1. Fluid typography with clamp() instead of breakpoints
       2. Consistent visual hierarchy across sections
       3. Standardized line heights and font weights
       4. Unified opacity values for similar text types
+      5. Simplified container structure for mobile optimization
       */}
       <section 
-        className="seasun-section-overlay" 
+        className="seasun-section-overlay overflow-hidden" 
         aria-labelledby="faq-heading"
         style={{
           /* Consistent section padding that scales with viewport */
@@ -1211,8 +1212,19 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           paddingBottom: 'clamp(3rem, 10vh, 7rem)',
         }}
       >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
+        {/* 
+        CONTENT CONTAINER: 
+        - Fluid width container that matches other sections
+        - Consistent horizontal padding that scales with viewport
+        - Simplified nesting structure for better mobile display
+        */}
+        <div 
+          className="relative w-full mx-auto" 
+          style={{ 
+            maxWidth: 'min(90vw, 1400px)', 
+            padding: '0 clamp(1rem, 5vw, 3rem)'
+          }}
+        >
             {/* 
             SECTION HEADING:
             - Matches ingredient section heading style
@@ -1233,10 +1245,19 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               HONEST ANSWERS TO YOUR <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>REAL CONCERNS</span>
             </h2>
             
-            {/* FAQ Questions - Container with proportional spacing */}
+            {/* FAQ Questions - Container with proportional spacing and optimal reading width */}
             <div 
-              className="space-y-4 sm:space-y-6" 
-              style={{ marginBottom: 'clamp(1.5rem, 5vh, 3rem)' }}
+              className="space-y-8 sm:space-y-10 mx-auto" 
+              style={{ 
+                marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
+                /* Constrain width on larger screens for optimal reading */
+                maxWidth: 'min(100%, 700px)',
+                /* Ensure content is properly centered */
+                width: '100%',
+                /* Add some padding for mobile screens */
+                paddingLeft: 'clamp(0rem, 2vw, 0.5rem)',
+                paddingRight: 'clamp(0rem, 2vw, 0.5rem)'
+              }}
               role="region" 
               aria-labelledby="faq-heading"
             >
@@ -1246,13 +1267,27 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   className="group/card bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30 hover:shadow-xl hover:bg-white/90 transition-all duration-500 ease-out"
                   style={{
                     transform: expandedFAQ === index ? 'scale(1.02)' : 'scale(1)',
-                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                    /* Responsive width constraints for optimal display */
+                    width: '100%',
+                    minWidth: 'min(100%, 280px)',
+                    /* Centered layout */
+                    margin: '0 auto',
+                    /* Add subtle spacing between card content and edges */
+                    boxSizing: 'border-box',
+                    /* Add direct vertical spacing between cards */
+                    marginBottom: '2rem'
                   }}
                 >
                   <h3>
                     <button
                       onClick={() => toggleFAQ(index)}
-                      className="group w-full px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-6 text-left flex justify-between items-center hover:bg-white/20 transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-2 focus:ring-offset-transparent min-h-[60px] sm:min-h-[68px]"
+                      className="group w-full text-left flex justify-between items-center hover:bg-white/20 transition-all duration-500 ease-out focus:outline-none focus:ring-4 focus:ring-black/20 focus:ring-offset-2 focus:ring-offset-transparent"
+                      style={{
+                        /* Fluid padding that scales with viewport instead of breakpoint-specific classes */
+                        padding: 'clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem)',
+                        minHeight: 'clamp(60px, 10vh, 80px)',
+                      }}
                       aria-expanded={expandedFAQ === index}
                       aria-controls={`faq-answer-${index}`}
                       id={`faq-question-${index}`}
@@ -1344,10 +1379,13 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             - Maintains border separator with proportional spacing
             */}
             <div 
-              className="max-w-3xl mx-auto border-t border-gray-100/30"
+              className="mx-auto border-t border-gray-100/30"
               style={{
                 paddingTop: 'clamp(1.5rem, 4vh, 3rem)',
                 paddingBottom: 'clamp(1rem, 2vh, 2rem)',
+                /* Match the max-width of the FAQ container for consistency */
+                maxWidth: 'min(100%, 700px)',
+                width: '100%'
               }}
             >
               {/* 
@@ -1368,22 +1406,103 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 It sounds like you&apos;ve been let down before-and that kind of doubt makes perfect sense. What if you could test SEASUN risk-free and see for yourself? How would it feel to finally get the even, glowing tan you&apos;ve been chasing? Reach out at <span style={{ color: 'var(--seasun-deeper-blue)', fontWeight: '500' }}>hello@seasun.com</span> and let&apos;s find your answer.
               </p>
             </div>
-          </div>
         </div>
       </section>
 
-      {/* Instagram Gallery Section */}
-      <section className="py-28 relative seasun-section-overlay">
-        
-        <div className="container mx-auto px-6">
-          <div className="text-center max-w-4xl mx-auto mb-20">
-            <h2 className="seasun-h2 mb-6" style={{ color: 'var(--seasun-deep-black)' }}>
+      {/* 
+      ===============================================================
+      INSTAGRAM GALLERY SECTION - FLUID DESIGN APPROACH
+      ===============================================================
+      
+      Key design principles:
+      1. Fluid sizing with clamp() functions instead of breakpoints
+      2. Consistent visual hierarchy with other sections
+      3. Smooth scroll animations with proper hardware acceleration
+      4. Responsive image optimization with progressive loading
+      */}
+      <section 
+        className="relative seasun-section-overlay overflow-hidden" 
+        aria-labelledby="instagram-heading"
+        style={{
+          /* Fluid vertical padding that scales with viewport height */
+          paddingTop: 'clamp(3rem, 10vh, 7rem)',
+          paddingBottom: 'clamp(3rem, 10vh, 7rem)',
+        }}
+      >
+        {/* 
+        CONTENT CONTAINER: 
+        - Fluid width container that maintains optimal reading length
+        - Consistent horizontal padding that scales with viewport
+        */}
+        <div 
+          className="container mx-auto" 
+          style={{ 
+            maxWidth: 'min(90vw, 1400px)', 
+            padding: '0 clamp(1rem, 5vw, 3rem)'
+          }}
+        >
+          <div 
+            className="text-center max-w-4xl mx-auto" 
+            style={{ 
+              marginBottom: 'clamp(2rem, 8vh, 5rem)' 
+            }}
+            data-scroll-animation="fade-up"
+          >
+            {/* 
+            SECTION HEADING: 
+            - Matches heading style across all sections
+            - Fluid typography that scales smoothly 
+            - Consistent visual hierarchy with other h2 elements
+            */}
+            <h2 
+              id="instagram-heading" 
+              className="font-light text-center"
+              style={{ 
+                fontFamily: 'var(--seasun-font-heading)', 
+                color: 'var(--seasun-deep-black)',
+                fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
+                lineHeight: '1.2',
+                marginBottom: 'clamp(1.5rem, 3vh, 2.5rem)',
+              }}
+            >
               Follow us for more beach vibes
+              
+              {/* 
+              DECORATIVE UNDERLINE: 
+              - Matches style from other sections
+              - Centered gradient for consistent visual language
+              */}
+              <span 
+                className="block mx-auto mt-6" 
+                style={{ 
+                  height: 'clamp(2px, 0.3vh, 4px)',
+                  width: 'clamp(4rem, 8vw, 8rem)',
+                  background: 'linear-gradient(to right, transparent, var(--seasun-golden-tan), transparent)' 
+                }}
+                data-scroll-animation="width"
+              ></span>
             </h2>
-            <p className="seasun-body text-lg" style={{ color: 'var(--seasun-deep-black)', opacity: 0.7 }}>
+            
+            {/* 
+            TAGLINE: 
+            - Matches body text styling across sections
+            - Fluid typography with clamp()
+            - Consistent opacity and margins
+            */}
+            <p 
+              className="seasun-body font-light text-center"
+              style={{ 
+                color: 'var(--seasun-deep-black)', 
+                opacity: 0.85,
+                fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
+                lineHeight: '1.6',
+                maxWidth: 'min(100%, 800px)',
+                margin: '0 auto',
+              }}
+              data-scroll-animation="fade-up"
+            >
               Join our community and discover daily inspiration
             </p>
-            <div className="w-24 h-1 mx-auto rounded-full mt-8" style={{ backgroundColor: 'var(--seasun-golden-tan)' }}></div>
           </div>
           
           {/* 
@@ -1463,10 +1582,25 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="w-full h-full flex items-center justify-center relative z-10">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🏝️</span>
+                  {/* Image container with overlay */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/images/ig _images/seasun-ig-img-1.png"
+                      alt="SEASUN tanning oil bottle on sandy beach at sunset with palm trees"
+                      fill
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
+                      priority={true} /* Load the first visible card with priority */
+                      quality={85} /* Good balance of quality and file size */
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'translateZ(0)', /* Hardware acceleration hint */
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-700"
+                      loading="eager" /* Ensure first cards load immediately */
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="seasun-body text-sm font-medium">Caribbean paradise • 2h</p>
@@ -1483,10 +1617,25 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="w-full h-full flex items-center justify-center relative z-10">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🥥</span>
+                  {/* Image container with overlay */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/images/ig _images/seasun-ig-img-2.png"
+                      alt="Close-up of SEASUN organic tanning oil ingredients"
+                      fill
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
+                      priority={true} /* Also prioritize second card which may be visible */
+                      quality={85}
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'translateZ(0)', /* Hardware acceleration hint */
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-700"
+                      loading="eager"
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="seasun-body text-sm font-medium">Natural ingredients • 4h</p>
@@ -1503,10 +1652,24 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="w-full h-full flex items-center justify-center relative z-10">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌊</span>
+                  {/* Image container with overlay */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/images/ig _images/seasun-ig-img-3.png"
+                      alt="SEASUN product with ocean waves in background"
+                      fill
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
+                      quality={85}
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center 40%', /* Position to focus on the most interesting part */
+                        transform: 'translateZ(0)',
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy" /* Lazy load cards that might be offscreen initially */
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="seasun-body text-sm font-medium">Ocean vibes • 6h</p>
@@ -1523,10 +1686,24 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="w-full h-full flex items-center justify-center relative z-10">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🌴</span>
+                  {/* Image container with overlay */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/images/ig _images/seasun-ig-img-4.png"
+                      alt="Person applying SEASUN oil on palm-lined beach"
+                      fill
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
+                      quality={85}
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'translateZ(0)',
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="seasun-body text-sm font-medium">Island life • 8h</p>
@@ -1543,10 +1720,24 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="w-full h-full flex items-center justify-center relative z-10">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">☀️</span>
+                  {/* Image container with overlay */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/images/ig _images/seasun-ig-img-5.png"
+                      alt="Person with glowing tan enjoying the sunshine"
+                      fill
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
+                      quality={85}
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'translateZ(0)',
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="seasun-body text-sm font-medium">Sunshine glow • 5h</p>
@@ -1563,10 +1754,24 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     background: 'linear-gradient(135deg, var(--seasun-ocean-blue), var(--seasun-deeper-blue))',
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="w-full h-full flex items-center justify-center relative z-10">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">🧴</span>
+                  {/* Image container with overlay */}
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/images/ig _images/seasun-ig-img-6.png"
+                      alt="SEASUN organic tanning oil bottle display"
+                      fill
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
+                      quality={85}
+                      style={{ 
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'translateZ(0)',
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="seasun-body text-sm font-medium">Product showcase • 3h</p>
@@ -1582,24 +1787,36 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               `}</style>
             </div>
             
-            {/* Back button - only visible when scrolled */}
+            {/* 
+            BACK BUTTON: 
+            - Matches styling of other interactive elements
+            - Fluid sizing with clamp() for consistent proportions
+            - Enhanced transition effects for smoother interactions
+            */}
             <button 
               id="gallery-back-button"
-              className="absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hidden md:flex opacity-0"
+              className="absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hidden md:flex opacity-0 transform transition-all duration-500 ease-out hover:scale-110 focus:outline-none focus:ring-4 focus:ring-black/10 focus:ring-offset-2 focus:ring-offset-transparent"
               style={{
                 left: 'max(1rem, calc((100vw - 1400px) / 2 + 1rem))', // Align with container padding
                 width: 'clamp(40px, 5vw, 56px)',
                 height: 'clamp(40px, 5vw, 56px)',
-                transition: 'all 0.3s ease-in-out',
+                transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)', // Matches other transitions
                 pointerEvents: 'none', // Initially disabled
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1)',
               }}
               onClick={() => {
-                const container = document.querySelector('.overflow-x-auto');
+                const container = document.getElementById('instagram-scroll-container');
                 if (container) {
                   container.scrollBy({ left: -300, behavior: 'smooth' });
                 }
               }}
               aria-label="Scroll back"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1)';
+              }}
             >
               {/* Back arrow icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1607,23 +1824,35 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               </svg>
             </button>
             
-            {/* Forward button - default visible */}
+            {/* 
+            FORWARD BUTTON: 
+            - Matches styling of back button for visual consistency
+            - Enhanced with same interaction effects as other buttons
+            - Proper accessibility attributes for keyboard navigation
+            */}
             <button 
               id="gallery-next-button"
-              className="absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hidden md:flex"
+              className="absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center hidden md:flex transform transition-all duration-500 ease-out hover:scale-110 focus:outline-none focus:ring-4 focus:ring-black/10 focus:ring-offset-2 focus:ring-offset-transparent"
               style={{
                 right: 'max(1rem, calc((100vw - 1400px) / 2 + 1rem))', // Align with container padding
                 width: 'clamp(40px, 5vw, 56px)',
                 height: 'clamp(40px, 5vw, 56px)',
-                transition: 'all 0.3s ease-in-out',
+                transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)', // Matches other transitions
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1)',
               }}
               onClick={() => {
-                const container = document.querySelector('.overflow-x-auto');
+                const container = document.getElementById('instagram-scroll-container');
                 if (container) {
                   container.scrollBy({ left: 300, behavior: 'smooth' });
                 }
               }}
               aria-label="Scroll to see more"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1)';
+              }}
             >
               {/* Forward arrow icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1632,15 +1861,41 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             </button>
           </div>
           
-          <div className="text-center">
+          {/* 
+          FOLLOW BUTTON CONTAINER: 
+          - Consistent spacing that scales with viewport
+          - Centered layout matching other CTA sections
+          */}
+          <div 
+            className="text-center"
+            style={{
+              marginTop: 'clamp(2rem, 5vh, 4rem)',
+            }}
+            data-scroll-animation="fade-up"
+          >
+            {/* 
+            INSTAGRAM FOLLOW BUTTON: 
+            - Styling consistent with secondary buttons elsewhere
+            - Enhanced hover effects matching other interactive elements
+            - Fluid padding that scales with viewport size
+            */}
             <Button 
               variant="secondary" 
-              className="px-10 py-4 text-lg rounded-2xl transition-all duration-300 hover:opacity-80 hover:scale-105 shadow-lg border-2" 
+              className="px-10 py-4 text-lg rounded-2xl transform transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-1 shadow-lg border-2 active:scale-95 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-golden-tan/20 focus:ring-offset-4 focus:ring-offset-transparent" 
               style={{ 
                 borderColor: 'var(--seasun-golden-tan)', 
                 color: 'var(--seasun-golden-tan)',
-                background: 'linear-gradient(135deg, transparent 0%, rgba(247, 138, 21, 0.05) 100%)'
+                background: 'linear-gradient(135deg, transparent 0%, rgba(247, 138, 21, 0.05) 100%)',
+                boxShadow: '0 4px 16px rgba(247, 138, 21, 0.15), 0 1px 4px rgba(247, 138, 21, 0.1)',
+                padding: 'clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2.5rem)',
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(247, 138, 21, 0.2), 0 2px 8px rgba(247, 138, 21, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(247, 138, 21, 0.15), 0 1px 4px rgba(247, 138, 21, 0.1)';
+              }}
+              aria-label="Follow SEASUN on Instagram"
             >
               <span className="seasun-body font-medium flex items-center gap-2">
                 <span>🌊</span>
