@@ -14,7 +14,22 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SEASUN - Caribbean Beauty Secret | Natural Skincare",
     description: "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural luxury skincare that enhances your glow.",
+    images: [{
+      url: "/images/og/seasun-og-image.png",
+      width: 1024,
+      height: 1536,
+      alt: "SEASUN organic tanning oil bottle on sandy beach at sunset with palm trees"
+    }],
+    locale: "en_US",
+    type: "website",
+    siteName: "SEASUN Beauty"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SEASUN - Caribbean Beauty Secret | Natural Skincare",
+    description: "Discover the Caribbean's best kept secret to radiant, even-toned skin. Natural luxury skincare that enhances your glow.",
     images: ["/images/og/seasun-og-image.png"],
+    creator: "@seasunbeauty"
   }
 }
 
