@@ -345,8 +345,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         */}
         <div className="absolute inset-0" style={{ zIndex: -10 }}>
           <Image
-            src="/images/seasun-hero-bg.png"
-            alt="Tropical beach scene background"
+            src="/images/seasun-hero-bg-model.png"
+            alt="Model with glowing skin in warm sunlight"
             fill
             style={{ 
               objectFit: 'cover',
