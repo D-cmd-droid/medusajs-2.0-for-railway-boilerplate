@@ -331,18 +331,23 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       - CSS variables: For consistent values across components
       */}
       <section 
-        className="relative flex items-center justify-center overflow-hidden content-full-height"
+        className="relative flex items-center justify-center overflow-hidden content-full-height hero-section"
         style={{
           /* 
-          FLUID HEIGHT: Using our content-full-height utility class
-          which includes both modern dvh and fallback solutions.
-          Additional constraint with clamp for minimum/maximum heights.
+          FLUID HEIGHT: Using content-full-height utility class with stable height
+          to prevent layout shifts during scrolling. Using fixed height for calculation
+          base to avoid the exact issue causing jumps.
           */
-          /* Use small viewport height (svh) for more consistent behavior */
-          minHeight: 'clamp(500px, var(--app-height), 900px)',
-          /* Allows proper spacing on ultra-tall screens */
-          paddingTop: 'clamp(2rem, 8svh, 6rem)',
-          paddingBottom: 'clamp(2rem, 8svh, 6rem)',
+          height: 'var(--app-height)', // Use small viewport height for stability
+          maxHeight: '900px', // Cap max height
+          minHeight: '500px', // Ensure minimum height
+          /* Fixed padding instead of viewport-relative to prevent shifts */
+          paddingTop: 'max(2rem, min(8%, 6rem))',
+          paddingBottom: 'max(2rem, min(8%, 6rem))',
+          /* Force containment to prevent layout shifts */
+          contain: 'layout paint',
+          /* Prevent parent container transforms */
+          transform: 'none',
         }}
         role="banner"
         aria-labelledby="hero-heading"
@@ -356,17 +361,32 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         - z-index -10 positions image behind all content
         - priority ensures immediate loading as this is a critical above-fold element
         */}
-        <div className="absolute inset-0" style={{ zIndex: -10 }}>
+        <div className="absolute inset-0" style={{ 
+          zIndex: -10, 
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: '100%', // Explicitly set height
+          overflow: 'hidden' // Contain the image
+        }}>
           <Image
             src="/images/seasun-hero-bg-model.png"
             alt="Model with glowing skin in warm sunlight"
             fill
+            sizes="100vw" // Indicate image will be full width
             style={{ 
               objectFit: 'cover',
               objectPosition: 'center',
+              width: '100%',
+              height: '100%',
+              position: 'absolute', // Use absolute instead of relying on fill
+              minHeight: '100%' // Ensure image covers container
             }}
             quality={90}
-            priority
+            priority // Preload this image
+            loading="eager" // Force immediate loading
           />
         </div>
         {/* 

@@ -148,12 +148,30 @@ body, main {
 .content-full-height {
   min-height: 100vh; /* Fallback */
   min-height: var(--app-height);
+  /* Prevent layout shifts during scrolling */
+  contain: layout;
 }
 
 /* Fixed elements that need to span full height */
 .fixed-full-height {
   height: 100vh; /* Fallback */
   height: var(--app-height);
+}
+
+/* Special handling for hero section to prevent jumps */
+.hero-section {
+  /* Force GPU rendering for stability */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  /* Prevent scrolling artifacts */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Ensure stable container for absolute positioning */
+  isolation: isolate;
+  
+  /* Better rendering performance */
+  will-change: contents;
 }
 
 /* For elements that should expand when browser UI is hidden */
