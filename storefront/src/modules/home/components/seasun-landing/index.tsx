@@ -978,7 +978,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 - Optimal width for readability
                 - Maintains proper spacing relationship with image
                 */}
-                <div style={{
+                <div className="flex flex-col items-center" style={{
                   maxWidth: 'min(100%, 640px)',
                   flex: '1',
                 }}>
@@ -988,7 +988,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   - Consistent visual hierarchy with section heading
                   */}
                   <h3 
-                    className="font-light text-center lg:text-left"
+                    className="font-light text-center"
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
@@ -997,7 +997,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       letterSpacing: '0.03em',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                      textAlign: 'center'
+                      maxWidth: 'clamp(280px, 80%, 650px)',
+                      margin: '0 auto clamp(0.5rem, 2vh, 1rem) auto'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1010,14 +1011,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   - Line height scales proportionally with font size
                   */}
                   <p 
-                    className="seasun-body font-light text-center lg:text-left"
+                    className="seasun-body font-light text-center"
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
                       opacity: 0.75,
                       fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
                       lineHeight: '1.8',
-                      textAlign: 'center',
-                      letterSpacing: '0.01em'
+                      letterSpacing: '0.01em',
+                      maxWidth: 'clamp(280px, 80%, 650px)',
+                      margin: '0 auto'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1064,12 +1066,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 </div>
                 
                 {/* Content Container - Consistent with first ingredient */}
-                <div style={{
+                <div className="flex flex-col items-center" style={{
                   maxWidth: 'min(100%, 640px)',
                   flex: '1',
                 }}>
                   <h3 
-                    className="font-light text-center lg:text-left"
+                    className="font-light text-center"
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
@@ -1078,7 +1080,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       letterSpacing: '0.03em',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                      textAlign: 'center'
+                      maxWidth: 'clamp(280px, 80%, 650px)',
+                      margin: '0 auto clamp(0.5rem, 2vh, 1rem) auto'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1086,14 +1089,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   </h3>
                   
                   <p 
-                    className="seasun-body font-light text-center lg:text-left"
+                    className="seasun-body font-light text-center"
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
                       opacity: 0.75,
                       fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
                       lineHeight: '1.8',
-                      textAlign: 'center',
-                      letterSpacing: '0.01em'
+                      letterSpacing: '0.01em',
+                      maxWidth: 'clamp(280px, 80%, 650px)',
+                      margin: '0 auto'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1140,12 +1144,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 </div>
                 
                 {/* Content Container - Consistent with previous ingredients */}
-                <div style={{
+                <div className="flex flex-col items-center" style={{
                   maxWidth: 'min(100%, 640px)',
                   flex: '1',
                 }}>
                   <h3 
-                    className="font-light text-center lg:text-left"
+                    className="font-light text-center"
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
@@ -1154,7 +1158,8 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       letterSpacing: '0.03em',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
-                      textAlign: 'center'
+                      maxWidth: 'clamp(300px, 90%, 750px)',
+                      margin: '0 auto clamp(0.5rem, 2vh, 1rem) auto'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1162,14 +1167,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   </h3>
                   
                   <p 
-                    className="seasun-body font-light text-center lg:text-left"
+                    className="seasun-body font-light text-center"
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
                       opacity: 0.75,
                       fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
                       lineHeight: '1.8',
-                      textAlign: 'center',
-                      letterSpacing: '0.01em'
+                      letterSpacing: '0.01em',
+                      maxWidth: 'clamp(300px, 90%, 750px)',
+                      margin: '0 auto'
                     }}
                     data-scroll-animation="fade-up"
                   >
