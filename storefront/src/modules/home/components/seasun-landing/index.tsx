@@ -1641,7 +1641,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               <div className="flex gap-x-4 pb-8 md:gap-x-6 lg:gap-x-8">
                 {/* Card 1 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-md transition-all duration-500"
                   style={{ 
                     // Fluid card sizing using clamp for min/max constraints with viewport scaling
                     width: 'clamp(260px, 30vw, 320px)',
@@ -1668,16 +1668,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       loading="eager" /* Ensure first cards load immediately */
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0">
                     <p className="seasun-body text-sm font-medium">Caribbean paradise • 2h</p>
                   </div>
                 </div>
                 
                 {/* Card 2 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-md transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1703,16 +1701,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       loading="eager"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0">
                     <p className="seasun-body text-sm font-medium">Natural ingredients • 4h</p>
                   </div>
                 </div>
                 
                 {/* Card 3 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-md transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1737,16 +1733,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       loading="lazy" /* Lazy load cards that might be offscreen initially */
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0">
                     <p className="seasun-body text-sm font-medium">Ocean vibes • 6h</p>
                   </div>
                 </div>
                 
                 {/* Card 4 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-md transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1771,16 +1765,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       loading="lazy"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0">
                     <p className="seasun-body text-sm font-medium">Island life • 8h</p>
                   </div>
                 </div>
                 
                 {/* Card 5 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-md transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1805,16 +1797,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       loading="lazy"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0">
                     <p className="seasun-body text-sm font-medium">Sunshine glow • 5h</p>
                   </div>
                 </div>
                 
                 {/* Card 6 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-md transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1839,9 +1829,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                       loading="lazy"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0">
                     <p className="seasun-body text-sm font-medium">Product showcase • 3h</p>
                   </div>
                 </div>
