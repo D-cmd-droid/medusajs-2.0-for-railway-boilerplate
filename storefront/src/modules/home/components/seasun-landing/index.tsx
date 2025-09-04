@@ -636,37 +636,33 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               - Consistent decoration with centered gradient underline
               - Standardized margin-bottom that matches Ingredients
               */}
+              {/* Welcome Message */}
+            <div 
+              className="text-center mb-8"
+              data-scroll-animation="fade-up"
+            >
               <h2 
-                id="trust-problem-heading" 
-                className="font-light text-center"
+                className="font-light text-center mb-4"
                 style={{ 
                   fontFamily: 'var(--seasun-font-heading)', 
                   color: 'var(--seasun-deep-black)',
-                  fontSize: 'clamp(1.25rem, 2vw + 0.75rem, 2.75rem)',
+                  fontSize: 'clamp(1.5rem, 2.5vw + 0.75rem, 3rem)',
                   fontWeight: '300',
                   letterSpacing: '0.03em',
                   lineHeight: '1.3',
+                }}
+              >
+                Hello beautiful, welcome to SEASUN
+              </h2>
+            </div>
+            
+            <div 
+                style={{ 
                   marginBottom: 'clamp(2rem, 8vh, 4rem)',
                 }}
                 data-scroll-animation="fade-up"
               >
-                When the sun plays hard to get
-                
-                {/* 
-                DECORATIVE UNDERLINE:
-                - Matches style from Ingredients section
-                - Centered gradient for consistent visual language
-                */}
-                <span 
-                  className="block mx-auto mt-6" 
-                  style={{ 
-                    height: 'clamp(2px, 0.3vh, 4px)',
-                    width: 'clamp(4rem, 8vw, 8rem)',
-                    background: 'linear-gradient(to right, transparent, var(--seasun-golden-tan), transparent)' 
-                  }}
-                  data-scroll-animation="width"
-                ></span>
-              </h2>
+              </div>
               
               {/* 
               FIRST PARAGRAPH:
@@ -687,11 +683,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 }}
                 data-scroll-animation="fade-up"
               >
-                How many times have you ended up with lobster red burns or that muddy brown tone after hours under the sun with nothing to show for it? I know that feeling when you look at yet another product thinking, &quot;Sure, I&apos;ve heard these promises before.&quot; Your bathroom cabinet probably tells that story all too well.
+                If you're here, you probably know the struggle. That feeling—hours under the sun, maybe you get red, maybe you burn...but that golden glow never seems to stick?
               </p>
               
               {/* 
-              SECOND PARAGRAPH:
+              FOUNDER STORY PARAGRAPH:
               - Consistent styling with first paragraph
               - Maintains font-normal weight for emphasis
               - Added animation with slight delay
@@ -704,12 +700,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   fontSize: 'clamp(0.95rem, 0.75vw + 0.5rem, 1.125rem)',
                   lineHeight: '1.8',
                   maxWidth: 'min(100%, 700px)',
-                  margin: '0 auto',
+                  margin: '0 auto clamp(1.5rem, 5vh, 3rem) auto',
                   letterSpacing: '0.01em',
                 }}
                 data-scroll-animation="fade-up"
               >
-                I felt the same way until I couldn&apos;t take it anymore. That&apos;s why SEASUN had to be different—finally, a beautiful, sexy glow with no chemicals and none of the frustration.
+                Our founder was right there with you. She'd try something new, get her hopes up, only to find herself dealing with dry, irritated skin that still wouldn't tan. That's when she knew she had to create something different.
               </p>
               
               {/* 
@@ -835,7 +831,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             }}
             data-scroll-animation="fade-up"
           >
-            The Power of Pure Caribbean Ingredients
+            ✨ If the sun plays hard to get with your skin, SEASUN makes it easy
             
             {/* 
             DECORATIVE UNDERLINE: 
@@ -871,7 +867,9 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             }}
             data-scroll-animation="fade-up"
           >
-            ✨ If the sun plays hard to get with your skin, SEASUN makes it easy. Forget those complicated formulas with ingredients you can&apos;t pronounce. We&apos;ve found a simpler answer that actually works.
+            Forget about lobster red, muddy brown, or spending hours under the sun with no results. Our organic oil gives a boost to those stubborn lighter areas, speeds up your tan, and transforms it into a golden, even, and hydrated glow.
+            
+            A beautiful, sexy glow—no chemicals, no frustration. 💛🌴
           </p>
           
           {/* 
@@ -952,7 +950,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     }}
                     data-scroll-animation="fade-up"
                   >
-                    Coconut Oil 🥥 Boosts
+                    Coconut Oil 🥥 Hydrates Deep
                   </h3>
                   
                   {/* 
@@ -972,7 +970,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     }}
                     data-scroll-animation="fade-up"
                   >
-                    Say goodbye to greasy, artificial moisturizers that just sit on your skin. Pure coconut oil dives deep, finding those stubborn lighter areas that never seem to catch the sun. It creates the perfect canvas for an even, natural tan by delivering intense hydration exactly where you need it most—no 12-step routine required. Just smooth, ready-to-tan skin.
+                    Pure coconut oil dives deep to those stubborn lighter areas that resist the sun. Creates the perfect canvas for an even, natural glow.
                   </p>
                 </div>
               </div>
@@ -1033,7 +1031,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     }}
                     data-scroll-animation="fade-up"
                   >
-                    Cinnamon 🌶️ Speeds
+                    Cinnamon 🌶️ Awakens Your Skin
                   </h3>
                   
                   <p 
@@ -1048,7 +1046,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     }}
                     data-scroll-animation="fade-up"
                   >
-                    Tired of harsh chemical accelerators that irritate and damage your skin? Cinnamon takes a different approach. It works with your body, not against it—gently boosting circulation exactly where you apply it. This brings more blood flow to the surface, speeding up your natural tanning process without the redness and irritation. No more waiting forever for results that never come.
+                    Gently boosts circulation, bringing warmth to the surface. Speeds up your natural tanning process without the irritation.
                   </p>
                 </div>
               </div>
@@ -1109,7 +1107,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     }}
                     data-scroll-animation="fade-up"
                   >
-                    Annatto ☀️ Transforms
+                    Annatto ☀️ Transforms You Golden
                   </h3>
                   
                   <p 
@@ -1124,7 +1122,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     }}
                     data-scroll-animation="fade-up"
                   >
-                    Forget about those artificial bronzers that wash away after your first swim. Annatto infuses your skin with a golden warmth that brings out your natural beauty. This ancient Caribbean secret transforms your skin from within, creating that head-turning sun-kissed glow that looks completely natural—because it is! Not an expensive treatment with disappointing results, but an affordable solution that delivers every time. Your skin, but better.
+                    This ancient Caribbean secret infuses your skin with golden warmth. Creates that head-turning glow that looks completely natural—because it is.
                   </p>
                 </div>
               </div>
@@ -1156,7 +1154,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 marginBottom: 'clamp(1.5rem, 5vh, 2.5rem)',
               }}
             >
-              That&apos;s why SEASUN doesn&apos;t just work differently—it works better. No more lobster red, muddy brown, or hours under the sun with no results. Our organic oil boosts those stubborn lighter areas, speeds up your tan, and transforms it into a golden, even, hydrated glow. A beautiful, sexy glow—no chemicals, no frustration. 💛🌴
+              And here's what we love most—there's something about the way SEASUN makes your skin feel. Soft, glowing, absolutely irresistible. ✨
             </p>
             
             {/* 
@@ -1245,7 +1243,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
               }}
             >
-              HONEST ANSWERS TO YOUR <span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>REAL CONCERNS</span>
+              Your Questions, Beautiful—<span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>We're Here to Help</span>
             </h2>
             
             {/* FAQ Questions - Simplified container with optimal reading width */}
