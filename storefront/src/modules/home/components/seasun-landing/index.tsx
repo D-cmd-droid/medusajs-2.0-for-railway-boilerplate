@@ -1653,7 +1653,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   {/* Image container with overlay */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/images/ig _images/seasun-ig-img-1.png"
+                      src="/images/instagram/seasun-ig-img-1.png"
                       alt="SEASUN tanning oil bottle on sandy beach at sunset with palm trees"
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
@@ -1686,7 +1686,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   {/* Image container with overlay */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/images/ig _images/seasun-ig-img-2.png"
+                      src="/images/instagram/seasun-ig-img-2.png"
                       alt="Close-up of SEASUN organic tanning oil ingredients"
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
@@ -1719,7 +1719,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   {/* Image container with overlay */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/images/ig _images/seasun-ig-img-3.png"
+                      src="/images/instagram/seasun-ig-img-3.png"
                       alt="SEASUN product with ocean waves in background"
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
@@ -1751,7 +1751,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   {/* Image container with overlay */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/images/ig _images/seasun-ig-img-4.png"
+                      src="/images/instagram/seasun-ig-img-4.png"
                       alt="Person applying SEASUN oil on palm-lined beach"
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
@@ -1783,7 +1783,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   {/* Image container with overlay */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/images/ig _images/seasun-ig-img-5.png"
+                      src="/images/instagram/seasun-ig-img-5.png"
                       alt="Person with glowing tan enjoying the sunshine"
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
@@ -1815,7 +1815,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   {/* Image container with overlay */}
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/images/ig _images/seasun-ig-img-6.png"
+                      src="/images/instagram/seasun-ig-img-6.png"
                       alt="SEASUN organic tanning oil bottle display"
                       fill
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 320px"
