@@ -1294,10 +1294,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
-                  className="group/card overflow-hidden mb-4 pb-0 hover:bg-[rgba(250,248,246,0.8)]"
+                  className="group/card overflow-hidden mb-4 pb-0 hover:bg-[rgba(250,248,246,0.8)] rounded"
                   style={{
                     background: 'rgba(250, 248, 246, 0.6)',
-                    borderRadius: '2px',
+                    borderRadius: '4px',
                     border: '0.5px solid rgba(0, 0, 0, 0.15)',
                     transition: 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)',
                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.01)'
@@ -1610,7 +1610,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               <div className="flex gap-x-4 pb-8 md:gap-x-6 lg:gap-x-8">
                 {/* Card 1 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
                   style={{ 
                     // Fluid card sizing using clamp for min/max constraints with viewport scaling
                     width: 'clamp(260px, 30vw, 320px)',
@@ -1646,7 +1646,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 
                 {/* Card 2 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1681,7 +1681,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 
                 {/* Card 3 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1715,7 +1715,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 
                 {/* Card 4 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1749,7 +1749,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 
                 {/* Card 5 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1783,7 +1783,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 
                 {/* Card 6 */}
                 <div 
-                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="flex-none scroll-snap-align-start group relative overflow-hidden cursor-pointer rounded-md shadow-lg hover:shadow-2xl transition-all duration-500"
                   style={{ 
                     width: 'clamp(260px, 30vw, 320px)',
                     aspectRatio: '0.8/1',
@@ -1956,7 +1956,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="relative rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl overflow-hidden">
+            <div className="relative rounded-md p-6 sm:p-8 lg:p-12 shadow-xl overflow-hidden">
               {/* Background image with fluid responsive approach */}
               <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image
@@ -2040,7 +2040,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             ) : (
               // Fallback display if product is not available
               <div className="text-center py-16">
-                <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-3xl p-12 shadow-xl max-w-md mx-auto">
+                <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-md p-12 shadow-xl max-w-md mx-auto">
                   <div className="text-6xl mb-6">🧴</div>
                   <h3 className="text-2xl font-light mb-4" style={{ fontFamily: 'var(--seasun-font-heading)', color: 'var(--seasun-deep-black)' }}>
                     SEASUN Coming Soon
@@ -2053,19 +2053,6 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             )}
           </div>
 
-          {/* Guarantee Badges */}
-          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:gap-10 max-w-lg sm:max-w-2xl mx-auto list-none" role="list" aria-label="Product guarantees and shipping information">
-              <li className="flex items-center justify-center sm:justify-center gap-4 opacity-90 p-4 rounded-lg" role="listitem">
-                <span className="text-lg sm:text-xl flex-shrink-0" style={{ color: 'var(--seasun-golden-tan)' }} aria-hidden="true">✓</span>
-                <span className="seasun-body text-base sm:text-sm font-medium text-center sm:text-left leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>30-day money back guarantee</span>
-              </li>
-              <li className="flex items-center justify-center sm:justify-center gap-4 opacity-90 p-4 rounded-lg" role="listitem">
-                <span className="text-lg sm:text-xl flex-shrink-0" aria-hidden="true">🚚</span>
-                <span className="seasun-body text-base sm:text-sm font-medium text-center sm:text-left leading-relaxed" style={{ color: 'var(--seasun-deep-black)', opacity: 0.8 }}>Free shipping on orders over $50</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </section>
 

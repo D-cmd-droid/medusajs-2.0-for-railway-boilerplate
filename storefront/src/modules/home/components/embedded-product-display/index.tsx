@@ -202,7 +202,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               ? '1/1.2' // Default/SSR value 
               : isBelowBreakpoint ? '9/16' : '1/1.2',
             margin: '0 auto sm:mr-0 sm:ml-auto',
-            borderRadius: 'clamp(0.75rem, 1.5vw, 1.5rem)',
+            borderRadius: '0.375rem', /* Changed from fluid to fixed medium radius (rounded-md) */
             boxShadow: '0 clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem) rgba(0,0,0,0.1)',
             overflow: 'hidden',
             // Add smooth transition for width and aspect ratio changes
@@ -290,7 +290,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               marginBottom: 'clamp(1rem, 3vh, 1.5rem)'
             }}>
           <span 
-            className="inline-block rounded-lg font-semibold" 
+            className="inline-block rounded font-semibold" 
             style={{ 
               color: 'white', 
               backgroundColor: 'var(--seasun-golden-tan)',
@@ -464,7 +464,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 disabled={quantity <= 1}
-                className="w-9 h-9 flex items-center justify-center rounded-l-lg bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-9 h-9 flex items-center justify-center rounded-l-md bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Decrease quantity"
                 style={{
                   transition: 'all 0.2s ease-in-out',
@@ -492,7 +492,7 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
               <button
                 onClick={() => setQuantity(Math.min(maxQuantity, quantity + 1))}
                 disabled={quantity >= maxQuantity}
-                className="w-9 h-9 flex items-center justify-center rounded-r-lg bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-9 h-9 flex items-center justify-center rounded-r-md bg-white/30 backdrop-blur-sm border border-white/40 hover:bg-white/50 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Increase quantity"
                 style={{
                   transition: 'all 0.2s ease-in-out',
