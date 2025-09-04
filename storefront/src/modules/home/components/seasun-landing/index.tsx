@@ -1307,7 +1307,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
               }}
             >
-              Your Questions, Beautiful—<span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>We're Here to Help</span>
+              Your Questions—<span style={{ color: 'var(--seasun-golden-tan)', fontWeight: '500' }}>We're Here to Help</span>
             </h2>
             
             {/* FAQ Questions - Simplified container with optimal reading width */}
