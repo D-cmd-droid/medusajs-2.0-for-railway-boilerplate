@@ -1268,23 +1268,32 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             
             {/* FAQ Questions - Simplified container with optimal reading width */}
             <div 
-              className="mx-auto mb-12" 
-              style={{ maxWidth: '700px' }}
+              className="mx-auto mb-16" 
+              style={{ 
+                maxWidth: '700px',
+                gap: '12px',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
               role="region" 
               aria-labelledby="faq-heading"
             >
               {faqs.map((faq, index) => (
                 <div 
                   key={index}
-                  className="group/card bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-white/30 hover:shadow-xl hover:bg-white/90 transition-all duration-500 mb-8"
+                  className="group/card overflow-hidden mb-4 pb-0 hover:bg-[rgba(250,248,246,0.8)]"
                   style={{
-                    transform: expandedFAQ === index ? 'scale(1.02)' : 'scale(1)'
+                    background: 'rgba(250, 248, 246, 0.6)',
+                    borderRadius: '2px',
+                    border: '0.5px solid rgba(0, 0, 0, 0.15)',
+                    transition: 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.01)'
                   }}
                 >
                   <h3>
                     <button
                       onClick={() => toggleFAQ(index)}
-                      className="group w-full text-left flex justify-between items-center hover:bg-white/20 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-black/20 py-4 px-5 min-h-[60px]"
+                      className="group w-full text-left flex justify-between items-center transition-all duration-700 focus:outline-none focus-visible:outline-none py-4 px-5 min-h-[50px] relative"
                       aria-expanded={expandedFAQ === index}
                       aria-controls={`faq-answer-${index}`}
                       id={`faq-question-${index}`}
@@ -1301,27 +1310,35 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         style={{ 
                           color: 'var(--seasun-deep-black)',
                           fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
-                          lineHeight: '1.8',
+                          lineHeight: '1.6',
                           letterSpacing: '0.01em',
-                          fontWeight: '400'
+                          fontWeight: expandedFAQ === index ? '500' : '400',
+                          transition: 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                          opacity: expandedFAQ === index ? '0.95' : '0.8',
+                          position: 'relative'
                         }}
                       >
                         {faq.question}
                       </span>
                       
                       {/* Plus icon - Maintained original styling */}
-                      <span 
-                        className="transition-all duration-500 ease-out group-hover:scale-110 flex-shrink-0 ml-2 sm:ml-4 min-w-[24px] min-h-[24px] flex items-center justify-center" 
+                      <div
+                        className="transition-all duration-700 ease-out flex-shrink-0 ml-6 w-[16px] h-[16px] relative"
                         style={{ 
-                          color: 'var(--seasun-deep-black)', 
-                          transform: expandedFAQ === index ? 'rotate(45deg)' : 'rotate(0deg)',
-                          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                          fontSize: 'clamp(1.25rem, 1vw + 1rem, 1.75rem)',
+                          transition: 'all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)'
                         }}
                         aria-hidden="true"
                       >
-                        +
-                      </span>
+                        <div className="absolute top-[7px] left-0 w-full h-[2px] bg-black/25 transition-all duration-700" 
+                          style={{
+                            transform: expandedFAQ === index ? 'rotate(180deg) scaleX(0.7)' : 'rotate(0deg)'
+                          }}></div>
+                        <div className="absolute top-0 left-[7px] w-[2px] h-full bg-black/25 transition-all duration-700"
+                          style={{
+                            opacity: expandedFAQ === index ? 0 : 1,
+                            transform: expandedFAQ === index ? 'rotate(90deg) scaleY(0)' : 'rotate(0deg)'
+                          }}></div>
+                      </div>
                     </button>
                   </h3>
                   
@@ -1331,21 +1348,23 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   - Consistent padding that scales with viewport
                   */}
                   <div 
-                    className="overflow-hidden transition-all duration-500 ease-out"
+                    className="overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)]"
                     style={{
                       maxHeight: expandedFAQ === index ? '600px' : '0px',
-                      opacity: expandedFAQ === index ? 1 : 0
+                      opacity: expandedFAQ === index ? 1 : 0,
+                      transformOrigin: 'top left'
                     }}
                   >
                     <div 
                       id={`faq-answer-${index}`}
-                      className="border-t border-gray-100"
                       role="region"
                       aria-labelledby={`faq-question-${index}`}
                       style={{
                         transform: expandedFAQ === index ? 'translateY(0)' : 'translateY(-10px)',
-                        transition: 'transform 0.3s ease-out 0.2s',
-                        padding: 'clamp(0.75rem, 3vh, 1.5rem) clamp(1rem, 4vw, 2rem)',
+                        transition: 'transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                        padding: '0 0 1rem 0',
+                        margin: '0',
+                        position: 'relative'
                       }}
                     >
                       {/* 
@@ -1358,11 +1377,13 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         className="seasun-body font-light" 
                         style={{ 
                           color: 'var(--seasun-deep-black)', 
-                          opacity: 0.75,
+                          opacity: 0.7,
                           fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
-                          lineHeight: '1.8',
+                          lineHeight: '1.6',
                           letterSpacing: '0.01em',
-                          fontWeight: '300'
+                          fontWeight: '300',
+                          paddingLeft: '1rem',
+                          paddingRight: '1rem'
                         }}
                       >
                         {faq.answer}
