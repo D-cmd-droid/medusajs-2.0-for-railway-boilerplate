@@ -257,16 +257,16 @@ const EmbeddedProductDisplay: React.FC<EmbeddedProductDisplayProps> = ({
             style={{
               bottom: 'clamp(1rem, 3vw, 1.5rem)',
               left: 'clamp(1rem, 3vw, 1.5rem)',
-              padding: 'clamp(0.375rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)',
+              padding: 'clamp(0.35rem, 0.7vw, 0.5rem) clamp(0.7rem, 1.2vw, 0.9rem)',
               borderRadius: '9999px',
             }}>
             <span 
-              className="seasun-body font-light text-white tracking-wide"
+              className="seasun-body font-light text-white tracking-wide flex items-center"
               style={{ 
-                fontSize: 'clamp(0.65rem, 0.8vw, 0.875rem)',
-                lineHeight: '1.5'
+                fontSize: 'clamp(0.7rem, 0.85vw, 0.9rem)',
+                lineHeight: '1.3'
               }}
-            >🌿 Natural</span>
+            ><span className="mr-1.5" style={{ fontSize: '1em' }}>🌿</span>Natural</span>
           </div>
         </div>
       </div>
