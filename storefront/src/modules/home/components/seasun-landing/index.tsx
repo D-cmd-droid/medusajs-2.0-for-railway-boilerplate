@@ -652,7 +652,14 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   lineHeight: '1.3',
                 }}
               >
-                Hello beautiful, welcome to SEASUN
+                Hello <span 
+                  className="seasun-heartbeat" 
+                  style={{
+                    display: 'inline-block',
+                    animation: 'heartbeat 5s ease-in-out infinite',
+                    color: 'rgba(247, 138, 21, 0.85)', /* SEASUN golden tan */
+                  }}
+                >beautiful</span>, welcome to SEASUN
               </h2>
             </div>
             
