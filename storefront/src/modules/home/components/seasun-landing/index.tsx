@@ -334,20 +334,15 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         className="relative flex items-center justify-center overflow-hidden content-full-height hero-section"
         style={{
           /* 
-          FLUID HEIGHT: Using content-full-height utility class with stable height
-          to prevent layout shifts during scrolling. Using fixed height for calculation
-          base to avoid the exact issue causing jumps.
+          FLUID HEIGHT: Now handled by updated hero-section CSS class
+          with modern dvh units for better mobile stability.
+          Class already has contain, transform and height settings.
           */
-          height: 'var(--app-height)', // Use small viewport height for stability
           maxHeight: '900px', // Cap max height
           minHeight: '500px', // Ensure minimum height
           /* Fixed padding instead of viewport-relative to prevent shifts */
           paddingTop: 'max(2rem, min(8%, 6rem))',
           paddingBottom: 'max(2rem, min(8%, 6rem))',
-          /* Force containment to prevent layout shifts */
-          contain: 'layout paint',
-          /* Prevent parent container transforms */
-          transform: 'none',
         }}
         role="banner"
         aria-labelledby="hero-heading"
@@ -363,13 +358,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
         */}
         <div className="absolute inset-0" style={{ 
           zIndex: -10, 
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: '100%', // Explicitly set height
-          overflow: 'hidden' // Contain the image
+          height: '100%', // Parent height is now stable with dvh
+          overflow: 'hidden', // Contain the image
+          transform: 'translateZ(0)', // Force GPU acceleration
+          backfaceVisibility: 'hidden', // Prevent flickering
+          WebkitBackfaceVisibility: 'hidden',
+          willChange: 'transform' // Hint to browser for optimization
         }}>
           <Image
             src="/images/seasun-hero-bg-model.png"
@@ -381,9 +375,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               objectPosition: 'center',
               width: '100%',
               height: '100%',
-              position: 'absolute', // Use absolute instead of relying on fill
-              minHeight: '100%' // Ensure image covers container
+              transform: 'translateZ(0)', // Force GPU acceleration
+              willChange: 'transform' // Hint to browser
             }}
+            placeholder="blur" // Add blur-up effect
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHBAJ/PchI7wAAAABJRU5ErkJggg=="
             quality={90}
             priority // Preload this image
             loading="eager" // Force immediate loading

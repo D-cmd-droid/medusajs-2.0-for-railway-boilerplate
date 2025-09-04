@@ -98,10 +98,11 @@
 /* SEASUN Brand Colors - From Legacy Webflow Site */
 :root {
   /* Mobile Viewport Fix - 2025 Production Solution */
+  --dvh-unit: 1dvh; /* Dynamic viewport height - adjusts as UI shows/hides */
   --svh-unit: 1svh; /* Small viewport height - consistent with visible UI */
   --lvh-unit: 1lvh; /* Large viewport height - when UI is hidden */
   --seasun-vh: 1vh;  /* Fallback for older browsers */
-  --app-height: calc(var(--svh-unit, var(--seasun-vh)) * 100);
+  --app-height: calc(var(--dvh-unit, var(--svh-unit, var(--seasun-vh))) * 100);
   --expanded-height: calc(var(--lvh-unit, var(--seasun-vh)) * 100);
   
   --seasun-deep-black: #1a1a1a;
@@ -146,20 +147,38 @@ body, main {
 
 /* Content that needs to fill the visible viewport */
 .content-full-height {
-  min-height: 100vh; /* Fallback */
-  min-height: var(--app-height);
+  /* Progressive enhancement */
+  min-height: 100vh; /* Fallback for oldest browsers */
+  min-height: var(--app-height); /* Variable-based fallback */
+  min-height: 100dvh; /* Modern solution - takes precedence when supported */
+  
   /* Prevent layout shifts during scrolling */
-  contain: layout;
+  contain: layout size;
+  
+  /* Force GPU acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* Fixed elements that need to span full height */
 .fixed-full-height {
-  height: 100vh; /* Fallback */
-  height: var(--app-height);
+  /* Progressive enhancement */
+  height: 100vh; /* Fallback for oldest browsers */
+  height: var(--app-height); /* Variable-based fallback */
+  height: 100dvh; /* Modern solution - takes precedence when supported */
+  
+  /* Prevent layout shifts */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* Special handling for hero section to prevent jumps */
 .hero-section {
+  /* Explicit height handling with modern viewport units */
+  height: 100vh; /* Oldest browsers */
+  height: var(--app-height); /* Variable-based fallback */
+  height: 100dvh; /* Modern solution - will take precedence when supported */
+  
   /* Force GPU rendering for stability */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -170,13 +189,25 @@ body, main {
   /* Ensure stable container for absolute positioning */
   isolation: isolate;
   
+  /* Enhanced containment for performance */
+  contain: layout size paint;
+  content-visibility: auto;
+  
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  
+  /* Provide size hint to browser */
+  contain-intrinsic-size: 100vw 100dvh;
+  
   /* Better rendering performance */
-  will-change: contents;
+  will-change: transform;
 }
 
 /* For elements that should expand when browser UI is hidden */
 .expanded-height {
   min-height: var(--expanded-height);
+  min-height: 100lvh; /* Modern solution for UI-hidden state */
 }
 
 /* Disable animations for users who prefer reduced motion */
@@ -1061,18 +1092,11 @@ body, main {
 }
 
 /* Mobile browser height fix - Update CSS var when viewport changes */
+/* This is handled by JavaScript in layout.tsx */
 @media (max-width: 767px) {
   @supports not (height: 100dvh) {
-    /* This script will be added to layout.tsx to set the --seasun-vh variable */
-    /* (function() {
-      function updateMobileHeight() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--seasun-vh', `${vh}px`);
-      }
-      updateMobileHeight();
-      window.addEventListener('resize', updateMobileHeight);
-      window.addEventListener('orientationchange', updateMobileHeight);
-    })(); */
+    /* The script has been uncommented and enhanced in layout.tsx */
+    /* We're now using a debounced version with proper cleanup */
   }
 }
 
@@ -1191,16 +1215,15 @@ body, main {
 }
 
 @layer components {
-  /* Additional mobile browser UI visibility classes */
-  .content-full-height {
-    min-height: 100vh; /* Fallback */
-    min-height: 100dvh; /* Modern browsers */
-  }
+  /* Additional mobile browser UI visibility classes - streamlined implementation */
+  /* These are redundant with the above implementations but kept for backward compatibility */
+  /* The global classes above now include the dvh units already */
 
-  /* For fixed position elements like modals that should cover the full height */
-  .fixed-full-height {
-    height: 100vh; /* Fallback */
-    height: 100dvh; /* Modern browsers */
+  /* Ensure .seasun-content-gradient gets the same treatment */
+  .seasun-content-gradient {
+    min-height: 100vh; /* Fallback */
+    min-height: var(--app-height); /* Variable-based fallback */
+    min-height: 100dvh; /* Modern solution */
   }
   
   /* Footer Wave Animation */

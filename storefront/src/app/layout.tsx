@@ -33,7 +33,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
                 });
 
                 // 2025 Production-ready Fix for mobile browser address bar issues
-                // Optimize for browsers that don't support svh/lvh units
+                // Optimize for browsers that don't support dvh/svh/lvh units
                 function updateMobileViewport() {
                   // Use RAF to ensure smooth updates
                   requestAnimationFrame(() => {
@@ -43,7 +43,14 @@ export default function RootLayout(props: { children: React.ReactNode }) {
                     // Set fallback custom properties
                     document.documentElement.style.setProperty('--seasun-vh', \`\${vh}px\`);
                     
-                    // No need to update svh/lvh variables as browsers handle those natively
+                    // Check if we need dvh fallback (feature detection)
+                    const supportsDvh = CSS.supports('height', '1dvh');
+                    if (!supportsDvh) {
+                      // For browsers without dvh support, also update our dvh unit
+                      document.documentElement.style.setProperty('--dvh-unit', \`\${vh}px\`);
+                    }
+                    
+                    // No need to update native svh/lvh/dvh variables in modern browsers
                     // This is just a fallback for older browsers
                   });
                 }
