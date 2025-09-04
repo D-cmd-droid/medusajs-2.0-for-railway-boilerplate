@@ -31,6 +31,24 @@ export default function RootLayout(props: { children: React.ReactNode }) {
                     });
                   });
                 });
+
+                // 2025 Fix for mobile browser address bar hiding/showing causing jumps
+                // Set the mobile browser height CSS variable based on actual viewport
+                function updateMobileHeight() {
+                  let vh = window.innerHeight * 0.01;
+                  document.documentElement.style.setProperty('--seasun-vh', \`\${vh}px\`);
+                }
+                
+                // Initialize height on load
+                updateMobileHeight();
+                
+                // Update on resize and orientation change
+                window.addEventListener('resize', updateMobileHeight);
+                window.addEventListener('orientationchange', updateMobileHeight);
+                window.addEventListener('scroll', function() {
+                  // Delay update to ensure address bar is fully shown/hidden
+                  setTimeout(updateMobileHeight, 100);
+                });
               })();
             `,
           }}

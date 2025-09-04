@@ -97,6 +97,10 @@
 
 /* SEASUN Brand Colors - From Legacy Webflow Site */
 :root {
+  /* Mobile Viewport Fix - 2025 Solution */
+  --seasun-vh: 1vh;
+  --seasun-mobile-browser-height: calc(var(--seasun-vh) * 100);
+  
   --seasun-deep-black: #1a1a1a;
   --seasun-golden-tan: #f78a15;
   --seasun-white: #f2f2f2;
@@ -124,6 +128,21 @@
   /* Animation Timing Functions */
   --ease-luxury: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Fix for mobile browser UI hiding/showing causing jumps */
+@supports (height: 100dvh) {
+  html, body, main {
+    height: 100dvh; /* Modern browsers - Dynamic viewport height */
+  }
+}
+
+@supports not (height: 100dvh) {
+  /* Fallback for older browsers */
+  html, body, main {
+    height: 100vh;
+    height: var(--seasun-mobile-browser-height);
+  }
 }
 
 /* SEASUN Typography Classes */
@@ -998,6 +1017,22 @@
   width: 0 !important;
 }
 
+/* Mobile browser height fix - Update CSS var when viewport changes */
+@media (max-width: 767px) {
+  @supports not (height: 100dvh) {
+    /* This script will be added to layout.tsx to set the --seasun-vh variable */
+    /* (function() {
+      function updateMobileHeight() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--seasun-vh', `${vh}px`);
+      }
+      updateMobileHeight();
+      window.addEventListener('resize', updateMobileHeight);
+      window.addEventListener('orientationchange', updateMobileHeight);
+    })(); */
+  }
+}
+
 /* Heartbeat animation - subtle glow from SEASUN orange to lighter orange */
 @keyframes heartbeat {
   0%, 100% {
@@ -1113,6 +1148,18 @@
 }
 
 @layer components {
+  /* Additional mobile browser UI visibility classes */
+  .content-full-height {
+    min-height: 100vh; /* Fallback */
+    min-height: 100dvh; /* Modern browsers */
+  }
+
+  /* For fixed position elements like modals that should cover the full height */
+  .fixed-full-height {
+    height: 100vh; /* Fallback */
+    height: 100dvh; /* Modern browsers */
+  }
+  
   /* Footer Wave Animation */
   @keyframes gentleWave {
     0%, 100% { 
