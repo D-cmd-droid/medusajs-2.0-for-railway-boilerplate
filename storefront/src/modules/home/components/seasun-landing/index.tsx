@@ -669,8 +669,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 style={{ 
                   fontFamily: 'var(--seasun-font-heading)', 
                   color: 'var(--seasun-deep-black)',
-                  fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
-                  lineHeight: '1.2',
+                  fontSize: 'clamp(1.25rem, 2vw + 0.75rem, 2.75rem)',
+                  fontWeight: '300',
+                  letterSpacing: '0.03em',
+                  lineHeight: '1.3',
                   marginBottom: 'clamp(2rem, 8vh, 4rem)',
                 }}
                 data-scroll-animation="fade-up"
@@ -703,11 +705,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 className="seasun-body font-light text-center"
                 style={{ 
                   color: 'var(--seasun-deep-black)', 
-                  opacity: 0.85,
-                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
-                  lineHeight: '1.6',
-                  maxWidth: 'min(100%, 800px)',
+                  opacity: 0.75,
+                  fontSize: 'clamp(0.95rem, 0.75vw + 0.5rem, 1.125rem)',
+                  lineHeight: '1.8',
+                  maxWidth: 'min(100%, 700px)',
                   margin: '0 auto clamp(1.5rem, 5vh, 3rem) auto',
+                  letterSpacing: '0.01em',
                 }}
                 data-scroll-animation="fade-up"
               >
@@ -724,11 +727,12 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                 className="seasun-body font-normal text-center"
                 style={{ 
                   color: 'var(--seasun-deep-black)', 
-                  opacity: 0.85,
-                  fontSize: 'clamp(1rem, 1vw + 0.5rem, 1.25rem)',
-                  lineHeight: '1.6',
-                  maxWidth: 'min(100%, 800px)',
+                  opacity: 0.75,
+                  fontSize: 'clamp(0.95rem, 0.75vw + 0.5rem, 1.125rem)',
+                  lineHeight: '1.8',
+                  maxWidth: 'min(100%, 700px)',
                   margin: '0 auto',
+                  letterSpacing: '0.01em',
                 }}
                 data-scroll-animation="fade-up"
               >
@@ -843,8 +847,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
             style={{ 
               fontFamily: 'var(--seasun-font-heading)', 
               color: 'var(--seasun-deep-black)',
-              fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
-              lineHeight: '1.2',
+              fontSize: 'clamp(1.25rem, 2vw + 0.75rem, 2.75rem)',
+              fontWeight: '300',
+              letterSpacing: '0.03em',
+              lineHeight: '1.3',
               marginBottom: 'clamp(2rem, 8vh, 4rem)',
             }}
             data-scroll-animation="fade-up"
@@ -957,7 +963,9 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
-                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                      fontSize: 'clamp(1.1rem, 1.5vw + 0.5rem, 1.75rem)',
+                      fontWeight: '300',
+                      letterSpacing: '0.03em',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                       textAlign: 'center'
@@ -976,10 +984,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     className="seasun-body font-light text-center lg:text-left"
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
-                      opacity: 0.85,
-                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
-                      lineHeight: '1.6',
-                      textAlign: 'center'
+                      opacity: 0.75,
+                      fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
+                      lineHeight: '1.8',
+                      textAlign: 'center',
+                      letterSpacing: '0.01em'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1035,7 +1044,9 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
-                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                      fontSize: 'clamp(1.1rem, 1.5vw + 0.5rem, 1.75rem)',
+                      fontWeight: '300',
+                      letterSpacing: '0.03em',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                       textAlign: 'center'
@@ -1049,10 +1060,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     className="seasun-body font-light text-center lg:text-left"
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
-                      opacity: 0.85,
-                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
-                      lineHeight: '1.6',
-                      textAlign: 'center'
+                      opacity: 0.75,
+                      fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
+                      lineHeight: '1.8',
+                      textAlign: 'center',
+                      letterSpacing: '0.01em'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1108,7 +1120,9 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     style={{ 
                       fontFamily: 'var(--seasun-font-heading)', 
                       color: 'var(--seasun-deep-black)',
-                      fontSize: 'clamp(1.25rem, 2vw + 0.5rem, 2rem)',
+                      fontSize: 'clamp(1.1rem, 1.5vw + 0.5rem, 1.75rem)',
+                      fontWeight: '300',
+                      letterSpacing: '0.03em',
                       lineHeight: '1.3',
                       marginBottom: 'clamp(0.5rem, 2vh, 1rem)',
                       textAlign: 'center'
@@ -1122,10 +1136,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                     className="seasun-body font-light text-center lg:text-left"
                     style={{ 
                       color: 'var(--seasun-deep-black)', 
-                      opacity: 0.85,
-                      fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
-                      lineHeight: '1.6',
-                      textAlign: 'center'
+                      opacity: 0.75,
+                      fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
+                      lineHeight: '1.8',
+                      textAlign: 'center',
+                      letterSpacing: '0.01em'
                     }}
                     data-scroll-animation="fade-up"
                   >
@@ -1241,8 +1256,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               style={{ 
                 fontFamily: 'var(--seasun-font-heading)', 
                 color: 'var(--seasun-deep-black)',
-                fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
-                lineHeight: '1.2',
+                fontSize: 'clamp(1.25rem, 2vw + 0.75rem, 2.75rem)',
+                fontWeight: '300',
+                letterSpacing: '0.03em',
+                lineHeight: '1.3',
                 marginBottom: 'clamp(1.5rem, 5vh, 3rem)',
               }}
             >
@@ -1283,8 +1300,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         className="seasun-body font-medium group-hover:opacity-90 transition-opacity duration-300 pr-3" 
                         style={{ 
                           color: 'var(--seasun-deep-black)',
-                          fontSize: 'clamp(0.875rem, 0.75vw + 0.75rem, 1.125rem)',
-                          lineHeight: '1.6',
+                          fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
+                          lineHeight: '1.8',
+                          letterSpacing: '0.01em',
+                          fontWeight: '400'
                         }}
                       >
                         {faq.question}
@@ -1339,9 +1358,11 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                         className="seasun-body font-light" 
                         style={{ 
                           color: 'var(--seasun-deep-black)', 
-                          opacity: 0.8,
-                          fontSize: 'clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem)',
-                          lineHeight: '1.6',
+                          opacity: 0.75,
+                          fontSize: 'clamp(0.85rem, 0.5vw + 0.7rem, 1rem)',
+                          lineHeight: '1.8',
+                          letterSpacing: '0.01em',
+                          fontWeight: '300'
                         }}
                       >
                         {faq.answer}
@@ -1440,8 +1461,10 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               style={{ 
                 fontFamily: 'var(--seasun-font-heading)', 
                 color: 'var(--seasun-deep-black)',
-                fontSize: 'clamp(1.5rem, 3vw + 1rem, 3.5rem)',
-                lineHeight: '1.2',
+                fontSize: 'clamp(1.25rem, 2vw + 0.75rem, 2.75rem)',
+                fontWeight: '300',
+                letterSpacing: '0.03em',
+                lineHeight: '1.3',
                 marginBottom: 'clamp(1.5rem, 3vh, 2.5rem)',
               }}
             >
