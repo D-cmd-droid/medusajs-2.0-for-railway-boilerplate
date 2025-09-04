@@ -319,17 +319,17 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
       - CSS variables: For consistent values across components
       */}
       <section 
-        className="relative flex items-center justify-center overflow-hidden"
+        className="relative flex items-center justify-center overflow-hidden content-full-height"
         style={{
           /* 
-          FLUID HEIGHT: Instead of fixed 100vh (which causes mobile issues),
-          use clamp() to set minimum height while allowing natural expansion.
-          This prevents content overflow on small screens.
+          FLUID HEIGHT: Using our content-full-height utility class
+          which includes both modern dvh and fallback solutions.
+          Additional constraint with clamp for minimum/maximum heights.
           */
-          minHeight: 'clamp(500px, 100vh, 900px)',
+          minHeight: 'clamp(500px, 100dvh, 900px)',
           /* Allows proper spacing on ultra-tall screens */
-          paddingTop: 'clamp(2rem, 8vh, 6rem)',
-          paddingBottom: 'clamp(2rem, 8vh, 6rem)',
+          paddingTop: 'clamp(2rem, 8dvh, 6rem)',
+          paddingBottom: 'clamp(2rem, 8dvh, 6rem)',
         }}
         role="banner"
         aria-labelledby="hero-heading"
@@ -374,7 +374,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
           - Gap scales with viewport to maintain consistent visual rhythm
           */}
           <div className="relative grid small:grid-cols-2 items-center" style={{
-            minHeight: 'clamp(400px, 70vh, 700px)',
+            minHeight: 'clamp(400px, 70dvh, 700px)',
             maxWidth: '1400px',
             margin: '0 auto'
           }}>
@@ -394,7 +394,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.25)',
               // Better margin control with vertical alignment
               margin: '0 auto xsmall:m-0',
-              paddingTop: 'clamp(1rem, 5vh, 3rem)',
+              paddingTop: 'clamp(1rem, 5dvh, 3rem)',
             }}>
               {/* 
               HEADING: 
@@ -408,7 +408,7 @@ export default function SeasunLanding({ region, product }: SeasunLandingProps) {
                   fontFamily: 'var(--seasun-font-heading)', /* Changed from decorative to regular Cinzel */
                   color: 'var(--seasun-white)', /* Changed to brand white for better contrast with background */
                   letterSpacing: '0.05em',
-                  marginBottom: 'clamp(1rem, 4vh, 2.5rem)', // Adjusted for better spacing
+                  marginBottom: 'clamp(1rem, 4dvh, 2.5rem)', // Adjusted for better spacing
                   /* Create better visual rhythm with a more natural line height */
                   lineHeight: '1.15', // Slightly increased for better text flow
                 }}
